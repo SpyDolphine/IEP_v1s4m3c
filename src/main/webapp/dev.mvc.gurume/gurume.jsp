@@ -6,9 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
-<body> 
 <body>
-카페모카 마시고픔!
-</body>
+<h1>카페[모카]</h1>
 </body>
 </html>
