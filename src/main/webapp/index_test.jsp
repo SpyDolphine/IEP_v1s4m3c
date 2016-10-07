@@ -1,13 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>test_index</title>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="dev.mvc.member.MemberVO" %>
+ <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+ 
+<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
+<meta charset="UTF-8"> 
+<title></title> 
 </head>
 <body>
-¿­½ÉÈ÷ÇØ¿ä<Br>
-ÃÖ¿µÂù<br> 
+ì—´ì‹¬ížˆí•´ìš”<Br>
+ìµœì˜ì°¬<br> 
 </body> 
 </html>
