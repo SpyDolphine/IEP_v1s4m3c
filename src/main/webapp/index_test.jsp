@@ -7,7 +7,7 @@
 <title></title> 
 </head>
 <body>
-한상은ㅇㅇ <br>
+한상은ㅇㅇ. <br>
 바부병건이 <br>
 소는정<br>
 이용수 <br>
