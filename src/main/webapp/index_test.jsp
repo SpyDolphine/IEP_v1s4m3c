@@ -9,7 +9,7 @@
 <title></title> 
 </head>
 <body>
-열심히해요<Br>
-아로미<br> 
+열심히해요<br>
+아로미<br>
 </body> 
 </html>
