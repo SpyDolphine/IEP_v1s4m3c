@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="dev.mvc.member.MemberVO" %>
- <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
- 
+
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
@@ -9,7 +7,11 @@
 <title></title> 
 </head>
 <body>
+<<<<<<< HEAD
 열심히해요<br>
 아로미<br>
+=======
+한상은 <br>
+>>>>>>> branch 'master' of https://github.com/SpyDolphine/IEP_v1s4m3c.git
 </body> 
 </html>
