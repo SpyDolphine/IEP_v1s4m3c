@@ -16,8 +16,6 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 <script type="text/javascript" src="../js/tool.js"></script>
- 
-  
 </head> 
 <!-- ----------------------------------------- -->
 <body>
