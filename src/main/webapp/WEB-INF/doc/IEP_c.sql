@@ -14,31 +14,57 @@ SELECT categoryno, sort, seqno
 FROM category
 ORDER BY categoryno ASC
 
-CREATE TABLE division( -- 중분류
-  divisionno    NUMBER(7)                          NOT NULL, -- 카테고리 번호
-  categoryno    NUMBER(10)                         NOT NULL, -- 대분류 번호
+  CREATE TABLE division( -- 중분류
+  divisionno    NUMBER(7)                          NOT NULL, -- 게시판 번호
+  categoryno    NUMBER(7)                          NOT NULL, -- 대분류 번호
+  me_no         NUMBER(7)                          NOT NULL, -- 회원 번호
   title         VARCHAR2(50)                       NOT NULL, -- 카테고리 이름
   seqno         NUMBER(3)       DEFAULT 1          NOT NULL, -- 카테고리 출력 순서
   visible       CHAR(1)         DEFAULT 'Y'        NOT NULL, -- 출력 모드
-  ids           CHAR(1)         DEFAULT 'M'    NOT NULL, -- 접근 계정
+  ids           CHAR(1)         DEFAULT 'M'        NOT NULL, -- 접근 계정
   cnt           NUMBER(6)       DEFAULT 0          NOT NULL, -- 등록된 글 수
-  PRIMARY KEY(divisionno),
   FOREIGN KEY (categoryno) REFERENCES category (categoryno), -- 대분류 번호
-  FOREIGN KEY (me_no) REFERENCES IEP_MEMBER (me_no)          -- 회원번호
-);
+  FOREIGN KEY (me_no) REFERENCES IEP_MEMBER (me_no),          -- 회원번호
+  PRIMARY KEY(divisionno)
+  );
 
+
+  
 1) 등록
-INSERT INTO division(divisionno, categoryno, title, seqno, visible, ids)
+INSERT INTO division(divisionno, 
+              categoryno, me_no, title, seqno, visible, ids)
 VALUES((SELECT NVL(MAX(divisionno), 0)+1 as divisionno FROM division),
-             1, '공지사항', 1, 'Y', 'M');
+             1, 1, '공지사항', 1, 'Y', 'M');
 
 2) 조회
 SELECT divisionno, categoryno, title, seqno, visible, ids
 FROM division 
 ORDER BY seqno ASC;
 
+
+  CREATE TABLE IEP_MEMBER(
+    me_no              NUMBER(7)    NOT NULL ,  -- 회원 번호
+    me_id               VARCHAR2(100)   unique  NOT NULL,-- 회원 아이디(이메일로)
+    me_pw              VARCHAR2(20)     NOT NULL,-- 회원 비밀번호
+    me_nick            VARCHAR2(40)     NOT NULL,-- 회원 닉네임
+    me_name          VARCHAR2(40)     NOT NULL,-- 회원 이름
+    me_grade          CHAR(1)    DEFAULT 'M',-- 회원 등급
+    me_zipcode       VARCHAR2(10)     NOT NULL,-- 회원 우편번호
+    me_addr1          VARCHAR2(100)    NOT NULL,-- 회원 주소
+    me_addr2          VARCHAR2(100)    NOT NULL,-- 회원 상세주소
+    me_tel               varchar2(20)     NOT NULL,-- 회원 전화번호
+    me_date            DATE     NOT NULL,-- 회원 등록일
+    primary key(me_no)
+);
+  
+  INSERT INTO IEP_MEMBER(me_no, me_id, me_pw, me_nick, me_name, me_grade, me_zipcode, me_addr1, me_addr2, me_tel, me_date)
+VALUES ((SELECT NVL(MAX(me_no), 0)+1 as me_no FROM IEP_MEMBER),
+'user1', '1234', '왕눈이', '컴퓨터천재', 'A', '12345', '인천 광역시 ', '동아아 9-1109', '010-8784-8591', sysdate);
+
+
+
 CREATE TABLE board( -- 게시판
-  boardno      NUMBER(7)        NOT NULL        PRIMARY KEY, -- 게시판 번호
+  boardno      NUMBER(7)        NOT NULL, -- 게시판 번호
   divisionno   NUMBER(7)        NOT NULL ,                   -- 카테고리번호
   me_no        NUMBER(7)        NOT NULL ,                   -- 회원 번호
   title        VARCHAR2(200)    NOT NULL,                    -- 게시판 이름
@@ -60,12 +86,12 @@ CREATE TABLE board( -- 게시판
 );
 
 1)등록 
-INSERT INTO board(blogno,
-                          blogcategoryno, me_no, title, content, good, file1, file2, size2, map, cnt, replycnt, rdate, 
+INSERT INTO board(boardno,
+                          divisionno, me_no, title, content, good, file1, file2, size2, map, cnt, replycnt, rdate, 
                           grpno, indent, ansnum)  
 VALUES((SELECT NVL(MAX(boardno), 0) + 1 as boardno FROM board),
-            1, 4, '제목', '내용', 0, 'fall_m.jpg', 'fall.jpg', 0, 'map', 0, 0, sysdate,
-            (SELECT NVL(MAX(grpno), 0) + 1 as grpno FROM blog), 0, 0);
+            1, 1, '제목', '내용', 0, 'fall_m.jpg', 'fall.jpg', 0, 'map', 0, 0, sysdate,
+            (SELECT NVL(MAX(grpno), 0) + 1 as grpno FROM board), 0, 0);
 
 
 
