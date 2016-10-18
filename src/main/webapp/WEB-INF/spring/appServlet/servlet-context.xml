@@ -23,6 +23,6 @@
   </beans:bean>
 	
   <!-- @Controller, @Repository가 선언된 클래스의 객체 자동 생성 -->
-	<context:component-scan base-package="dev.mvc.IEP" />
+	<context:component-scan base-package="dev.mvc" />
 	
 </beans:beans>

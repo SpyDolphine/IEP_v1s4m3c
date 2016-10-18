@@ -61,6 +61,7 @@ ORDER BY seqno ASC;
 VALUES ((SELECT NVL(MAX(me_no), 0)+1 as me_no FROM IEP_MEMBER),
 'user1', '1234', '왕눈이', '컴퓨터천재', 'A', '12345', '인천 광역시 ', '동아아 9-1109', '010-8784-8591', sysdate);
 
+select * from iep_member
 
 
 CREATE TABLE board( -- 게시판

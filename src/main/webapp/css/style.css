@@ -1,13 +1,33 @@
-  /* version 4.0 */
+/* version 5.0 */
   *{ 
     font-family: 맑은 고딕; 
-    font-size: 26px;
+    font-size: 16px;
     margin: 0px;
     padding: 0px; 
   }
+ 
+  header{ 
+    height: 100px; 
+    background-color: rgba(125, 211, 242,0.5); 
+    border-radius: 15px; 
+    padding: 10px; 
+    margin:10px 0;
+    font-family: 맑은 고딕;  
+    text-align: center;
+  }
+  
+  footer {
+    font-family: 맑은 고딕;  
+    text-align: center;
+  }
+  
+  ul.nav { 
+    background-color:rgba(201, 201, 201,.5); 
+    padding: 10px; 
+    border-radius: 10px; 
+  }
   
   BODY{
-    width: 80%;
     margin: 0px auto; /* 0px: 위아래 간격, auto: 좌우 간격, 가운데 정렬 */
     background-image: url('/menu/images/back03.jpg');
   }
@@ -15,7 +35,7 @@
   IMG{
     border: none;
   }
-
+ 
   A:LINK{ /* 기본 링크 속성 */
     color: #333333;
     text-decoration: none; /* 밑줄 삭제 */
@@ -55,7 +75,7 @@
     list-style: none; /* 블렛 기호 생략 */
     margin: 10px 10px; 
   }
-
+ 
   fieldset ul li{
     list-style: none; /* 블렛 기호 생략 */
     margin: 10px 10px; 
@@ -64,7 +84,7 @@
   form fieldset legend{
     margin: 0px 10px;
   }
-
+ 
  .table{
     border: solid 1px #999999;
     border-collapse: collapse; /* 셀 경계선 병합 */
@@ -155,7 +175,7 @@
   #top_menu{
     margin-top: 0px; 
     width: 100%;
-    height: 200px;
+    height: 150px;
   }
   
   .top_menu_label{
@@ -167,19 +187,19 @@
   }
   
   .top_menu_list{
-    position: relative; /* 속해 있는 부모 태그 기준 좌표 이동*/
-    top: 80%;
+    position: relative; /* 인접 태그 기준 좌표 이동*/
+    top: 0%;
     left: 0%;
     background-color: rgba(0, 0, 255, 0.2); /* 0.2: Alpha 값 투명도 */   
     color: white;
   }
-
+ 
   /* 의사 클래스(pseudo-class) 를 이용한 CSS 적용, <A class='menu_link'  */
   .menu_link:link{
     color: white;
     text-decoration: none;
   }
-
+ 
   .menu_link:visited{  /* 방문후 상태 */
     color: white;
     text-decoration: none; /* 밑줄 삭제 */
@@ -194,7 +214,7 @@
   .menu_link:active{  /* A 태그를 클릭한 상태 */
     color: white;
     text-decoration: none; /* 밑줄 삭제 */
-
+ 
   }
   
   /* 경고 메시지 출력 예) <SPAN class='warning'> */   
@@ -210,14 +230,3 @@
     background-color: #00AA00;
     font-weight: bold;
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
