@@ -23,6 +23,9 @@
   </beans:bean>
 	
   <!-- @Controller, @Repository가 선언된 클래스의 객체 자동 생성 -->
-	<context:component-scan base-package="dev.mvc" />
-	
+  <context:component-scan base-package="dev.mvc" />
+      <!-- 파일 전송이 있는 경우만 선언, File upload -->
+    <beans:bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </beans:bean>
 </beans:beans>
