@@ -70,7 +70,7 @@ $(function(){
       </li>
       <li>
         <label for='ids'>접근 계정</label>
-        <input type='text' name='ids' id='ids' value='admin' size='40' placeholder="A/U/G/C">  
+        <input type='text' name='ids' id='ids' value='A' size='40' placeholder="A/U/G/C">  
       </li>
       <li class='right'>
         <button type="submit">등록</button>
