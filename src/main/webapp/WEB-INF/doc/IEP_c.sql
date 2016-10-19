@@ -55,7 +55,7 @@ ORDER BY seqno ASC;
     me_tel               varchar2(20)     NOT NULL,-- 회원 전화번호
     me_date            DATE     NOT NULL,-- 회원 등록일
     primary key(me_no)
-);
+  );
   
   INSERT INTO IEP_MEMBER(me_no, me_id, me_pw, me_nick, me_name, me_grade, me_zipcode, me_addr1, me_addr2, me_tel, me_date)
 VALUES ((SELECT NVL(MAX(me_no), 0)+1 as me_no FROM IEP_MEMBER),
@@ -63,6 +63,10 @@ VALUES ((SELECT NVL(MAX(me_no), 0)+1 as me_no FROM IEP_MEMBER),
 
 select * from iep_member
 
+
+drop table category
+drop table division
+drop table board
 
 CREATE TABLE board( -- 게시판
   boardno      NUMBER(7)        NOT NULL, -- 게시판 번호
@@ -75,12 +79,12 @@ CREATE TABLE board( -- 게시판
   file2        VARCHAR2(50)     NULL ,                       -- 파일 2
   size2        NUMBER(9)        DEFAULT 0       NULL ,       -- 파일 2 크기
   map          VARCHAR2(500)    NULL ,                       -- 지도
-  cnt          NUMBER(7)        DEFAULT 0       NOT NULL,    -- 조회수
-  replycnt     NUMBER(7)        DEFAULT 0       NOT NULL,    -- 댓글수
+  cnt          NUMBER(7)        DEFAULT 0,    -- 조회수
+  replycnt     NUMBER(7)        DEFAULT 0,    -- 댓글수
   rdate        DATE             NOT NULL,                    -- 등록일
   grpno        NUMBER(7)        NOT NULL,                    -- 그룹 번호
-  indent       NUMBER(2)        DEFAULT 0       NOT NULL,    -- 답변 차수
-  ansnum       NUMBER(5)        DEFAULT 0       NOT NULL,    -- 답변 순서
+  indent       NUMBER(2)        DEFAULT 0,    -- 답변 차수
+  ansnum       NUMBER(5)        DEFAULT 0,    -- 답변 순서
   FOREIGN KEY (divisionno) REFERENCES division (divisionno), -- 카테고리번호
   FOREIGN KEY (me_no) REFERENCES IEP_MEMBER (me_no),          --회원번호
   PRIMARY KEY(boardno)

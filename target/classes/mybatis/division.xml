@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "division">
+  <insert id="create" parameterType="DivisionVO">
+    INSERT INTO division(divisionno, 
+      categoryno, title, seqno, visible, ids, me_no)
+    VALUES((SELECT NVL(MAX(divisionno), 0)+1 as divisionno FROM division), 
+      #{categoryno}, #{title}, #{seqno}, #{visible}, #{ids}, #{me_no})
+      
+  </insert>
+  <!-- 검색을하지 않는 전체 목록 -->
+  <select id="category_division_list" resultType="Category_Division_VO">
+    SELECT c.categoryno, c.sort, c.seqno, 
+           t.divisionno, t.title, t.seqno, t.visible, t.ids, t.cnt
+    FROM category c, division t
+    WHERE c.categoryno = t.categoryno(+)
+    ORDER BY c.seqno, t.seqno
+  </select>
+  
+  <!-- 특정 대분류의 레코드 갯수를 산출 -->
+  <select id="countByCategoryno" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt
+    FROM division 
+    WHERE categoryno = #{categoryno}
+  </select>
+ 
+  <!-- 검색을하지 않는 전체 목록 -->
+  <select id="list" resultType="Category_Division_VO">
+    SELECT c.categoryno, c.sort, 
+           t.divisionno, t.title, t.seqno, t.visible, t.ids, t.cnt
+    FROM category c, division t
+    WHERE c.categoryno = t.categoryno
+    ORDER BY c.seqno, t.seqno
+  </select>
+ 
+ <select id="read" resultType="DivisionVO" parameterType="int">
+    SELECT divisionno, categoryno, title, seqno, visible, ids, cnt
+    FROM division
+    WHERE divisionno = #{divisionno} 
+  </select>
+  
+  <update id="update" parameterType="DivisionVO">
+    UPDATE division
+    SET categoryno=#{categoryno}, title=#{title}, seqno=#{seqno}, visible=#{visible}, ids=#{ids}
+    WHERE divisionno = #{divisionno}
+  </update> 
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM division
+    WHERE divisionno = #{divisionno}
+  </delete> 
+  
+  <update id="up" parameterType="DivisionVO">
+    UPDATE division SET seqno=seqno - 1 
+    WHERE divisionno=#{divisionno}
+  </update>
+   
+  <update id="down" parameterType="DivisionVO">
+    UPDATE division SET seqno=seqno + 1 
+    WHERE divisionno=#{divisionno}
+  </update>
+  
+  <update id="increaseCnt" parameterType="int">
+    UPDATE division 
+    SET cnt=cnt + 1 
+    WHERE divisionno=#{divisionno}
+  </update>
+    
+  <update id="decreaseCnt" parameterType="int">
+    UPDATE division 
+    SET cnt=cnt - 1 
+    WHERE divisionno=#{divisionno}
+  </update>
+  
+  
+</mapper>

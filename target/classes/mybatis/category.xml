@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "category">
+
+  <insert id="create" parameterType="CategoryVO">
+  INSERT INTO category(categoryno, sort, seqno)
+  VALUES((SELECT NVL(MAX(categoryno), 0)+1 as categoryno FROM category), #{sort}, #{seqno})
+  </insert>
+
+  <!-- 검색을하지 않는 전체 목록 -->
+  <select id="list" resultType="CategoryVO">
+    SELECT categoryno, sort, seqno
+    FROM category
+    ORDER BY seqno ASC 
+  </select>
+  
+  <!-- 조회 -->
+  <select id="read" resultType="CategoryVO" parameterType="int">
+    SELECT categoryno, sort, seqno
+    FROM category
+    WHERE categoryno=#{categoryno}
+  </select>
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="CategoryVO">
+    UPDATE category SET sort=#{sort}, seqno=#{seqno} WHERE categoryno=#{categoryno}
+  </update> 
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM category
+    WHERE categoryno=#{categoryno}
+  </delete>
+  
+  
+</mapper>
