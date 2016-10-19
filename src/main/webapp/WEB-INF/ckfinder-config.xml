@@ -18,7 +18,7 @@
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
 	<baseDir>C:\secure1\ckstorage</baseDir>
-	<baseURL>/notice/ckstorage</baseURL>
+	<baseURL>/IEP/ckstorage</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<!--

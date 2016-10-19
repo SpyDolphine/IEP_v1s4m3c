@@ -28,7 +28,7 @@
                    value="dev.mvc.IEP
                           dev.mvc.board, 
                           dev.mvc.division, 
-                          dev.mvc.category, 
+                          dev.mvc.category
                    "/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
