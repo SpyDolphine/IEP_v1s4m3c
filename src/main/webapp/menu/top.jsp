@@ -3,27 +3,41 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%  String root = request.getContextPath(); %>
 
-<!DOCTYPE html> 
-<html lang="ko"> 
-<head> 
-
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>IEP</title>
 <meta name="description" content="">
 
 <!-- CSS FILES -->
-<link rel="stylesheet" href="css/bootstrap.min.css"/>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" data-name="skins">
-<link rel="stylesheet" href="css/layout/wide.css" data-name="layout">
-<link rel="stylesheet" href="css/fractionslider.css"/>
-<link rel="stylesheet" href="css/style-fraction.css"/>
-<link rel="stylesheet" href="css/animate.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" media="screen" data-name="skins">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout/wide.css" data-name="layout">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/fractionslider.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style-fraction.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css"/> 
+
+<!-- JS FILES -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
+<script src="${pageContext.request.contextPath}/js/retina-1.1.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script> <!-- jQuery cookie -->
+<script src="${pageContext.request.contextPath}/js/jquery.fractionslider.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.smartmenus.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.smartmenus.bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jflickrfeed.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easypiechart.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/swipe.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-hoverdirection.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.matchHeight-min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-scrolltofixed-min.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 </head>
- <body class="home">
+
+<body class="home">
     <header id="header">
         <div id="top-bar">
             <div class="container">
@@ -40,7 +54,7 @@
                             <a href="" >회원가입</a>  |
                             <a href="" >개인회원</a>  |
                             <a href="" >기업회원</a>  |
-                            <a href="" >HOME</a>  |
+                            <a href="<%=root %>/index.jsp" >HOME</a>  |
                             <a href="" ><i class="fa fa-bookmark"></i>BOOKMARK</a>  
                     </div>
                 </div>
@@ -52,7 +66,7 @@
                     <!-- Logo / Mobile Menu -->
                     <div  class="col-lg-3 col-sm-3 ">
                         <div id="logo">
-                            <h1><a href="<%=root %>/index.jsp"><img alt="logo들어가야함" src=""/></a></h1>
+                            <h1><a href="<%=root %>/index.jsp"><img alt="logo" src="<%=root %>/menu/images/wind.jpg" style='width:100px;'/> &nbsp;IEP</a></h1>
                         </div>
                     </div>
                     <!-- Navigation ================================================== -->
@@ -71,7 +85,7 @@
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="#">공지사항</a>
                                         <ul class="dropdown-menu">
-                                            <li class="active"><a href="<%=root %>/category/list.do">공지사항</a></li>
+                                            <li class="active"><a href="index.html">공지사항</a></li>
                                             <li><a href="#">일반 F&A</a></li>
                                             <li><a href="#">기업 F&A</a></li>
                                         </ul>
@@ -155,3 +169,4 @@
             </div>
         </div>
     </header>
+    

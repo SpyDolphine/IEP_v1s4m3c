@@ -5,18 +5,10 @@
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
+<meta charset="UTF-8">
 <title>취업실패후기 게시판</title> 
  
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    
-<script type="text/javascript" src="../js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
-
-</head> 
+</head>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
@@ -50,10 +42,10 @@
                              </c:otherwise> 
                     </c:choose>
                     <div class="metaInfo">
-                      <span><i class="fa fa-user"></i>취업지원직종<a href="#">&nbsp; ${ifVO.if_company}</a> </span>
-                      <span><i class="fa fa-comments"></i>지원직무<a href="#">&nbsp; ${ifVO.if_position}</a></span>
-                      <span><i class="fa fa-comments"></i>난이도<a href="#">&nbsp; ${ifVO.if_level}</a></span>
-                      <span><i class="fa fa-comments"></i>근무지역<a href="#">&nbsp; ${ifVO.if_region}</a></span>
+                      <span><i class=""></i>취업지원직종<a href="#">&nbsp; ${ifVO.if_company}</a> </span><br>
+                      <span><i class=""></i>지원직무<a href="#">&nbsp; ${ifVO.if_position}</a></span>
+                      <span><i class=""></i>난이도<a href="#">&nbsp; ${ifVO.if_level}</a></span>
+                      <span><i class=""></i>근무지역<a href="#">&nbsp; ${ifVO.if_region}</a></span>
                     </div>
                   </div>
                     <c:choose>
@@ -76,8 +68,6 @@
               </section>
    </c:forEach>
  
-<DIV class='bottom'>
-</DIV>
 <!-- -------------------------------------------- -->
 <jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>

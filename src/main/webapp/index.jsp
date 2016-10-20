@@ -10,21 +10,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>IEP</title>
-<meta name="description" content="">
 
-<!-- CSS FILES -->
-<link rel="stylesheet" href="css/bootstrap.min.css"/>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" data-name="skins">
-<link rel="stylesheet" href="css/layout/wide.css" data-name="layout">
-<link rel="stylesheet" href="css/fractionslider.css"/>
-<link rel="stylesheet" href="css/style-fraction.css"/>
-<link rel="stylesheet" href="css/animate.css"/>
-
-</head> 
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+</head>
         <div class="slider-wrapper">
             <div class="slider">
                 <div class="fs_loader"></div>

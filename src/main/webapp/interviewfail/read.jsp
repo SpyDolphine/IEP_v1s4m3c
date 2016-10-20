@@ -6,24 +6,12 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>읽기 게시판</title>
 
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    
-<script type="text/javascript" src="../js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
-<script type="text/javascript">
-
-</script>
 </head>
 <!-- ----------------------------------------- -->
-<body leftmargin="0" topmargin="0">
   <jsp:include page="/menu/top.jsp" flush='false' />
-  <!-- ----------------------------------------- -->
+<!-- ----------------------------------------- -->
   
   <section class="content blog">
   <input type="hidden" name="if_no" value="${ifVO.if_no}">
@@ -99,10 +87,11 @@
       <div style='text-align: center;'>
         <button type="button" class="btn btn-primary" onclick="location.href='./delete.do?if_no=${ifVO.if_no}'">삭제</button>
         <button type="button" class="btn btn-default" onclick="location.href='./list.do?if_no=${ifVO.if_no }'">목록보기</button>
-        </div>
+      </div>
   </section>
-    <!-- -------------------------------------------- -->
-    <jsp:include page="/menu/bottom.jsp" flush='false' />
+  <br><br>
+<!-- -------------------------------------------- -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 <!-- -------------------------------------------- -->
 </html>
