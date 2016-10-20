@@ -58,7 +58,7 @@ $(function(){
       </c:forEach>
       <li>
         <label for='title'>게시판 제목</label>
-        <input type='text' name='title' id='title' value='경기도' required="required">
+        <input type='text' name='title' id='title' value='게시판' required="required">
       </li>
       <li>
         <label for='orderno'>출력 순서</label>
