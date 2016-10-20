@@ -1,232 +1,894 @@
-/* version 5.0 */
-  *{ 
-    font-family: 맑은 고딕; 
+/* =================================================================== */
+/* Import Section
+====================================================================== */
+@import url("font-awesome.css");
+@import url("magnified.css");
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700");
+@import url(http://fonts.googleapis.com/css?family=Lato:400,300,700);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700);
+
+/* =================================================================== */
+/* 1. HOME - HEADER
+====================================================================== */
+
+#background{
+    width: 100%;
+    height: 100%;
+}
+#header {
+    background: #fff none repeat scroll 0 0;
+    transition: all 0.4s ease-in-out 0s;
+    width: 100%;
+    z-index: 999;
+    font-size: 12px;
+}
+
+#top-bar{background: #ffffff; color: #9f9f9f; padding: 5px 0 3px;}
+
+.top-info ul{ list-style: none; float: right; padding:0; margin: 0;}
+
+.top-info span { font: 13px/28px "open sans",Helvetica, Arial, sans-serif; padding-right: 15px;
+}
+
+.top-info span i { font-size: 13px; margin-right: 5px; }
+
+.top-info li{ float:left;}
+
+.top-info li a{
+    border: 1px solid #9f9f9f !important;
+    border-radius: 100%;
+    color: #9f9f9f;
+    display: inline-block;
+    font-size: 14px;
+    height: 25px;
+    line-height: 23px;
+    margin: 0 2px;
+    text-align: center;
+    transition: background-color 400ms linear 0s;
+    width: 25px;
+
+}
+.top-info li:hover a                {color:#fff!important;}
+.top-info li:hover a.my-tweet       {background:#3ABDD1;}
+.top-info li:hover a.my-facebook    {background:#648CD5;}
+.top-info li:hover a.my-skype       {background:#00AFFF;}
+.top-info li:hover a.my-pint        {background:#DE5656;}
+.top-info li:hover a.my-rss         {background:#EF8D1F;}
+.top-info li:hover a.my-google      {background:#E73904;}
+
+/* Logo
+====================================*/
+
+#logo-bar {
+    padding: 35px 0;
+    background: #fff;
+}
+#logo-bar.scroll-to-fixed-fixed{
+    padding: 10px 0;
+    box-shadow: 0 2px 4px #ddd;
+}
+
+#logo img
+{
+    width:100%;
+    height:auto;
+}
+
+#logo > h1 {
+    margin:0;
+    display:inline-block;
+    float: left;
+}
+
+/* page_head Title
+====================================*/
+.page_head {
+    background: #727CB6;
+    border-bottom: 1px solid #EAEAEA;
+    padding:30px 0;
+}
+
+.page_title{ float: left; }
+
+.page_title h2 {
+    color: #fff;
+    float: left;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0 9px;
+}
+.sub_heading{
+    display: block;
+    background: #fff;
+    color: #666;
     font-size: 16px;
-    margin: 0px;
-    padding: 0px; 
-  }
- 
-  header{ 
-    height: 100px; 
-    background-color: rgba(125, 211, 242,0.5); 
-    border-radius: 15px; 
-    padding: 10px; 
-    margin:10px 0;
-    font-family: 맑은 고딕;  
-    text-align: center;
-  }
-  
-  footer {
-    font-family: 맑은 고딕;  
-    text-align: center;
-  }
-  
-  ul.nav { 
-    background-color:rgba(201, 201, 201,.5); 
-    padding: 10px; 
-    border-radius: 10px; 
-  }
-  
-  BODY{
-    margin: 0px auto; /* 0px: 위아래 간격, auto: 좌우 간격, 가운데 정렬 */
-    background-image: url('/menu/images/back03.jpg');
-  }
-  
-  IMG{
-    border: none;
-  }
- 
-  A:LINK{ /* 기본 링크 속성 */
-    color: #333333;
-    text-decoration: none; /* 밑줄 삭제 */
-  }
-  
-  A:VISITED{
-    color: #333333;
-    text-decoration: none; /* 밑줄 삭제 */    
-  }
-  
-  A:HOVER{ /* A 태그에 마우스가 올라간 상태 */
-    color: #5555FF;
-    text-decoration: underline; /* 밑줄 삭제 */    
-  }
-  
-  A:ACTIVE{ /* A 태그에 클릭 상태 */
-    color: #5555FF;
-    text-decoration: underline; /* 밑줄 삭제 */    
-  }
-  
-  .title{
-    text-align: center;
-    border: solid 1px #AAAAAA;
-    width: 20%;
-    margin: 20px auto;  /* 위아래 좌우 */
-    padding: 3px;
-    background-color: #EEEEEE;
-  }
-  
-  .content{
-    width: 100%;
-    border: none;
-    margin: 20px auto;
-  }
-  
-  form ul li{
-    list-style: none; /* 블렛 기호 생략 */
-    margin: 10px 10px; 
-  }
- 
-  fieldset ul li{
-    list-style: none; /* 블렛 기호 생략 */
-    margin: 10px 10px; 
-  }
- 
-  form fieldset legend{
-    margin: 0px 10px;
-  }
- 
- .table{
-    border: solid 1px #999999;
-    border-collapse: collapse; /* 셀 경계선 병합 */
-    margin: 0px auto;
-    width: 100%;
-  }
- 
-  .th{
-    background-color: #D6F330;
-    border: solid 1px #999999;
-  }
-  
-  .td{
-    border: solid 1px #999999;
-    text-align: center;
-  }
-  
-  .td_l{ /* 왼쪽 정렬 */
-    border: solid 1px #999999;
-    text-align: left;
-  }
-  
-  .message{
-    width: 80%;
-    border: none;
-    margin: 20px auto;
-    text-align: center;
-  }  
-  
-  .focus1{                   /* 모든 SPAN 태그에 적용 */
-    font-weight: bold;  /* 강조 효과 */
-    font-size: 32px;      /* 글자 크기 */
-    color: #00FF00;      /* 글자 색깔 */
-    background-color: #FFFF00; /* 배경 색깔 */   
-  }
-  
-  .focus2{
-    font-weight: bold;
-    font-size: 50px;
-    color: #FFFFFF;
-    background-color: #00AA00;
-  }
-  
-  .aside_menu{ /* 서브 메뉴 */
-    width: 100%;
-    border: none;
-    margin: 20px auto;
-  }
-  
-  .menu_line{
-    width: 100%;
-    border-bottom: solid 1px #555555;
-    margin: 20px 0px 10px 0px; /* top right bottom left */
-  }   
-  
-  fieldset.none_line{
-    margin: 0px 10px; /* 위아래 좌우 */
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
-    border-left: none; 
-    
-  }
-  
-  /*
-      <UL>
-        <LI class='right'>
-  */
-  ul li.right{
-    list-style: none; /* 블렛 기호 생략 */
-    margin: 10px 30px 10px 0px; /* top right bottom left */
-    text-align: right;  
-  } 
-  
-  ul li.center{
-    list-style: none; /* 블렛 기호 생략 */
-    margin: 10px 30px 10px 0px; /* top right bottom left */
-    text-align: center;  
-  }
-  
-  .bottom{
+    padding: 5px 8px;
+    border-left: 2px solid #727CB6;
     clear: both;
+}
+
+/* =================================================================== */
+/* 2. NAVIGATION
+====================================================================== */
+/*
+  Add some SmartMenus required styles not covered in Bootstrap 3's default CSS.
+ These are theme independent and should work with any Bootstrap 3 theme mod.
+*/
+.navbar-nav ul
+{
+    width:100%;
+    min-width:187px!important;
+    padding:0;
+}
+
+.nav-caption{
+    color: #323A45;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 5px 0 0 0;
+    position: absolute;
     text-align: center;
-    margin: 30px auto;
-  }
-  
-  /* <DIV id='top_menu', 페이지에서 1번만 사용됨  */
-  #top_menu{
-    margin-top: 0px; 
+    top: 15%;
     width: 100%;
-    height: 150px;
-  }
+    display: none;
+}
+.navbar-toggle{
+    background:#303436;
+    border:none;
+    padding:10px 10px;
+    border-radius:3px;
+    margin-top:5px;
+}
+.navbar-default{
+    background: #fff;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+    background:#303436;
+}
+.navbar-default .navbar-toggle .icon-bar{
+    background-color:#fff;
+    height:3px;
+}
+.navbar{
+    margin-bottom: 0;
+    margin-top: 7px;
+    min-height:35px;
+    border:none;
+    float: right;
+}
+
+/* sub menus arrows */
+.navbar-nav .sub-arrow, .navbar-nav .collapsible .sub-arrow {
+    position:static;
+    margin-top:0;
+    margin-right:0;
+    margin-left:6px;
+    display:inline-block;
+    width:0;
+    height: 0;
+    overflow:hidden;
+    vertical-align:middle;
+    border-top:4px solid;
+    border-right:4px dashed transparent;
+    border-bottom:4px dashed transparent;
+    border-left:4px dashed transparent;
+}
+.navbar-nav > li > .has-submenu .sub-arrow {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    width:8px;
+    height: 8px;
+    line-height: 8px;
+    border-width: 0px;
+}
   
-  .top_menu_label{
-    position: relative; /* 속해 있는 부모 태그 기준 좌표 이동*/
-    top: 0%;
-    left: 0%;
-    color: #333333;
-    
-  }
-  
-  .top_menu_list{
-    position: relative; /* 인접 태그 기준 좌표 이동*/
-    top: 0%;
-    left: 0%;
-    background-color: rgba(0, 0, 255, 0.2); /* 0.2: Alpha 값 투명도 */   
-    color: white;
-  }
- 
-  /* 의사 클래스(pseudo-class) 를 이용한 CSS 적용, <A class='menu_link'  */
-  .menu_link:link{
-    color: white;
-    text-decoration: none;
-  }
- 
-  .menu_link:visited{  /* 방문후 상태 */
-    color: white;
-    text-decoration: none; /* 밑줄 삭제 */
-  }
-    
-  .menu_link:hover{  /* A 태그에 마우스가 올라간 상태 */
-    color: white;
-    font-weight: bold;
-    text-decoration: none; /* 밑줄 삭제 */
-  }
-  
-  .menu_link:active{  /* A 태그를 클릭한 상태 */
-    color: white;
-    text-decoration: none; /* 밑줄 삭제 */
- 
-  }
-  
-  /* 경고 메시지 출력 예) <SPAN class='warning'> */   
-  .warning{ 
+.navbar-nav > li > .has-submenu .sub-arrow:before {
+    content: "\f107";
+}
+.navbar-nav ul .sub-arrow {
+    position:absolute;
+    right:0;
+    margin-top:6px;
+    margin-right:15px;
+    border-top:4px dashed transparent;
+    border-bottom:4px dashed transparent;
+    border-left:4px solid;
+}
+.navbar-nav ul a.has-submenu {
+    padding-right:30px;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form{
+    border-color: transparent;
+}
+/* scrolling arrows for tall menus */
+.navbar-nav span.scroll-up, .navbar-nav span.scroll-down {
+    position:absolute;
+    display:none;
+    visibility:hidden;
+    height:20px;
+    overflow:hidden;
+    text-align:center;
+}
+.navbar-nav span.scroll-up-arrow, .navbar-nav span.scroll-down-arrow {
+    position:absolute;
+    top:-2px;
+    left:50%;
+    margin-left:-8px;
+    width:0;
+    height:0;
+    overflow:hidden;
+    border-top:7px dashed transparent;
+    border-right:7px dashed transparent;
+    border-bottom:7px solid;
+    border-left:7px dashed transparent;
+}
+.dropdown-menu.sm-nowrap{
+    display: none;
+    left: 0;
+    margin-left: 186px;
+    margin-top: -42px;
+    max-width: 20em;
+    min-width: 10em;
+    top: auto;
+    width: auto;
+}
+
+.navbar-nav span.scroll-down-arrow {
+    top:6px;
+    border-top:7px solid;
+    border-right:7px dashed transparent;
+    border-bottom:7px dashed transparent;
+    border-left:7px dashed transparent;
+}
+.navbar-default .navbar-nav li a{
+    color: #010101;
+    text-transform:uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    line-height:15px;
+}
+.navbar-default .navbar-nav > li{
+}
+.navbar-default .navbar-nav > li:first-child{
+    border-left:none;
+}
+.navbar-default .navbar-nav > li > a:after,
+.navbar-default .navbar-nav > li > a:before {
+    transition: all .5s;
+}
+
+.navbar-default .navbar-nav > li > a{
+    padding:12px 18px;
+
+    position:relative;
+    z-index: 1;
+}
+
+.navbar-default .navbar-nav > li > a:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 1px;
+    content: '.';
+    color: transparent;
+    background: #727CB6;
+    opacity: 0;
+    z-index: -1;
+}
+.navbar-default .navbar-nav > li > a:hover:after {
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+}
+
+.navbar-nav > li.active > a,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus{
+    background: #727CB6;
+    color:#fff!important;
+}
+
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus,
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus
+{
+     background:#727CB6;
+    color:#fff!important;
+}
+
+.navbar-nav li:nth-child(n+2)::before {
+    background: none repeat scroll 0 0 #d0d0d0;
+    content: "";
+    height: 19px;
+    left: -1px;
+    position: absolute;
+    top: 13px;
+    width: 1px;
+}
+.navbar-nav > li + li {
+    margin-left: 1px;
+}
+/* add more indentation for 2+ level sub in collapsible mode - Bootstrap normally supports just 1 level sub menus */
+.navbar-nav .collapsible ul .dropdown-menu > li > a,
+.navbar-nav .collapsible ul .dropdown-menu .dropdown-header {
+    padding-left:35px;
+}
+.navbar-nav .collapsible ul ul .dropdown-menu > li > a,
+.navbar-nav .collapsible ul ul .dropdown-menu .dropdown-header {
+    padding-left:45px;
+}
+.navbar-nav .collapsible ul ul ul .dropdown-menu > li > a,
+.navbar-nav .collapsible ul ul ul .dropdown-menu .dropdown-header {
+    padding-left:55px;
+}
+.navbar-nav .collapsible ul ul ul ul .dropdown-menu > li > a,
+.navbar-nav .collapsible ul ul ul ul .dropdown-menu .dropdown-header {
+    padding-left:60px;
+}
+.navbar-nav .dropdown-menu > li > a {
+    white-space:normal;
+    font-size: 13px;
+    padding:12px 20px;
+    border-bottom:1px solid #e4e4e4;
+}
+
+.navbar-nav .dropdown-menu > li > a:hover
+{
+    color:#fff;
+    background:#727CB6 ;
+}
+.navbar-nav ul.sm-nowrap > li > a {
+    white-space:nowrap;
+}
+/* The following will make the sub menus collapsible for small screen devices (it's not recommended editing these) */
+.navbar-nav .collapsible ul {display:none;position:static !important;top:auto !important;left:auto !important;margin-left:0 !important;margin-top:0 !important;width:auto !important;min-width:0 !important;max-width:none !important;}
+.navbar-nav .collapsible ul.sm-nowrap > li > a {white-space:normal;}
+.navbar-nav .collapsible iframe{display:none;}
+/* disable Bootstrap 3's global box-sizing:border-box; for the menus as it doesn't play nice with SmartMenus */
+ul.sm li *,ul.sm li *:before,ul.sm li *:after{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}
+
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus
+{
+    border-color:transparent!important;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus{
+    background-color:#fff ;
+}
+/*------------Animation-CSS-------------*/
+.navbar-nav > li:hover > ul{
+    /*display: block;*/
+    -moz-animation: fadeInUp .4s ease-in;
+    -webkit-animation: fadeInUp .4s ease-in ;
+    animation: fadeInUp .4s ease-in;
+}
+
+.navbar-nav > li > ul.dropdown-menu li:hover ul{
+    /*display:block;*/
+    -moz-animation: fadeInUp .5s ease-in ;
+    -webkit-animation: fadeInUp .5s ease-in ;
+    animation: fadeInUp .5s ease-in;
+}
+/*--------Animation_Hover_Effect_CSS---------------*/
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(30px);
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(30px);
+        -ms-transform: translateY(30px);
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+/*--------//Animation_Hover_Effect_CSS---------------*/
+
+/* service Box 2
+====================================*/
+
+.super_sub_content {
+    padding: 40px 0;
+}
+
+.serviceBox_2{
+    text-align: center;
+}
+.serviceBox_2 .service-icon{
+    background:grey;
+    height: 62px;
+    width: 62px;
+    border-radius:50%;
+    display: inline-block;
+    margin-bottom:20px;
+}
+.serviceBox_2.green .service-icon{
+    background:#58B25E;
+}
+.serviceBox_2.purple .service-icon{
+    background:#9F84C4;
+}
+.serviceBox_2.red .service-icon{
+    background:#F35958;
+}
+.serviceBox_2.blue .service-icon{
+    background:#02A2DD;
+}
+.serviceBox_2 .service-icon i{
+    font-size:30px;
+    color: #fff;
+    line-height: 62px;
+}
+.serviceBox_2 .service-content h3{
+    color: hsl(0, 0%, 20%);
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+.serviceBox_2 .service-content p{
+    color:hsl(0, 0%, 47%);
+    line-height: 2;
+    font-family: Open Sans,Helvetica, Arial, sans-serif;
+}
+.serviceBox_2 .read a{
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.serviceBox_2.green .read a{color:#58B25E;}
+.serviceBox_2.purple .read a{color:#9F84C4;}
+.serviceBox_2.red .read a{color:#F35958;}
+.serviceBox_2.blue .read a{color:#02A2DD;}
+
+.serviceBox_2.green .read a:hover{color:#2E9333;}
+.serviceBox_2.purple .read a:hover{color:#674A92;}
+.serviceBox_2.red .read a:hover{color:#AA2727;}
+.serviceBox_2.blue .read a:hover{color:#186A89;}
+
+
+
+
+/* 3. BLOG MEDIUM
+/* ==========================*/
+.blog_medium .post:after {
+    clear: both;
+    content: " ";
+    display: block;
+    visibility: hidden;
+}
+
+.blog_medium .post{
+    padding-bottom:50px;
+    margin-bottom:50px;
+    border-bottom:1px solid #f2f2f2;
+}
+.blog_medium .post_img {
+    float: left;
+    margin-bottom: 0;
+    margin-right: 20px;
+    position: relative;
+    width: 35%;
+}
+.blog_medium .post_img img {
+    height: auto;
+    max-width: 100%;
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+}
+.blog_medium .post_img:hover img{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    -moz-opacity: 0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+}
+.blog_medium .post_video{
+    margin-bottom:25px;
+    position: relative;
+}
+.blog_medium .post_video iframe{
+    max-width:100%;
+    max-height:100%;
+    height:320px;
+    width:100%;
+    border:none;
+    box-shadow: none;
+
+}
+.blog_medium .post_date {
+    float: left;
+    margin-right: 20px;
+    position: relative;
+    text-align: center;
+}
+.blog_medium .post_date span{
+    display: block;
+}
+.blog_medium .day {
+    background:#727CB6;
     color: #FFFFFF;
-    background-color: #FF0000;
-    font-weight: bold;
-  }
- 
-  /* 알림 메시지 출력, <SPAN class='info'> */
-  .info{
+    font-size: 22px;
+    font-weight: 600;
+    padding: 5px 10px;
+}
+.blog_medium .month {
+    background:#555;
     color: #FFFFFF;
-    background-color: #00AA00;
-    font-weight: bold;
-  }
+    padding: 2px 13px 4px;
+}
+.blog_medium .post_content {
+    float: left;
+    margin: 0;
+    width: 50%;
+}
+.blog_medium .post.no_images .post_content {
+    max-width: 88%;
+    width: auto;
+}
+.blog_medium .post_meta .metaInfo {
+    font-size: 0.9em;
+    margin-bottom: 7px;
+}
+.blog_medium .post_meta .metaInfo > span {
+    display: inline-block;
+    padding-right: 15px;
+    color:#777;
+}
+.blog_medium .post_meta .metaInfo > span > a {
+    color: #777;
+    font-family: lato,Helvetica, Arial, sans-serif;
+    font-size: 12.4px;
+}
+.blog_medium .post_meta .metaInfo > span > a:hover{ color:#727CB6; }
+.blog_medium .post_meta .metaInfo {
+    font-size: 0.95em;
+    margin: 0 auto;
+    padding: 0 0 20px;
+}
+.blog_medium .post_meta .metaInfo i {
+    margin-right: 3px;
+    color:#777;
+}
+.blog_medium .post_meta h2 {
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+.blog_medium .post_meta h2 a {
+    font-size: 24px;
+    font-weight: 600;
+    color:#555;
+    line-height: 34px;
+    text-transform:capitalize;
+}
+.blog_medium .post_meta h2:hover a {
+    color:#727CB6;
+}
+.blog_medium .post_content > p {
+    margin-bottom: 20px;
+}
+
+/* BLOG single
+/* ==========================*/
+
+.blog_single .post{
+    padding-bottom:50px;
+    margin-bottom:50px;
+    border-bottom:1px solid #f2f2f2;
+}
+.blog_single .post_img {
+    margin-bottom: 25px;
+    position: relative;
+}
+.blog_single .post_img img {
+    height: auto;
+    max-width: 100%;
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    -webkit-transition: all 150ms ease-in-out;
+    -moz-transition: all 150ms ease-in-out;
+    -o-transition: all 150ms ease-in-out;
+    -ms-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+}
+
+.blog_single .post_img:hover img{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    -moz-opacity: 0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+}
+.blog_single .post_date {
+    float: left;
+    height: 0;
+    text-align: center;
+}
+.blog_single .post_date span{
+    display: block;
+}
+.blog_single .day {
+    background:#727CB6;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 600;
+    padding:  10px;
+}
+.blog_single .month {
+    background:#555;
+    color: #FFFFFF;
+    padding: 4px 13px 6px;
+}
+
+.blog_single .post_content {
+    margin: 0 0 0 70px;
+}
+.blog_single .post_meta .metaInfo {
+    font-size: 0.9em;
+    margin-bottom: 7px;
+}
+.blog_single .post_meta .metaInfo > span {
+    display: inline-block;
+    padding-right: 15px;
+    color:#777;
+}
+.blog_single .post_meta .metaInfo > span > a {
+    color: #777;
+    font-family: lato,Helvetica, Arial, sans-serif;
+    font-size: 12.4px;
+}
+.blog_single .post_meta .metaInfo > span > a:hover{color:#727CB6;}
+.blog_single .post_meta .metaInfo {
+    font-size: 0.95em;
+    margin: 0 auto;
+    padding: 0 0 20px;
+}
+.blog_single .post_meta .metaInfo i {
+    margin-right: 3px;
+    color:#777;
+}
+.blog_large .post_meta h2, .blog_single .post_meta h2 {
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+.blog_single .post_meta h2 a {
+    font-size: 24px;
+    font-weight: 600;
+    color:#555;
+    line-height: 34px;
+    text-transform:capitalize;
+}
+.blog_single .post_meta h2:hover a {
+    color:#727CB6;
+}
+.blog_single .post_content > p {
+    margin-bottom: 20px;
+}
+
+/* =================================================================== */
+/* 4. Sidebar & Sidebar Widgets
+====================================================================== */
+.sidebar .widget {
+    display: block;
+    float: left;
+    height: 100%;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+}
+
+.sidebar .widget ul.list_style{
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: 100%;
+}
+.sidebar .widget ul.list_style li{
+    list-style:none;
+    border-bottom:1px solid #f2f2f2;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 8px 2px 8px 12px;
+}
+/* .sidebar .list_style li:before
+{
+    font-family: FontAwesome;
+    content: "\f105"; 
+    font-size: 13px;
+    position: absolute;
+    left: 0;
+    top: 8px;
+} */
+.sidebar .widget ul.list_style li a {
+    color: #777;
+    font-size: 13px;
+    line-height: 20px;
+}
+.sidebar .widget ul.list_style li a:hover {
+    color:#727CB6;
+}
+
+
+.gray_border {
+    width: 100%;
+    height: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+ul.tags {
+    padding: 0;
+    margin: 5px 0 15px;
+    float: left;
+}
+.tags li {
+    float: left;
+    padding: 0px;
+    margin: 0px 5px 5px 0px;
+    list-style-type: none;
+    line-height: 25px;
+}
+.tags li a {
+    border: 1px solid #f2f2f2;
+    color: #909090;
+    float: left;
+    font-size: 12px;
+    padding: 3px 8px;
+    -webkit-transition: all 0.2s;
+       -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+         -o-transition: all 0.2s;
+            transition: all 0.2s;
+}
+.tags li a:hover {
+    background-color: #727CB6;
+    color: #fff;
+}
+.form-control:focus,#site-searchform #s:focus {border-color:#727CB6; box-shadow:0 1px 1px rgba(114, 124, 181, 0.50) inset, 0 0 8px rgba(114, 124, 181, 0.68);}
+
+
+
+/* ===================================================== */
+/* 5. FOOTER & FOOTER WIDGETS                        */
+/* ===================================================== */
+.footer_bottom{
+    background:#292F38;
+    padding:20px 0;
+    color:#fff;
+}
+.footer{
+    background:#323A45;
+    padding:30px 0;
+    position: relative;
+    color:#fff;
+}
+
+
+====================================*/
+/* Footer Widgets
+====================================*/
+
+.widget_content{
+    margin-top: 15px;
+}
+.widget_content > p {
+    font-family: Pt Sans,Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+.copyright {
+    color: #AAAAAA;
+    font-size: 12px;
+    line-height: 40px;
+    margin: 0;
+}
+.copyright a{
+    color:#fff;
+    text-decoration:none;
+}
+.copyright a:hover{
+    color:#aaa;
+}
+.sidebar .widget h4 span
+{
+    background:#fff;
+    color:inherit;
+}
+
+/* Footer Social
+====================================*/
+.footer_social{
+    float: right;
+}
+.footbot_social {
+    list-style: none outside none;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0;
+}
+.footbot_social li {
+    float: left;
+    background: none !important;
+}
+.footbot_social li a {
+    color: #666;
+    display:block;
+    height: 40px;
+    text-align: center;
+    width:35px;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+    margin: 0 2px;
+}
+.footbot_social li a i {
+    font-size: 18px;
+    line-height: 40px;
+    margin-right: 0;
+    float: none;
+}
+.footbot_social li a.fb:hover            {background:#1964DA; border-radius: 5px; color:#fff;}
+.footbot_social li a.twtr:hover          {color: #fff; background:#3ABDD1; border-radius:5px;}
+.footbot_social li a.gmail:hover         {color: #fff;}
+.footbot_social li a.pinterest:hover     {color: #fff;}
+.footbot_social li a.rss:hover           {color: #fff; background:#F15200; border-radius:5px;}
+.footbot_social li a.tumblr:hover        {color: #fff;}
+.footbot_social li a.flickr:hover        {color: #fff;}
+.footbot_social li a.instagram:hover     {color: #fff;}
+.footbot_social li a.linkedin:hover      {color: #fff;}
+.footbot_social li a.skype:hover         {color: #fff; background:#00AAF1; border-radius:5px;}
+.footbot_social li a.youtube:hover       {color: #fff;}
+.footbot_social li a.dribbble:hover      { color: #fff; background:#F97193; border-radius:5px;}
+
+
