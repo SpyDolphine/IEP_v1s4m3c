@@ -23,10 +23,6 @@
 <link rel="stylesheet" href="css/animate.css"/>
 
 </head>
-
-
-
-
  <body class="home">
     <header id="header">
         <div id="top-bar">
@@ -75,7 +71,7 @@
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="#">공지사항</a>
                                         <ul class="dropdown-menu">
-                                            <li class="active"><a href="index.html">공지사항</a></li>
+                                            <li class="active"><a href="<%=root %>/category/list.do">공지사항</a></li>
                                             <li><a href="#">일반 F&A</a></li>
                                             <li><a href="#">기업 F&A</a></li>
                                         </ul>

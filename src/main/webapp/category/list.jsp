@@ -40,9 +40,7 @@
 </head> 
 <!-- ----------------------------------------- -->
 <body leftmargin="0" topmargin="0">
-<div class="container">
-     <jsp:include page="/menu/top.jsp" flush='false' />
-     <jsp:include page="/menu/left.jsp" flush='false' />
+<jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
 <DIV class='title'>대분류 목록</DIV>
  
@@ -81,16 +79,13 @@
   </c:forEach>
  
 </TABLE>
- 
-<DIV class='bottom'>
   <button type='button' onclick="location.href='./create.do'">등록</button>
   <button type='button' onclick="location.reload();">새로 고침</button>
+ 
+<DIV class='bottom'>
 </DIV>
-
 <!-- -------------------------------------------- -->
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
-     </div>
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 <!-- -------------------------------------------- -->
 </html> 
- 
