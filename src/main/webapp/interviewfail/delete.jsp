@@ -9,37 +9,20 @@
 <meta charset="UTF-8"> 
 <title></title> 
  
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    
-<script type="text/javascript" src="../js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
-<script type="text/javascript">
- 
-</script>
- 
 </head> 
 <!-- ----------------------------------------- -->
-<body leftmargin="0" topmargin="0">
-<div class="container">
-     <jsp:include page="/menu/top.jsp" flush='false' />
+<jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
- 
-  <div class='content_menu'>
-    <A href='../interviewfail/list.do'>전체 게시판 목록</A> >
-    <A href="javascript:location.reload();">새로고침</A>
-  </div>
- 
-<DIV class = 'content'>
-  <FORM name='frm' method='POST' action='./delete.do'
-             onsubmit = 'return send();'>
-    <input type='hidden' name='if_no' value='${if_no }'>
-    
-    <div class="form-group">
-      <div class="col-xs-12 col-lg-12" style='text-align: center;'>
+
+<section class="content blog"> 
+<FORM name='frm' method='POST' action='./delete.do' onsubmit = 'return send();'>
+<input type='hidden' name='if_no' value='${if_no }'>
+<div class="container">
+  <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+   <div class="blog_single">
+     <div class="post_content">
+      <div class="post_meta">
+        <div class="col-xs-12 col-lg-12" style='text-align: center;'>
           <br><br>
           
          삭제하시겠습니까? 삭제하시면 복구 할 수 없습니다.<br>
@@ -51,13 +34,12 @@
           <br>
       </div>
     </div>
-     <hr>    
+   </div></div></div></div>
   </FORM> 
-</DIV>
+</section>
 
 <!-- -------------------------------------------- -->
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
-     </div>
 </body>
+     <jsp:include page="/menu/bottom.jsp" flush='false' />
 <!-- -------------------------------------------- -->
 </html> 

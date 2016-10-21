@@ -19,13 +19,13 @@
             <div class="slider">
                 <div class="fs_loader"></div>
                 <div class="slide">
-                    <img src="images/fraction-slider/base.jpg" width="1920" height="auto" data-in="fade" data-out="fade" />
+                    <img src="./images/mainslide.jpg" width="1920" height="auto" data-in="fade" data-out="fade" />
                 </div>
                 <div class="slide">
-                    <img src="images/fraction-slider/base_2.jpg" width="1920" height="auto" data-in="fade" data-out="fade" />
+                    <img src="./images/mainslide2.jpg" width="1920" height="auto" data-in="fade" data-out="fade" />
                 </div>
                 <div class="slide">
-                    <img src="images/fraction-slider/base_3.jpg"  width="1920" height="auto" data-in="fade" data-out="fade" />
+                    <img src="./images/mainslide3.jpg"  width="1920" height="auto" data-in="fade" data-out="fade" />
                 </div>
             </div>
         </div>
@@ -90,7 +90,6 @@
                 </div>
             </div>
         </div>
-
     <jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 </html>

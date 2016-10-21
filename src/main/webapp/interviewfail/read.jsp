@@ -69,12 +69,12 @@
           <h4><span>Categories</span></h4>
         </div>
           <ul class="arrows_list list_style">
-            <li><a href="#"> Grapic Design (10)</a></li>
-            <li><a href="#"> Web Design  Development (25)</a></li>
-            <li><a href="#"> Photography (29)</a></li>
-            <li><a href="#"> Custom Illustrations (19)</a></li>
-            <li><a href="#"> Wordpress Themes(38)</a></li>
-            <li><a href="#"> Videography (33)</a></li>
+            <li><a href="#"> 솔데스크(10)</a></li>
+            <li><a href="#"> 보안코딩()</a></li>
+            <li><a href="#"> 매우힘듬()</a></li>
+            <li><a href="#"> 성공후기를 볼까요()</a></li>
+            <li><a href="#"> 공지사항으로 가볼까요()</a></li>
+            <li><a href="#"> 기업정보를 봅니다()</a></li>
           </ul>
         </div>
        </div>

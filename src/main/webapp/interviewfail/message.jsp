@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -7,26 +8,13 @@
 <meta charset="UTF-8"> 
 <title>알림</title> 
  
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-<script type="text/JavaScript"
-          src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
- 
-<script type="text/javascript">
-$(function(){ 
-  
-});
-</script>
- 
 </head> 
 <!-- ----------------------------------------- -->
-<body leftmargin="0" topmargin="0">
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
  
-<DIV class='title'>알림</DIV>
- 
 <DIV class='message'>
+<div class="container">
   <fieldset>
     <ul>
       <c:forEach var="msgs" items='${msgs }'>
@@ -38,10 +26,11 @@ $(function(){
       </c:forEach>
     </ul>
   </fieldset>
+  </div>
 </DIV>
  
 <!-- -------------------------------------------- -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 <!-- -------------------------------------------- -->
 </html> 

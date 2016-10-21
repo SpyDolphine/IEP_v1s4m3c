@@ -12,8 +12,10 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
-
+<div class="col-xs-12 col-lg-4 col-sm-4 col-md-offset-8">
 <jsp:include page="createboot.jsp" flush='false' />
+</div>
+
   <c:forEach var="ifVO" items="${list }">
     <section class="content blog">
       <div class="container">
@@ -67,10 +69,10 @@
               </div>
               </section>
    </c:forEach>
+</body>
  
 <!-- -------------------------------------------- -->
 <jsp:include page="/menu/bottom.jsp" flush='false' />
-</body>
 <!-- -------------------------------------------- -->
 </html> 
  

@@ -107,10 +107,6 @@
            <option value="해외">해외</option>
         </select>
       </div> 
-<!--       <div>
-        <label for='if_title'>후기 한줄평</label><br>
-        <textarea name='if_title' id='if_title' rows='2' style='width: 100%;' placeholder="총 평을 간략하게 적어주세요" required="required"></textarea>
-      </div>   -->
       <div>
         <label for='if_title'>후기 한줄평</label>
         <input type='text' maxlength='25' name='if_title' id='if_title' placeholder='총 평을 간략하게 적어주세요' style='width: 100%;' required="required">
@@ -171,9 +167,10 @@
       
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
         <button type="button"  class="btn btn-default" onclick="location.href='./list.do'">목록</button>
-        <button type="submit" class="btn btn-primary" >저장</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        <button type="submit" class="btn btn-primary" >저장</button> 
+                
       </div>
       </FORM>
     </div> <!-- 모달 콘텐츠 -->

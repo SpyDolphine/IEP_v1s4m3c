@@ -55,7 +55,7 @@
                             <a href="" >개인회원</a>  |
                             <a href="" >기업회원</a>  |
                             <a href="<%=root %>/index.jsp" >HOME</a>  |
-                            <a href="" ><i class="fa fa-bookmark"></i>BOOKMARK</a>  
+                            <a href="" ><i class="fa fa-bookmark"></i> BOOKMARK</a>  
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="#">공지사항</a>
                                         <ul class="dropdown-menu">
-                                            <li class="active"><a href="index.html">공지사항</a></li>
+                                            <li class="active"><a href="<%=root %>/category/list.do">공지사항</a></li>
                                             <li><a href="#">일반 F&A</a></li>
                                             <li><a href="#">기업 F&A</a></li>
                                         </ul>
