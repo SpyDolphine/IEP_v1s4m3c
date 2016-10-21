@@ -51,7 +51,7 @@ public class BoardCont {
                                                     HttpSession session) {
     // System.out.println("--> create() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/board/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -260,7 +260,7 @@ public class BoardCont {
                              method = RequestMethod.POST)
   public ModelAndView delete(BoardVO boardVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/board/message");
+    mav.setViewName("/message");
     System.out.println(boardVO.getDivisionno());
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -372,7 +372,7 @@ public class BoardCont {
   @RequestMapping(value = "/board/reply.do", method = RequestMethod.POST)
   public ModelAndView reply(BoardVO boardVO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/board/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();

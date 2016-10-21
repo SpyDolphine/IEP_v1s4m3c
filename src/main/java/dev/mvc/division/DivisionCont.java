@@ -43,7 +43,7 @@ public class DivisionCont {
   @RequestMapping(value = "/division/create.do", method = RequestMethod.POST)
   public ModelAndView create(DivisionVO divisionVO) {
   ModelAndView mav = new ModelAndView();
-  mav.setViewName("/division/message");
+  mav.setViewName("/message");
   
   ArrayList<String> msgs = new ArrayList<String>();
   ArrayList<String> links = new ArrayList<String>();
@@ -166,7 +166,7 @@ public class DivisionCont {
     System.out.println("¹øÈ£ : "+divisionVO.getDivisionno());
 
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/division/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -210,7 +210,7 @@ public class DivisionCont {
                              method = RequestMethod.POST)
   public ModelAndView delete(DivisionVO divisionVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/division/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -254,7 +254,7 @@ public class DivisionCont {
   @RequestMapping(value = "/division/up.do", method = RequestMethod.GET)
   public ModelAndView up(DivisionVO divisionVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/division/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -277,7 +277,7 @@ public class DivisionCont {
   @RequestMapping(value = "/division/down.do", method = RequestMethod.GET)
   public ModelAndView down(DivisionVO divisionVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/division/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();

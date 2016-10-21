@@ -31,7 +31,7 @@ public class CategoryCont {
       method = RequestMethod.POST)
   public ModelAndView create(CategoryVO categoryVO) {
   ModelAndView mav = new ModelAndView();
-  mav.setViewName("/category/message"); // /webapp/category/message.jsp
+  mav.setViewName("/message"); // /webapp/message.jsp
   
   ArrayList<String> msgs = new ArrayList<String>();
   ArrayList<String> links = new ArrayList<String>();
@@ -88,7 +88,7 @@ public class CategoryCont {
   @RequestMapping(value = "/category/update.do", method = RequestMethod.POST)
   public ModelAndView update(CategoryVO categoryVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/category/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -116,7 +116,7 @@ public class CategoryCont {
   @RequestMapping(value = "/category/delete.do", method = RequestMethod.POST)
   public ModelAndView delete(CategoryVO categoryVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/category/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
