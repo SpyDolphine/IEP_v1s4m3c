@@ -81,7 +81,6 @@
       </div>
       </div>
 
-
       <div class="col-xs-12 col-lg-4 col-sm-4 col-md-offset-5">
         <jsp:include page="update.jsp" flush='false' />
       </div>
@@ -91,11 +90,36 @@
       </div>
     </div>
          
+<!--News Comments-->
+<div class="col-xs-12 col-lg-7" style='position: relative; left: 10%;'>
+    <div class="news_comments">
+        <div class="dividerHeading">
+            <h4><span>Comments (6)</span></h4>
+        </div>
+        <div id="comment">
+            <ul id="comment-list">
+                <li class="comment">
+                    <div class="avatar"><img alt="" src="./images/siba1.jpg" class="avatar"></div>
+                    <div class="comment-container">
+                        <h4 class="comment-author">오늘도 귀여운 시바견</h4>
+                        <div class="comment-meta"><a class="comment-date link-style1">${fn:substring(ifVO.if_date, 0, 10)}</a>
+                        <a class="comment-reply-link link-style3" href="#respond">Reply &raquo;</a></div>
+                        <div class="comment-body">
+                            <p>댓글입력할고임</p>
+                        </div>
+                 </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
          
   </section>
-  <br><br>
+    <br><br>
 <!-- -------------------------------------------- -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
+<div style= 'margin: 200px 0 0 0;'>
+<jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>
 <!-- -------------------------------------------- -->
 </html>

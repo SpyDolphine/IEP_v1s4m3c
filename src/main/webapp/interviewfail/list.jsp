@@ -12,7 +12,7 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
-<div style='text-align:right; position:absolute; top:25%; right:20%;'>
+<div style='position:absolute; top:25%; left:70%;'>
 <jsp:include page="createboot.jsp" flush='false' />
 </div>
 
