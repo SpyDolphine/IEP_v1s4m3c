@@ -35,6 +35,36 @@
 
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
+
+<script type="text/javascript"> 
+
+function bookmarksite(title,url) { 
+   // Internet Explorer
+   if(document.all)
+   {
+       window.external.AddFavorite(url, title); 
+   }
+   // Google Chrome
+   else if(window.chrome){
+      alert("Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다.");
+   }
+   // Firefox
+   else if (window.sidebar) // firefox 
+   {
+       window.sidebar.addPanel(title, url, ""); 
+   }
+   // Opera
+   else if(window.opera && window.print)
+   { // opera 
+      var elem = document.createElement('a'); 
+      elem.setAttribute('href',url); 
+      elem.setAttribute('title',title); 
+      elem.setAttribute('rel','sidebar'); 
+      elem.click(); 
+   }
+} 
+</script>
+
 </head>
 
 <body class="home">
@@ -55,7 +85,7 @@
                             <a href="" >개인회원</a>  |
                             <a href="" >기업회원</a>  |
                             <a href="<%=root %>/index.jsp" >HOME</a>  |
-                            <a href="" ><i class="fa fa-bookmark"></i> BOOKMARK</a>  
+                            <a href="javascript:bookmarksite('IEP 프로젝트', 'http://localhost:9090/IEP/index.jsp')"><i class="fa fa-bookmark"></i> BOOKMARK</a>
                     </div>
                 </div>
             </div>
