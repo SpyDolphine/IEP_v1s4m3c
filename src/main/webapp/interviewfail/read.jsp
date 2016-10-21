@@ -79,15 +79,36 @@
         </div>
        </div>
       </div>
-    </div>
-   </div>
+      </div>
+
+
       <div class="col-xs-12 col-lg-4 col-sm-4 col-md-offset-5">
         <jsp:include page="update.jsp" flush='false' />
       </div>
-      <div style='text-align: center;'>
+      <div style='position:absolute; top:92.5%; right:42.5%;'>
         <button type="button" class="btn btn-primary" onclick="location.href='./delete.do?if_no=${ifVO.if_no}'">삭제</button>
         <button type="button" class="btn btn-default" onclick="location.href='./list.do?if_no=${ifVO.if_no }'">목록보기</button>
       </div>
+    </div>
+            
+   <div class="news_comments" style='width: 50%;'>
+      <div class="dividerHeading">
+          <h4><span>Comments (6)</span></h4>
+      </div>
+      <div id="comment">
+      <ul id="comment-list">
+          <li class="comment">
+              <div class="avatar"><img alt="" src="./images/siba1.jpg" class="avatar"></div>
+              <div class="comment-container">
+                  <h4 class="comment-author"><a href="#">여기는 댓글자리임니당</a></span></h4>
+                  <div class="comment-meta"><a href="#" class="comment-date link-style1">${fn:substring(ifVO.if_date, 0, 10)}</a><a class="comment-reply-link link-style3" href="#respond">Reply &raquo;</a></div>
+                  <div class="comment-body">
+                      <p>악플금지임</p>
+                  </div>
+              </div>
+          </li>
+          </ul></div></div>
+         
   </section>
   <br><br>
 <!-- -------------------------------------------- -->
