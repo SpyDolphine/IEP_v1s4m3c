@@ -90,7 +90,10 @@
                 </div>
             </div>
         </div>
+        
+    <div style= 'margin: 100px 0 0 0'>        
     <jsp:include page="/menu/bottom.jsp" flush='false' />
+    </div>
 </body>
 </html>
  

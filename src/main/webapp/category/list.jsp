@@ -7,20 +7,10 @@
 <head> 
 <meta charset="UTF-8"> 
 <title>대분류 목록</title> 
- 
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
+<!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
+<!-- ----------------------------------------- -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    
-<script type="text/javascript" src="../js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
 <script type="text/javascript">
   $(function(){
     $('#panel_frm_delete').hide();
@@ -38,13 +28,12 @@
  
 </script>
 </head> 
-<!-- ----------------------------------------- -->
-<body leftmargin="0" topmargin="0">
-<jsp:include page="/menu/top.jsp" flush='false' />
-<!-- ----------------------------------------- -->
-<DIV class='title'>대분류 목록</DIV>
+
+
+<DIV>대분류 목록</DIV>
  
-<DIV id='panel_frm_delete' class='content' style='padding: 10px 0px 10px 0px; background-color: #FFFF00; width: 100%; text-align: center;'>
+<DIV id='panel_frm_delete' style='text-align: center; padding: 10px 0px 10px 0px; 
+                                                  background-color: #99c2ff; width: 30%; '>
 <FORM name='frm_delete' id='frm_delete' method='POST' action='./delete.do'>
   <input type='hidden' name='categoryno' id='categoryno' value='${vo.categoryno}'> 
   
@@ -56,7 +45,7 @@
 </FORM>
 </DIV>
  
-<TABLE class='table' style='width: 60%;'>
+<TABLE class='table' style='width: 100%;'>
 
   <TR>
     <TH>코드</TH>
@@ -82,10 +71,8 @@
   <button type='button' onclick="location.href='./create.do'">등록</button>
   <button type='button' onclick="location.reload();">새로 고침</button>
  
-<DIV class='bottom'>
-</DIV>
 <!-- -------------------------------------------- -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 <!-- -------------------------------------------- -->
 </html> 
