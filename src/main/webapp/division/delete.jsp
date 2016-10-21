@@ -33,7 +33,6 @@ $(function(){
 <body>
 <div class="container">
      <jsp:include page="/menu/top.jsp" flush='false' />
-     <jsp:include page="/menu/left.jsp" flush='false' />
 <!-- ----------------------------------------- -->
  
 <DIV class='title'>게시판 삭제</DIV>

@@ -33,7 +33,6 @@ $(function(){
 <body>
 <div class="container">
      <jsp:include page="/menu/top.jsp" flush='false' />
-     <jsp:include page="/menu/left.jsp" flush='false' />
 <!-- ----------------------------------------- -->
  
 <DIV class='title'>게시판 등록</DIV>
@@ -51,7 +50,7 @@ $(function(){
           <LI>
             <label>
               <input type='radio' name='categoryno'  id='categoryno' value='${divisionVO.categoryno}' 
-                 ${divisionVO.categoryno == divisionVO.categoryno?"checked='checked'":""}>
+                 ${divisionVO.categoryno == divisionVO.categoryno?"checked='1'":""}>
               ${divisionVO.seqno} - ${divisionVO.sort}
             </label>
           </LI>

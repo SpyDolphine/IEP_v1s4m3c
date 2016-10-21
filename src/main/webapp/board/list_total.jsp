@@ -33,7 +33,6 @@ $(function(){
 <body leftmargin="0" topmargin="0">
 <div class="container">
      <jsp:include page="/menu/top.jsp" flush='false' />
-     <jsp:include page="/menu/left.jsp" flush='false' />
 <%-- ---------------------------------------------------------------------------------------------- --%>
   <div class='content_menu' style='width: 90%;'>
     <A href='../division/list.do'>전체 게시판 목록</A> ｜
