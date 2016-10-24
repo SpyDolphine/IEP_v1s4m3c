@@ -19,6 +19,9 @@
                           dev.mvc.division, 
                           dev.mvc.category,
                           dev.mvc.notice,
+                          dev.mvc.servey,
+                          dev.mvc.serveyboard,
+                          dev.mvc.memberEx,
                           dev.mvc.interviewfail
                    "/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
