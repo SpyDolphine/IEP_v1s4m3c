@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "serveyboard">
+
+  <!-- 등록-->
+  <insert id="create" parameterType="ServeyboardVO">
+    INSERT INTO serveyboard(sb_no, 
+              title, content, rdate)  
+    VALUES ((SELECT NVL(MAX(sb_no), 0) + 1 as sb_no FROM serveyboard), 
+              #{title}, #{content}, sysdate)
+  </insert>
+
+  <!-- 전체 목록 -->
+  <select id="list" resultType="ServeyboardVO">
+    SELECT sb_no, title
+    FROM serveyboard
+  </select>
+  
+  <!-- 읽어옴  -->
+  <select id="read" resultType="ServeyboardVO">
+    SELECT sb_no, title, content
+    FROM serveyboard
+    WHERE sb_no = #{sb_no}
+  </select>
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="ServeyboardVO">
+    UPDATE serveyboard 
+    SET title=#{title}, content=#{content}
+    WHERE sb_no=#{sb_no}
+  </update> 
+   
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM serveyboard
+    WHERE sb_no=#{sb_no}
+  </delete>
+
+  
+  
+</mapper>

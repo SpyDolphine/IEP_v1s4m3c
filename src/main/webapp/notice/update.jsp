@@ -47,7 +47,7 @@
   
  
   
-  <DIV class='content' style='width: 100%;'>
+  <DIV class='content' style='width: 70%;'>
   <FORM name='frm' method='POST' action='./update.do'
               enctype="multipart/form-data">
     <input type='hidden' name='nt_no' value='${noticeVO.nt_no}'>
@@ -58,7 +58,7 @@
       </li>
       <li>
         <label class='form_grp' for='content'>내용</label><br>
-        <TEXTAREA name='nt_content' rows='10' cols='70'>${noticeVO.nt_content}</TEXTAREA>
+        <TEXTAREA name='nt_content' cols="100" rows="10">${noticeVO.nt_content}</TEXTAREA>
       </li>
       <li class='right'>
          <button type="submit">수정</button>

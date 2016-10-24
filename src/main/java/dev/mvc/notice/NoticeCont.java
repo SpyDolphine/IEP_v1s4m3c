@@ -18,13 +18,13 @@ public class NoticeCont {
   private NoticeDAOInter noticeDAO;
   
   public NoticeCont(){
-    System.out.println("--> NoticeCont created.");
+    //System.out.println("--> NoticeCont created.");
   }
   
   @RequestMapping(value = "/notice/create.do", 
       method = RequestMethod.GET)
   public ModelAndView create() {
-  System.out.println("--> create() GET called.");
+  //System.out.println("--> create() GET called.");
   ModelAndView mav = new ModelAndView();
   mav.setViewName("/notice/create"); // /webapp/member/create.jsp
   
@@ -33,7 +33,7 @@ public class NoticeCont {
   @RequestMapping(value = "/notice/create.do", 
       method = RequestMethod.POST)
   public ModelAndView create(NoticeVO noticeVO) {
-  System.out.println("--> create() POST called.");
+  //System.out.println("--> create() POST called.");
   ModelAndView mav = new ModelAndView();
   mav.setViewName("/message"); // /webapp/message.jsp
   
