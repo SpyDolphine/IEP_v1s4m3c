@@ -45,7 +45,7 @@ $(function (){
  
 <DIV class='title'>공지사항 등록</DIV>
  
-<DIV class='content' style='width: 50%;'>
+<DIV class='content' style='width: 70%;'>
 <FORM name='frm' method='POST' action='./create.do'>
 <input type='hidden' name='me_no' value='1'>
   <fieldset>
@@ -56,7 +56,7 @@ $(function (){
       </li>
       <li>
         <label class='label' for='content'>내용</label>
-        <textarea name='nt_content' required="required"></textarea>
+        <textarea name='nt_content' required="required" cols="100" rows="10"></textarea>
       </li>
       <li class='right'>
         <button type="submit">등록</button>
