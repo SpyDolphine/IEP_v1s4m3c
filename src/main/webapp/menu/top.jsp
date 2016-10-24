@@ -85,7 +85,7 @@ function bookmarksite(title,url) {
                             <a href="" >개인회원</a>  |
                             <a href="" >기업회원</a>  |
                             <a href="<%=root %>/index.jsp" >HOME</a>  |
-                            <a href="javascript:bookmarksite('IEP 프로젝트', 'http://localhost:9090/IEP/index.jsp')"><i class="fa fa-bookmark"></i> BOOKMARK</a>
+                            <a href="javascript:bookmarksite('IEP 프로젝트', '#')"><i class="fa fa-bookmark"></i> BOOKMARK</a>
                     </div>
                 </div>
             </div>

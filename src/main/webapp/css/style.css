@@ -1136,7 +1136,74 @@ ul.tags {
   border-radius: 5px;
 }
 
-/*------------------------------------------------------------------------------------------------------------------------------*/
+/* Comment
+============================*/
+#comment-list ul.children { margin-left:94px;padding:0;}
+.comment-container {
+    border-top:solid 3px #f2f2f2;
+    margin:0 0 15px 90px;
+    padding:20px 20px;
+    position:relative;
+    -moz-transition:all 0.2s ease-in-out;-ms-transition:all 0.2s ease-in-out;-o-transition:all 0.2s ease-in-out;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;
+}
+.comment-container:hover {
+    background:#F4F4F4;
+    border-color:#727CB6;
+}
+.comment-body p{ margin:0; }
+.avatar {
+    float:left;
+    width:74px;
+}
+.avatar img {
+    display:block;
+    margin-right:20px;
+    position: relative;
+    z-index: 0;
+    border:1px solid #DCDCDC;
+    padding:3px;
+}
+h4.comment-author {
+    font-size:16px;
+    line-height:20px;
+    margin:0;
+}
+h4.comment-author a{color:#555}
+#comment-list li .comment-container:hover a{color:#727CB6;}
+#comment-list .comment-meta { margin-bottom:10px; }
+#comment-list .comment-date { font-size:12px; font-style:italic;color:#888;}
+#comment-list li .comment-container:hover .comment-date { color:#727CB6; }
+/* comment hover effect */
+#comment-list li .comment-container:hover h4 { color:#727CB6; }
+.comment-reply-link {
+    position:absolute;
+    right:20px;
+    top:20px;
+}
+a.link-style3 {
+    color: inherit !important;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none !important;
+    text-transform: uppercase;
+}
+.comment-reply-link {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+.comment_form > input {
+    margin-bottom:20px;
+    margin-right:20px;
+    width: 31.1%;
+}
+#comments {
+    margin-bottom: 20px;
+}
+.comment_form > input:last-child {
+    margin-right:0;
+}
+
 /*------------------------------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------------------------------*/
