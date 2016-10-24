@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- 
+   <%
+  String root = request.getContextPath();
+ %>
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
@@ -14,7 +16,9 @@
 <script type="text/javascript" src="../js/tool.js"></script>
  
 <script type="text/javascript">
- 
+function open_win(){
+  window.open("./passwd.do?me_no=${sessionScope.me_no}",'popup', 'width=500, height=300,left=200px,top=200px');
+}
 </script>
  
 </head> 
@@ -36,17 +40,17 @@
       </li>
       <li>
         <label class='label' for='me_pw'>비밀번호</label>
-        <button name="me_pw" id="me_pw">비밀번호 변경</button>
+        <button type="button" name="me_pw" id="me_pw" onclick="javascript:open_win();">비밀번호 변경</button>
       </li>
       <li>
         <label class='label' for='me_name'>성명</label>
         ${memberExVO.me_name}
-         <SPAN id='panel_nema'>(ID는 변경할 수 없습니다.)</SPAN>
+         <SPAN id='panel_nema'>(이름은 변경할 수 없습니다.)</SPAN>
       </li>
       <li>
       <label class='label' for='me_nick'>닉네임</label>
         ${memberExVO.me_nick}
-         <SPAN id='panel_nick'>(ID는 변경할 수 없습니다.)</SPAN>
+         <SPAN id='panel_nick'>(닉네임은 변경할 수 없습니다.)</SPAN>
       </li>
       <li>
         <label class='label' for='me_tel'>전화번호</label>
@@ -139,7 +143,8 @@
       </li>
       <li class='right'>
         <button type="submit">저장</button>
-        <button type="button" onclick="location.href='./index.jsp'">목록</button>
+         <button type='button' onclick="location.href='<%=root%>/index.do'">홈으로</button>
+        <button type="button" onclick="location.href='./memberout.do?me_no=${sessionScope.me_no}'">회원 탈퇴</button>
       </li>         
     </ul>
   </fieldset>

@@ -1,5 +1,6 @@
 package dev.mvc.memberEx;
 
+import java.util.List;
 
 public interface MemberExDAOInter {
 
@@ -9,6 +10,7 @@ public interface MemberExDAOInter {
    * @return
    */
   public int create(MemberExVO vo);
+  public int create_com(MemberExVO vo);
   /**
    * 회원 이메일 중복 확인 
    */
@@ -38,5 +40,36 @@ public interface MemberExDAOInter {
    * @param me_no
    * @return
    */
-  public MemberExVO memberInfo(MemberExVO memberExVO);
+  public MemberExVO memberInfo(String me_id);
+  /**
+   * 회원을 탈퇴 할경우 vis***가 2로 변환
+   * @param memberExVO
+   * @return
+   */
+  public int memberout(MemberExVO memberExVO);
+  /**
+   * 회원을 탈퇴 취소(복귀) 할경우 vis***가 1로 변환
+   * @param memberExVO
+   * @return
+   */
+  public int memberin(MemberExVO memberExVO);
+  /**
+   * 회원을 검색하지 않는 목록
+   */
+ public List<MemberExVO> memberlist();
+ /**
+  * 패스워드 검사 
+  * <select id="passwdCheck" resultType="int" parameterType="Map">
+  * @param memberVO mno, passwd의 전달
+  * @return 일치하는 레코드 갯수
+  */
+ public int passwdCheck(int me_no, String me_pw);
+ 
+ /**
+  * 패스워드 변경 처리
+  * <update id="update_passwd" parameterType="Map">
+  * @param memberVO mno, passwd의 전달
+  * @return 변경된 레코드의 갯수
+  */
+ public int update_passwd(int me_no, String me_pw);
 }

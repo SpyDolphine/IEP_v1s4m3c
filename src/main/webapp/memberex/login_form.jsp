@@ -9,6 +9,10 @@
 <meta charset="UTF-8"> 
 <%
 String url_address = request.getParameter("url_address"); // 로그인 후 이동할 주소
+String me_no = request.getParameter("me_no"); // 로그인 후 이동할 주소
+String me_nick = request.getParameter("me_nick"); // 로그인 후 이동할 주소
+String me_grade = request.getParameter("me_grade"); // 로그인 후 이동할 주소
+
 
 Cookie[] cookies = request.getCookies();
 Cookie cookie = null;
