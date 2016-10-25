@@ -43,10 +43,11 @@
   </div>
   
 <DIV class='content' style='width: 100%;'>
-  <FORM name='frm' method='POST' action='./create.do'
+  <FORM name='frm' method='POST' action='./update.do'
               enctype="multipart/form-data">
+    <input type='hidden' name='fq_no' value='${fnqVO.fq_no}'>
     <input type='hidden' name='me_no' value='1'>
-    <input type='hidden' name='fq_CH' value='C'>
+    <input type='hidden' name='fq_CH' value='${fnqVO.fq_CH}'>
       <ul>
       <li>
         <label class='form_grp' for='content'>질문</label><br>

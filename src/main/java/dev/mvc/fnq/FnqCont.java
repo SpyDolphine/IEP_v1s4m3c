@@ -98,23 +98,19 @@ public class FnqCont {
   @RequestMapping(value = "/fnq/update.do", method = RequestMethod.POST)
   public ModelAndView update(FnqVO fnqVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/message");
- 
-    ArrayList<String> msgs = new ArrayList<String>();
-    ArrayList<String> links = new ArrayList<String>();
  
     if (fnqDAO.update(fnqVO) == 1) {
-      mav.setViewName("redirect:/fnq/list.do");
+      if(fnqVO.getFq_CH().equals("H")){
+        mav.setViewName("redirect:/fnq/listh.do");
+      }
+      
+      if(fnqVO.getFq_CH().equals("C")){
+        mav.setViewName("redirect:/fnq/listc.do");
+      }
     } else {
-      msgs.add("수정에 실패했습니다.");
-      msgs.add("죄송하지만 다시한번 시도해주세요.");
-      links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
-      links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
  
-      mav.addObject("msgs", msgs);
-      mav.addObject("links", links);
     }
+    
     return mav;
   }
   /**
@@ -133,8 +129,16 @@ public class FnqCont {
   @RequestMapping(value = "/fnq/delete.do", method = RequestMethod.POST)
   public ModelAndView delete2(int fq_no) {
     ModelAndView mav = new ModelAndView();
+    FnqVO fnqVO = fnqDAO.read(fq_no);
+    mav.addObject("fnqVO", fnqVO);
     if (fnqDAO.delete(fq_no) == 1) {
-      mav.setViewName("redirect:/fnq/list.do");
+      if(fnqVO.getFq_CH().equals("H")){
+        mav.setViewName("redirect:/fnq/listh.do");
+      }
+      
+      if(fnqVO.getFq_CH().equals("C")){
+        mav.setViewName("redirect:/fnq/listc.do");
+      }
     } else {
     }
     return mav;

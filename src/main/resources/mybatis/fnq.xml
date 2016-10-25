@@ -30,14 +30,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!-- 읽어옴  -->
   <select id="read" resultType="FnqVO">
-    SELECT fq_no, fq_question, fq_answer
+    SELECT fq_no, fq_question, fq_answer, fq_CH
     FROM fnq
     WHERE fq_no = #{fq_no}
   </select>  
   
   <!-- 수정 -->
   <update id="update" parameterType="FnqVO">
-    UPDATE fnq 
+    UPDATE fnq
     SET fq_question=#{fq_question}, fq_answer=#{fq_answer} 
     WHERE fq_no=#{fq_no}
   </update> 
