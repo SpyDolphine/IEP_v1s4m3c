@@ -6,7 +6,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8"> 
-<title></title> 
+<title>대분류 수정</title> 
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
@@ -18,45 +18,36 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  
+    
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 <script type="text/javascript" src="../js/tool.js"></script>
- 
 <script type="text/javascript">
-window.onload=function(){
-  CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
-};
-$(function (){
-  // content: textarea name
-  if (CKEDITOR.instances['content'].getData() == '') {
-    window.alert('내용을 입력해 주세요.');
-    CKEDITOR.instances['content'].focus();
-    return false;
-  }
-});
+  $(function(){
+   
+  });
 </script>
  
 </head> 
 <!-- ----------------------------------------- -->
-<body>
+<body leftmargin="0" topmargin="0">
 <div class="container">
      <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
  
-<DIV class='title'>공지사항 등록</DIV>
+<DIV class='title'>수정</DIV>
  
-<DIV class='content' style='width: 70%;'>
-<FORM name='frm' method='POST' action='./create.do'>
-<input type='hidden' name='me_no' value='1'>
+<DIV class='content' style='width: 60%;'>
+<FORM name='form_grp' method='POST' action='./update.do'>
+<input type='hidden' name='sb_no' id='sb_no' value='${serveyboardVO.sb_no}'>
   <fieldset>
     <ul>
       <li>
-        <label class='label' for='nt_title'>제목</label>
-        <input type='text' name='nt_title' value='제목' required="required">
+        <label class='form_grp' for='title'>제목</label>
+        <input type='text' name='title' value='${serveyboardVO.title}' size='60' required="required">
       </li>
       <li>
-        <label class='label' for='content'>내용</label>
-        <textarea name='nt_content' required="required" cols="100" rows="10"></textarea>
+        <label class='form_grp' for='content'>내용</label><br>
+        <TEXTAREA name='content' rows='10' cols='70'>${serveyboardVO.content}</TEXTAREA>
       </li>
       <li class='right'>
         <button type="submit">등록</button>
@@ -68,8 +59,8 @@ $(function (){
 </DIV>
  
 <!-- -------------------------------------------- -->
-    <jsp:include page="/menu/bottom.jsp" flush='false' />     
-  </div>
+     <jsp:include page="/menu/bottom.jsp" flush='false' />     
+     </div>
 </body>
 <!-- -------------------------------------------- -->
-</html>
+</html> 

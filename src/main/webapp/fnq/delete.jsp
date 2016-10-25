@@ -6,7 +6,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8"> 
-<title></title> 
+<title>삭제</title> 
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
@@ -23,19 +23,11 @@
 <script type="text/javascript" src="../js/tool.js"></script>
  
 <script type="text/javascript">
-window.onload=function(){
-  CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
-};
-$(function (){
-  // content: textarea name
-  if (CKEDITOR.instances['content'].getData() == '') {
-    window.alert('내용을 입력해 주세요.');
-    CKEDITOR.instances['content'].focus();
-    return false;
-  }
+$(function(){
+ 
 });
 </script>
- 
+
 </head> 
 <!-- ----------------------------------------- -->
 <body>
@@ -43,30 +35,18 @@ $(function (){
      <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
  
-<DIV class='title'>공지사항 등록</DIV>
+<DIV class='title'>삭제</DIV>
  
-<DIV class='content' style='width: 70%;'>
-<FORM name='frm' method='POST' action='./create.do'>
-<input type='hidden' name='me_no' value='1'>
-  <fieldset>
-    <ul>
-      <li>
-        <label class='label' for='nt_title'>제목</label>
-        <input type='text' name='nt_title' value='제목' required="required">
-      </li>
-      <li>
-        <label class='label' for='content'>내용</label>
-        <textarea name='nt_content' required="required" cols="100" rows="10"></textarea>
-      </li>
-      <li class='right'>
-        <button type="submit">등록</button>
-        <button type="button" onclick="location.href='./list.do'">목록</button>
-      </li>         
-    </ul>
-  </fieldset>
+<DIV class='message' style='width: 60%;'>
+<FORM name='frm' method='POST' action='./delete.do'>
+  <input type='hidden' name='fq_no' value='${fq_no}'>
+  
+  삭제하면 복구 할 수 없습니다.
+  <br><br>
+  <button type="submit">삭제</button>
+  <button type="button" onclick="location.href='./list.do'">취소[목록]</button>
 </FORM>
 </DIV>
- 
 <!-- -------------------------------------------- -->
     <jsp:include page="/menu/bottom.jsp" flush='false' />     
   </div>

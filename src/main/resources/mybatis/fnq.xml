@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "fnq">
+  <!-- 항목 등록-->
+  <insert id="create" parameterType="FnqVO">
+  INSERT into fnq(fq_no, 
+                    me_no, fq_question, fq_answer , fq_CH)
+  VALUES((SELECT NVL(MAX(fq_no), 0)+1 as fq_no FROM fnq), 
+                    #{me_no}, #{fq_question}, #{fq_answer}, #{fq_CH})
+  </insert>
+
+  <!-- 홈페이지 목록 -->
+  <select id="listh" resultType="FnqVO">
+    SELECT fq_no, fq_question, fq_answer
+    FROM fnq
+    where fq_CH = 'H'
+    ORDER BY fq_no ASC
+  </select>
+
+  <!-- 회사질문 목록 -->
+  <select id="listc" resultType="FnqVO">
+    SELECT fq_no, fq_question, fq_answer
+    FROM fnq
+    where fq_CH = 'C'
+    ORDER BY fq_no ASC 
+  </select>
+
+  <!-- 읽어옴  -->
+  <select id="read" resultType="FnqVO">
+    SELECT fq_no, fq_question, fq_answer, fq_CH
+    FROM fnq
+    WHERE fq_no = #{fq_no}
+  </select>  
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="FnqVO">
+    UPDATE fnq
+    SET fq_question=#{fq_question}, fq_answer=#{fq_answer} 
+    WHERE fq_no=#{fq_no}
+  </update> 
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM fnq
+    WHERE fq_no=#{fq_no}
+  </delete>
+  
+    
+</mapper>

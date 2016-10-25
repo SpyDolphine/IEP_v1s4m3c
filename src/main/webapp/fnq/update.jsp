@@ -21,21 +21,15 @@
   
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 <script type="text/javascript" src="../js/tool.js"></script>
+<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
  
 <script type="text/javascript">
-window.onload=function(){
-  CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
-};
-$(function (){
-  // content: textarea name
-  if (CKEDITOR.instances['content'].getData() == '') {
-    window.alert('내용을 입력해 주세요.');
-    CKEDITOR.instances['content'].focus();
-    return false;
-  }
-});
+  
+  $(function (){
+
+  });
 </script>
- 
+
 </head> 
 <!-- ----------------------------------------- -->
 <body>
@@ -43,33 +37,37 @@ $(function (){
      <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
  
-<DIV class='title'>공지사항 등록</DIV>
- 
-<DIV class='content' style='width: 70%;'>
-<FORM name='frm' method='POST' action='./create.do'>
-<input type='hidden' name='me_no' value='1'>
-  <fieldset>
-    <ul>
+  <div class='content_menu' style='width: 100%;'>
+    <A href='../division/list.do'>목록</A> > 
+    <A href="javascript:location.reload();">새로고침</A>
+  </div>
+  
+<DIV class='content' style='width: 100%;'>
+  <FORM name='frm' method='POST' action='./update.do'
+              enctype="multipart/form-data">
+    <input type='hidden' name='fq_no' value='${fnqVO.fq_no}'>
+    <input type='hidden' name='me_no' value='1'>
+    <input type='hidden' name='fq_CH' value='${fnqVO.fq_CH}'>
+      <ul>
       <li>
-        <label class='label' for='nt_title'>제목</label>
-        <input type='text' name='nt_title' value='제목' required="required">
+        <label class='form_grp' for='content'>질문</label><br>
+        <TEXTAREA name='fq_question' rows='10' cols='70'>${fnqVO.fq_question}</TEXTAREA>
       </li>
       <li>
-        <label class='label' for='content'>내용</label>
-        <textarea name='nt_content' required="required" cols="100" rows="10"></textarea>
+        <label class='form_grp' for='content'>답변</label><br>
+        <TEXTAREA name='fq_answer' rows='10' cols='70'>${fnqVO.fq_answer}</TEXTAREA>
       </li>
       <li class='right'>
         <button type="submit">등록</button>
-        <button type="button" onclick="location.href='./list.do'">목록</button>
+        <button type="button" onclick="location.href='./list.do'">취소</button>
       </li>         
     </ul>
-  </fieldset>
-</FORM>
+  </FORM>
 </DIV>
  
 <!-- -------------------------------------------- -->
-    <jsp:include page="/menu/bottom.jsp" flush='false' />     
-  </div>
+<jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>
 </body>
 <!-- -------------------------------------------- -->
-</html>
+</html> 

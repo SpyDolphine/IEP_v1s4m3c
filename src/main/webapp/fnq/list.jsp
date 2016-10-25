@@ -23,16 +23,9 @@
 <script type="text/javascript" src="../js/tool.js"></script>
  
 <script type="text/javascript">
-window.onload=function(){
-  CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
-};
+
 $(function (){
-  // content: textarea name
-  if (CKEDITOR.instances['content'].getData() == '') {
-    window.alert('내용을 입력해 주세요.');
-    CKEDITOR.instances['content'].focus();
-    return false;
-  }
+
 });
 </script>
  
@@ -43,27 +36,37 @@ $(function (){
      <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
  
-<DIV class='title'>공지사항 등록</DIV>
+<DIV class='title'>자주하는 ${ch} 질문</DIV>
  
-<DIV class='content' style='width: 70%;'>
-<FORM name='frm' method='POST' action='./create.do'>
-<input type='hidden' name='me_no' value='1'>
-  <fieldset>
-    <ul>
-      <li>
-        <label class='label' for='nt_title'>제목</label>
-        <input type='text' name='nt_title' value='제목' required="required">
-      </li>
-      <li>
-        <label class='label' for='content'>내용</label>
-        <textarea name='nt_content' required="required" cols="100" rows="10"></textarea>
-      </li>
-      <li class='right'>
-        <button type="submit">등록</button>
-        <button type="button" onclick="location.href='./list.do'">목록</button>
-      </li>         
-    </ul>
-  </fieldset>
+<DIV class='content' style='width: 50%;'>
+<FORM name='frm' method='POST'>
+<button type='button' onclick="location.href='./create.do'">등록</button>
+<section class="content faq">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="panel-group accordion" id="accordion">
+            <c:forEach var="fnqVO" items="${list }">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#${fnqVO.fq_no}">
+                      ${fnqVO.fq_question}
+                  </a>
+                  <button type='button' onclick="location.href='./update.do?fq_no=${fnqVO.fq_no}'">수정</button>
+                  <button type='button' onclick="location.href='./delete.do?fq_no=${fnqVO.fq_no}'">삭제</button>
+              </h4>
+            </div>
+            <div id="${fnqVO.fq_no}" class="panel-collapse collapse">
+                <div class="panel-body">${fnqVO.fq_answer}</div>
+            </div>
+          </div>
+            </c:forEach>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </FORM>
 </DIV>
  
