@@ -23,7 +23,9 @@
                           dev.mvc.servey,
                           dev.mvc.serveyboard,
                           dev.mvc.memberEx,
-                          dev.mvc.interviewfail
+                          dev.mvc.interviewfail,
+                          dev.mvc.seico,
+                          dev.mvc.gurume
                    "/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>

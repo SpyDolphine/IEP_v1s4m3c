@@ -127,7 +127,7 @@ function bookmarksite(title,url) {
                                                 <a href="about.html">채용 정보</a>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="#">기업 정보</a></li>
-                                                    <li><a href="#">근처 맛집</a></li>
+                                                    <li><a href="<%=root %>/gurume/list.do">근처 맛집</a></li>
                                                 </ul>
                                             </li>                                        
                                             <li><a href="#">블랙리스트</a></li>
