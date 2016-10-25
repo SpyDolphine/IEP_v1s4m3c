@@ -116,8 +116,8 @@ function bookmarksite(title,url) {
                                     <li class="active"><a href="#">공지사항</a>
                                         <ul class="dropdown-menu">
                                             <li class="active"><a href="<%=root %>/category/list.do">공지사항</a></li>
-                                            <li><a href="#">일반 F&A</a></li>
-                                            <li><a href="#">기업 F&A</a></li>
+                                            <li><a href="<%=root %>/fnq/listh.do">일반 F&A</a></li>
+                                            <li><a href="<%=root %>/fnq/listc.do">기업 F&A</a></li>
                                         </ul>
                                     </li>
 
@@ -183,7 +183,7 @@ function bookmarksite(title,url) {
                                     
                                     <li><a href="#" >커뮤니티</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">자유게시판</a></li>
+                                            <li><a href="<%=root %>/cfree/list.do">자유게시판</a></li>
                                             <li><a href="#">정모방</a></li>
                                             <li><a href="#">정보공유방</a></li>
                                             <li><a href="#">상담/공감방</a></li>                                                                                        
