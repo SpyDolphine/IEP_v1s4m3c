@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "gurume">
+
+<insert id="create" parameterType="GurumeVO">
+   
+INSERT INTO gurume(gu_no, 
+       gu_area, gu_menu, gu_title, gu_name, gu_cont, gu_stars, gu_date, file1, file2,
+size2, gu_map)  
+VALUES((SELECT NVL(MAX(gu_no), 0) + 1 as gu_no FROM gurume),
+            #{gu_area}, #{gu_menu}, #{gu_title}, #{gu_name}, #{gu_cont}, #{gu_stars}, sysdate, #{file1}, #{file2},
+            #{size2}, #{gu_map})
+ </insert>
+  
+  <!-- 검색을하지 않는 전체 목록 -->
+      
+  <select id="list" resultType="GurumeVO">
+    SELECT gu_no, 
+           gu_area, gu_menu, gu_title, gu_name, gu_stars, gu_cnt, gu_date, file1, file2,size2
+    FROM gurume
+    ORDER BY gu_no ASC
+  </select>
+  
+  <select id="read" resultType="GurumeVO" parameterType="int">
+    SELECT gu_no, gu_area, gu_menu, gu_title, gu_name, gu_cont, gu_stars, gu_cnt, gu_date, file1, file2, 
+    size2, gu_map
+    FROM gurume
+   WHERE gu_no=#{gu_no}  
+  </select>
+  
+<update id="update" parameterType="GurumeVO">
+   UPDATE gurume
+   SET gu_title=#{gu_title}, gu_name=#{gu_name}, gu_cont=#{gu_cont}, gu_menu=#{gu_menu}, gu_area=#{gu_area},  
+       file1=#{file1}, file2=#{file2}, size2=#{size2}, gu_map=#{gu_map}
+   WHERE gu_no=#{gu_no}
+  </update>
+    <update id='cntup' parameterType="int">
+    UPDATE gurume
+   SET gu_cnt= gu_cnt+1
+   WHERE gu_no=#{gu_no}
+  </update>
+  
+<delete id="delete" parameterType="int">
+   DELETE FROM gurume
+   WHERE gu_no = #{gu_no}
+  </delete>   
+ <!-- ********** 검색에 따른 변경 시작 ********** -->
+  <select id="list2" resultType="GurumeVO" parameterType="HashMap" >
+    SELECT gu_no,
+        gu_title, file1, file2, size2, gu_cnt, gu_date 
+     FROM gurume
+    <choose>
+      <when test="col == 'title'">
+         WHERE gu_title LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'content'">
+         WHERE gu_cont LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'title_content'">
+         WHERE gu_title LIKE '%' || #{word} || '%'  OR gu_cont LIKE '%' || #{word} || '%' 
+      </when>
+    </choose>
+    
+   ORDER BY gu_no DESC 
+  </select>        
+ 
+  <select id="count" resultType="int" parameterType="HashMap" >
+    SELECT COUNT(*) as gu_cnt
+    FROM gurume
+   
+    
+    <choose>
+      <when test="col == 'title'">
+        WHERE gu_title LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'content'">
+        WHERE gu_cont LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'title_sc_content'">
+        WHERE gu_title LIKE '%' || #{word} || '%'  OR gu_cont LIKE '%' || #{word} || '%' 
+      </when>      
+    </choose>
+  </select>        
+ 
+  <!-- ********** 검색에 따른 변경 종료 ********** --> 
+  
+   <!-- ********** 페이징에 따른 종료 ********** -->
+<select id="list4" resultType="GurumeVO" parameterType="HashMap" >
+SELECT gu_no, gu_area, gu_menu, gu_title, gu_name, gu_stars, gu_cnt, gu_date, file1, file2, size2, r
+    FROM(
+       SELECT gu_no, gu_area, gu_menu, gu_title, gu_name, gu_stars, gu_cnt, gu_date, file1, file2, size2, rownum as r
+       FROM(
+            SELECT gu_no, gu_area, gu_menu, gu_title, gu_name, gu_stars, gu_cnt, gu_date, file1, file2, size2
+            FROM gurume
+            <choose>
+              <when test="col == 'title'">
+                 WHERE gu_title LIKE '%' || #{word} || '%'  
+              </when>
+              <when test="col == 'content'">
+                 WHERE gu_cont LIKE '%' || #{word} || '%' 
+              </when>
+              <when test="col == 'title_content'">
+                 WHERE gu_title LIKE '%' || #{word} || '%'  OR gu_cont LIKE '%' || #{word} || '%' 
+              </when>      
+            </choose>
+            ORDER BY gu_no DESC
+       )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
+      </select> 
+  
+   <!-- ********** 페이징에 따른 종료 ********** -->
+  <!-- ********** 답변 시작 ********** -->
+  
+ <!--  <update id='updateAnsnum' parameterType="BoardVO">
+    UPDATE board
+    SET ansnum = ansnum + 1
+    WHERE divisionno = #{divisionno} AND grpno = #{grpno} AND ansnum > #{ansnum}
+  </update>
+ 
+
+  <insert id="reply" parameterType="BoardVO">
+    INSERT INTO board(boardno,
+                  divisionno, me_no, title, content, good, file1, file2, size2, rdate, 
+                  grpno, indent, ansnum)   
+    VALUES((SELECT NVL(MAX(boardno), 0) + 1 as boardno FROM board),
+                          #{divisionno}, #{me_no}, #{title}, #{content}, 0, #{file1}, #{file2}, #{size2}, sysdate,
+                          #{grpno}, #{indent}, #{ansnum})
+  </insert>
+
+  <select id="list4" resultType="BoardVO" parameterType="HashMap" >
+    SELECT boardno, divisionno, me_no, title, content, good, 
+               file1, file2, size2, cnt, replycnt, rdate, grpno, indent, ansnum, r
+    FROM(
+             SELECT boardno, divisionno, me_no, title, content, good,
+                        file1, file2, size2, cnt, replycnt, rdate, grpno, indent, ansnum, rownum as r
+             FROM(
+                      SELECT boardno, divisionno, me_no, title, content, good,
+                                 file1, file2, size2, cnt, replycnt, rdate, grpno, indent, ansnum
+                      FROM board
+ 
+                      WHERE divisionno=#{divisionno}
+                      <choose>
+                        <when test="col == 'title'">
+                           AND title LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'content'">
+                           AND content LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'title_content'">
+                           AND title LIKE '%' || #{word} || '%'  OR content LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                      ORDER BY grpno DESC, ansnum ASC
+             )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
+ </select>  -->
+  <!-- ********** 답변 종료 ********** --> 
+  
+  <!-- <update id="up" parameterType="CodeVO">
+    UPDATE code
+    SET seqno=seqno - 1 
+    WHERE codeno=#{codeno}
+  </update>
+   
+  <update id="down" parameterType="CodeVO">
+    UPDATE code
+    SET seqno=seqno + 1 
+    WHERE codeno=#{codeno}
+  </update> -->  
+
+</mapper>
