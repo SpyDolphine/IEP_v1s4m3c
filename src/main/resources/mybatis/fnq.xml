@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SELECT fq_no, fq_question, fq_answer
     FROM fnq
     where fq_CH = 'H'
-    ORDER BY fq_no ASC
+    ORDER BY fq_no DESC
   </select>
 
   <!-- 회사질문 목록 -->
@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SELECT fq_no, fq_question, fq_answer
     FROM fnq
     where fq_CH = 'C'
-    ORDER BY fq_no ASC 
+    ORDER BY fq_no DESC 
   </select>
 
   <!-- 읽어옴  -->

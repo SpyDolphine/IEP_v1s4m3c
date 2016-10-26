@@ -30,11 +30,13 @@ public interface ServeyDAOInter {
   
   /**
    * 설문조사 항목 총합
-   * <select id="sum" resultType="ServeyVO" parameterType="int">
+   * <select id="sum" parameterType="int">
    * @param sb_no 합계를 수할 게시판 번호
    * @return 총합
    */
   public int sum(int sb_no);
+  
+
   
   /**
    * 항목 수정합니다.
@@ -58,7 +60,7 @@ public interface ServeyDAOInter {
    * @param serveyVO
    * @return 결과
    */
-  public int persent(ServeyVO serveyVO);
+  public int percent(int serveyno);
   
   /**
    * 투표를 반영합니다
@@ -67,5 +69,12 @@ public interface ServeyDAOInter {
    * @return 결과
    */
   public int vote(int serveyno);
+  
+  /**
+   * 투표 결과 확인
+   * @param serveyVO
+   * @return 결과
+   */
+  public ServeyVO result(int sb_no);
   
 }
