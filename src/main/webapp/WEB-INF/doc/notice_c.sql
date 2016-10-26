@@ -34,3 +34,15 @@ INSERT INTO notice(nt_no, me_no, nt_title, nt_content )
 6. ªË¡¶
     DELETE FROM notice
     WHERE nt_no=1
+    
+    
+    SELECT gu_no, gu_area, gu_menu, gu_title, gu_name, gu_stars, gu_cnt, gu_date, file1, file2, size2, r
+    FROM(
+       SELECT gu_no, gu_area, gu_menu, gu_title, gu_name, gu_stars, gu_cnt, gu_date, file1, file2, size2, rownum as r
+       FROM(
+            SELECT gu_no, gu_area, gu_menu, gu_title, gu_name, gu_stars, gu_cnt, gu_date, file1, file2, size2
+            FROM gurume
+            ORDER BY gu_no DESC
+       )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
