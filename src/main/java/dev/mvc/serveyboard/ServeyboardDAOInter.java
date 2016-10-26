@@ -2,8 +2,6 @@ package dev.mvc.serveyboard;
 
 import java.util.List;
 
-import dev.mvc.category.CategoryVO;
-
 public interface ServeyboardDAOInter {
   /**
    * 항목 등록
@@ -42,6 +40,13 @@ public interface ServeyboardDAOInter {
    * @param serveyno 삭제할 항목 번호
    * @return 삭제된 레코드 갯수
    */
-  public int delete(int serveyno); 
+  public int delete(int sb_no);
   
+  /**
+   * 설문조사 항목 총합
+   * <select id="sum" resultType="ServeyVO" parameterType="int">
+   * @param sb_no 합계를 수할 게시판 번호
+   * @return 총합
+   */
+  public int max();
 }

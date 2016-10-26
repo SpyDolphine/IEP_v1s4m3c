@@ -28,10 +28,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <!-- 합 구함 -->
-  <select id="sum" resultType="ServeyVO" parameterType="int">
+  <select id="sum" resultType="int" parameterType="int">
     SELECT sum(cnt) 
     FROM servey 
-    WHERE boardno = #{boardno}
+    WHERE sb_no = #{sb_no}
+  </select>
+  
+  <!-- 결과 -->
+  <select id="result" resultType="ServeyVO" parameterType="int">
+    SELECT aver 
+    FROM servey 
+    WHERE serveyno = #{serveyno}
+    oder by aver DESC
   </select>
   
   <!-- 수정 -->
@@ -44,9 +52,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 백분율 저장 -->
   <update id="percent" parameterType="ServeyVO">
     UPDATE servey 
-    SET AVER=#{AVER}
+    SET aver=#{aver}
     WHERE serveyno=#{serveyno}
-  </update> 
+  </update>
   
   <!-- 삭제 -->
   <delete id="delete" parameterType="int">

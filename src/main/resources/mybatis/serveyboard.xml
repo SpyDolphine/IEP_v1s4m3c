@@ -12,6 +12,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     VALUES ((SELECT NVL(MAX(sb_no), 0) + 1 as sb_no FROM serveyboard), 
               #{title}, #{content}, sysdate)
   </insert>
+  
+  <select id="max" resultType="int">
+    SELECT NVL(MAX(sb_no), 0) as sb_no 
+    FROM serveyboard
+  </select>
 
   <!-- 전체 목록 -->
   <select id="list" resultType="ServeyboardVO">

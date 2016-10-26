@@ -8,9 +8,19 @@
 <meta charset="UTF-8"> 
 <title>설문조사 게시판</title> 
  
-<!-- ----------------------------------------- -->
-<jsp:include page="/menu/top.jsp" flush='false' />
-<!-- ----------------------------------------- --> 
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/tool.js"></script>
 <script type="text/javascript">
   $(function(){
     $('#panel_frm_delete').hide();
@@ -18,7 +28,7 @@
    
   function deleteOne(sb_no){
     $('#panel_frm_delete').show();
-    $('#sb_no', frm_delete).attr('value', sb_no);
+    $('#sb_no', frm_remove).attr('value', sb_no);
   }
    
   function deleteOne_cancel(){
@@ -27,9 +37,22 @@
  
 </script>
 </head> 
-
+<!-- ----------------------------------------- -->
+<body leftmargin="0" topmargin="0">
+<div class="container">
+     <jsp:include page="/menu/top.jsp" flush='false' />
+<!-- ----------------------------------------- -->
 <DIV class='title'>대분류 목록</DIV>
- 
+<DIV id='panel_frm_delete' class='content' style='padding: 10px 0px 10px 0px; background-color: #FFFF00; width: 70%; text-align: center;'>
+<FORM name='frm_remove' id='frm_remove' method='POST' action='./delete.do'>
+  <input type='hidden' name='sb_no' id='sb_no'> 
+  
+  삭제하면 복구 할 수 없습니다. 정말로 삭제하시겠습니까?
+    
+  <button type="submit" id='submit'>삭제</button>
+  <button type="button" onclick="delete_cancel()">취소</button>
+</FORM>
+</DIV>
 <TABLE class='table' style='width: 60%;'>
 
   <TR>
@@ -57,8 +80,9 @@
 </DIV>
 
 <!-- -------------------------------------------- -->
-</body>
      <jsp:include page="/menu/bottom.jsp" flush='false' />     
+     </div>
+</body>
 <!-- -------------------------------------------- -->
 </html> 
  

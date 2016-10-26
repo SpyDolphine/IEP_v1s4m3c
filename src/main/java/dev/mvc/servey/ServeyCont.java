@@ -1,6 +1,7 @@
 package dev.mvc.servey;
  
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -64,7 +65,12 @@ public class ServeyCont {
 
     return mav;
   }
-  
+
+  /**
+   * 항목 수정합니다
+   * @param serveyno
+   * @return
+   */
   @RequestMapping(value = "/servey/update.do", 
       method = RequestMethod.GET)
   public ModelAndView update(int serveyno) {
@@ -128,54 +134,45 @@ public class ServeyCont {
   @RequestMapping(value = "/servey/vote.do", method = RequestMethod.POST)
   public ModelAndView vote(int serveyno) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/message");
     
-    ArrayList<String> msgs = new ArrayList<String>();
-    ArrayList<String> links = new ArrayList<String>();
     ServeyVO serveyVO = serveyDAO.read(serveyno);
     
     if (serveyDAO.vote(serveyno) == 1) {
-      mav.setViewName("redirect:/servey/list.do?sb_no="+serveyVO.getSb_no());
-    } else {
-      msgs.add("투표에 실패했습니다.");
-      msgs.add("죄송하지만 다시한번 시도해주세요.");
-      links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
-      links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
+      // SUM SQL
+      int sum = serveyDAO.sum(serveyVO.getSb_no());
+      // 목록을 추출 SQL
+       List<ServeyVO> list = serveyDAO.list(serveyVO.getSb_no());
+      // percent logic
+      for (int i = 0; i < list.size(); i++) {
+        ServeyVO vo = list.get(i);
+        int percent = (int)((vo.getCnt() / (sum * 1.00))*100);
+        vo.setAver(percent);
+      }
       
-      mav.addObject("msgs", msgs);
-      mav.addObject("links", links);
+      mav.addObject("sb_no", serveyVO.getSb_no());
+      mav.addObject("list", list);
+      mav.setViewName("/servey/result");
+      
+    } else {
+      
     }
     return mav;
   }
   
   /**
-   * 백분율을 저장합니다
-   * @param serveyno
+   * 결과 출력
+   * @param sb_no
    * @return
    */
-  @RequestMapping(value = "/servey/percent.do", method = RequestMethod.POST)
-  public ModelAndView percent(ServeyVO serveyVO) {
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("/message");
-    
-    ArrayList<String> msgs = new ArrayList<String>();
-    ArrayList<String> links = new ArrayList<String>();
-    
-    if (serveyDAO.persent(serveyVO) == 1) {
-      
-    } else {
-      msgs.add("투표에 실패했습니다.");
-      msgs.add("죄송하지만 다시한번 시도해주세요.");
-      links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
-      links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
-      
-      mav.addObject("msgs", msgs);
-      mav.addObject("links", links);
-    }
-    return mav;
+  @RequestMapping(value = "/servey/result.do", 
+      method = RequestMethod.GET)
+  public ModelAndView result(int sb_no) {
+  ModelAndView mav = new ModelAndView();
+  mav.setViewName("/servey/result"); // /webapp/servey/create.jsp
+  ServeyVO serveyVO = serveyDAO.result(sb_no);
+  mav.addObject("serveyVO", serveyVO); 
+   
+  return mav;
   }
-  
-  
+   
 }

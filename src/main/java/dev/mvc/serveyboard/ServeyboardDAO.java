@@ -40,7 +40,10 @@ public class ServeyboardDAO implements ServeyboardDAOInter{
     return mybatis.delete("serveyboard.delete", sb_no);
   }
 
-
+  @Override
+  public int max() {
+    return mybatis.selectOne("serveyboard.max");
+  }
 
 }
  

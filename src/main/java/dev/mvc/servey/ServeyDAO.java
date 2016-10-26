@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 @Repository("dev.mvc.servey.ServeyDAO")
@@ -31,8 +32,8 @@ public class ServeyDAO implements ServeyDAOInter{
   }
   
   @Override
-  public int sum(int serveyno) {
-    return mybatis.selectOne("servey.sum", serveyno);
+  public int sum(int sb_no) {
+    return mybatis.selectOne("servey.sum", sb_no);
   }
 
   @Override
@@ -46,8 +47,8 @@ public class ServeyDAO implements ServeyDAOInter{
   }
 
   @Override
-  public int persent(ServeyVO serveyVO) {
-    return mybatis.update("servey.persent", serveyVO);
+  public int percent(int serveyno) {
+    return mybatis.update("servey.percent", serveyno);
   }
 
   @Override
@@ -55,7 +56,10 @@ public class ServeyDAO implements ServeyDAOInter{
     return mybatis.update("servey.vote", serveyno);
   }
 
-
+  @Override
+  public ServeyVO result(int sb_no) {
+    return mybatis.selectOne("servey.result", sb_no);
+  }
 
 }
  

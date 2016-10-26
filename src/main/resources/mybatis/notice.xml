@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "notice">
-
+  <!-- 등록 -->
   <insert id="create" parameterType="NoticeVO">
   INSERT INTO notice(nt_no, me_no, nt_title, nt_content )
   VALUES((SELECT NVL(MAX(nt_no), 0)+1 as nt_no FROM notice), #{me_no}, #{nt_title}, #{nt_content})
@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list" resultType="NoticeVO">
     SELECT nt_no, nt_title
     FROM notice
-    ORDER BY nt_no ASC 
+    ORDER BY nt_no DESC 
   </select>
   
   <!-- 조회 -->

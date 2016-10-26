@@ -6,7 +6,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8"> 
-<title>등록</title> 
+<title></title> 
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
@@ -18,48 +18,61 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    
+  
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 <script type="text/javascript" src="../js/tool.js"></script>
+ 
 <script type="text/javascript">
-  $(function(){
-   
-  });
+
+$(function (){
+
+});
 </script>
  
 </head> 
 <!-- ----------------------------------------- -->
-<body leftmargin="0" topmargin="0">
+<body>
 <div class="container">
      <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
  
-<DIV class='title'>등록</DIV>
+<DIV class='title'>자소서 쓰는 요령</DIV>
  
-<DIV class='content' style='width: 80%;'>
-<FORM name='form_grp' method='POST' action='./create.do'>
-  <fieldset>
-    <ul>
-      <li>
-        <label class='form_grp' >제목</label>
-        <input type='text' name='title' value='' size='60' required="required">
-      </li>
-      <li>
-        <label class='form_grp' >내용</label><br>
-        <TEXTAREA name='content' rows='10' cols='70'></TEXTAREA>
-      </li>
-      <li class='right'>
-        <button type="submit">등록</button>
-        <button type="button" onclick="location.href='./list.do'">목록</button>
-      </li>         
-    </ul>
-  </fieldset>
+<DIV class='content' style='width: 50%;'>
+<FORM name='frm' method='POST'>
+<button type='button' onclick="location.href='./create.do'">등록</button>
+<section class="content faq">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="panel-group accordion" id="accordion">
+            <c:forEach var="aboutmeVO" items="${list }">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#${aboutmeVO.am_no}">
+                      ${aboutmeVO.am_title}
+                  </a>
+                  <button type='button' onclick="location.href='./update.do?am_no=${aboutmeVO.am_no}'">수정</button>
+                  <button type='button' onclick="location.href='./delete.do?am_no=${aboutmeVO.am_no}'">삭제</button>
+              </h4>
+            </div>
+            <div id="${aboutmeVO.am_no}" class="panel-collapse collapse">
+                <div class="panel-body">${aboutmeVO.am_content}</div>
+            </div>
+          </div>
+            </c:forEach>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </FORM>
 </DIV>
  
 <!-- -------------------------------------------- -->
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
-     </div>
+    <jsp:include page="/menu/bottom.jsp" flush='false' />     
+  </div>
 </body>
 <!-- -------------------------------------------- -->
-</html> 
+</html>

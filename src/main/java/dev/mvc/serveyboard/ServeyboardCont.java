@@ -47,15 +47,13 @@ public class ServeyboardCont {
   ArrayList<String> links = new ArrayList<String>();
   
   if (serveyboardDAO.create(serveyboardVO) == 1) { 
-    mav.setViewName("redirect:/serveyboard/list.do");
+    mav.setViewName("redirect:/serveyboard/read.do?sb_no="+serveyboardDAO.max());
   } else {
   msgs.add("등록에 실패했습니다.");
   msgs.add("죄송하지만 다시한번 시도해주세요.");
   links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
   links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
   }
-  
-  links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
   
   mav.addObject("msgs", msgs);
   mav.addObject("links", links);
@@ -130,6 +128,17 @@ public class ServeyboardCont {
     }
     return mav;
   }
+  /**
+   * 레코드 1건을 삭제합니다.
+   * @param serveyno
+   * @return
+   */
+  @RequestMapping(value = "/serveyboard/delete.do", method = RequestMethod.GET)
+  public ModelAndView delete2(int sb_no) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("sb_no", sb_no);
+    return mav;
+  }  
   
   /**
    * 레코드 1건을 삭제합니다.
@@ -139,22 +148,10 @@ public class ServeyboardCont {
   @RequestMapping(value = "/serveyboard/delete.do", method = RequestMethod.POST)
   public ModelAndView delete(int sb_no) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/message");
- 
-    ArrayList<String> msgs = new ArrayList<String>();
-    ArrayList<String> links = new ArrayList<String>();
  
       if (serveyboardDAO.delete(sb_no) == 1) {
         mav.setViewName("redirect:/serveyboard/list.do");
       } else {
-        msgs.add("삭제에 실패했습니다.");
-        msgs.add("죄송하지만 다시한번 시도해주세요.");
-        links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-        links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
-        links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
- 
-        mav.addObject("msgs", msgs);
-        mav.addObject("links", links);
  
       }
     return mav;

@@ -15,7 +15,6 @@ CREATE TABLE servey( -- 설문조사
   FOREIGN KEY (sb_no) REFERENCES serveyboard (sb_no) ON DELETE CASCADE, -- 보드 넘버
   PRIMARY KEY(serveyno)
 );
-
 select * from servey
 ALTER TABLE servey ADD
 (
@@ -26,7 +25,9 @@ ALTER TABLE servey ADD
 );
 
 
-
+    SELECT sum(cnt) 
+    FROM servey 
+    WHERE sb_no = 9
 
 DELETE FROM serveyboard WHERE sb_no=1
 DELETE serveyboard WHERE sb_no=1 [CASCADE]
@@ -59,6 +60,7 @@ WHERE serveyno=1 AND sb_no = 1;
 -- 전체 합
 select sum(cnt) from servey where sb_no = 3
 
+select cnt from servey where sb_no = 8
 -- 백분율 계산
 select item, cnt,  
   round((ratio_to_report(cnt) over () * 100.00), 2) as avg 
