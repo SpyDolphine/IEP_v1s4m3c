@@ -107,6 +107,12 @@
             <label for="" style="width:150px;">블로그 카테고리 번호 : </label>
             <span>${blogVO.blogcategoryno}</span>
           </li> --%>
+            <li class='right'>
+            <%-- <button type="button" onclick="location.href='./reply.do?boardno=${boardVO.boardno }&divisionno=${boardVO.divisionno}&col=${searchDTO.col}&word=${searchDTO.word}'">답변</button> --%>
+            <button type="button" onclick="location.href='./list4.do?gu_no=<%-- ?divisionno=${boardVO.divisionno} --%>&col=${searchDTO.col}&word=${searchDTO.word}'">목록보기</button>
+            <button type="button" onclick="location.href='./update.do?gu_no=${gurumeVO.gu_no}&col=${searchDTO.col}&word=${searchDTO.word}'">수정</button>
+            <button type="button" onclick="location.href='./delete.do?gu_no=${gurumeVO.gu_no}'">삭제</button>
+          </li>
         </ul>
       </fieldset>
     </FORM>
