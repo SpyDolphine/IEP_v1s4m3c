@@ -339,7 +339,7 @@ public class SeicoCont {
     totalRecord = seicoDAO.count(hashMap);
     mav.addObject("totalRecord", seicoDAO.count(hashMap)); */// 검색된 레코드 갯수
  
-    String paging = new Paging().paging5( 
+    String paging = new Paging2().paging5( 
                                            totalRecord1, 
                                            searchDTO.getNowPage(), 
                                            recordPerPage, 

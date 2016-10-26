@@ -1,6 +1,6 @@
 package dev.mvc.seico; 
  
-public class Paging { 
+public class Paging2 { 
  
   /** 
    * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 

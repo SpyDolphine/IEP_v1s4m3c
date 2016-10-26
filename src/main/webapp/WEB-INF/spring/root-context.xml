@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     
   <!-- Oracle -->
-  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
     <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
     <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
     <property name="username" value="soldesk" />
@@ -23,7 +23,9 @@
                           dev.mvc.servey,
                           dev.mvc.serveyboard,
                           dev.mvc.memberEx,
-                          dev.mvc.interviewfail
+                          dev.mvc.interviewfail,
+                          dev.mvc.seico,
+                          dev.mvc.gurume
                    "/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>

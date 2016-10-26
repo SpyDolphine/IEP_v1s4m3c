@@ -13,7 +13,7 @@ String root = request.getContextPath();
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>IEP</title>
 
-<!-- ----------------------------------------- -->
+<!-- ------------------------------------------->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
 </head>
@@ -43,7 +43,7 @@ String root = request.getContextPath();
                             <h3>설문 조사</h3>
                             <p> 오늘의 설문조사 내용입니다. 조퇴할까요? </p>
                             <div class="read">
-                                <a href="">Read more</a>
+                                <a href="<%=root %>/serveyboard/list.do">Read more</a>
                             </div>
                         </div>
                     </div>
