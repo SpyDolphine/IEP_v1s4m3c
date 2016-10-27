@@ -1,6 +1,11 @@
 package dev.mvc.notice;
  
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import dev.mvc.board.BoardVO;
+import web.tool.SearchDTO;
+import web.tool.Tool;
 
 @Controller
 public class NoticeCont {
@@ -62,8 +68,8 @@ public class NoticeCont {
    * @return
    */
   @RequestMapping(value = "/notice/list.do", 
-                             method = RequestMethod.GET)
-  public ModelAndView list() {
+      method = RequestMethod.GET)
+    public ModelAndView list() {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/notice/list"); // /webapp/notice/list.jsp
     mav.addObject("list", noticeDAO.list());
@@ -142,9 +148,7 @@ public class NoticeCont {
  
       mav.addObject("msgs", msgs);
       mav.addObject("links", links);
- 
     }
- 
     return mav;
   }
   

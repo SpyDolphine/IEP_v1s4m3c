@@ -1,5 +1,6 @@
 package dev.mvc.notice;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface NoticeDAOInter {
@@ -13,7 +14,7 @@ public interface NoticeDAOInter {
   
   /**
    * 전체 목록
-   * <select id="list" resultType="NoticeVO">
+   * <select id="list" resultType="NoticeVO" resultType="HashMap">
    * @return 회원 목록
    */
   public List<NoticeVO> list();

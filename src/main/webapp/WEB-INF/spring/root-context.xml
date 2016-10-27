@@ -20,6 +20,7 @@
                           dev.mvc.category,
                           dev.mvc.notice,
                           dev.mvc.fnq,
+                          dev.mvc.interview,
                           dev.mvc.aboutme,
                           dev.mvc.servey,
                           dev.mvc.serveyboard,
