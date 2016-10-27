@@ -183,7 +183,7 @@ function bookmarksite(title,url) {
                                     <li><a href="#" >커뮤니티</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="<%=root %>/cfree/list.do">자유게시판</a></li>
-                                            <li><a href="#">정모방</a></li>
+                                            <li><a href="<%=root %>/mfree/list.do">정모방</a></li>
                                             <li><a href="#">정보공유방</a></li>
                                             <li><a href="#">상담/공감방</a></li>                                                                                        
                                         </ul>
