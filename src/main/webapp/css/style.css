@@ -124,35 +124,70 @@
 /* page_head Title
 ====================================*/
 .page_head {
-  background: #727CB6;
-  border-bottom: 1px solid #EAEAEA;
-  padding: 30px 0;
+    background: #f2f2f2;
+    border-bottom: 1px solid #ffffff;
+    padding:30px 0;
+    margin: 0 0 60px 0;
 }
 
-.page_title {
-  float: left;
-}
+.page_title{ float: left; }
 
 .page_title h2 {
-  color: #fff;
-  float: left;
-  font-size: 24px;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: 0;
-  margin-top: 0;
-  padding: 0 9px;
+    color: #007399;
+    float: left;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0 9px;
+}
+.sub_heading{
+    display: block;
+    background: #fff;
+    color: #666;
+    font-size: 16px;
+    padding: 5px 8px;
+    border-left: 2px solid #727CB6;
+    clear: both;
 }
 
-.sub_heading {
-  display: block;
-  background: #fff;
-  color: #666;
-  font-size: 16px;
-  padding: 5px 8px;
-  border-left: 2px solid #727CB6;
-  clear: both;
+/* Breadcrumbs
+====================================*/
+#breadcrumbs{
+    background: #fff;
+    margin-top: 3px;
+    padding:3px 7px;
+    float: right;
 }
+#breadcrumbs ul {
+    float: right;
+    font-size: 12px;
+    padding: 2px  5px;
+    margin: 0;
+}
+#breadcrumbs ul li{
+    display: inline-block;
+    color: #888;
+    margin: 0 0 0 5px;
+}
+#breadcrumbs ul li a{
+    margin-right: 8px;
+}
+
+#breadcrumbs ul li:last-child a,
+#breadcrumbs ul li a { color: #727CB6; }
+
+#breadcrumbs ul li:first-child { padding-right: 0; margin-left: 0; }
+
+#breadcrumbs ul li:first-child,
+#breadcrumbs ul li:last-child {
+    color: #888;
+    background: none;
+}
+
+#breadcrumbs ul li:last-child { padding:0; background: none; }
+
 
 /* =================================================================== */
 /* 2. NAVIGATION
@@ -988,12 +1023,13 @@ ul.tags {
 /* 5. FOOTER & FOOTER WIDGETS                        */
 /* ===================================================== */
 .footer_bottom {
-  background: #292F38;
-  padding: 5px 0;
+  background: #292F38; 
+  padding: 2px 0;
   color: #fff;
   bottom: 0;
   width: 100%;
   position: fixed;
+  opacity : 0.6;
 }
 
 .footer {
@@ -1136,6 +1172,62 @@ ul.tags {
   border-radius: 5px;
 }
 
+/* =========================================*/
+/* 7. ACCORDION 답변기능                  */
+/* =========================================*/
+.panel.panel-default > .panel-heading{
+    background: none;
+    border-radius: 0;
+}
+.panel.panel-default{
+    border:1px solid #ddd;
+    margin-bottom: 10px;
+}
+.panel-group .panel{
+    border-radius: 0;
+}
+.panel.panel-default  .panel-title > a{
+    color:#333333 ;
+    font: 500 15px/25px "open sans", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    outline: none;
+    display: block;
+    padding: 10px 10px 10px 50px;
+    position: relative;
+}
+.panel .panel-title > a:before{
+    content: "\f067";
+    font-family: "FontAwesome";
+    font-size:14px;
+    border-right: 1px solid #ddd;
+    color: #727CB6;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.panel.active_acc  .panel-title > a:before{
+    content: "\f068";
+}
+
+.panel.panel-default .panel-heading{
+    padding: 0;
+}
+
+.panel.panel-default .panel-heading:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.panel.active_acc,
+.panel:hover{ border-top-color:#727CB6; }
+
 /* Comment
 ============================*/
 #comment-list ul.children { margin-left:94px;padding:0;}
@@ -1203,7 +1295,17 @@ a.link-style3 {
 .comment_form > input:last-child {
     margin-right:0;
 }
-
 /*------------------------------------------------------------------------------------------------------------------------------*/
+#boardtitle {
+  text-align: left;
+}
+
+.content {
+   text-align: center;
+}
+
+.content th {
+  text-align: center;
+}
 /*------------------------------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------------------------------*/
