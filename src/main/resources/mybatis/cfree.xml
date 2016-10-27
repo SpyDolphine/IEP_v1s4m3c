@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Oracle 기반 -->
+<mapper namespace = "cfree">
+  <insert id="create" parameterType="CmVO">
+    INSERT INTO commu_free(cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate)
+    VALUES ((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_free), 
+                                  #{cm_nick}, #{cm_title}, #{cm_content}, 0, sysdate)
+  </insert>
+  
+  <update id='update' parameterType="CmVO">
+    UPDATE commu_free
+    SET cm_title=#{cm_title}, cm_content=#{cm_content}
+    WHERE cm_no=#{cm_no}
+  </update>   
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM commu_free
+    WHERE cm_no=#{cm_no}
+  </delete>  
+  
+  <select id="read" resultType="CmVO">
+    SELECT cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate
+    FROM commu_free
+    WHERE cm_no = #{cm_no}
+  </select>
+  
+  <select id="count" resultType="int" parameterType="HashMap" >
+    SELECT COUNT(*) as cnt
+    FROM commu_free
+    <choose>
+      <when test="col == 'title'">
+        WHERE cm_title LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'content'">
+        WHERE cm_content LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'title_content'">
+        WHERE cm_title LIKE '%' || #{word} || '%'  OR cm_content LIKE '%' || #{word} || '%' 
+      </when>      
+    </choose>
+  </select>        
+  
+ <!-- ********** 페이징에 따른 변경 시작 ********** -->   
+ <select id="list" resultType="CmVO" parameterType="HashMap" >
+    SELECT cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate, r
+    FROM(
+             SELECT cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate, rownum as r
+             FROM(
+                      SELECT cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate
+                      FROM commu_free
+                      <choose>
+                        <when test="col == 'title'">
+                           where cm_title LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'content'">
+                           where cm_content LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'title_content'">
+                           where cm_title LIKE '%' || #{word} || '%'  OR cm_content LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                      ORDER BY cm_no DESC
+             )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
+  </select>    
+  <!-- ********** 페이징에 따른 변경 종료 ********** -->  
+</mapper>

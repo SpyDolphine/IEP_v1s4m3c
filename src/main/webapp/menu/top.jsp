@@ -37,7 +37,6 @@
 
 
 <script type="text/javascript"> 
-
 function bookmarksite(title,url) { 
    // Internet Explorer
    if(document.all)
@@ -85,7 +84,7 @@ function bookmarksite(title,url) {
                             <a href="" >개인회원</a>  |
                             <a href="" >기업회원</a>  |
                             <a href="<%=root %>/index.jsp" >HOME</a>  |
-                            <a href="javascript:bookmarksite('IEP 프로젝트', '#')"><i class="fa fa-bookmark"></i> BOOKMARK</a>
+                            <a href="javascript:bookmarksite('IEP 프로젝트', 'http://localhost:9090/IEP/index.jsp')"><i class="fa fa-bookmark"></i> BOOKMARK</a>
                     </div>
                 </div>
             </div>
@@ -116,8 +115,8 @@ function bookmarksite(title,url) {
                                     <li class="active"><a href="#">공지사항</a>
                                         <ul class="dropdown-menu">
                                             <li class="active"><a href="<%=root %>/category/list.do">공지사항</a></li>
-                                            <li><a href="<%=root %>/fnq/listh.do">일반 F&A</a></li>
-                                            <li><a href="<%=root %>/fnq/listc.do">기업 F&A</a></li>
+                                            <li><a href="#">일반 F&A</a></li>
+                                            <li><a href="#">기업 F&A</a></li>
                                         </ul>
                                     </li>
 
@@ -127,7 +126,7 @@ function bookmarksite(title,url) {
                                                 <a href="about.html">채용 정보</a>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="#">기업 정보</a></li>
-                                                    <li><a href="<%=root %>/gurume/list.do">근처 맛집</a></li>
+                                                    <li><a href="#">근처 맛집</a></li>
                                                 </ul>
                                             </li>                                        
                                             <li><a href="#">블랙리스트</a></li>
@@ -184,7 +183,7 @@ function bookmarksite(title,url) {
                                     <li><a href="#" >커뮤니티</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="<%=root %>/cfree/list.do">자유게시판</a></li>
-                                            <li><a href="#">정모방</a></li>
+                                            <li><a href="<%=root %>/mfree/list.do">정모방</a></li>
                                             <li><a href="#">정보공유방</a></li>
                                             <li><a href="#">상담/공감방</a></li>                                                                                        
                                         </ul>

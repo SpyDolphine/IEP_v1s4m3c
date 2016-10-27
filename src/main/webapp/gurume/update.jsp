@@ -8,16 +8,7 @@
 <meta charset="UTF-8"> 
 <title></title> 
  
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
- 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- 
-<script type="text/javascript" src="../js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
-<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+<jsp:include page="/menu/top.jsp" flush='false' /> 
 <script type="text/JavaScript">
   window.onload=function(){
    CKEDITOR.replace('content');
@@ -28,15 +19,11 @@
      return false;
    }
   };
-  
-
 </script>
- 
 </head> 
  
 <body>
-  <div class="container">
-    <jsp:include page="/menu/top.jsp" flush='false' />
+
      
      
  <div class='content_menu' style='width: 100%;'>
@@ -134,8 +121,7 @@
 </DIV>
 
 
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
-  </div>
 </body>
+<jsp:include page="/menu/bottom.jsp" flush='false' />     
  
 </html> 
