@@ -5,55 +5,60 @@
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
-<meta charset="UTF-8"> 
-<title></title> 
+<meta charset="UTF-8">
+<title>공지사항 등록</title>    
  
+</head>
 <!-- ----------------------------------------- -->
-     <jsp:include page="/menu/top.jsp" flush='false' />
+<jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
-
-<script type="text/javascript">
-window.onload=function(){
-  CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
-};
-$(function (){
-  // content: textarea name
-  if (CKEDITOR.instances['content'].getData() == '') {
-    window.alert('내용을 입력해 주세요.');
-    CKEDITOR.instances['content'].focus();
-    return false;
-  }
-});
-</script>
-</head> 
-
+<section class="wrapper">
+    <section class="page_head">
+        <div class="container">
+             <div class="row">
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+                        <nav id="breadcrumbs">
+                            <ul>
+                                <li><a href="../index.jsp">Home</a>/</li>
+                                <li><A href='./list.do'>목록</A></li>   
+                                <i class="fa fa-arrow-circle-right">공지사항 등록</i> 
+                            </ul> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+</section>
+</section>
 <body>
-<DIV class='title'>공지사항 등록</DIV>
- 
-<DIV class='content' style='width: 70%;'>
-<FORM name='frm' method='POST' action='./create.do'>
-<input type='hidden' name='me_no' value='1'>
-  <fieldset>
-    <ul>
-      <li>
-        <label class='label' for='nt_title'>제목</label>
-        <input type='text' name='nt_title' value='제목' required="required">
-      </li>
-      <li>
-        <label class='label' for='content'>내용</label>
-        <textarea name='nt_content' required="required" cols="100" rows="10"></textarea>
-      </li>
-      <li class='right'>
-        <button type="submit">등록</button>
-        <button type="button" onclick="location.href='./list.do'">목록</button>
-      </li>         
-    </ul>
-  </fieldset>
-</FORM>
-</DIV>
- 
-<!-- -------------------------------------------- -->
+<div class="container">
+ <div class="row" align='center'>
+   <div class="col-xs-12 col-lg-12">
+      <FORM name='frm' method='POST' action='./create.do'>
+      <input type='hidden' name='me_no' value='1'>
+        <fieldset>
+          <ul>
+            <li>
+              <label class='label' for='nt_title'>제목</label>
+              <input type='text' name='nt_title' value='제목' required="required">
+            </li>
+            <li>
+              <label class='label' for='content'>내용</label>
+              <textarea name='nt_content' required="required" cols="100" rows="10"></textarea>
+            </li>
+            <li class='right'>
+              <button type="submit">등록</button>
+              <button type="button" onclick="location.href='./list.do'">목록</button>
+            </li>         
+          </ul>
+        </fieldset>
+      </FORM>
+   </div>
+ </div>
+</div>
 </body>
-    <jsp:include page="/menu/bottom.jsp" flush='false' />     
+
+ 
 <!-- -------------------------------------------- -->
-</html>
+<jsp:include page="/menu/bottom.jsp" flush='false' />
+<!-- -------------------------------------------- -->
+</html> 

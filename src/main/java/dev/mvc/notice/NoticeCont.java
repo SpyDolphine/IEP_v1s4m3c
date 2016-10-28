@@ -107,7 +107,7 @@ public class NoticeCont {
     totalRecord = noticeDAO.count(hashMap);
     mav.addObject("totalRecord", noticeDAO.count(hashMap)); // 검색된 레코드 갯수
  
-    String paging = new Paging().paging5(totalRecord, 
+    String paging = new Paging().paging(totalRecord, 
                                                           searchDTO.getNowPage(), 
                                                           recordPerPage, 
                                                           searchDTO.getCol(), 
