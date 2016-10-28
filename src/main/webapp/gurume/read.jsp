@@ -8,14 +8,20 @@
 <meta charset="UTF-8">
 <title></title>
 
-<jsp:include page="/menu/top.jsp" flush='false' />
-<script type="text/javascript">
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+ <script type="text/javascript">
    $(function(){
     $('#file2').load(function(){ // 태그 메모리 상주후 작동
       // var width = $('#file2').width();
       //alert('file2: ' + width); 
-      if ($('#file2').width() > screen.width * 0.7){
-        $('#file2').width('70%');      
+      if ($('#file2').width() > screen.width * 0.6){
+        $('#file2').width('80%');      
       }
     });
   }); 
@@ -24,8 +30,8 @@
 </head>
 
 <body>
-
-     
+  <div class="container">
+     <jsp:include page="/menu/top.jsp" flush='false' />
      
    <div class='content_menu' style='width: 100%;'>
     <A href='../gurume/list4.do'>게시판 목록</A> >
@@ -57,7 +63,7 @@
           </li>
             <li>
             <label for='gu_cont' style="width:150px;">내용</label><br>
-          <TEXTAREA name='gu_cont' id='gu_cont' rows='10' cols='70'>
+          <TEXTAREA name='gu_cont' id='gu_cont' rows='10' cols='70' readonly="readonly">
                   ${gurumeVO.gu_cont}
           </TEXTAREA>
       </li>
@@ -81,17 +87,21 @@
               <c:set var='file2' value="${fn:toLowerCase(gurumeVO.file2)}" />
               <c:choose>
                 <c:when test="${fn:endsWith(file2, '.jpg')}">
-                  <IMG id='file2' src='./storage/${gurumeVO.file2}' onload="customize(this);">
+                  <IMG id='file2' src='./storage/${gurumeVO.file1}' onload="customize(this);">
                 </c:when>
                 <c:when test="${fn:endsWith(file2, '.gif')}">
-                  <IMG id='file2'  src='./storage/${gurumeVO.file2}' onload="customize(this);">
+                  <IMG id='file2'  src='./storage/${gurumeVO.file1}' onload="customize(this);">
                 </c:when>
                 <c:when test="${fn:endsWith(file2, '.png')}">
-                  <IMG id='file2'  src='./storage/${gurumeVO.file2}' onload="customize(this);">
+                  <IMG id='file2'  src='./storage/${gurumeVO.file1}' onload="customize(this);">
                 </c:when>
               </c:choose>
             </div> 
           </li>
+              <li>
+        <label for='content'>약도: </label>
+        ${gurumeVO.gu_map}
+      </li>   
          <%--  <li>
             <label for="replycnt" style="width:150px;">댓글수 : </label>
             <span>${blogVO.replycnt}</span>
@@ -100,7 +110,7 @@
             <label for="" style="width:150px;">블로그 카테고리 번호 : </label>
             <span>${blogVO.blogcategoryno}</span>
           </li> --%>
-            <li class='right'>
+           <li class='right'>
             <%-- <button type="button" onclick="location.href='./reply.do?boardno=${boardVO.boardno }&divisionno=${boardVO.divisionno}&col=${searchDTO.col}&word=${searchDTO.word}'">답변</button> --%>
             <button type="button" onclick="location.href='./list4.do?gu_no=<%-- ?divisionno=${boardVO.divisionno} --%>&col=${searchDTO.col}&word=${searchDTO.word}'">목록보기</button>
             <button type="button" onclick="location.href='./update.do?gu_no=${gurumeVO.gu_no}&col=${searchDTO.col}&word=${searchDTO.word}'">수정</button>
@@ -111,8 +121,8 @@
     </FORM>
   </DIV>
 
-
-</body>
      <jsp:include page="/menu/bottom.jsp" flush='false' />     
+  </div>
+</body>
 
 </html>

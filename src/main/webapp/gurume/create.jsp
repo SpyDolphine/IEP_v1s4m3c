@@ -8,9 +8,21 @@
 <meta charset="UTF-8"> 
 <title></title> 
  
-<!-- ----------------------------------------- -->
-<jsp:include page="/menu/top.jsp" flush='false' />
-<!-- ----------------------------------------- -->
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/tool.js"></script>
+<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+ 
 <script type="text/javascript">
   window.onload=function(){
     CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
@@ -24,10 +36,18 @@
       return false;
     }
   });
-</script>
-</head> 
 
+</script>
+
+
+
+</head> 
+<!-- ----------------------------------------- -->
 <body>
+<div class="container">
+     <jsp:include page="/menu/top.jsp" flush='false' />
+<!-- ----------------------------------------- -->
+ 
   <div class='content_menu' style='width: 100%;'>
     <A href='../gurume/list4.do'>게시판 목록</A> > 
    <%--  <A href='./list.do?divisionno=${divisionVO.divisionno }'>${divisionVO.title }</A>｜
@@ -50,12 +70,22 @@
       <select name='gu_area' id='gu_area'>
         <option value="지역" selected="selected">지역 선택</option>
         <option value="서울">서울</option>
-        <option value="대구">대구</option>
-        <option value="인천">인천</option>
-        <option value="대전">대전</option>
-        <option value="광주">광주</option>
-        <option value="울산">울산</option>
-        <option value="부산">부산</option>
+         <option value="인천">인천</option>
+           <option value="대구">대구</option>
+           <option value="대전">대전</option>
+           <option value="광주">광주</option>
+           <option value="울산">울산</option>
+           <option value="부산">부산</option>
+           <option value="경기">경기</option>
+           <option value="강원">강원</option>
+           <option value="경북">경북</option>
+           <option value="경남">경남</option>
+           <option value="전북">전북</option>
+           <option value="전남">전남</option>
+           <option value="충남">충남</option>
+           <option value="충북">충북</option>
+           <option value="제주">제주</option>
+           <option value="해외">해외</option>
       </select>
       
          <label class='form_grp' for='gu_menu'>분류</label>
@@ -87,7 +117,7 @@
       </li>
       <li>
         <label for='content'>약도: </label>
-        <textarea name='gu_map' id='gu_map' rows='5' style='width:100%; value='></textarea>
+        <textarea name='gu_map' id='gu_map' rows='5' style='width:100%;'></textarea>
       </li>     
      <li>
         <label class='form_grp' for='file1'>Thumb 파일</label>
@@ -107,9 +137,8 @@
 </DIV>
  
 <!-- -------------------------------------------- -->
-</body>
-<div style= 'margin: 100px 0 0 0;  position: relative;'>      
 <jsp:include page="/menu/bottom.jsp" flush='false' />
 </div>
+</body>
 <!-- -------------------------------------------- -->
 </html> 
