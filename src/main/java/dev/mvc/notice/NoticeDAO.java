@@ -20,10 +20,6 @@ public class NoticeDAO implements NoticeDAOInter{
     return mybatis.insert("notice.create", noticeVO);
   }
   @Override
-  public List<NoticeVO> list() {
-    return mybatis.selectList("notice.list");
-  }
-  @Override
   public int update(NoticeVO noticeVO) {
     return mybatis.update("notice.update", noticeVO);
   }
@@ -34,6 +30,14 @@ public class NoticeDAO implements NoticeDAOInter{
   @Override
   public NoticeVO read(int nt_no) {
     return mybatis.selectOne("notice.read", nt_no);
+  }
+  @Override
+  public int count(HashMap hashmap) {
+    return mybatis.selectOne("notice.count", hashmap);
+  }
+  @Override
+  public List<NoticeVO> list(HashMap Map) {
+    return mybatis.selectList("notice.list", Map);
   }
   
 }

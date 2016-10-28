@@ -8,12 +8,10 @@
 <head> 
 <meta charset="UTF-8"> 
 <title></title> 
- 
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-<script type="text/JavaScript"
-          src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="../js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
+<!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
+<!-- ----------------------------------------- -->
+
 <script type="text/javascript">
 $(function(){
   $('#panel_frm_remove').hide();
@@ -29,10 +27,7 @@ function remove_cancel(){
 }
 </script>
 </head> 
-<!-- ----------------------------------------- -->
-<body leftmargin="0" topmargin="0">
-<jsp:include page="/menu/top.jsp" flush='false' />
-<!-- ----------------------------------------- -->
+
 
 <DIV class='title'>공지사항 목록</DIV>
 
@@ -43,7 +38,7 @@ function remove_cancel(){
   삭제하면 복구 할 수 없습니다. 정말로 삭제하시겠습니까?
     
   <button type="submit" id='submit'>삭제</button>
-  <button type="button" onclick="delete_cancel()">취소</button>
+  <button type="button" onclick="remove_cancel()">취소</button>
 </FORM>
 </DIV>
 <TABLE class='table' style='width: 70%;'>
@@ -68,13 +63,42 @@ function remove_cancel(){
   </TR>
   </c:forEach>
 </TABLE>
+
+<form name="frmSearch" method="get" action="./list.do">  
+<DIV class='bottom'>
+  <button type='button' onclick="location.reload();">새로 고침</button>
+  <div style='text-align: center;'>
+     <select name="col"> 
+      <option value="">선택</option> 
+      <option value="title" ${searchDTO.col == "title" ? "selected=selected" : "" }>제목</option> 
+      <option value="content" ${searchDTO.col == "content" ? "selected=selected" : "" }>내용</option> 
+      <option value="title_content" ${searchDTO.col == "title_content" ? "selected=selected" : "" }>제목+내용</option> 
+      <option value="total" ${searchDTO.col == "" ? "selected=selected" : "" }>전체 목록</option>
+    </select>
+    <c:choose>
+      <c:when test="${searchDTO.col != 'total' }">
+        <input type="text" name="word" size="15" value="${searchDTO.word }">
+      </c:when>
+      <c:when test="${searchDTO.col == 'total' }">
+        <input type="text" name="word" size="15" value="">
+      </c:when>
+      
+    </c:choose>
+     
+    <input type="submit" value="검색"> 
+  </div>
+</DIV>
+</form>
  
 <DIV class='bottom'>
   <button type='button' onclick="location.href='./create.do'">등록</button>
   <button type='button' onclick="location.reload();">새로 고침</button>
 </DIV>
 <!-- -------------------------------------------- -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
+<DIV class='bottom'>${paging}</DIV>
+<div style= 'margin: 100px 0 0 0;  position: relative;'>   
+<jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>
 <!-- -------------------------------------------- -->
 </html> 
