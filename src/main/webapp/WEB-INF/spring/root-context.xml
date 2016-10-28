@@ -28,7 +28,8 @@
                           dev.mvc.interviewfail,
                           dev.mvc.seico,
                           dev.mvc.gurume,
-                          dev.mvc.cfree
+                          dev.mvc.cfree,
+                          dev.mvc.mfree
                    "/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>

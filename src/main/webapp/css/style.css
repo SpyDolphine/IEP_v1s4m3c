@@ -98,6 +98,54 @@
   background: #E73904;
 }
 
+/* Title
+====================================*/
+.dividerHeading,
+.widget_title{
+    margin-bottom: 25px;
+}
+.dividerHeading h4,
+.widget_title h4{
+    font-size: 21px;
+    font-weight: normal;
+    padding: 0 0 10px;
+    position: relative;
+    text-transform: capitalize;
+}
+
+.dividerHeading h4::before,
+.widget_title h4::before{
+    background: #727CB6;
+    border-radius: 0 5px 5px 0;
+    bottom: -1.5px;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 50px;
+}
+
+.dividerHeading.text-center{
+    margin-bottom: 45px;
+}
+
+.dividerHeading.text-center h4{
+    font-size: 25px;
+}
+.dividerHeading.text-center h4::before{
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    bottom: -40px;
+}
+.dividerHeading.text-center > span{
+    font-size: 18px;
+    color: #868889;
+    display: block;
+    margin: 15px 0 30px;
+}
+
+
 /* Logo
 ====================================*/
 #logo-bar {
@@ -1300,12 +1348,29 @@ a.link-style3 {
   text-align: left;
 }
 
-.content {
+.list_content {
    text-align: center;
 }
 
-.content th {
+.list_content th {
   text-align: center;
 }
+
+.write_content {
+   text-align: left;
+   width: 70%; 
+   border:solid 1px #d9d9d9; 
+   padding:10px 10px 10px 10px;
+}
+
+ul li {
+    list-style: none; /* 블렛 기호 생략 */
+  } 
+.right {
+    list-style: none; /* 블렛 기호 생략 */
+    text-align: right;
+  }   
+
+  
 /*------------------------------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------------------------------*/
