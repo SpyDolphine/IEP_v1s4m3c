@@ -1,21 +1,38 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
-<!DOCTYPE html>  
-<html lang="ko"> 
-<head> 
-<meta charset="UTF-8"> 
-<title></title> 
- 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>정모방</title>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
-
-</head> 
-
-<!-- 등록 폼 -->
-<DIV class='title'>목록</DIV>
+</head>
+ 
+<section class="wrapper">
+  <section class="page_head">
+      <div class="container">
+           <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12">
+                      <nav id="breadcrumbs">
+                          <ul>
+                              <li><a href="../index.jsp">Home</a>/</li>
+                              <li><A href='./list.do'>목록</A></li>
+                              <i class="fa fa-arrow-circle-right"> 정 모 방</i> 
+                          </ul> 
+                      </nav>
+                  </div>
+              </div>
+          </div>
+</section>
+</section>
+        
+<div class="container">
+ <div class="row" align='center'>
+   <div class="col-xs-12 col-lg-12">
 <FORM name='frm' id='frm' method='POST' action='./create.do'>
   <input type="hidden" name="cm_no" value="0"> 
       <label for='cm_nick'>닉네임</label>
@@ -68,7 +85,6 @@
  
 <form name="frmSearch" method="get" action="./list.do">  
 <DIV class='bottom'>
-  <button type='button' onclick="location.reload();">새로 고침</button>
   <div style='text-align: center;'>
      <select name="col"> 
       <option value="">선택</option> 
@@ -91,6 +107,9 @@
   </div>
 </DIV>
 </form>
+</div>
+</div>
+</div>
 </div>
 <!-- -------------------------------------------- -->
 <DIV class='bottom'>${paging}</DIV>

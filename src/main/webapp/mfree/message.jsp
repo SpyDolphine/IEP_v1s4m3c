@@ -10,6 +10,8 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+<script type="text/JavaScript">
+</script>
 </head>
  
 <section class="wrapper">
@@ -21,7 +23,7 @@
                           <ul>
                               <li><a href="../index.jsp">Home</a>/</li>
                               <li><A href='./list.do'>목록</A></li>
-                              <i class="fa fa-arrow-circle-right"> 정 모 방</i> 
+                              <i class="fa fa-arrow-circle-right"> Message </i> 
                           </ul> 
                       </nav>
                   </div>
@@ -29,45 +31,36 @@
           </div>
 </section>
 </section>
-        
+
+<body>
 <div class="container">
+
+<div class="dividerHeading">
+  <h4><span>알림</span></h4>
+</div>
+
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-
-<DIV class='title'>새 글 등 록</DIV>
  
-<DIV class='content' style='width: 50%;'>
-<FORM name='frm' method='POST' action='./update.do'>
-<input type="hidden" name="cm_no" id="cm_no" value="${cmVO.cm_no}"> 
+<DIV class='message'>
   <fieldset>
     <ul>
-      <li>
-        <label for='cm_nick'>닉네임</label>
-        <input type='text' name='cm_nick' id='cm_nick' value='${cmVO.cm_nick }' required="required">
-      </li>
-      <li>
-        <label for='cm_title'>글 제목</label>
-        <input type='text' name='cm_title' id='cm_title' value='${cmVO.cm_title }' required="required">
-      </li>
-      <li>
-        <label for='cm_content'>글 내용</label><br>
-        <textarea name='cm_content' id='cm_content' rows='10' style='width: 100%;' required="required">
-        ${cmVO.cm_content }</textarea>
-      </li>       
-      <li class='right'>
-        <button type="submit">수정</button>
-        <button type="button" onclick="location.href='./list.do'">목록</button>
-      </li>         
+      <c:forEach var="msgs" items='${msgs }'>
+       ${msgs }<br><br>
+      </c:forEach>
+      
+      <c:forEach var="links" items='${links }'>
+       ${links }
+      </c:forEach>
     </ul>
   </fieldset>
-</FORM>
-</DIV>
+   </DIV>
+  </div>
+ </div>
 </div>
-</div>
-</div>
+ 
 <!-- -------------------------------------------- -->
 </body>
      <jsp:include page="/menu/bottom.jsp" flush='false' />     
 <!-- -------------------------------------------- -->
 </html> 
- 
