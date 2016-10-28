@@ -22,9 +22,9 @@
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 <script type="text/javascript" src="../js/tool.js"></script>
 <script type="text/javascript">
-  window.onload=function(){
-    CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
-  };
+  /* function customize(imgObj){
+    alert('file2 '+ imgObj.width());
+  } */
   $(function (){
     $('#file2').load(function(){ // 태그 메모리 상주후 작동
       var width = $('#file2').width();
@@ -42,8 +42,8 @@
      <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
   <div class='content_menu' style='width: 100%;'>
-    <A href='./update.do?nt_no=${noticeVO.nt_no}'>수정</A>｜
-    <A href='./delete.do?nt_no=${noticeVO.nt_no}'>삭제</A> ｜
+            <A href="./update.do?nt_no=${noticeVO.nt_no}">수정 |</A>
+            <A href="./delete.do?nt_no=${noticeVO.nt_no}" onclick="return confirm('삭제할꺼냐')">삭제 |</A>
     <A href="javascript:location.reload();">새로고침</A>｜
   </div>
   <DIV class='content'>
@@ -64,9 +64,9 @@
             <span>${noticeVO.nt_date.substring(0, 16)}</span>
           </li>
           <li class='right'>
-            <button type="button" onclick="location.href='./list.do?'">목록보기</button>
-            <button type="button" onclick="location.href='./update.do?nt_no=${noticeVO.nt_no}'">수정</button>
-            <button type="button" onclick="location.href='./delete.do?nt_no=${noticeVO.nt_no}'">삭제</button>
+            <A href="./list.do">목록 |</A>
+            <A href="./update.do?nt_no=${noticeVO.nt_no}">수정 |</A>
+            <A href="./delete.do?nt_no=${noticeVO.nt_no}" onclick="return confirm('삭제할꺼냐')">삭제</A>
           </li>
         </ul>
       </fieldset>
