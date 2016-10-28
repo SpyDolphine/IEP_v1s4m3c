@@ -118,6 +118,9 @@
       <li>
         <label for='content'>약도: </label>
         <textarea name='gu_map' id='gu_map' rows='5' style='width:100%;'></textarea>
+
+
+        
       </li>     
      <li>
         <label class='form_grp' for='file1'>Thumb 파일</label>

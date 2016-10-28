@@ -62,19 +62,29 @@
       <li>
       <label class='form_grp' for='gu_area'>지역</label>
       <select name='gu_area' id='gu_area'>
-        <option value="지역" selected="selected">지역 선택</option>
-        <option value="서울">서울</option>
-        <option value="대구">대구</option>
-        <option value="인천">인천</option>
-        <option value="대전">대전</option>
-        <option value="광주">광주</option>
-        <option value="울산">울산</option>
-        <option value="부산">부산</option>
+           <option value="${gurumeVO.gu_area}" selected="selected">${gurumeVO.gu_area}</option>
+           <option value="서울">서울</option>
+           <option value="인천">인천</option>
+           <option value="대구">대구</option>
+           <option value="대전">대전</option>
+           <option value="광주">광주</option>
+           <option value="울산">울산</option>
+           <option value="부산">부산</option>
+           <option value="경기">경기</option>
+           <option value="강원">강원</option>
+           <option value="경북">경북</option>
+           <option value="경남">경남</option>
+           <option value="전북">전북</option>
+           <option value="전남">전남</option>
+           <option value="충남">충남</option>
+           <option value="충북">충북</option>
+           <option value="제주">제주</option>
+           <option value="해외">해외</option>
       </select>
       
          <label class='form_grp' for='gu_menu'>분류</label>
       <select name='gu_menu' id='gu_menu'>
-        <option value="서울" selected="selected">분류 선택</option>
+        <option value="${gurumeVO.gu_menu}" selected="selected">${gurumeVO.gu_menu}</option>
         <option value="한식">한식</option>
         <option value="양식">양식</option>
         <option value="일식">일식</option>
@@ -83,7 +93,7 @@
       </select>
         <label class='form_grp' for='gu_stars'>별점</label>
       <select name='gu_stars' id='gu_stars'>
-        <option value="별점" selected="selected">별점</option>
+        <option value="${gurumeVO.gu_stars}" selected="selected">${gurumeVO.gu_stars}</option>
         <option value="★">★</option>
         <option value="★★">★★</option>
         <option value="★★★">★★★</option>
@@ -93,14 +103,14 @@
        </li>
        <li>
         <label class='form_grp' for='gu_name'>닉네임</label>
-        <input type='text' name='gu_name' id='gu_name' size='15' required="required">
+        <input type='text' name='gu_name' id='gu_name'value="${gurumeVO.gu_name}"size='15' required="required">
       </li>
       <li>
         <label class='form_grp' for='gu_cont'>내용</label><br>
         <TEXTAREA name='gu_cont' id='gu_cont' rows='10' cols='70'>${gurumeVO.gu_cont}</TEXTAREA>
       </li>
        <li>
-        <label class='form_grp' for='file2'>등록된 파일</label>
+        <label class='form_grp' for='file1'>등록된 파일</label>
           <c:set var='file2' value="${fn:toLowerCase(gurumeVO.file2)}" />
           <c:choose>
             <c:when test="${fn:endsWith(file2, '.jpg')}">
@@ -123,7 +133,9 @@
       </li> 
       <li>
         <label for='content'>약도: </label>
-        <textarea name='gu_map' id='gu_map' rows='5' style='width:100%;'></textarea>
+        <textarea name='gu_map' id='gu_map' rows='5' style='width:100%;'>
+        ${gurumeVO.gu_map}
+        </textarea>
       </li>        
       <li class='right'>
          <button type="submit">수정</button>

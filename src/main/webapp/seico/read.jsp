@@ -71,7 +71,7 @@
           </li>
             <li>
             <label for='sc_cont' style="width:150px;">내용</label><br>
-          <TEXTAREA name='sc_cont' id='sc_cont' rows='10' cols='70'>
+          <TEXTAREA name='sc_cont' id='sc_cont' rows='10' cols='70'readonly="readonly">
                   ${seicoVO.sc_cont}
           </TEXTAREA>
          <%--  <li>

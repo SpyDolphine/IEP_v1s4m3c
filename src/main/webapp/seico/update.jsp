@@ -40,7 +40,7 @@
      
      
   <div class='content_menu' style='width: 100%;'>
-    <A href='../seico/list.do'>게시판 목록</A> > 
+    <A href='../seico/list4.do'>게시판 목록</A> > 
     <A href='./list.do<%-- ?divisionno=${divisionVO.divisionno } --%>'><%-- ${divisionVO.title } --%></A>｜
     <A href="javascript:history.back();">취소</A>
   </div>
@@ -111,7 +111,7 @@
       </li>
       <li class='right'>
          <button type="submit">수정</button>
-        <button type="button" onclick="location.href='./list.do<%-- ?divisionno=${boardVO.divisionno}' --%>">목록[취소]</button>
+        <button type="button" onclick="location.href='./list4.do<%-- ?divisionno=${boardVO.divisionno}' --%>">목록[취소]</button>
       </li>         
     </ul>
   </FORM>

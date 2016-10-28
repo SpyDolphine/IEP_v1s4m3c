@@ -38,6 +38,7 @@
   });
 </script>
 
+
 </head> 
 <!-- ----------------------------------------- -->
 <body>
@@ -66,23 +67,46 @@
       <li>
       <label class='form_grp' for='sc_area'>지역</label>
       <select name='sc_area' id='sc_area'>
-        <option value="지역" selected="selected">지역 선택</option>
-        <option value="서울">서울</option>
-        <option value="대구">대구</option>
-        <option value="인천">인천</option>
-        <option value="대전">대전</option>
-        <option value="광주">광주</option>
-        <option value="울산">울산</option>
-        <option value="부산">부산</option>
+           <option value="지역" selected="selected">지역 선택</option>
+           <option value="서울">서울</option>
+           <option value="인천">인천</option>
+           <option value="대구">대구</option>
+           <option value="대전">대전</option>
+           <option value="광주">광주</option>
+           <option value="울산">울산</option>
+           <option value="부산">부산</option>
+           <option value="경기">경기</option>
+           <option value="강원">강원</option>
+           <option value="경북">경북</option>
+           <option value="경남">경남</option>
+           <option value="전북">전북</option>
+           <option value="전남">전남</option>
+           <option value="충남">충남</option>
+           <option value="충북">충북</option>
+           <option value="제주">제주</option>
+           <option value="해외">해외</option>
       </select>
       
          <label class='form_grp' for='sc_jobs'>직종</label>
       <select name='sc_jobs' id='sc_jobs'>
         <option value="직종선택" selected="selected">직종 선택</option>
-        <option value="SE">SE</option>
-        <option value="SI">SI</option>
-        <option value="테스터">테스터</option>
-        <option value="기타">기타</option>
+         <option value="상세직종" selected="selected">상세직종</option>
+           <option value="DBA(Database Admin.)">DBA(Database Admin.)</option>
+           <option value="ERP">ERP</option>
+           <option value="QA(Quality Assurance)">QA(Quality Assurance)</option>
+           <option value="게임개발">게임개발</option>
+           <option value="기획">기획</option>
+           <option value="네트워크/보안/운영">네트워크/보안/운영</option>
+           <option value="데이터분석">데이터분석</option>
+           <option value="모바일앱개발">모바일앱개발</option>
+           <option value="소프트웨어아키텍트">소프트웨어아키텍트</option>
+           <option value="소프트웨어엔지니어">소프트웨어엔지니어</option>
+           <option value="시스템엔지니어">시스템엔지니어</option>
+           <option value="웹개발">웹개발</option>
+           <option value="웹퍼블리셔">웹퍼블리셔</option>
+           <option value="프로젝트매니저">프로젝트매니저</option>
+           <option value="하드웨어엔지니어">하드웨어엔지니어</option>
+           <option value="기타">기타</option>
       </select>
    <!--     <li>
         <label class='form_grp' for='sc_like'>좋아요</label>

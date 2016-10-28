@@ -33,6 +33,7 @@
   <div class="container">
      <jsp:include page="/menu/top.jsp" flush='false' />
      
+     
    <div class='content_menu' style='width: 100%;'>
     <A href='../gurume/list4.do'>게시판 목록</A> >
     <%-- <A href='./list.do?blogcategoryno=${blogcategoryVO.blogcategoryno}'>${blogcategoryVO.title }</A>｜ --%>
