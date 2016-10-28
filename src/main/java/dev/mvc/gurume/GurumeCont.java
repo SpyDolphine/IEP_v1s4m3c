@@ -30,7 +30,7 @@ public class GurumeCont {
   public ModelAndView create() {
     System.out.println("--> create() GET called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/gurume/create"); // 
+    mav.setViewName("/create"); // 
  
     return mav;
   }
@@ -41,7 +41,7 @@ public class GurumeCont {
                                                HttpSession session) {
     // System.out.println("--> crte() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/gurume/message"); //상으니 메시지 사용시 기존 메시지파일 삭제하고 콘트 /gurume 부분 삭제 후 /message 파일사용
+    mav.setViewName("/message"); //상으니 메시지 사용시 기존 메시지파일 삭제하고 콘트 /gurume 부분 삭제 후 /message 파일사용
     System.out.println("created");
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
