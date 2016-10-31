@@ -70,7 +70,16 @@ where sb_no = 3
 
 
 
-
+        SELECT sb_no, title, rdate, r
+    FROM(
+             SELECT sb_no, title, rdate, rownum as r
+             FROM(
+                     select sb_no, title, rdate
+                      FROM serveyboard
+                      ORDER BY sb_no DESC
+             )
+    )
+    WHERE <![CDATA[r >=1 AND r <= 3]]>
 
 
 

@@ -20,8 +20,7 @@
                         <nav id="breadcrumbs">
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
-                                <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">FnQ</i>
+                                <i class="fa fa-arrow-circle-right"> FnQ</i>
                             </ul> 
                         </nav>
                     </div>
@@ -37,32 +36,32 @@
  
 <DIV class='content' style='width: 50%;'>
 <FORM name='frm' method='POST'>
-<button type='button' onclick="location.href='./create.do'">등록</button>
 <section class="content faq">
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
         <div class="panel-group accordion" id="accordion">
-            <c:forEach var="fnqVO" items="${list }">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#${fnqVO.fq_no}">
-                      ${fnqVO.fq_question}
-                  </a>
-              </h4>
+          <c:forEach var="fnqVO" items="${list }">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#${fnqVO.fq_no}">
+                        ${fnqVO.fq_question}
+                    </a>
+                </h4>
+              </div>
+              <div id="${fnqVO.fq_no}" class="panel-collapse collapse">
+                  <div class="panel-body">${fnqVO.fq_answer}
+                   <button type="button" class="close" onclick="location.href='./delete.do?fq_no=${fnqVO.fq_no}'">
+                     <i class="fa fa-trash-o"></i></button>
+                   <button type="button" class="close" onclick="location.href='./update.do?fq_no=${fnqVO.fq_no}'">
+                     <i class="fa fa-pencil"></i>&nbsp;</button>  
+                   </div>                
+              </div>
             </div>
-            <div id="${fnqVO.fq_no}" class="panel-collapse collapse">
-                <div class="panel-body">${fnqVO.fq_answer}
-                 <button type="button" class="close" onclick="location.href='./delete.do?fq_no=${fnqVO.fq_no}'">
-                   <i class="fa fa-trash-o"></i></button>
-                 <button type="button" class="close" onclick="location.href='./update.do?fq_no=${fnqVO.fq_no}'">
-                   <i class="fa fa-pencil"></i>&nbsp;</button>  
-                 </div>                
-            </div>
-          </div>
-            </c:forEach>
+          </c:forEach>
         </div>
+        <button type='button' onclick="location.href='./create.do'">등록</button>
       </div>
     </div>
   </div>
@@ -73,9 +72,10 @@
  </div>
 </div>
 </body>
-
- 
+<DIV class='bottom'>${paging}</DIV>
 <!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>
 <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>
 <!-- -------------------------------------------- -->
 </html> 

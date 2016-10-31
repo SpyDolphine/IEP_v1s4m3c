@@ -1,5 +1,6 @@
 package dev.mvc.serveyboard;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ServeyboardDAOInter {
@@ -16,7 +17,7 @@ public interface ServeyboardDAOInter {
    * <select id="list" resultType="ServeyboardVO">
    * @return 설문조사
    */
-  public List<ServeyboardVO> list();
+  public List<ServeyboardVO> list(HashMap Map);
   
   /**
   * 한건의 레코드 조회
@@ -49,4 +50,12 @@ public interface ServeyboardDAOInter {
    * @return 총합
    */
   public int max();
+  
+  /**
+   * 검색된 레코드 수
+   * <select id="count" resultType="int" parameterType="HashMap" >
+   * @param hashMap 검색조건
+   * @return
+   */
+  public int count(HashMap hashmap); 
 }

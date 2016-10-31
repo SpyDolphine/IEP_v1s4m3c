@@ -1,5 +1,6 @@
 package dev.mvc.fnq;
 
+import java.util.HashMap;
 import java.util.List;
 
 import dev.mvc.servey.ServeyVO;
@@ -18,14 +19,14 @@ public interface FnqDAOInter {
    * <select id="list" resultType="FnqVO">
    * @return 리스트
    */
-  public List<FnqVO> listh();
+  public List<FnqVO> listh(HashMap Map);
   
   /**
    * 회사 질문 목록
    * <select id="list" resultType="FnqVO">
    * @return 리스트
    */
-  public List<FnqVO> listc();
+  public List<FnqVO> listc(HashMap Map);
   
   /**
    * 항목 수정합니다.
@@ -50,4 +51,19 @@ public interface FnqDAOInter {
   */
   public FnqVO read(int fq_no); 
   
+  /**
+   * 검색된 홈페이지레코드 수
+   * <select id="count" resultType="int" parameterType="HashMap" >
+   * @param hashMap 검색조건
+   * @return
+   */
+  public int countH(HashMap hashmap); 
+  
+  /**
+   * 검색된 회사레코드 수
+   * <select id="count" resultType="int" parameterType="HashMap" >
+   * @param hashMap 검색조건
+   * @return
+   */
+  public int countC(HashMap hashmap); 
 }

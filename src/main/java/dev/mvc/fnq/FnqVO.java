@@ -22,10 +22,9 @@ CREATE TABLE fnq (                         -- 자주묻는 질문
   /** 답변 */
   private String fq_answer;
   /** 날짜 */
-  private Character fq_date;
+  private String fq_date;
   /** 홈페이지용인지 회사용인지 판별문자 */
-  private String fq_CH;
-  
+  private Character fq_CH;
   public int getFq_no() {
     return fq_no;
   }
@@ -50,17 +49,16 @@ CREATE TABLE fnq (                         -- 자주묻는 질문
   public void setFq_answer(String fq_answer) {
     this.fq_answer = fq_answer;
   }
-  public Character getFq_date() {
+  public String getFq_date() {
     return fq_date;
   }
-  public void setFq_date(Character fq_date) {
+  public void setFq_date(String fq_date) {
     this.fq_date = fq_date;
   }
-  public String getFq_CH() {
+  public Character getFq_CH() {
     return fq_CH;
   }
-  public void setFq_CH(String fq_CH) {
+  public void setFq_CH(Character fq_CH) {
     this.fq_CH = fq_CH;
   }
-  
 }
