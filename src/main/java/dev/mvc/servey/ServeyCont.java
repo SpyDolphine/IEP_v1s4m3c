@@ -38,7 +38,7 @@ public class ServeyCont {
   ArrayList<String> msgs = new ArrayList<String>();
   ArrayList<String> links = new ArrayList<String>();
   if (serveyDAO.create(serveyVO) == 1) { 
-    mav.setViewName("redirect:/serveyboard/read.do?sb_no="+serveyVO.getSb_no());
+    mav.setViewName("redirect:/serveyboard/update.do?sb_no="+serveyVO.getSb_no());
   } else {
   msgs.add("항목등록에 실패했습니다.");
   msgs.add("죄송하지만 다시한번 시도해주세요.");

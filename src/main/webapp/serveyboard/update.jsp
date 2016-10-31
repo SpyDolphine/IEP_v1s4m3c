@@ -12,6 +12,15 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+<script type="text/javascript">
+// iframe resize
+function autoResize(i)
+{
+    var iframeHeight=
+    (i).contentWindow.document.body.scrollHeight;
+    (i).height=iframeHeight+20;
+}
+</script>
 <section class="wrapper">
     <section class="page_head">
         <div class="container">
@@ -49,7 +58,7 @@
         <TEXTAREA name='content' rows='10' cols='70'>${serveyboardVO.content}</TEXTAREA>
       </li>
       <li>
-          <iframe src="../servey/list.do?sb_no=${serveyboardVO.sb_no}" width="400" height="220"></iframe> 
+          <iframe src="../servey/list.do?sb_no=${serveyboardVO.sb_no}" onload="autoResize(this)" scrolling="no" frameborder="0"></iframe> 
       </li>
     </ul>
   </fieldset>
