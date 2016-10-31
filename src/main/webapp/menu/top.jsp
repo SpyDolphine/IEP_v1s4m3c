@@ -114,7 +114,7 @@ function bookmarksite(title,url) {
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="#">공지사항</a>
                                         <ul class="dropdown-menu">
-                                            <li class="active"><a href="<%=root %>/category/list.do">공지사항</a></li>
+                                            <li class="active"><a href="<%=root %>/notice/list.do">공지사항</a></li>
                                             <li><a href="<%=root %>/fnq/listh.do">일반 F&A</a></li>
                                             <li><a href="<%=root %>/fnq/listc.do">기업 F&A</a></li>
                                         </ul>
