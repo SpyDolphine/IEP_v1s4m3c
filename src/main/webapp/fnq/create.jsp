@@ -21,7 +21,7 @@
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">FnQ 
+                                <i class="fa fa-arrow-circle-right">FnQ</i>
                             </ul> 
                         </nav>
                     </div>
