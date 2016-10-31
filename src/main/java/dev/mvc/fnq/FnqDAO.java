@@ -1,5 +1,6 @@
 package dev.mvc.fnq;
  
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,13 +22,13 @@ public class FnqDAO implements FnqDAOInter{
   }
 
   @Override
-  public List<FnqVO> listh() {
-    return mybatis.selectList("fnq.listh");
+  public List<FnqVO> listh(HashMap Map) {
+    return mybatis.selectList("fnq.listh", Map);
   }
   
   @Override
-  public List<FnqVO> listc() {
-    return mybatis.selectList("fnq.listc");
+  public List<FnqVO> listc(HashMap Map) {
+    return mybatis.selectList("fnq.listc", Map);
   }
 
   @Override
@@ -43,6 +44,16 @@ public class FnqDAO implements FnqDAOInter{
   @Override
   public FnqVO read(int fq_no) {
     return mybatis.selectOne("fnq.read", fq_no);
+  }
+
+  @Override
+  public int countC(HashMap hashmap) {
+    return mybatis.selectOne("fnq.countC", hashmap);
+  }
+  
+  @Override
+  public int countH(HashMap hashmap) {
+    return mybatis.selectOne("fnq.countH", hashmap);
   }
 
 }

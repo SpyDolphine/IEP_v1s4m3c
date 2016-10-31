@@ -14,18 +14,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!-- 홈페이지 목록 -->
   <select id="listh" resultType="FnqVO">
-    SELECT fq_no, fq_question, fq_answer
-    FROM fnq
-    where fq_CH = 'H'
-    ORDER BY fq_no DESC
+            SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH, r
+    FROM(
+             SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH, rownum as r
+             FROM(
+                     SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH
+                      FROM fnq
+                      <choose>
+                        <when test="col == 'title'">
+                           where fq_question LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'content'">
+                           where fq_answer LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'title_content'">
+                           where fq_question LIKE '%' || #{word} || '%'  OR fq_answer LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                      ORDER BY fq_no DESC
+             ) WHERE fq_CH = 'H'
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]> 
   </select>
 
   <!-- 회사질문 목록 -->
   <select id="listc" resultType="FnqVO">
-    SELECT fq_no, fq_question, fq_answer
-    FROM fnq
-    where fq_CH = 'C'
-    ORDER BY fq_no DESC 
+            SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH, r
+    FROM(
+             SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH, rownum as r
+             FROM(
+                     SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH
+                      FROM fnq
+                      <choose>
+                        <when test="col == 'title'">
+                           where fq_question LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'content'">
+                           where fq_answer LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'title_content'">
+                           where fq_question LIKE '%' || #{word} || '%'  OR fq_answer LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                      ORDER BY fq_no DESC
+             ) where fq_CH = 'C'
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]> 
   </select>
 
   <!-- 읽어옴  -->
@@ -48,5 +82,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE fq_no=#{fq_no}
   </delete>
   
-    
+  <!-- 회사 총 글 수 -->
+  <select id="countC" resultType="int" parameterType="HashMap" >
+    SELECT COUNT(*) as cnt
+    FROM (select fq_ch
+            from fnq 
+             where fq_ch = 'C' )
+    <choose>
+      <when test="col == 'title'">
+        WHERE fq_question LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'content'">
+        WHERE fq_answer LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'title_content'">
+        WHERE fq_question LIKE '%' || #{word} || '%'  OR fq_answer LIKE '%' || #{word} || '%' 
+      </when>      
+    </choose>
+  </select>   
+  
+  <!-- 홈페이지 총 글 수 -->
+  <select id="countH" resultType="int" parameterType="HashMap" >
+    SELECT COUNT(*) as cnt
+    FROM (select fq_ch
+            from fnq 
+             where fq_ch = 'H' )
+    <choose>
+      <when test="col == 'title'">
+        WHERE fq_question LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'content'">
+        WHERE fq_answer LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'title_content'">
+        WHERE fq_question LIKE '%' || #{word} || '%'  OR fq_answer LIKE '%' || #{word} || '%' 
+      </when>      
+    </choose>
+  </select>   
 </mapper>

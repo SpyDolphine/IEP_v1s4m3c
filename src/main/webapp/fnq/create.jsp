@@ -34,7 +34,7 @@
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
         <div class='content_menu' style='width: 100%;'>
-          <A href='../division/list.do'>목록</A> > 
+          <A href='./list.do'>목록</A> > 
           <A href="javascript:location.reload();">새로고침</A>
         </div>
         
@@ -72,6 +72,8 @@
 
  
 <!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>
 <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>
 <!-- -------------------------------------------- -->
 </html> 

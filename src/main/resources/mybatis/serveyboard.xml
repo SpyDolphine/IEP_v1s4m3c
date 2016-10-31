@@ -43,6 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
   </select>
   
+  
   <select id="count" resultType="int" parameterType="HashMap" >
     SELECT COUNT(*) as cnt
     FROM serveyboard
