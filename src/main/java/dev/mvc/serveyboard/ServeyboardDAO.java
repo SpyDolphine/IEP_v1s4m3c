@@ -23,7 +23,7 @@ public class ServeyboardDAO implements ServeyboardDAOInter{
 
   @Override
   public List<ServeyboardVO> list(HashMap Map) {
-    return mybatis.selectList("serveyboard.list");
+    return mybatis.selectList("serveyboard.list", Map);
   }
 
   @Override

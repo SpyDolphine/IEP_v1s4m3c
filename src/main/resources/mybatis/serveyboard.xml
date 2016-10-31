@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
 
   <!-- 전체 목록 -->
-  <select id="list" resultType="ServeyboardVO">
+  <select id="list" resultType="ServeyboardVO"  parameterType="HashMap">
         SELECT sb_no, title, rdate, r
     FROM(
              SELECT sb_no, title, rdate, rownum as r
