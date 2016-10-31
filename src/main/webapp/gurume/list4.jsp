@@ -8,9 +8,27 @@
 <meta charset="UTF-8">
 <title></title>
  
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
+<script type="text/javascript" src="../js/tool.js"></script>
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+ 
+<script type="text/javascript">
+$(function(){
+ 
+});
+</script>
+ 
+<script type="text/javascript">
+</script>
 </head>
  
-<jsp:include page="/menu/top.jsp" flush='false' />
+<body leftmargin="0" topmargin="0">
+<div class="container">
+  <jsp:include page="/menu/top.jsp" flush='false' />
      
      
   <form name="frmSearch" method="get" action="./list4.do"> 
@@ -91,23 +109,21 @@
            
             
             <td style='vertical-align: middle;'>
-            <c:choose>
-              <c:when test="${vo.file1 == null}"></c:when>
-              <c:when test="${vo.file1 != null}">
+           <c:choose>
+              <c:when test="${vo.file2 == null}"></c:when>
+              <c:when test="${vo.file2 != null}">
                 <c:set var='file2' value="${fn:toLowerCase(vo.file2)}" />
                 <c:choose>
                    <c:when test="${fn:endsWith(vo.file2, '.txt')}">
-                      <A href='${pageContext.request.contextPath}/download?dir=/gurume/storage&filename=${vo.file2}'>
                       <IMG src='../menu/images/textico.png'>
                       </A>
                    </c:when>
                    <c:when test="${fn:endsWith(vo.file2, '.zip')}">
-                      <A href='${pageContext.request.contextPath}/download?dir=/gurume/storage&filename=${vo.file2}'>
                       <IMG src='../menu/images/zipico.png'>
                       </A>
                    </c:when>
                    <c:when test="${fn:endsWith(vo.file2, '.jpg')}">
-                      <A href='${pageContext.request.contextPath}/download?dir=/gurume/storage&filename=${vo.file2}'>
+                      <A href='${pageContext.request.contextPath}/download?dir=/gurume/storage&filename=${vo.file1}'>
                       <IMG src='./storage/${vo.file1}'>
                       </A>
                    </c:when>
@@ -115,7 +131,7 @@
                    
                    </c:when>
                    <c:otherwise>
-                      <A href='${pageContext.request.contextPath}/download?dir=/gurume/storage&filename=${vo.file2}'>
+                     <%--  <A href='${pageContext.request.contextPath}/download?dir=/gurume/storage&filename=${vo.file1}'> --%>
                       <IMG src='../menu/images/fileico.png'>
                       </A>
                    </c:otherwise>
@@ -141,7 +157,8 @@
  
   <DIV class='bottom'>${paging}</DIV>
   
-<jsp:include page="/menu/bottom.jsp" flush='false' />     
+     <jsp:include page="/menu/bottom.jsp" flush='false' />     
+  </div>
 </body>
  
 </html>

@@ -30,7 +30,7 @@ public class GurumeCont {
   public ModelAndView create() {
     System.out.println("--> create() GET called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/gurume/create"); // 
+    mav.setViewName("/create"); // 
  
     return mav;
   }
@@ -178,12 +178,13 @@ public class GurumeCont {
     // -------------------------------------------------------------------
     String file1 = "";
     String file2 = "";
- 
+    long size2=0;
+    
     String upDir = Tool.getRealPath(request, "/gurume/storage");
     MultipartFile file2MF = gurumeVO.getFile2MF();
     GurumeVO oldVO = gurumeDAO.read(gurumeVO.getGu_no());
- 
-    if (file2MF.getSize() > 0) {
+    size2=file2MF.getSize();
+    if (size2 > 0) {
       Tool.deleteFile(upDir, oldVO.getFile2()); // 파일 삭제
       file2 = Upload.saveFileSpring(file2MF, upDir);
       gurumeVO.setFile2(file2); // 전송된 파일명 저장
@@ -201,11 +202,13 @@ public class GurumeCont {
       // -------------------------------------------------------------------
  
     } else {
-      file1 = oldVO.getFile2();
+      file1 = oldVO.getFile1();
       file2 = oldVO.getFile2();
+      size2 = oldVO.getSize2();
     }
     gurumeVO.setFile1(file1);
     gurumeVO.setFile2(file2);
+    gurumeVO.setSize2(size2);
     // -------------------------------------------------------------------
     
     //boardVO.setMe_no(1); // 회원 연동시 변경
@@ -251,7 +254,7 @@ public class GurumeCont {
                              method = RequestMethod.POST)
   public ModelAndView delete2(int gu_no) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/message");
+    mav.setViewName("/gurume/message");
     /*System.out.println(gurumeVO.getDivisionno());*/
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();

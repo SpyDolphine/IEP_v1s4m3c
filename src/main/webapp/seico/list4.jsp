@@ -109,22 +109,20 @@ $(function(){
             
             <td style='vertical-align: middle;'>
             <c:choose>
-              <c:when test="${vo.file1 == null}"></c:when>
-              <c:when test="${vo.file1 != null}">
+              <c:when test="${vo.file2 == null}"></c:when>
+              <c:when test="${vo.file2 != null}">
                 <c:set var='file2' value="${fn:toLowerCase(vo.file2)}" />
                 <c:choose>
                    <c:when test="${fn:endsWith(vo.file2, '.txt')}">
-                      <A href='${pageContext.request.contextPath}/download?dir=/seico/storage&filename=${vo.file2}'>
                       <IMG src='../menu/images/textico.png'>
                       </A>
                    </c:when>
                    <c:when test="${fn:endsWith(vo.file2, '.zip')}">
-                      <A href='${pageContext.request.contextPath}/download?dir=/seico/storage&filename=${vo.file2}'>
                       <IMG src='../menu/images/zipico.png'>
                       </A>
                    </c:when>
                    <c:when test="${fn:endsWith(vo.file2, '.jpg')}">
-                      <A href='${pageContext.request.contextPath}/download?dir=/seico/storage&filename=${vo.file2}'>
+                      <A href='${pageContext.request.contextPath}/download?dir=/seico/storage&filename=${vo.file1}'>
                       <IMG src='./storage/${vo.file1}'>
                       </A>
                    </c:when>
@@ -132,7 +130,6 @@ $(function(){
                    
                    </c:when>
                    <c:otherwise>
-                      <A href='${pageContext.request.contextPath}/download?dir=/seico/storage&filename=${vo.file2}'>
                       <IMG src='../menu/images/fileico.png'>
                       </A>
                    </c:otherwise>

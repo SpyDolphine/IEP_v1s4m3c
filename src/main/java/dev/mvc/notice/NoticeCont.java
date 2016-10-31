@@ -49,7 +49,6 @@ public class NoticeCont {
   
   if (noticeDAO.create(noticeVO) == 1) {
   msgs.add("등록을 완료했습니다.");
-  links.add("<button type='button' onclick=\"location.href='./login.do'\">로그인</button>");
   links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
   } else {
   msgs.add("등록에 실패했습니다.");
@@ -107,7 +106,7 @@ public class NoticeCont {
     totalRecord = noticeDAO.count(hashMap);
     mav.addObject("totalRecord", noticeDAO.count(hashMap)); // 검색된 레코드 갯수
  
-    String paging = new Paging().paging5(totalRecord, 
+    String paging = new Paging().paging(totalRecord, 
                                                           searchDTO.getNowPage(), 
                                                           recordPerPage, 
                                                           searchDTO.getCol(), 
