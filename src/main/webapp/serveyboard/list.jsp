@@ -7,11 +7,25 @@
 <head> 
 <meta charset="UTF-8">
 <title>설문조사</title>    
- 
 </head>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+<script type="text/javascript">
+  $(function(){
+    $('#panel_frm_delete').hide();
+  });
+   
+  function deleteOne(sb_no){
+    $('#panel_frm_delete').show();
+    $('#sb_no', frm_remove).attr('value', sb_no);
+  }
+   
+  function delete_cancel(){
+    $('#panel_frm_delete').hide();
+  }
+ 
+</script>
 <section class="wrapper">
     <section class="page_head">
         <div class="container">
@@ -45,7 +59,7 @@
   <button type="button" onclick="delete_cancel()">취소</button>
 </FORM>
 </DIV>
-<TABLE class='table' style='width: 60%;'>
+<TABLE class='table'>
 
   <TR>
     <TH>번호</TH>
