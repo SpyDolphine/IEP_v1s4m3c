@@ -20,9 +20,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!-- 전체 목록 -->
   <select id="list" resultType="ServeyboardVO">
-    SELECT sb_no, title
-    FROM serveyboard
+        SELECT sb_no, title, rdate, r
+    FROM(
+             SELECT sb_no, title, rdate, rownum as r
+             FROM(
+                     SELECT sb_no, title, rdate
+                      FROM serveyboard
+                      <choose>
+                        <when test="col == 'title'">
+                           where title LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'content'">
+                           where content LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'title_content'">
+                           where title LIKE '%' || #{word} || '%'  OR content LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                      ORDER BY sb_no DESC
+             )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
   </select>
+  
+  <select id="count" resultType="int" parameterType="HashMap" >
+    SELECT COUNT(*) as cnt
+    FROM serveyboard
+    <choose>
+      <when test="col == 'title'">
+        WHERE title LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'content'">
+        WHERE content LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'title_content'">
+        WHERE title LIKE '%' || #{word} || '%'  OR content LIKE '%' || #{word} || '%' 
+      </when>      
+    </choose>
+  </select> 
   
   <!-- 읽어옴  -->
   <select id="read" resultType="ServeyboardVO">

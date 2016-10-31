@@ -1,5 +1,6 @@
 package dev.mvc.serveyboard;
  
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,7 +22,7 @@ public class ServeyboardDAO implements ServeyboardDAOInter{
   }
 
   @Override
-  public List<ServeyboardVO> list() {
+  public List<ServeyboardVO> list(HashMap Map) {
     return mybatis.selectList("serveyboard.list");
   }
 
@@ -45,5 +46,10 @@ public class ServeyboardDAO implements ServeyboardDAOInter{
     return mybatis.selectOne("serveyboard.max");
   }
 
+  @Override
+  public int count(HashMap hashmap) {
+    return mybatis.selectOne("serveyboard.count", hashmap);
+  }
+  
 }
  
