@@ -27,6 +27,7 @@
       <!-- <input type='hidden' name='me_no' value='${me_no}'>  -->
       <ul>
       <li>
+        <!-- 회원정보를 읽어와야하지만 아직 그렇지 못해서 선택해야합니다 -->
         <label class='form_grp' for='content'>선택</label><br>
         <input type='radio' name='fq_CH' value='C'>회사
         <input type='radio' name='fq_CH' value='H'>홈페이지
