@@ -102,7 +102,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 답변에 따른 목록 -->
   <select id="list" resultType="MfVO" parameterType="HashMap" >
     SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
-                cm_cnt, cm_date, replycnt, grpno, indent, ansnum, rownum
+                cm_cnt, cm_date, replycnt, grpno, indent, ansnum, r 
+    FROM(             
+    SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
+                cm_cnt, cm_date, replycnt, grpno, indent, ansnum, rownum as r
      FROM(
               SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
                      cm_cnt, cm_date, replycnt, grpno, indent, ansnum
@@ -119,8 +122,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
               </when>        
               </choose>
               ORDER BY grpno DESC, ansnum ASC
+          )
      )
-    WHERE <![CDATA[rownum >=#{startNum} AND rownum <= #{endNum}]]>
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
   </select> 
   <!-- **********       답변 관련 종료       ********** -->
     <select id="count" resultType="int" parameterType="HashMap" >
