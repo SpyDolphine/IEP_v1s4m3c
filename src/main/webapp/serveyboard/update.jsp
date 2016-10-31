@@ -51,10 +51,6 @@
       <li>
           <iframe src="../servey/list.do?sb_no=${serveyboardVO.sb_no}" width="400" height="220"></iframe> 
       </li>
-      <li class='right'>
-        <button type="submit">등록</button>
-        <button type="button" onclick="location.href='./list.do'">목록</button>
-      </li>         
     </ul>
   </fieldset>
 </FORM>

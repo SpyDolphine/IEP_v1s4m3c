@@ -35,11 +35,7 @@
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
    
-  <div class='content_menu'>
-    <A href='./update.do?sb_no=${serveyboardVO.sb_no}'>수정</A>｜
-    <A href='./delete.do?sb_no=${serveyboardVO.sb_no}'>삭제</A> ｜
-    <A href="javascript:location.reload();">새로고침</A>｜
-  </div>
+
   <DIV class='content'>
     <FORM name='form_group' method="get">
       <input type="hidden" name="sb_no" value="${serveyboardVO.sb_no}">
@@ -62,6 +58,11 @@
     </FORM>
 
   </DIV>
+    <div>
+    <A href='./list.do'>목록</A>｜
+    <A href='./update.do?sb_no=${serveyboardVO.sb_no}'>수정</A>｜
+    <A href='./delete.do?sb_no=${serveyboardVO.sb_no}'>삭제</A> 
+  </div>
    </div>
  </div>
 </div>

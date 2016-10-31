@@ -47,7 +47,7 @@ public class ServeyboardCont {
   ArrayList<String> links = new ArrayList<String>();
   
   if (serveyboardDAO.create(serveyboardVO) == 1) { 
-    mav.setViewName("redirect:/serveyboard/read.do?sb_no="+serveyboardDAO.max());
+    mav.setViewName("redirect:/serveyboard/update.do?sb_no="+serveyboardDAO.max());
   } else {
   msgs.add("등록에 실패했습니다.");
   msgs.add("죄송하지만 다시한번 시도해주세요.");
