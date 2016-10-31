@@ -52,7 +52,7 @@
       <TD class='td'><a href='./read.do?nt_no=${vo.nt_no}'>${vo.nt_title}</a></TD>
       <TD class='td'>
         <A href="./update.do?nt_no=${vo.nt_no}"><IMG src='../menu/images/update.png' title='수정'></A>
-        <A href="./delete.do?nt_no=${vo.nt_no}" onclick="return confirm('삭제할꺼냐')"><IMG src='../menu/images/delete.png' title='삭제'></A>
+        <A href="./delete.do?nt_no=${vo.nt_no}" onclick="return confirm('삭제하시겠습니까?')"><IMG src='../menu/images/delete.png' title='삭제'></A>
       </TD>
     </TR>
     </c:forEach>
