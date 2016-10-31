@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>정모방</title>
+<title>자유게시판</title>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
@@ -21,7 +21,7 @@
                           <ul>
                               <li><a href="../index.jsp">Home</a>/</li>
                               <li><A href='./list.do'>목록</A></li>
-                              <i class="fa fa-arrow-circle-right"> 정 모 방</i> 
+                              <i class="fa fa-arrow-circle-right"> 자유게시판</i> 
                           </ul> 
                       </nav>
                   </div>

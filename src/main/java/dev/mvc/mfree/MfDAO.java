@@ -44,8 +44,8 @@ public class MfDAO implements MfInter{
   }
 
   @Override
-  public int updateAnsnum(MfVO mgVO) {
-    return mybatis.update("mfree.updateAnsnum", mgVO);
+  public int updateAnsnum(MfVO mfVO) {
+    return mybatis.update("mfree.updateAnsnum", mfVO);
   }
 
   @Override

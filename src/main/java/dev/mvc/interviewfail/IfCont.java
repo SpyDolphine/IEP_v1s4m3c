@@ -102,9 +102,8 @@ public class IfCont {
     String if_content = ifVO.getIf_content();
     if_content = Tool.convertChar(if_content);  
     ifVO.setIf_content(if_content);
-    
     mav.addObject("ifVO", ifVO); 
- 
+    
     return mav;
   }  
   

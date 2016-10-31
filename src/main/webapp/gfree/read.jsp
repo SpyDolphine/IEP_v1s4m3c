@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>정모방</title>
+<title>상담공감방</title>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
@@ -37,7 +37,7 @@ hr {
                           <ul>
                               <li><a href="../index.jsp">Home</a>/</li>
                               <li><A href='./list.do'>목록</A></li>
-                              <i class="fa fa-arrow-circle-right"> 정 모 방</i> 
+                              <i class="fa fa-arrow-circle-right"> 상담공감방</i> 
                           </ul> 
                       </nav>
                   </div>
@@ -54,7 +54,7 @@ hr {
    <!-- 게시글 상단 버튼 -->
      <div class="left" style='position: relative; left: 5%;'>
      <c:choose>
-     <c:when test="${mfVO.cm_no == minlist }">
+     <c:when test="${gfreeVO.cm_no == minlist }">
        <button style='font-size: 12px; color:black;' class="btn btn-default btn-xs">이전글</button>
      </c:when>
      <c:otherwise>
@@ -64,7 +64,7 @@ hr {
      </c:choose>
      
      <c:choose>
-     <c:when test="${mfVO.cm_no == maxlist }">
+     <c:when test="${gfreeVO.cm_no == maxlist }">
        <button style='font-size: 12px; color:black;' class="btn btn-default btn-xs">다음글</button>
      </c:when>
      <c:otherwise>
@@ -76,39 +76,39 @@ hr {
      <div style='clear: both;'></div>
 
     <div class="write_content" style='width: 90%;'>
-      <input type="hidden" name="cm_no" value="${mfVO.cm_no}">
-      <div style='text-align: left;'>&nbsp;&nbsp;${mfVO.cm_title}</div><p style='text-align: right;'>
-        <span style='color: #cccccc;'>${mfVO.cm_date.substring(0, 16)}</span> |
-        <A href="./update.do?cm_no=${mfVO.cm_no}">수정</A> |
-        <A href="./delete.do?cm_no=${mfVO.cm_no }&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}"
+      <input type="hidden" name="cm_no" value="${gfreeVO.cm_no}">
+      <div style='text-align: left;'>&nbsp;&nbsp;${gfreeVO.cm_title}</div><p style='text-align: right;'>
+        <span style='color: #cccccc;'>${gfreeVO.cm_date.substring(0, 16)}</span> |
+        <A href="./update.do?cm_no=${gfreeVO.cm_no}">수정</A> |
+        <A href="./delete.do?cm_no=${gfreeVO.cm_no }&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}"
             onclick="return confirm('삭제 하시겠습니까?')">삭제</A>
       </p>      
       <hr>
-      &nbsp;<i class="fa fa-leaf"> ${mfVO.cm_nick}</i>
+      &nbsp;<i class="fa fa-leaf"> ${gfreeVO.cm_nick}</i>
       <fieldset style='margin: 50px 0 0 0;'>
         <ul>
           <li>
-            ${mfVO.cm_content}
+            ${gfreeVO.cm_content}
           </li>
 
           <li>
             <label for="file1" style="width:150px;">업로드 파일: </label>
             <span>
-            <c:if test="${mfVO.size2 > 0}">
-             <A href='${pageContext.request.contextPath}/download?dir=/mfree/storage&filename=${mfVO.file2}'>${mfVO.file2}</A> (${mfVO.size2}KB)
+            <c:if test="${gfreeVO.size2 > 0}">
+             <A href='${pageContext.request.contextPath}/download?dir=/ifree/storage&filename=${gfreeVO.file2}'>${gfreeVO.file2}</A> (${gfreeVO.size2}KB)
             </c:if>
             </span>    
             <div id='fild2Panel'>
-              <c:set var='file2' value="${fn:toLowerCase(mfVO.file2)}" />
+              <c:set var='file2' value="${fn:toLowerCase(gfreeVO.file2)}" />
               <c:choose>
                 <c:when test="${fn:endsWith(file2, '.jpg')}">
-                  <IMG id='file2' src='./storage/${mfVO.file2}' >
+                  <IMG id='file2' src='./storage/${gfreeVO.file2}' >
                 </c:when>
                 <c:when test="${fn:endsWith(file2, '.gif')}">
-                  <IMG id='file2'  src='./storage/${mfVO.file2}' >
+                  <IMG id='file2'  src='./storage/${gfreeVO.file2}' >
                 </c:when>
                 <c:when test="${fn:endsWith(file2, '.png')}">
-                  <IMG id='file2'  src='./storage/${mfVO.file2}' >
+                  <IMG id='file2'  src='./storage/${gfreeVO.file2}' >
                 </c:when>
               </c:choose>
             </div>
@@ -118,14 +118,14 @@ hr {
       </fieldset>
       
       <div class='right'>
-        <button type="button" class="btn btn-default btn-xs" onclick="location.href='./reply.do?cm_no=${mfVO.cm_no}'">답글</button>
+        <button type="button" class="btn btn-default btn-xs" onclick="location.href='./reply.do?cm_no=${gfreeVO.cm_no}'">답글</button>
         <button type="button" class="btn btn-default btn-xs" onclick="location.href='./list.do'">목록</button>
       </div>
       <div class='left'>
         댓글  
-        ${mfVO.replycnt} | 
+        ${gfreeVO.replycnt} | 
         좋아요
-        ${mfVO.cm_likeit}    
+        ${gfreeVO.cm_likeit}    
       </div>
       <div style='clear: both;'></div>
 <div style= 'margin: 5px 0 0 0;  position: relative;'> 
