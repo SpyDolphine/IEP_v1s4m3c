@@ -21,9 +21,9 @@ CREATE TABLE gurume(
     file1                             VARCHAR2(100)      NULL ,                       -- Thumb 파일
     file2                             VARCHAR2(50)       NULL ,                       -- 파일 2
     size2                             NUMBER(9)       DEFAULT 0 NULL ,       -- 파일 2 크기
-    gu_map                            VARCHAR2(500)      NULL                     -- 지도
+    gu_map                            VARCHAR2(4000)      NULL                     -- 지도
     );
-  FOREIGN KEY (divisionno) REFERENCES division (divisionno), -- 카테고리번호
+  --FOREIGN KEY (divisionno) REFERENCES division (divisionno), -- 카테고리번호
   FOREIGN KEY (me_no) REFERENCES IEP_MEMBER (me_no)          --회원번호
 
 );
@@ -49,7 +49,7 @@ size2, gu_map)
 VALUES((SELECT NVL(MAX(gu_no), 0) + 1 as gu_no FROM gurume),
             '서울', '한식', '양파 계란말이', '손양파', '꿀맛', 0, '★', sysdate, 'fall_m.jpg', 'fall.jpg',  0, 'map');
             
-SELECT gu_no, gu_area, gu_menu, gu_title, gu_name, gu_cont, gu_cnt, gu_stars, gu_date , gu_file1, gu_file2, gu_size2, gu_cnt
+SELECT gu_no, gu_area, gu_menu, gu_title, gu_name, gu_cont, gu_cnt, gu_stars, gu_date , file1,file2,size2, gu_cnt
 FROM gurume
 ORDER BY gu_no ASC;
             
