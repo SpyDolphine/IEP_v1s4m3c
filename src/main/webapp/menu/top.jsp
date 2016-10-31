@@ -115,8 +115,8 @@ function bookmarksite(title,url) {
                                     <li class="active"><a href="#">공지사항</a>
                                         <ul class="dropdown-menu">
                                             <li class="active"><a href="<%=root %>/category/list.do">공지사항</a></li>
-                                            <li><a href="#">일반 F&A</a></li>
-                                            <li><a href="#">기업 F&A</a></li>
+                                            <li><a href="<%=root %> /fnq/listh.do">일반 F&A</a></li>
+                                            <li><a href="<%=root %>/fnq/listc.do">기업 F&A</a></li>
                                         </ul>
                                     </li>
 
@@ -126,7 +126,7 @@ function bookmarksite(title,url) {
                                                 <a href="about.html">채용 정보</a>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="#">기업 정보</a></li>
-                                                    <li><a href="#">근처 맛집</a></li>
+                                                    <li><a href="<%=root %>/gurume/list.do">근처 맛집</a></li>
                                                 </ul>
                                             </li>                                        
                                             <li><a href="#">블랙리스트</a></li>
@@ -135,14 +135,14 @@ function bookmarksite(title,url) {
 
                                     <li><a href="#" >면접</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">자소서</a></li>
+                                            <li><a href="<%=root %>/aboutme/list.do">자소서</a></li>
                                             <li><a href="#">면접</a></li>
                                         </ul>
                                     </li>
 
                                     <li><a href="#">후기</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">취업 성공</a></li>
+                                            <li><a href="<%=root %>/seico/list.do">취업 성공</a></li>
                                             <li><a href="<%=root %>/interviewfail/list.do">취업 실패</a></li>
                                         </ul>
                                     </li>
