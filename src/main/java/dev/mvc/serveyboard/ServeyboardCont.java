@@ -73,8 +73,7 @@ public class ServeyboardCont {
    * 전체 목록을 출력합니다.
    * @return
    */
-  @RequestMapping(value = "/serveyboard/list.do", 
-                             method = RequestMethod.GET)
+  @RequestMapping(value = "/serveyboard/list.do", method = RequestMethod.GET)
   public ModelAndView list(SearchDTO searchDTO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/serveyboard/list");

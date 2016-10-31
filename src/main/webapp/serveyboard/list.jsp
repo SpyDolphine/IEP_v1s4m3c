@@ -88,7 +88,7 @@
  </div>
 </div>
 </body>
-
+<DIV class='bottom'>${paging}</DIV>
 <!-- -------------------------------------------- -->
 <div style= 'margin: 100px 0 0 0;  position: relative;'>  
   <jsp:include page="/menu/bottom.jsp" flush='false' />
