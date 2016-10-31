@@ -48,7 +48,7 @@ public class MfCont {
                                     HttpSession session) {
     System.out.println("--> create() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/mfree/message"); // /webapp/mfree/message.jsp
+    mav.setViewName("/message"); // /webapp/mfree/message.jsp
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -283,7 +283,7 @@ public class MfCont {
   @RequestMapping(value = "/mfree/reply.do", method = RequestMethod.POST)
   public ModelAndView reply(MfVO mfVO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/mfree/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
