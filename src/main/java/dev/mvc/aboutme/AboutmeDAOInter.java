@@ -1,8 +1,7 @@
 package dev.mvc.aboutme;
 
+import java.util.HashMap;
 import java.util.List;
-
-import dev.mvc.servey.ServeyVO;
 
 public interface AboutmeDAOInter {
   /**
@@ -18,8 +17,16 @@ public interface AboutmeDAOInter {
    * <select id="list" resultType="aboutmeVO">
    * @return 리스트
    */
-  public List<AboutmeVO> list();
-
+  public List<AboutmeVO> list(HashMap Map);
+  
+  /**
+   * 검색된 레코드 수
+   * <select id="count" resultType="int" parameterType="HashMap" >
+   * @param hashMap 검색조건
+   * @return
+   */
+  public int count(HashMap hashmap);  
+  
   /**
    * 항목 수정합니다.
    * <update id="update" parameterType="aboutmeVO">

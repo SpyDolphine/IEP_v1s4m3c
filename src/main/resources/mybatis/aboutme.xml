@@ -11,13 +11,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   VALUES((SELECT NVL(MAX(am_no), 0)+1 as am_no FROM aboutme), 
                     #{am_title}, #{am_content})
   </insert>
-
-  <!-- 자소서 목록 -->
-  <select id="list" resultType="AboutmeVO">
-    SELECT am_no, am_title, am_content
+  
+  <!-- 총 글수  -->
+  <select id="count" resultType="int" parameterType="HashMap" >
+    SELECT COUNT(*) as cnt
     FROM aboutme
-    ORDER BY am_no DESC
-  </select>
+    <choose>
+      <when test="col == 'title'">
+        WHERE am_title LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'content'">
+        WHERE am_content LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'title_content'">
+        WHERE am_title LIKE '%' || #{word} || '%'  OR am_content LIKE '%' || #{word} || '%' 
+      </when>      
+    </choose>
+  </select>   
+  
+  <!-- 자소서 목록 -->
+  <select id="list" resultType="AboutmeVO" parameterType="HashMap" >
+    SELECT am_no, am_title, am_content, am_date, r
+    FROM(
+             SELECT am_no, am_title, am_content, am_date, rownum as r
+             FROM(
+                      SELECT am_no, am_title, am_content, am_date
+                      FROM aboutme
+                      <choose>
+                        <when test="col == 'title'">
+                           where am_title LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'content'">
+                           where am_content LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'title_content'">
+                           where am_title LIKE '%' || #{word} || '%'  OR am_content LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                      ORDER BY am_no DESC
+             )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
+  </select>   
 
   <!-- 읽어옴  -->
   <select id="read" resultType="AboutmeVO">

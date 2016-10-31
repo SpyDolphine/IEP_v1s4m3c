@@ -57,32 +57,31 @@
     </TR>
     </c:forEach>
   </TABLE>
-<form name="frmSearch" method="get" action="./list.do">  
-<DIV class='bottom'>
-  <button type='button' onclick="location.reload();">새로 고침</button>
-  <div style='text-align: center;'>
-     <select name="col"> 
-      <option value="">선택</option> 
-      <option value="title" ${searchDTO.col == "title" ? "selected=selected" : "" }>제목</option> 
-      <option value="content" ${searchDTO.col == "content" ? "selected=selected" : "" }>내용</option> 
-      <option value="title_content" ${searchDTO.col == "title_content" ? "selected=selected" : "" }>제목+내용</option> 
-      <option value="total" ${searchDTO.col == "" ? "selected=selected" : "" }>전체 목록</option>
-    </select>
-    <c:choose>
-      <c:when test="${searchDTO.col != 'total' }">
-        <input type="text" name="word" size="15" value="${searchDTO.word }">
-      </c:when>
-      <c:when test="${searchDTO.col == 'total' }">
-        <input type="text" name="word" size="15" value="">
-      </c:when>
-      
-    </c:choose>
-     
-    <input type="submit" value="검색"> 
-  </div>
-</DIV>
-</form>
-   
+    <form name="frmSearch" method="get" action="./list.do">  
+    <DIV class='bottom'>
+      <button type='button' onclick="location.reload();">새로 고침</button>
+      <div style='text-align: center;'>
+         <select name="col"> 
+          <option value="">선택</option> 
+          <option value="title" ${searchDTO.col == "title" ? "selected=selected" : "" }>제목</option> 
+          <option value="content" ${searchDTO.col == "content" ? "selected=selected" : "" }>내용</option> 
+          <option value="title_content" ${searchDTO.col == "title_content" ? "selected=selected" : "" }>제목+내용</option> 
+          <option value="total" ${searchDTO.col == "" ? "selected=selected" : "" }>전체 목록</option>
+        </select>
+        <c:choose>
+          <c:when test="${searchDTO.col != 'total' }">
+            <input type="text" name="word" size="15" value="${searchDTO.word }">
+          </c:when>
+          <c:when test="${searchDTO.col == 'total' }">
+            <input type="text" name="word" size="15" value="">
+          </c:when>
+          
+        </c:choose>
+         
+        <input type="submit" value="검색"> 
+      </div>
+    </DIV>
+    </form>
   <DIV class='bottom'>
     <button type='button' onclick="location.href='./create.do'">등록</button>
     <button type='button' onclick="location.reload();">새로 고침</button>

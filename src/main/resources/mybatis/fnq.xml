@@ -85,7 +85,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 회사 총 글 수 -->
   <select id="countC" resultType="int" parameterType="HashMap" >
     SELECT COUNT(*) as cnt
-    FROM (select fq_ch
+    FROM (select fq_ch, fq_question, fq_answer
             from fnq 
              where fq_ch = 'C' )
     <choose>
@@ -104,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 홈페이지 총 글 수 -->
   <select id="countH" resultType="int" parameterType="HashMap" >
     SELECT COUNT(*) as cnt
-    FROM (select fq_ch
+    FROM (select fq_ch, fq_question, fq_answer
             from fnq 
              where fq_ch = 'H' )
     <choose>
