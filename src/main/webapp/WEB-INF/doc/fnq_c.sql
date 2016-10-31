@@ -53,8 +53,14 @@ INSERT into fnq(fq_no, me_no, fq_question, fq_answer , fq_CH)
     WHERE fq_no=1
     
     
-        SELECT COUNT(*) as cnt
+  SELECT COUNT(*) as cnt
+    FROM (select fq_ch, fq_question, fq_answer
+            from fnq 
+             where fq_ch = 'H' )
+    WHERE fq_question LIKE '%¤±%'
+        
+        
+            SELECT COUNT(*) as cnt
     FROM (select fq_ch
             from fnq 
              where fq_ch = 'H' )
-        WHERE fq_question LIKE %a% and fq_ch = 'H'

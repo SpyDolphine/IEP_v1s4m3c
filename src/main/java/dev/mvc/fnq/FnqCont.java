@@ -62,7 +62,7 @@ public class FnqCont {
                              method = RequestMethod.GET)
   public ModelAndView listc(SearchDTO searchDTO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/fnq/list"); // /webapp/fnq/list.jsp
+    mav.setViewName("/fnq/listc"); // /webapp/fnq/list.jsp
     
  // HashMap hashMap = new HashMap();
     HashMap<String, Object> hashMap = new HashMap<String, Object>();
@@ -113,7 +113,7 @@ public class FnqCont {
       method = RequestMethod.GET)
   public ModelAndView listh(SearchDTO searchDTO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/fnq/list"); // /webapp/fnq/list.jsp
+    mav.setViewName("/fnq/listh"); // /webapp/fnq/list.jsp
     
  // HashMap hashMap = new HashMap();
     HashMap<String, Object> hashMap = new HashMap<String, Object>();
