@@ -1,5 +1,6 @@
 package dev.mvc.aboutme;
  
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,8 +22,8 @@ public class AboutmeDAO implements AboutmeDAOInter{
   }
 
   @Override
-  public List<AboutmeVO> list() {
-    return mybatis.selectList("aboutme.list");
+  public List<AboutmeVO> list(HashMap Map) {
+    return mybatis.selectList("aboutme.list", Map);
   }
 
   @Override
@@ -38,6 +39,11 @@ public class AboutmeDAO implements AboutmeDAOInter{
   @Override
   public AboutmeVO read(int am_no) {
     return mybatis.selectOne("aboutme.read", am_no);
+  }
+
+  @Override
+  public int count(HashMap hashmap) {
+    return mybatis.selectOne("aboutme.count", hashmap);
   }
 
 }

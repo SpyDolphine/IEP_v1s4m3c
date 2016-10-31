@@ -17,7 +17,7 @@ CREATE TABLE about_me (             -- 자소서 테이블
   /** 답변 */
   private String am_content;
   /** 날짜 */
-  private Character am_date;
+  private String am_date;
   
   public int getAm_no() {
     return am_no;
@@ -37,10 +37,12 @@ CREATE TABLE about_me (             -- 자소서 테이블
   public void setAm_content(String am_content) {
     this.am_content = am_content;
   }
-  public Character getAm_date() {
+  public String getAm_date() {
     return am_date;
   }
-  public void setAm_date(Character am_date) {
+  public void setAm_date(String am_date) {
     this.am_date = am_date;
   }
+  
+  
 }
