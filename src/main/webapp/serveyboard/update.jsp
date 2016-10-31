@@ -48,6 +48,9 @@
         <label class='form_grp' for='content'>내용</label><br>
         <TEXTAREA name='content' rows='10' cols='70'>${serveyboardVO.content}</TEXTAREA>
       </li>
+      <li>
+          <iframe src="../servey/list.do?sb_no=${serveyboardVO.sb_no}" width="400" height="220"></iframe> 
+      </li>
       <li class='right'>
         <button type="submit">등록</button>
         <button type="button" onclick="location.href='./list.do'">목록</button>
@@ -55,6 +58,23 @@
     </ul>
   </fieldset>
 </FORM>
+    <FORM name='form_grp' method='POST' action='../servey/create.do'>
+      <input type='hidden' name='sb_no' value='${serveyboardVO.sb_no}'>
+        <fieldset>
+          <ul>
+            <li>
+              <label for='sort'>항목</label>
+              <input type='text' name='item' value='항목' required="required">
+              <button type="submit">등록</button>
+            </li>         
+            <li class='right'>
+              <button type="button" onclick="location.href='./update.do?sb_no=${serveyboardVO.sb_no}'">수정</button>
+              <button type="button" onclick="location.href='./delete.do?sb_no=${serveyboardVO.sb_no}'">삭제</button>
+              <button type="button" onclick="location.href='./list.do'">목록</button>
+            </li>
+          </ul>
+        </fieldset>
+      </FORM>
 </DIV>
    </div>
  </div>
