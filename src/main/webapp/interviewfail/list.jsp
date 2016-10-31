@@ -1,18 +1,37 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
-<!DOCTYPE html> 
-<html lang="ko"> 
-<head> 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
 <meta charset="UTF-8">
-<title>취업실패후기 게시판</title> 
- 
-</head>
+<title>정모방</title>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
-<div style='position:absolute; top:25%; left:70%;'>
+</head>
+ 
+<section class="wrapper">
+  <section class="page_head">
+      <div class="container">
+           <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12">
+                      <nav id="breadcrumbs">
+                          <ul>
+                              <li><a href="../index.jsp">Home</a>/</li>
+                              <li><A href='./list.do'>목록</A></li>
+                              <i class="fa fa-arrow-circle-right"> 취업 실패 후기</i> 
+                          </ul> 
+                      </nav>
+                  </div>
+              </div>
+          </div>
+</section>
+</section>
+        
+
+<div style='position: relative; top:40%; left:55%;'>
 <jsp:include page="createboot.jsp" flush='false' />
 </div>
 
