@@ -48,7 +48,7 @@ public class MfCont {
                                     HttpSession session) {
     System.out.println("--> create() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/message"); // /webapp/mfree/message.jsp
+    mav.setViewName("/mfree/message"); // /webapp/mfree/message.jsp
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -282,7 +282,7 @@ public class MfCont {
   @RequestMapping(value = "/mfree/reply.do", method = RequestMethod.POST)
   public ModelAndView reply(MfVO mfVO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/message");
+    mav.setViewName("/mfree/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -376,37 +376,32 @@ public class MfCont {
       int maxlist = mfDAO.maxlist();
       
       
-      if(cm_no == maxlist){
-        if(vo2.getCm_no() == cm_no){
-          if(bonlist.get(i-1) != null){
-            vo1 = bonlist.get(i-1);
-            ejun = mfDAO.bonread(vo1.getGrpno()); 
-          }
-        }
-        break;
-      }
-      
       if(cm_no == minlist){
-        if(vo2.getCm_no() == cm_no){
-          if(bonlist.get(i+1) != null){
-            vo3 = bonlist.get(i+1);
-            daum = mfDAO.bonread(vo3.getGrpno()); 
-          }
-        }
-        break;
-      }
-      
-      if(vo2.getCm_no() == cm_no){
-        if(bonlist.get(i-1) != null){
-          vo1 = bonlist.get(i-1);
-          ejun = mfDAO.bonread(vo1.getGrpno()); 
-        }
         if(bonlist.get(i+1) != null){
           vo3 = bonlist.get(i+1);
           daum = mfDAO.bonread(vo3.getGrpno()); 
         }
-      }
+      break;
     }
+  
+  if(vo2.getCm_no() == cm_no){
+    if(cm_no == maxlist){
+      if(bonlist.get(i-1) != null){
+        vo1 = bonlist.get(i-1);
+        ejun = mfDAO.bonread(vo1.getGrpno()); 
+      }
+      break;
+    }
+    if(bonlist.get(i-1) != null){
+      vo1 = bonlist.get(i-1);
+      ejun = mfDAO.bonread(vo1.getGrpno()); 
+    }
+    if(bonlist.get(i+1) != null){
+      vo3 = bonlist.get(i+1);
+      daum = mfDAO.bonread(vo3.getGrpno()); 
+    }
+  }
+}
     
     mfDAO.update_cnt(cm_no);
     List<MfVO> list = mfDAO.listmenu(mfVO.getGrpno());

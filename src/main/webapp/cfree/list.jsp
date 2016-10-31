@@ -33,56 +33,63 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-<FORM name='frm' id='frm' method='POST' action='./create.do'>
-  <input type="hidden" name="cm_no" value="0"> 
-      <label for='cm_nick'>닉네임</label>
-        <input type='text' name='cm_nick' id='cm_nick' size='10' value='닉네임' required="required">
-        <label for='content'>글 제목</label>
-        <input type='text' name='cm_title' id='cm_title' size='30' value='글 제목' required="required">
-        <br>
-        <label for='content'>글 내용</label>
-        <input type='text' name='cm_content' id='cm_content' size='100' value='글 내용' required="required">
-  <button type="submit" id='submit'>등록</button>
-</FORM>
-<hr>
+     <div class="write_content" style='width: 90%;'>
+        <FORM name='frm' id='frm' method='POST' action='./create.do'>
+          <input type="hidden" name="cm_no" value="0"> 
+          <input type="hidden" name="cm_nick" value="nick"> <!-- 임시값 -->
+                <div class="span3 offset1">
+                  <label for='cm_nick'><i class="fa fa-leaf">${cmVO.cm_nick} nick</i></label> 
+                </div>
+                <div class="span3 offset2">                  
+                  <input type="text" class="form-control" name='cm_title' id='cm_title' placeholder='제목을 입력하세요' required="required">
+                </div>
+                <br>
+                <textarea  rows="5" class="form-control" name='cm_content' id='cm_content' 
+                placeholder='취업 준비생들의 소통 공간을 위한 자유 게시판 입니다. 타인에게 불쾌감을 주는 욕설 또는 비하하는 글은 임의로 삭제될 수 있습니다.' required="required"></textarea>
+                <button type="submit" id='submit' class="btn btn-success btn-xs" style='float:right; margin: 5px;'>
+                <i class="fa fa-pencil"></i> 등록</button>
+                <div style='clear:both;'></div>
+        </FORM>
+     </div>
+  <hr>
 
 <!-- 리스트 출력 --> 
-<div class='content'>
-<TABLE class='table' style='width: 70%;'>
-  <colgroup>
-    <col style='width: 5%;'/>
-    <col style='width: 10%;'/>
-    <col style='width: 20%;'/>
-    <col style='width: 40%;'/>
-    <col style='width: 15%;'/>
-    <col style='width: 10%;'/>
-  </colgroup>
-  <TR>
-    <TH class='th'>번호</TH>
-    <TH class='th'>닉네임</TH>
-    <TH class='th'>글 제목</TH>
-    <TH class='th'>글 내용</TH>
-    <TH class='th'>등록일</TH>
-    <TH class='th'>기타</TH>
-  </TR>
- 
+<div class="write_content" style='width: 90%;'>
+<TABLE class='table'>
   <c:forEach var="cmVO" items="${list }">
-  <TR>
-    <TD class='td'>${cmVO.cm_no}</TD>
-    <TD class='td'>${cmVO.cm_nick}</TD>
-    <TD class='td'>${cmVO.cm_title}</TD>
-    <TD class='td'>${cmVO.cm_content}</TD>
-    <TD class='td'>${cmVO.cm_rdate}</TD>
-    <TD class='td'>
-      <A href="./update.do?cm_no=${cmVO.cm_no}&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}"><IMG src='./images/update.png' title='수정'></A>
-      <a href="./delete.do?cm_no=${cmVO.cm_no }" onclick="return confirm('삭제 하시겠습니까?')"><IMG src='./images/delete.png' title='삭제'></a> 
-    </TD>
-    
-  </TR>
+      <input type="hidden" name="cm_no" value="${cmVO.cm_no}">
+      <div style='float: left;'>&nbsp;&nbsp;${cmVO.cm_title}</div> &nbsp;|&nbsp;<i class="fa fa-leaf"> ${cmVO.cm_nick}</i>
+      <p style='float: right;'>
+        <span style='color: #cccccc;'>${cmVO.cm_rdate.substring(0, 10)}</span> &nbsp; &nbsp;
+           <A href="./update.do?cm_no=${cmVO.cm_no}&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}"><i class="fa fa-pencil"></i></A>
+           <a href="./delete.do?cm_no=${cmVO.cm_no }" onclick="return confirm('삭제 하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
+      </p>      
+      <hr>
+      <div style='clear: both;'></div>
+      
+      <fieldset style='margin: 30px 0 0 0;'>
+        <ul>
+          <li>
+            ${cmVO.cm_content}
+          </li>
+        </ul>
+      </fieldset>
+      
+      <div class='left'>
+        댓글  
+        좋아요
+        ${cmVO.cm_likeit}    
+      </div>
+      <div style='clear: both;'></div>
+      <hr>
+      
   </c:forEach>
- 
 </TABLE>
- 
+</div>
+</div>
+</div>
+</div>
+<br>
 <form name="frmSearch" method="get" action="./list.do">  
 <DIV class='bottom'>
   <div style='text-align: center;'>
@@ -104,15 +111,12 @@
     </c:choose>
      
     <input type="submit" value="검색"> 
+    <DIV class='bottom'>${paging}</DIV>
   </div>
 </DIV>
 </form>
-</div>
-</div>
-</div>
-</div>
 <!-- -------------------------------------------- -->
-<DIV class='bottom'>${paging}</DIV>
+
 <div style= 'margin: 100px 0 0 0;  position: relative;'>      
 <jsp:include page="/menu/bottom.jsp" flush='false' />
 </div>

@@ -48,7 +48,7 @@ public class GfreeCont {
                                     HttpSession session) {
     System.out.println("--> create() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/message"); // /webapp/gfree/message.jsp
+    mav.setViewName("/gfree/message"); // /webapp/gfree/message.jsp
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -282,7 +282,7 @@ public class GfreeCont {
   @RequestMapping(value = "/gfree/reply.do", method = RequestMethod.POST)
   public ModelAndView reply(GfreeVO gfreeVO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/message");
+    mav.setViewName("/gfree/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -374,29 +374,23 @@ public class GfreeCont {
       
       int minlist = gfreeDAO.minlist();
       int maxlist = gfreeDAO.maxlist();
+        
+        if(cm_no == minlist){
+            if(bonlist.get(i+1) != null){
+              vo3 = bonlist.get(i+1);
+              daum = gfreeDAO.bonread(vo3.getGrpno()); 
+            }
+          break;
+        }
       
-      
-      if(cm_no == maxlist){
-        if(vo2.getCm_no() == cm_no){
+      if(vo2.getCm_no() == cm_no){
+        if(cm_no == maxlist){
           if(bonlist.get(i-1) != null){
             vo1 = bonlist.get(i-1);
             ejun = gfreeDAO.bonread(vo1.getGrpno()); 
           }
+          break;
         }
-        break;
-      }
-      
-      if(cm_no == minlist){
-        if(vo2.getCm_no() == cm_no){
-          if(bonlist.get(i+1) != null){
-            vo3 = bonlist.get(i+1);
-            daum = gfreeDAO.bonread(vo3.getGrpno()); 
-          }
-        }
-        break;
-      }
-      
-      if(vo2.getCm_no() == cm_no){
         if(bonlist.get(i-1) != null){
           vo1 = bonlist.get(i-1);
           ejun = gfreeDAO.bonread(vo1.getGrpno()); 
