@@ -25,9 +25,12 @@
               enctype="multipart/form-data">
     <input type='hidden' name='me_no' value='1'>
       <!-- <input type='hidden' name='me_no' value='${me_no}'>  -->
-    <input type='hidden' name='fq_CH' value='C'>
-      <!-- <input type='hidden' name='fq_CH' value='${fq_CH}'>  -->
       <ul>
+      <li>
+        <label class='form_grp' for='content'>선택</label><br>
+        <input type='radio' name='fq_CH' value='C'>회사
+        <input type='radio' name='fq_CH' value='H'>홈페이지
+      </li>
       <li>
         <label class='form_grp' for='content'>질문</label><br>
         <TEXTAREA name='fq_question' rows='10' cols='70'></TEXTAREA>
