@@ -41,7 +41,7 @@ public class MfVO {
   private int grpno;
   private int indent;
   private int ansnum;
-  
+  private int rownum;
   /** Spring Framework에서 자동 주입되는 업로드 파일 객체 . 실제 컬럼은 존재하지 않는다. */  
   private MultipartFile file2MF;
   
@@ -161,5 +161,11 @@ public class MfVO {
   }
   public void setAnsnum(int ansnum) {
     this.ansnum = ansnum;
+  }
+  public int getRownum() {
+    return rownum;
+  }
+  public void setRownum(int rownum) {
+    this.rownum = rownum;
   }
 }

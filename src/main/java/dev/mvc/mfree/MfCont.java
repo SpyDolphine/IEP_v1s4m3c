@@ -48,7 +48,7 @@ public class MfCont {
                                     HttpSession session) {
     System.out.println("--> create() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/mfree/message"); // /webapp/mfree/message.jsp
+    mav.setViewName("/message"); // /webapp/mfree/message.jsp
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -232,12 +232,12 @@ public class MfCont {
     int endNum = beginOfPage + recordPerPage; // 종료 rownum, 10
     hashMap.put("startNum", startNum);
     hashMap.put("endNum", endNum);
- 
+    
     List<MfVO> list = mfDAO.list(hashMap); // 검색
     Iterator<MfVO> iter = list.iterator();
     while (iter.hasNext() == true) { // 다음 요소 검사
       MfVO vo = iter.next(); // 요소 추출
-      vo.setCm_title(Tool.textLength(vo.getCm_title(), 10));
+      vo.setCm_title(Tool.textLength(vo.getCm_title(), 20));
       vo.setCm_date(vo.getCm_date().substring(0, 10));
       // vo.setFile1(Tool.textLength(10, vo.getFile1()));
       // vo.setFile2(Tool.textLength(10, vo.getFile2()));
@@ -264,10 +264,11 @@ public class MfCont {
    * @return
    */
   @RequestMapping(value = "/mfree/reply.do", method = RequestMethod.GET)
-  public ModelAndView reply(MfVO mfVO) {
-    // System.out.println("--> reply() GET called.");
+  public ModelAndView reply(int cm_no) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/mfree/reply"); // /webapp/mfree/create.jsp
+    mav.setViewName("/mfree/reply"); 
+
+    MfVO mfVO = mfDAO.read(cm_no);
     mav.addObject("mfVO", mfVO);
     
     return mav;
@@ -282,7 +283,7 @@ public class MfCont {
   @RequestMapping(value = "/mfree/reply.do", method = RequestMethod.POST)
   public ModelAndView reply(MfVO mfVO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/mfree/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -292,14 +293,17 @@ public class MfCont {
     // -------------------------------------------------------------------
     String file1 = "";
     String file2 = "";
+    long size2 = 0;
     String upDir = Tool.getRealPath(request, "/mfree/storage");
     MultipartFile file2MF = mfVO.getFile2MF();
+    System.out.println("file2MF:"+file2MF);
     
     // System.out.println("file2MF.getSize(): " + file2MF.getSize());
-    if (file2MF.getSize() > 0) {
+    size2 = file2MF.getSize();
+    if (size2 > 0) {
       file2 = Upload.saveFileSpring(file2MF, upDir);
       mfVO.setFile2(file2); // 전송된 파일명 저장
-      mfVO.setSize2(file2MF.getSize());
+      mfVO.setSize2(size2);
  
       // -------------------------------------------------------------------
       // Thumb 파일 생성
@@ -311,15 +315,17 @@ public class MfCont {
       }
       // -------------------------------------------------------------------
     }
-    mfVO.setFile1(file1);
-    mfVO.setFile2(file2);
+    mfVO.setFile1(file1); // Thumb 이미지
+    mfVO.setFile2(file2); // 원본 이미지
+    mfVO.setSize2(size2);
     // -------------------------------------------------------------------
-    
     // ---------- 답변 관련 코드 시작 ---------- 
     
     MfVO parentVO = mfDAO.read(mfVO.getCm_no()); // 부모글 정보 추출
+    System.out.println("parentVO.getCm_no : " + parentVO.getCm_no());
     mfVO.setGrpno(parentVO.getGrpno()); // 그룹 번호
     mfVO.setAnsnum(parentVO.getAnsnum()); // 답변 순서
+    System.out.println("parentVO.getGrpno : " + parentVO.getGrpno());
     
     mfDAO.updateAnsnum(mfVO); // 현재 등록된 답변 뒤로 +1 처리함.
     
@@ -330,7 +336,7 @@ public class MfCont {
     if (mfDAO.reply(mfVO) == 1) {
       msgs.add("글을 등록했습니다.");
       links
-          .add("<button type='button' onclick=\"location.href='./create.do?cm_no="
+          .add("<button type='button' onclick=\"location.href='./reply.do?cm_no="
               + mfVO.getCm_no() + "'\">계속 등록</button>");
     } else {
       msgs.add("글 등록에 실패했습니다.");
@@ -359,13 +365,63 @@ public class MfCont {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/mfree/read");
     MfVO mfVO = mfDAO.read(cm_no); 
+    List<MfVO> bonlist = mfDAO.bonlist();
+    MfVO daum = new MfVO();
+    MfVO ejun = new MfVO();
+    for (int i = 0; i < bonlist.size(); i++) {
+      MfVO vo1 = new MfVO();
+      MfVO vo2 = bonlist.get(i);
+      MfVO vo3 = new MfVO();
+      
+      int minlist = mfDAO.minlist();
+      int maxlist = mfDAO.maxlist();
+      
+      
+      if(cm_no == maxlist){
+        if(vo2.getCm_no() == cm_no){
+          if(bonlist.get(i-1) != null){
+            vo1 = bonlist.get(i-1);
+            ejun = mfDAO.bonread(vo1.getGrpno()); 
+          }
+        }
+        break;
+      }
+      
+      if(cm_no == minlist){
+        if(vo2.getCm_no() == cm_no){
+          if(bonlist.get(i+1) != null){
+            vo3 = bonlist.get(i+1);
+            daum = mfDAO.bonread(vo3.getGrpno()); 
+          }
+        }
+        break;
+      }
+      
+      if(vo2.getCm_no() == cm_no){
+        if(bonlist.get(i-1) != null){
+          vo1 = bonlist.get(i-1);
+          ejun = mfDAO.bonread(vo1.getGrpno()); 
+        }
+        if(bonlist.get(i+1) != null){
+          vo3 = bonlist.get(i+1);
+          daum = mfDAO.bonread(vo3.getGrpno()); 
+        }
+      }
+    }
+    
+    mfDAO.update_cnt(cm_no);
+    List<MfVO> list = mfDAO.listmenu(mfVO.getGrpno());
     
     // 특수문자처리
     String cm_content = mfVO.getCm_content();
     cm_content = Tool.convertChar(cm_content);  
     mfVO.setCm_content(cm_content);
     mav.addObject("mfVO", mfVO); 
+    mav.addObject("list", list); 
+    mav.addObject("daum", daum); 
+    mav.addObject("ejun", ejun); 
     
     return mav;
-  }  
+  }
+
 }

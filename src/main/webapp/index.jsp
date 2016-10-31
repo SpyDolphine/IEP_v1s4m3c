@@ -41,7 +41,7 @@
                             <h3>설문 조사</h3>
                             <p> 오늘의 설문조사 내용입니다. 조퇴할까요? </p>
                             <div class="read">
-                                <a href="./serveyboard/list.do">Read more</a>
+                                <a href="">Read more</a>
                             </div>
                         </div>
                     </div>

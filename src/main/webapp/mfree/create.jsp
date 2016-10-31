@@ -43,15 +43,15 @@
     <ul>
       <li>
         <label for='cm_title'>제목</label>
-        <input type='text' name='cm_title' id='cm_title' value='봄' size='60' required="required">
+        <input type='text' name='cm_title' id='cm_title' value='취업하자' size='60' required="required">
       </li>
       <li>
         <label for='cm_nick'>닉네임</label>
-        <input type='text' name='cm_nick' id='cm_nick' value='닉' size='60' required="required">
+        <input type='text' name='cm_nick' id='cm_nick' value='복덩이' size='60' required="required">
       </li>
       <li>
         <label for='cm_content'>내용</label>
-        <textarea name='cm_content' id='cm_content'  rows='5' cols='70'>추위끝</textarea>
+        <textarea name='cm_content' id='cm_content'  rows='5' cols='70'>좋은곳에 취업합니다</textarea>
       </li>
       <li>
         <label for='file1'>Thumb 파일</label>

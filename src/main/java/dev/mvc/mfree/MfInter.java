@@ -19,6 +19,14 @@ public interface MfInter {
    * @return
    */
   public int update(MfVO mfVO);
+  
+  /**
+   * 수정
+   * <update id="update_cnt" parameterType="MfVO">
+   * @param mfVO
+   * @return
+   */
+  public int update_cnt(int cm_no);  
 
   /**
    * 삭제
@@ -67,5 +75,42 @@ public interface MfInter {
    * @param Map 검색/페이징
    * @return 전체 목록 또는 검색 목록
    */
-  public List<MfVO> list(HashMap<String, Object> Map);  
+  public List<MfVO> list(HashMap<String, Object> Map);
+ 
+  /**
+   * 관련글만 불러오는 목록
+   * @param cm_no
+   * @return
+   */
+  public List<MfVO> listmenu(int cm_no);  
+  
+  /**
+   * 본글만 불러오는 목록
+   * @param cm_no
+   * @return
+   */
+  public List<MfVO> bonlist();  
+  
+  /**
+   * 관련글의 한건의 레코드 조회
+   * <select id="read" resultType="MfVO" parameterType="int">
+   * @param cm_no 글번호
+   * @return
+   */
+  public MfVO bonread(int grpno); 
+  
+  /**
+   * 목록의 최대값 조회
+   * @param cm_no
+   * @return
+   */
+  public int maxlist();    
+
+  /**
+   * 목록의 최소값 조회
+   * @param cm_no
+   * @return
+   */
+  public int minlist();  
+  
 }

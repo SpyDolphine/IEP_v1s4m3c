@@ -37,7 +37,7 @@ hr {
                           <ul>
                               <li><a href="../index.jsp">Home</a>/</li>
                               <li><A href='./list.do'>목록</A></li>
-                              <i class="fa fa-arrow-circle-right"> 글 쓰 기</i> 
+                              <i class="fa fa-arrow-circle-right"> 정 모 방</i> 
                           </ul> 
                       </nav>
                   </div>
@@ -50,75 +50,97 @@ hr {
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
+
+   <!-- 게시글 상단 버튼 -->
+     <div class="left" style='position: relative; left: 5%;'>
+     <c:choose>
+     <c:when test="${mfVO.cm_no == minlist }">
+       <button style='font-size: 12px; color:black;' class="btn btn-default btn-xs">이전글</button>
+     </c:when>
+     <c:otherwise>
+       <button style='font-size: 12px; color:black;' class="btn btn-default btn-xs" onclick="location.href='./read.do?cm_no=${ejun.cm_no}'">
+       이전글</button>
+     </c:otherwise>
+     </c:choose>
+     
+     <c:choose>
+     <c:when test="${mfVO.cm_no == minlist }">
+       <button style='font-size: 12px; color:black;' class="btn btn-default btn-xs">다음글</button>
+     </c:when>
+     <c:otherwise>
+       <button style='font-size: 12px; color:black;' class="btn btn-default btn-xs" onclick="location.href='./read.do?cm_no=${daum.cm_no}'">
+       다음글</button>   
+     </c:otherwise>
+     </c:choose>     
+     </div>
+     <div style='clear: both;'></div>
+
     <div class="write_content" style='width: 90%;'>
-    <FORM name='frm' method="get" action='./update.do'>
-      <input type="hidden" name="cm_no" value="${cmVO.cm_no}">
-      <p style='text-align: right;'>
-        <A href="./reply.do?cm_no=${mfVO.cm_no}&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}">답변</A>｜
-        <A href="./update.do?cm_no=${mfVO.cm_no}&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}">수정</A>｜
+      <input type="hidden" name="cm_no" value="${mfVO.cm_no}">
+      <div style='text-align: left;'>&nbsp;&nbsp;${mfVO.cm_title}</div><p style='text-align: right;'>
+        <span style='color: #cccccc;'>${mfVO.cm_date.substring(0, 16)}</span> |
+        <A href="./update.do?cm_no=${mfVO.cm_no}">수정</A> |
         <A href="./delete.do?cm_no=${mfVO.cm_no }&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}"
             onclick="return confirm('삭제 하시겠습니까?')">삭제</A>
       </p>      
       <hr>
-      <fieldset>
+      &nbsp;<i class="fa fa-leaf"> ${mfVO.cm_nick}</i>
+      <fieldset style='margin: 50px 0 0 0;'>
         <ul>
           <li>
-            <label style="width:150px;">제목 : </label>
-            <span>${cmVO.cm_title}</span><br>
+            ${mfVO.cm_content}
           </li>
-          <li>
-            <label for='content' style="width:150px;">내용 : </label>
-            <span>${cmVO.cm_content}</span>
-          </li>
-          <li>
-            <label for="likeit" style="width:150px;">추천 수 : </label>
-            <span>${cmVO.cm_likeit}</span>
-          </li>
-          <li>
-            <label for="rdate" style="width:150px;">등록일 : </label>
-            <span>${cmVO.cm_date.substring(0, 16)}</span>
-          </li>
+
           <li>
             <label for="file1" style="width:150px;">업로드 파일: </label>
             <span>
-            <c:if test="${cmVO.cm_size2 > 0}">
-             <A href='${pageContext.request.contextPath}/download?dir=/mfree/storage&filename=${cmVO.cm_file2}'>${cmVO.cm_file2}</A> (${cmVO.cm_size2}KB)
+            <c:if test="${mfVO.size2 > 0}">
+             <A href='${pageContext.request.contextPath}/download?dir=/mfree/storage&filename=${mfVO.file2}'>${mfVO.file2}</A> (${mfVO.size2}KB)
             </c:if>
             </span>    
             <div id='fild2Panel'>
-              <c:set var='file2' value="${fn:toLowerCase(cmVO.cm_file2)}" />
+              <c:set var='file2' value="${fn:toLowerCase(mfVO.file2)}" />
               <c:choose>
-                <c:when test="${fn:endsWith(cm_file2, '.jpg')}">
-                  <IMG id='file2' src='./storage/${cmVO.cm_file2}' >
+                <c:when test="${fn:endsWith(file2, '.jpg')}">
+                  <IMG id='file2' src='./storage/${mfVO.file2}' >
                 </c:when>
-                <c:when test="${fn:endsWith(cm_file2, '.gif')}">
-                  <IMG id='file2'  src='./storage/${cmVO.cm_file2}' >
+                <c:when test="${fn:endsWith(file2, '.gif')}">
+                  <IMG id='file2'  src='./storage/${mfVO.file2}' >
                 </c:when>
-                <c:when test="${fn:endsWith(cm_file2, '.png')}">
-                  <IMG id='file2'  src='./storage/${cmVO.cm_file2}' >
+                <c:when test="${fn:endsWith(file2, '.png')}">
+                  <IMG id='file2'  src='./storage/${mfVO.file2}' >
                 </c:when>
               </c:choose>
             </div>
           </li>
-          <li>
-            <label for="replycnt" style="width:150px;">댓글수 : </label>
-            <span>${cmVO.replycnt}</span>
-          </li>
-          <li class='right'>
-            <button type="button" class="btn btn-default btn-xs" onclick="location.href='./reply.do?cm_no=${mfVO.cm_no}&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}'">답변</button>
-            <button type="button" class="btn btn-default btn-xs" onclick="location.href='./list.do'">목록</button>
-          </li>
+
         </ul>
       </fieldset>
       
-    </FORM>
+      <div class='right'>
+        <button type="button" class="btn btn-default btn-xs" onclick="location.href='./reply.do?cm_no=${mfVO.cm_no}'">답글</button>
+        <button type="button" class="btn btn-default btn-xs" onclick="location.href='./list.do'">목록</button>
+      </div>
+      <div class='left'>
+        댓글  
+        ${mfVO.replycnt} | 
+        좋아요
+        ${mfVO.cm_likeit}    
+      </div>
+      <div style='clear: both;'></div>
+<div style= 'margin: 5px 0 0 0;  position: relative;'> 
+   <jsp:include page="./listmenu.jsp" flush='false' />
+</div> 
   </DIV>
   </div>
  </div>
+
 </div>
  
   <!-- -------------------------------------------- -->
 </body>
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+    <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>     
 <!-- -------------------------------------------- -->
 </html>

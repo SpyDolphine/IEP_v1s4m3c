@@ -61,11 +61,30 @@
                 </c:when>
                 <c:when test="${vo.ansnum > 0 }">
                   <c:forEach var="indent"  begin="1" end="${vo.indent }" step="1">
-                    <p style='color: pink;'>Re:&nbsp;</p>
+                     &nbsp;
                   </c:forEach>
+                    <a style='color: pink;'>Re:</a>
                 </c:when>
               </c:choose>
-              <a href="./read.do?cm_no=${vo.cm_no}">${vo.cm_title}</a> <a>[${vo.replycnt}]</a> 
+              <a href="./read.do?cm_no=${vo.cm_no}">${vo.cm_title}</a>
+              <c:choose>
+                <c:when test="${fn:endsWith(vo.file2, '.jpg')}">
+                  <img src='./images/ico-img.gif' title='사진'>
+                </c:when>
+                <c:when test="${fn:endsWith(vo.file2, '.png')}">
+                  <img src='./images/ico-img.gif' title='사진'>
+                </c:when>
+                <c:when test="${fn:endsWith(vo.file2, '.gif')}">
+                  <img src='./images/ico-img.gif' title='사진'>
+                </c:when>                
+                <c:when test="${fn:endsWith(vo.file2, '.zip')}">
+                  <img src='./images/ico_file2.gif' title='파일'>
+                </c:when>                              
+                <c:when test="${fn:endsWith(vo.file2, '.txt')}">
+                  <img src='./images/ico_file2.gif' title='파일'>
+                </c:when>                              
+              </c:choose>
+               <a style='color:grey;'>[${vo.replycnt}]</a> 
             </td> 
             <td style='vertical-align: middle;'>${vo.cm_nick}</td>
             <td style='vertical-align: middle;'>${vo.cm_date}</td>
@@ -73,7 +92,6 @@
             <td style='vertical-align: middle;'>${vo.cm_likeit}</td>
           </tr>
         </c:forEach>
-        
       </tbody>
     </table>
   </div>

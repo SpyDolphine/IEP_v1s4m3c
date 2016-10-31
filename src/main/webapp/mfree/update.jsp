@@ -1,74 +1,89 @@
-<%@ page contentType="text/html; charset=UTF-8" %> 
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page import="web.tool.Tool" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
-<!DOCTYPE html> 
-<html lang="ko"> 
-<head> 
-<meta charset="UTF-8"> 
-<title></title> 
-
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>정모방</title>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
 <script type="text/JavaScript">
-  window.onload=function(){
-   CKEDITOR.replace('content');
-  };
 </script>
-</head> 
+</head>
+ 
+<section class="wrapper">
+  <section class="page_head">
+      <div class="container">
+           <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12">
+                      <nav id="breadcrumbs">
+                          <ul>
+                              <li><a href="../index.jsp">Home</a>/</li>
+                              <li><A href='./list.do'>목록</A></li>
+                              <i class="fa fa-arrow-circle-right"> 글 쓰 기</i> 
+                          </ul> 
+                      </nav>
+                  </div>
+              </div>
+          </div>
+</section>
+</section>
 
-<DIV class='content' style='width: 90%;'>
-  <FORM name='frm' method='POST' action='./update.do'
+<body>
+<div class="container">
+ <div class="row" align='center'>
+   <div class="col-xs-12 col-lg-12">
+
+<DIV class='write_content'>
+    <FORM name='frm' method='POST' action='./update.do'
               enctype="multipart/form-data">
     <input type='hidden' name='cm_no' id='cm_no' value='${mfVO.cm_no}'>
+   <fieldset>
     <ul>
       <li>
-        <label for='title'>제목</label>
-        <input type='text' name='title' size='70' id='title' value='${mfVO.cm_title}' required="required">
+        <label for='cm_title'>제목</label>
+        <input type='text' name='cm_title' id='cm_title' value='${mfVO.cm_title}'' size='60' required="required">
+      </li>
+      <li>글쓴이: 
+        <label for='cm_nick'>${mfVO.cm_nick}</label>
       </li>
       <li>
-        <textarea name='content' id='content'  rows='10' style='width: 100%;'>${mfVO.cm_content}</textarea>
+        <label for='cm_content'>내용</label>
+        <textarea name='cm_content' id='cm_content'  rows='5' cols='70'>${mfVO.cm_content}</textarea>
       </li>
-<!--  <li>
-        <label for='file'>Thumb 파일</label>추후 구현
-        <input type="file" name='file1' id='file1' size='40' >
-      </li> -->
       <li>
-        <c:set var='file2' value="${fn:toLowerCase(mfVO.cm_file2)}" />
-        <c:choose>
-          <c:when test="${fn:endsWith(cm_file2, '.jpg')}">
-             <IMG src='./storage/${mfVO.cm_file1}'>
-          </c:when>
-          <c:when test="${fn:endsWith(cm_file2, '.gif')}">
-             <IMG id='file2'  src='./storage/${mfVO.cm_file2}'>
-          </c:when>
-          <c:when test="${fn:endsWith(cm_file2, '.png')}">
-             <IMG id='file2'  src='./storage/${mfVO.cm_file2}'>
-          </c:when>
-          <c:when test="${mfVO.cm_file2.length() > 0}">
-            ${mfVO.cm_file2 } 
-          </c:when>
-        </c:choose>
+        <label for='file1'>Thumb 파일</label>
+          Preview(미리보기) 이미지 자동 생성됩니다.
       </li>
-      
       <li>
-        <label for='file2MF'>업로드 파일</label><!-- 추후 구현 -->
-         <input type="file" name='file2MF' id='file2MF' size='40' >
+        <label for='file2'>업로드 파일</label>
+        <input type="file" name='file2MF' id='file2MF' size='40' >
       </li>
- 
+      <li>
+        <label for='cm_map'>지도</label>
+        <textarea name='cm_map' id='cm_map'  rows='5' cols='70'>${mfVO.cm_map}</textarea>
+      </li>  
+      <li>
+        <label for='cm_url'>url</label>
+        <input type='text' name='cm_url' id='cm_url' value='${mfVO.cm_url}' size='60' required="required">
+      </li>   
+             
       <li class='right'>
-        <button type="submit">수정</button>
-        <button type="button" onclick="location.href='./list.do?col=${searchDTO.col}&word=${searchDTO.word}'">목록[취소]</button>
+        <button type="submit">확인</button>
+        <button type="button" onclick="location.href='./list.do'">목록</button>
       </li>         
     </ul>
+    </fieldset>
   </FORM>
 </DIV>
- 
-<!-- -------------------------------------------- -->
+ </div></div></div>
 </body>
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
+<!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>       
 <!-- -------------------------------------------- -->
 </html> 
- 

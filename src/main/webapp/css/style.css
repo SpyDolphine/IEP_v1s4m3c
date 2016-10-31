@@ -1351,6 +1351,14 @@ a.link-style3 {
 .list_content {
    text-align: center;
 }
+.list_menu {
+   text-align: left;
+   border:solid 1px #e6e6e6; 
+   width: 100%;
+}
+.list_menu span { 
+  margin: 10px;
+}
 
 .list_content th {
   text-align: center;
@@ -1359,18 +1367,32 @@ a.link-style3 {
 .write_content {
    text-align: left;
    width: 70%; 
-   border:solid 1px #d9d9d9; 
+   border:solid 4px #f2f2f2; 
    padding:10px 10px 10px 10px;
 }
 
 ul li {
     list-style: none; /* 블렛 기호 생략 */
+    text-align: left;
   } 
+  
 .right {
     list-style: none; /* 블렛 기호 생략 */
-    text-align: right;
+    text-align: right;   
+    white-space:nowrap; 
+    padding : 20px 0 5px 0;
+    width: 30%;
+    float:right;
+    
   }   
+.left {
+    list-style: none; /* 블렛 기호 생략 */
+    text-align: left;
+    white-space:nowrap; 
+    padding : 20px 0 5px 0;
+    width: 30%;
+    float:left;
+  }     
 
-  
 /*------------------------------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------------------------------*/

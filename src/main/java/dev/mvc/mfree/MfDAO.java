@@ -57,5 +57,35 @@ public class MfDAO implements MfInter{
   public List<MfVO> list(HashMap<String, Object> Map) {
     return mybatis.selectList("mfree.list", Map);
   }
+
+  @Override
+  public int update_cnt(int cm_no) {
+    return mybatis.update("mfree.update_cnt", cm_no);
+  }
+
+  @Override
+  public List<MfVO> listmenu(int cm_no) {
+    return mybatis.selectList("mfree.listmenu", cm_no);
+  }
+
+  @Override
+  public List<MfVO> bonlist() {
+    return mybatis.selectList("mfree.bonlist");
+  }
+
+  @Override
+  public MfVO bonread(int grpno) {
+    return mybatis.selectOne("mfree.bonread", grpno);
+  }
+
+  @Override
+  public int maxlist() {
+    return mybatis.selectOne("mfree.maxlist");
+  }
+
+  @Override
+  public int minlist() {
+    return mybatis.selectOne("mfree.minlist");
+  }
  
 }
