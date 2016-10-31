@@ -38,11 +38,6 @@
         <fieldset>
           <ul>
             <li>
-              <label class='form_grp' for='content'>선택</label><br>
-              <input type='radio' name='fq_CH' value='C'>회사
-              <input type='radio' name='fq_CH' value='H'>홈페이지
-            </li>
-            <li>
               <label class='label' for='nt_title'>제목</label>
               <input type='text' name='nt_title' value='제목' required="required">
             </li>
