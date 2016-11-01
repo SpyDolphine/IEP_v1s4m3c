@@ -67,8 +67,6 @@ public class InterviewCont {
     return mav;
   }
   
-  
-  //update.do?iv_no=1
   @RequestMapping(value = "/interview/update.do", method = RequestMethod.GET)
   public ModelAndView update(int iv_no) {
   ModelAndView mav = new ModelAndView();
