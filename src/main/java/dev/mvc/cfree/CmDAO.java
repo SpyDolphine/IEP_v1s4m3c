@@ -47,5 +47,20 @@ public class CmDAO implements CmInter{
   public int count(HashMap hashmap) {
     return mybatis.selectOne("cfree.count", hashmap);
   }
+
+  @Override
+  public int likeup(int cm_no) {
+    return mybatis.update("cfree.likeup", cm_no);
+  }
+
+  @Override
+  public int likedown(CmVO cmVO) {
+    return mybatis.update("cfree.likedown", cmVO);
+  }
+
+  @Override
+  public int heart(CmVO cmVO) {
+    return mybatis.update("cfree.heart", cmVO);
+  }
  
 }

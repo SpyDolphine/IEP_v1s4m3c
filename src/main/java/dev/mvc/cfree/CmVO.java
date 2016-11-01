@@ -2,15 +2,17 @@ package dev.mvc.cfree;
 
 public class CmVO {
   /*
-   create table commu_free (
-       cm_no        NUMBER(7)        not null,    -- 글 번호
-       cm_nick      varchar2(30)     not null,    -- 닉네임
-       cm_title     varchar2(120)    not null,    -- 게시글 제목
-       cm_content   varchar2(4000)   not null,    -- 글 내용
-       cm_likeit    NUMBER(7)        default 0,   -- 좋아요기능                        
-       cm_rdate     DATE             not null,    -- 등록날짜
-       PRIMARY KEY(cm_no)
-      );
+    create table commu_free (
+     cm_no        NUMBER(7)        not null,    -- 글 번호
+     cm_nick      varchar2(30)     not null,    -- 닉네임
+     cm_title     varchar2(120)    not null,    -- 게시글 제목
+     cm_content   varchar2(4000)   not null,    -- 글 내용
+     cm_likeit    NUMBER(7)        default 0,   -- 추천                  
+     cm_unlike    NUMBER(7)        default 0,   -- 비추천 
+     heart        NUMBER(7)        default 0,   -- 좋아요     
+     cm_rdate     DATE             not null,    -- 등록날짜
+     PRIMARY KEY(cm_no)
+    );
    */
   
   /** 글 번호 */
@@ -21,8 +23,31 @@ public class CmVO {
   private String cm_title;
   /** 글 내용 */
   private String cm_content;
-  /** 좋아요기능 */
-  private int cm_likeit;
+  /** 추천 */
+  private int likeup;
+  /** 비추천 */
+  private int likedown;
+  
+  public int getLikeup() {
+    return likeup;
+  }
+  public void setLikeup(int likeup) {
+    this.likeup = likeup;
+  }
+  public int getLikedown() {
+    return likedown;
+  }
+  public void setLikedown(int likedown) {
+    this.likedown = likedown;
+  }
+  public int getHeart() {
+    return heart;
+  }
+  public void setHeart(int heart) {
+    this.heart = heart;
+  }
+  /** 좋아요 */
+  private int heart;
   /** 등록날짜 */
   private String cm_rdate;
   
@@ -50,12 +75,6 @@ public class CmVO {
   }
   public void setCm_content(String cm_content) {
     this.cm_content = cm_content;
-  }
-  public int getCm_likeit() {
-    return cm_likeit;
-  }
-  public void setCm_likeit(int cm_likeit) {
-    this.cm_likeit = cm_likeit;
   }
   public String getCm_rdate() {
     return cm_rdate;

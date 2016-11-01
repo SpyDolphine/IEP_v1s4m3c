@@ -10,6 +10,44 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+<script type="text/javascript">
+
+$(function(){
+  $("#likeup").click(function(){
+      $.ajax({
+        type: 'get',
+        url : "<c:url value='./likeup.do'/>",
+        data : {
+          sampleInput : "<c:out value='${cm_no}'/>"
+        },
+        success : function(data, textStatus, jqXHR) {
+          //Sucess시, 처리
+        }, 
+        error : function(jqXHR, textStatus, errorThrown){
+          //Error시, 처리
+        }
+      });
+  });    
+});
+
+
+
+$(function(){
+  $("#likeup").click(function(){
+      $.ajax({
+              type: 'get'
+            , url: './likeup.do'
+            , data : 'cm_no'     
+            , dataType : 'html'
+            , success: function(data) {
+              $("#likeup").html(data);
+              }
+      }); 
+  })    
+})
+    
+</script>
+
 </head>
  
 <section class="wrapper">
@@ -38,7 +76,7 @@
           <input type="hidden" name="cm_no" value="0"> 
           <input type="hidden" name="cm_nick" value="nick"> <!-- 임시값 -->
                 <div class="span3 offset1">
-                  <label for='cm_nick'><i class="fa fa-leaf">${cmVO.cm_nick} nick</i></label> 
+                  <label for='cm_nick'><i class="fa fa-leaf"> nick</i></label> 
                 </div>
                 <div class="span3 offset2">                  
                   <input type="text" class="form-control" name='cm_title' id='cm_title' placeholder='제목을 입력하세요' required="required">
@@ -75,10 +113,15 @@
         </ul>
       </fieldset>
       
-      <div class='left'>
-        댓글  
-        좋아요
-        ${cmVO.cm_likeit}    
+      <div class='right'>
+        <a href='#' onclick="alert('로그인이 필요합니다'); return false;" class="btn btn-primary btn-xs btn-alt">
+        <i class="fa fa-comments-o"></i> 댓글</a>
+     
+        <button id="likeup" class="btn btn-default btn-xs btn-alt">
+        <i class="fa fa-thumbs-o-up" style="color:red;"></i> 추천(${cmVO.likeup })</button>
+        <button id="likedown" class="btn btn-default btn-xs btn-alt" onclick="location.href='./likedown.do?cm_no=${cmVO.cm_no }'">
+        <i class="fa fa-thumbs-o-down" style="color:blue;"></i> 비추천(${cmVO.likedown })</button>
+        
       </div>
       <div style='clear: both;'></div>
       <hr>

@@ -6,9 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- Oracle 기반 -->
 <mapper namespace = "cfree">
   <insert id="create" parameterType="CmVO">
-    INSERT INTO commu_free(cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate)
+    INSERT INTO commu_free(cm_no, cm_nick, cm_title, cm_content, likeup, likedown, heart, cm_rdate )
     VALUES ((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_free), 
-                                  #{cm_nick}, #{cm_title}, #{cm_content}, 0, sysdate)
+                                  #{cm_nick}, #{cm_title}, #{cm_content}, 0, 0, 0, sysdate)
   </insert>
   
   <update id='update' parameterType="CmVO">
@@ -23,11 +23,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </delete>  
   
   <select id="read" resultType="CmVO">
-    SELECT cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate
+    SELECT cm_no, cm_nick, cm_title, cm_content, likeup, likedown, heart, cm_rdate
     FROM commu_free
     WHERE cm_no = #{cm_no}
   </select>
+ <!-- ********** 추천에 따른 변경 시작 ********** -->   
+  <update id='likeup' parameterType="int">
+    update commu_free
+    set likeup = likeup + 1
+    where cm_no = #{cm_no}
+  </update>  
+
+  <update id='likedown' parameterType="CmVO">
+    update commu_free
+    set likedown = likedown + 1
+    where cm_no = #{cm_no}
+  </update> 
+
+  <update id='heartup' parameterType="CmVO">
+    update commu_free
+    set heart = heart + 1
+    where cm_no = #{cm_no}
+  </update>       
   
+  <update id='heartdown' parameterType="CmVO">
+    update commu_free
+    set heart = heart - 1
+    where cm_no = #{cm_no}
+  </update>      
+  <!-- ********** 추천 변경 종료 ********** --> 
   <select id="count" resultType="int" parameterType="HashMap" >
     SELECT COUNT(*) as cnt
     FROM commu_free
@@ -46,11 +70,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
  <!-- ********** 페이징에 따른 변경 시작 ********** -->   
  <select id="list" resultType="CmVO" parameterType="HashMap" >
-    SELECT cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate, r
+    SELECT cm_no, cm_nick, cm_title, cm_content, likeup, likedown, heart, cm_rdate, r
     FROM(
-             SELECT cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate, rownum as r
+             SELECT cm_no, cm_nick, cm_title, cm_content, likeup, likedown, heart, cm_rdate, rownum as r
              FROM(
-                      SELECT cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate
+                      SELECT cm_no, cm_nick, cm_title, cm_content, likeup, likedown, heart, cm_rdate
                       FROM commu_free
                       <choose>
                         <when test="col == 'title'">

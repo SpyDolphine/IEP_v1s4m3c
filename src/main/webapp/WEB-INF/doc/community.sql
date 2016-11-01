@@ -1,29 +1,41 @@
 <커뮤니티> 
 자유게시판     정보공유방       스터디정모방      상담 / 공감방
 
-
+drop table commu_free
 -- 자유게시판(실시간 업데이트) : 커뮤니티 메인 페이지
 create table commu_free (
  cm_no        NUMBER(7)        not null,    -- 글 번호
  cm_nick      varchar2(30)     not null,    -- 닉네임
  cm_title     varchar2(120)    not null,    -- 게시글 제목
  cm_content   varchar2(4000)   not null,    -- 글 내용
- cm_likeit    NUMBER(7)        default 0,   -- 좋아요기능                        
+ likeup       NUMBER(7)        default 0,   -- 추천                  
+ likedown     NUMBER(7)        default 0,   -- 비추천 
+ heart        NUMBER(7)        default 0,   -- 좋아요     
  cm_rdate     DATE             not null,    -- 등록날짜
  PRIMARY KEY(cm_no)
 );
 
 1. 글추가
-INSERT INTO commu_free(cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate)
-VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_free), '닉네임', '제목','내용', 0, sysdate);
+INSERT INTO commu_free(cm_no, cm_nick, cm_title, cm_content, likeup, likedown, heart, cm_rdate)
+VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_free), '닉네임', '제목','내용', 0,0,0, sysdate);
 
 2. 목록
-SELECT cm_no, cm_nick, cm_title, cm_content, cm_likeit, cm_rdate
+SELECT cm_no, cm_nick, cm_title, cm_content, likeup, likedown, heart, cm_rdate
 FROM commu_free
-ORDER BY cm_no ASC;
+ORDER BY cm_no desc;
 
 drop table commu_free;
 delete from commu_free;
+
+3. 좋아요 기능
+update commu_free
+set cm_likeit = cm_likeit + 1
+where cm_no = 43
+
+    update commu_free
+    set likeup = likeup + 1
+    where cm_no = 1
+
 
 ----------------------------------------------------------------------------------------------------------------------
 -- 스터디 정모방(사진/파일/동영상(썸네일) 들어가야함)

@@ -162,7 +162,7 @@ public class CmCont {
     
     totalRecord = cmDAO.count(hashMap);
     mav.addObject("totalRecord", cmDAO.count(hashMap)); // 검색된 레코드 갯수
- 
+    
     String paging = new Paging().paging5(totalRecord, 
                                                           searchDTO.getNowPage(), 
                                                           recordPerPage, 
@@ -172,4 +172,34 @@ public class CmCont {
     return mav;
   }  
   
+  /**
+   * 추천 처리
+   */
+  @RequestMapping(value = "/cfree/likeup.do", method = RequestMethod.GET)
+  public ModelAndView likeup(int cm_no) {
+    ModelAndView mav = new ModelAndView();
+
+    
+    if (cmDAO.likeup(cm_no) == 1) {
+      mav.setViewName("redirect:/cfree/list.do");
+    } else {
+      
+    }
+  return mav;
+}
+  
+  /**
+   * 비추천 처리
+   */
+  @RequestMapping(value = "/cfree/likedown.do", method = RequestMethod.GET)
+  public ModelAndView likedown(CmVO cmVO) {
+    ModelAndView mav = new ModelAndView();
+
+    if (cmDAO.likedown(cmVO) == 1) {
+      mav.setViewName("redirect:/cfree/list.do");
+    } else {
+      
+    }
+  return mav;
+}
 }
