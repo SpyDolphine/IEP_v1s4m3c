@@ -1,6 +1,8 @@
 package dev.mvc.notice;
  
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -12,8 +14,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.servey.ServeyVO;
 import web.tool.Paging;
 import web.tool.SearchDTO;
 import web.tool.Tool;
@@ -42,23 +46,12 @@ public class NoticeCont {
   public ModelAndView create(NoticeVO noticeVO) {
   //System.out.println("--> create() POST called.");
   ModelAndView mav = new ModelAndView();
-  mav.setViewName("/notice/message"); // /webapp/message.jsp
   
-  ArrayList<String> msgs = new ArrayList<String>();
-  ArrayList<String> links = new ArrayList<String>();
   
   if (noticeDAO.create(noticeVO) == 1) {
-  msgs.add("등록을 완료했습니다.");
-  links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
+    mav.setViewName("redirect:/notice/list.do");
   } else {
-  msgs.add("등록에 실패했습니다.");
-  msgs.add("죄송하지만 다시한번 시도해주세요.");
-  links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-  links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
   }
-  links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
-  mav.addObject("msgs", msgs);
-  mav.addObject("links", links);
   
   return mav;
   }
@@ -106,7 +99,7 @@ public class NoticeCont {
     totalRecord = noticeDAO.count(hashMap);
     mav.addObject("totalRecord", noticeDAO.count(hashMap)); // 검색된 레코드 갯수
  
-    String paging = new Paging().paging(totalRecord, 
+    String paging = new Paging5().paging5(totalRecord, 
                                                           searchDTO.getNowPage(), 
                                                           recordPerPage, 
                                                           searchDTO.getCol(), 
@@ -168,29 +161,16 @@ public class NoticeCont {
    * @param noticeno
    * @return
    */
-  @RequestMapping(value = "/notice/delete.do", method = RequestMethod.POST)
-  public ModelAndView delete(NoticeVO noticeVO) {
+  @RequestMapping(value = "/notice/delete.do", method = RequestMethod.GET)
+  public ModelAndView delete(@RequestParam List<String> arr) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/notice/message");
- 
-    ArrayList<String> msgs = new ArrayList<String>();
-    ArrayList<String> links = new ArrayList<String>();
- 
-    if (noticeDAO.delete(noticeVO.getNt_no() ) == 1) {
-      mav.setViewName("redirect:/notice/list.do");
-    } else {
-      msgs.add("삭제에 실패했습니다.");
-      msgs.add("죄송하지만 다시한번 시도해주세요.");
-      links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
-      links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
- 
-      mav.addObject("msgs", msgs);
-      mav.addObject("links", links);
- 
-    }
- 
+    
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("arr", arr);
+    noticeDAO.delete(hashMap);
+    mav.setViewName("redirect:/notice/list.do");
     return mav;
+ 
   }
-  
+
 }

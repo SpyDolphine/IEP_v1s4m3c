@@ -13,6 +13,13 @@ public interface NoticeDAOInter {
   public int create(NoticeVO vo);
   
   /**
+   * 전체 목록
+   * <select id="list" resultType="NoticeVO" resultType="HashMap">
+   * @return 회원 목록
+   */
+  public List<NoticeVO> list(HashMap Map);
+  
+  /**
    * Code를 수정합니다.
    * <update id="update" parameterType="CodeVO"> 
    * @param codeVO
@@ -34,7 +41,7 @@ public interface NoticeDAOInter {
    * @param mno 삭제할 회원 번호
    * @return 삭제된 레코드 갯수
    */
-  public int delete(int nt_no);
+  public int delete(HashMap hashMap); 
   
   /**
    * 검색된 레코드 수
@@ -42,13 +49,5 @@ public interface NoticeDAOInter {
    * @param hashMap 검색조건
    * @return
    */
-  public int count(HashMap hashmap);  
-  
-  /**
-   * 답변 기능을 지원하는 목록
-   * <select id="list" resultType="NoticeVO" parameterType="HashMap" >
-   * @param Map 검색/페이징
-   * @return 전체 목록 또는 검색 목록
-   */
-  public List<NoticeVO> list(HashMap Map);  
+  public int count(HashMap hashMap);
 }

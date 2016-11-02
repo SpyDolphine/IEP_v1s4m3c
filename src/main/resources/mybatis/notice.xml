@@ -23,9 +23,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </update> 
   
   <!-- 삭제 -->
-  <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="HashMap">
     DELETE FROM notice
-    WHERE nt_no=#{nt_no}
+    WHERE nt_no IN
+    <foreach collection="arr" item="nt_no" index="index" separator="," open="(" close=")">
+    #{nt_no}
+    </foreach>
   </delete>
 
   <select id="count" resultType="int" parameterType="HashMap" >
