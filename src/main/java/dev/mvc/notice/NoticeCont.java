@@ -167,7 +167,5 @@ public class NoticeCont {
     noticeDAO.delete(hashMap);
     mav.setViewName("redirect:/notice/list.do");
     return mav;
- 
   }
-
 }

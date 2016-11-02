@@ -31,28 +31,30 @@ $("#allCheck").click(function(){
 });
 
 function checkDel() {
+  var r = confirm('삭제하시겠나요?');
+
   var chkList = document.getElementsByName('check');
   var arr = new Array();
   var cnt = 0;
-  for ( var idx = chkList.length - 1; 0 <= idx; idx--) {
-   if (chkList[idx].checked) {
-    arr[cnt] = chkList[idx].value;
-    cnt++;
-   }
-  }
-  if (arr.length != 0) {
-   location.href='./delete.do?arr='+arr;
+  if (r == true) {
+    for ( var idx = chkList.length - 1; 0 <= idx; idx--) {
+      if (chkList[idx].checked) {
+       arr[cnt] = chkList[idx].value;
+       cnt++;
+      }
+     }
+     if (arr.length != 0) {
+      location.href='./delete.do?arr='+arr;
+     } else {
+      alert('체크를 하셔야합니다.');
+      return;
+     }
   } else {
-   alert('체크를 하셔야합니다.');
-   return;
+    
   }
+ 
   
  }
-
-function likeup_res(data){ // 응답 처리 함수
-$('#test_like' + data.cm_no).html(data.likeup);  
-}
-
 </script>
 </head>
 <section class="wrapper">
@@ -75,8 +77,8 @@ $('#test_like' + data.cm_no).html(data.likeup);
 <body>
 <form name='form'>
   <DIV class='title'>공지사항 목록</DIV>
-    전체선택 : <input type="checkbox" id="allCheck"/>
-    <input type="button" onclick="return confirm('삭제할꺼냐'); checkDel(); " value="삭제">
+    전체선택 : <input type="checkbox" id="allCheck"/>  
+    <input type="button" onclick="checkDel(); " value="삭제">
     
   <TABLE class='table' style='width: 70%;'>
     <colgroup>
@@ -106,7 +108,6 @@ $('#test_like' + data.cm_no).html(data.likeup);
 </form>
 <form name="frmSearch" method="get" action="./list.do">  
 <DIV class='bottom'>
-  <button type='button' onclick="location.reload();">새로 고침</button>
   <div style='text-align: center;'>
      <select name="col"> 
       <option value="">선택</option> 

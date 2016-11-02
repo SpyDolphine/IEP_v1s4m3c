@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import web.tool.Paging;
@@ -192,30 +193,24 @@ public class FnqCont {
    * 레코드 1건을 삭제합니다.
    * @param fq_no
    * @return
-   */
+   */ 
   @RequestMapping(value = "/fnq/delete.do", method = RequestMethod.GET)
-  public ModelAndView delete(int fq_no) {
+  public ModelAndView delete(@RequestParam List<String> arr) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/fnq/delete");
-    mav.addObject("fq_no", fq_no); 
-    return mav;
-  }
-  
-  @RequestMapping(value = "/fnq/delete.do", method = RequestMethod.POST)
-  public ModelAndView delete2(int fq_no) {
-    ModelAndView mav = new ModelAndView();
-    FnqVO fnqVO = fnqDAO.read(fq_no);
-    mav.addObject("fnqVO", fnqVO);
-    if (fnqDAO.delete(fq_no) == 1) {
-      if(fnqVO.getFq_CH().equals("H")){
-        mav.setViewName("redirect:/fnq/listh.do");
-      }
-      
-      if(fnqVO.getFq_CH().equals("C")){
-        mav.setViewName("redirect:/fnq/listc.do");
-      }
-    } else {
+    FnqVO fnqVO = fnqDAO.read(Integer.parseInt(arr.get(0)));
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    if(fnqVO.getFq_CH().equals('H')){
+      hashMap.put("arr", arr);
+      fnqDAO.delete(hashMap);
+      mav.setViewName("redirect:/fnq/listh.do");
+    }
+    if(fnqVO.getFq_CH().equals('C')){
+      hashMap.put("arr", arr);
+      fnqDAO.delete(hashMap);
+      mav.setViewName("redirect:/fnq/listc.do");
     }
     return mav;
   }
+  
+
 }

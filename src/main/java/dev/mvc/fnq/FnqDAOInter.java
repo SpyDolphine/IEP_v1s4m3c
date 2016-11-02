@@ -38,11 +38,11 @@ public interface FnqDAOInter {
  
   /**
    * 항목 1건 삭제
-   * <delete id="delete" parameterType="int">
+   * <delete id="delete" parameterType="HashMap">
    * @param fq_no 삭제할 항목 번호
    * @return 삭제된 레코드 갯수
    */
-  public int delete(int fq_no);
+  public int delete(HashMap hashMap);
   /**
   * 한건의 레코드 조회
   * <select id="read" resultType="CategoryVO" parameterType="int"> 

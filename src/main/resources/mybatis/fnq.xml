@@ -77,9 +77,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </update> 
   
   <!-- 삭제 -->
-  <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="HashMap">
     DELETE FROM fnq
-    WHERE fq_no=#{fq_no}
+    WHERE fq_no IN
+    <foreach collection="arr" item="fq_no" index="index" separator="," open="(" close=")">
+    #{fq_no}
+    </foreach>
   </delete>
   
   <!-- 회사 총 글 수 -->

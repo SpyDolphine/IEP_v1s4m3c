@@ -37,8 +37,8 @@ public class FnqDAO implements FnqDAOInter{
   }
 
   @Override
-  public int delete(int fq_no) {
-    return mybatis.delete("fnq.delete", fq_no);
+  public int delete(HashMap hashMap) {
+    return mybatis.delete("fnq.delete", hashMap);
   }
 
   @Override
