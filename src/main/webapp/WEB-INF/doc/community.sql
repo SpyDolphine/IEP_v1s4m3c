@@ -10,7 +10,6 @@ create table commu_free (
  cm_content   varchar2(4000)   not null,    -- 글 내용
  likeup       NUMBER(7)        default 0,   -- 추천                  
  likedown     NUMBER(7)        default 0,   -- 비추천 
- heart        NUMBER(7)        default 0,   -- 좋아요     
  cm_rdate     DATE             not null,    -- 등록날짜
  PRIMARY KEY(cm_no)
 );

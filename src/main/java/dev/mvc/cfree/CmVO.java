@@ -27,8 +27,6 @@ public class CmVO {
   private int likeup;
   /** 비추천 */
   private int likedown;
-  /** 좋아요 */
-  private int heart;
   /** 등록날짜 */
   private String cm_rdate;
   
@@ -75,11 +73,4 @@ public class CmVO {
   public void setLikedown(int likedown) {
     this.likedown = likedown;
   }
-  public int getHeart() {
-    return heart;
-  }
-  public void setHeart(int heart) {
-    this.heart = heart;
-  }  
-  
 }

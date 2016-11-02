@@ -66,12 +66,5 @@ public interface CmInter {
    */
   public int likedown(int cm_no); 
   
-  /**
-   * ¡¡æ∆ø‰ 
-   * <update id="heartup" parameterType="CmVO">
-   * @param gfreeVO
-   * @return
-   */
-  public int heart(CmVO cmVO); 
   
 }
