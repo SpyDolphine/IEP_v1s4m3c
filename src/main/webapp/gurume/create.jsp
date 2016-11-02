@@ -106,6 +106,16 @@
         <option value="★★★★">★★★★</option>
         <option value="★★★★★">★★★★★</option>
       </select>
+        <label class='form_grp' for='gu_price'>가격</label>
+      <select name='gu_price' id='gu_price'>
+        <option value="가격" selected="selected">가격</option>
+        <option value="~5000원">~5000원</option>
+        <option value="5000~10000원">5000~10000원</option>
+        <option value="10000~20000원">10000~20000원</option>
+        <option value="20000~30000원">20000~30000원</option>
+        <option value="30000~50000원">30000~50000원</option>
+        <option value="50000원 이상">50000원 이상</option>
+      </select>
        </li>
        <li>
         <label class='form_grp' for='gu_name'>닉네임</label>
@@ -113,14 +123,12 @@
       </li>
       <li>
         <label class='form_grp' for='gu_cont'>내용</label><br>
-        <TEXTAREA name='gu_cont' id='gu_cont' rows='10' cols='70'></TEXTAREA>
+        <textarea name='gu_cont' id='gu_cont' rows='10' cols='70'></textarea>
       </li>
       <li>
-        <label for='content'>약도: </label>
-        <textarea name='gu_map' id='gu_map' rows='5' style='width:100%;'></textarea>
-
-
-        
+        <label class='form_grp' for='content'>약도: </label>
+        <textarea name='gu_map' id='gu_map' rows='10' cols='70' 
+                  placeholder='다음 지도 약도만들기를 이용하여 소스를 생성 후 입력해주세요' ></textarea>
       </li>     
      <li>
         <label class='form_grp' for='file1'>Thumb 파일</label>
@@ -140,8 +148,8 @@
 </DIV>
  
 <!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>      
 <jsp:include page="/menu/bottom.jsp" flush='false' />
 </div>
-</body>
 <!-- -------------------------------------------- -->
 </html> 

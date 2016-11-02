@@ -1,120 +1,100 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ 
+<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
 <meta charset="UTF-8">
-<title></title>
+<title>취업 성공후기 게시판</title>    
  
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    
-<script type="text/javascript" src="../js/tool.js"></script>
-<script type="text/javascript">
-$(function(){
-  
-});
-</script>
- 
-<script type="text/javascript">
-</script>
 </head>
- 
-<%-- body 시작 --%>
-<body leftmargin="0" topmargin="0">
-<div class="container">
-     <jsp:include page="/menu/top.jsp" flush='false' />
-<%-- ---------------------------------------------------------------------------------------------- --%>
-  <div class='content_menu' style='width: 100%;'>
-    <A href='../seico/list.do'>게시판 목록</A>  >
-    <%-- <A href='./list.do?blogcategoryno=${blogcategoryVO.blogcategoryno}'>${blogcategoryVO.title }</A>｜ --%>
-    <A href='./create.do'>등록</A>｜
-    <A href="javascript:location.reload();">새로고침</A>
-  </div>
-  <div class="content" style='width: 100%;'>
-    <table class="table" style='width: 100%;'>
-      <colgroup>
-        <col style="width:  8%;"></col>
-        <col style="width:  8%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 15%;"></col>
-        <col style="width: 15%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 9%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 12%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 25%;"></col>
-      </colgroup>
-          
-      <%-- table 컬럼 --%>
-      <thead>
-        <tr>
-          <th>번호</th>
-          <th>지역</th>
-          <th>직종</th>
-          <th>제목</th>
-          <th>닉네임</th>
-        <!--   <th>좋아요</th> -->
-          <th>파일</th> 
-          <th>업로드</th>
-          <th>날짜</th>
-          <th>기타</th>
-          <th>조회</th>
-        </tr>
-      
-      </thead>
-      
-      <%-- table 내용 --%>
-      <tbody>
-      
-        <c:forEach var="vo" items="${list }">
-          <tr>
-            <td style='vertical-align: middle;'>${vo.sc_no}</td>
-            <td style='vertical-align: middle;'>${vo.sc_area}</td>
-            <td style='vertical-align: middle;'>${vo.sc_jobs}</td>
-            <td style='vertical-align: middle;'>
-             <a href="./read.do?sc_no=${vo.sc_no}">${vo.sc_title}</a> </td>
-            <td style='vertical-align: middle;'>${vo.sc_name}</td>
-           <%--  <td style='vertical-align: middle;'>${vo.sc_like}</td> --%>
-            
-            <td style='vertical-align: middle;'>
-               <c:choose>
-                   <c:when test="${empty vo.file2}">
-                   </c:when>
-                   <c:otherwise>   
-                      <IMG src='./storage/${vo.file1}'>
-                   </c:otherwise>
-               </c:choose>
-            </td>  
-            <td style='vertical-align: middle;'>${vo.file2}</td>
-            <td style='vertical-align: middle;'>${vo.sc_date}</td>
-            <td style='vertical-align: middle;'>
-              <a href="./update.do?sc_no=${vo.sc_no}"><img src="./images/update.png" title="수정" border='0'/></a>
-              <a href="./delete.do?sc_no=${vo.sc_no}"><img src="./images/delete.png" title="삭제"  border='0'/></a>
-            </td>
-            <td style='vertical-align: middle;'>${vo.sc_cnt}</td>
-          </tr>
-        </c:forEach>
-        
-      </tbody>
-    </table>
-    <br><br>
-  </div>
- 
-<%-- ---------------------------------------------------------------------------------------------- --%>
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
-     </div>
+<!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
+<!-- ----------------------------------------- -->
+<section class="wrapper">
+    <section class="page_head">
+        <div class="container">
+             <div class="row">
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+                        <nav id="breadcrumbs">
+                            <ul>
+                                <li><a href="../index.jsp">Home</a>/</li>
+                                <li><A href='./list.do'>목록</A></li></i>
+                            <i class="fa fa-arrow-circle-right"> 취업 성공후기 게시판 </i> 
+                            </ul> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+</section>
+</section>
+
+<div style='position: relative; top:40%; left:55%;'>
+<jsp:include page="createboot.jsp" flush='false' />
+</div>
+
+   <c:forEach var="seicoVO" items="${list }">
+    <section class="content blog">
+      <div class="container">
+       <input type="hidden" name="sc_no" value="${seicoVO.sc_no}">
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <div class="blog_medium">
+              <article class="post">
+                <div class="post_date">
+                  <span class="day">${fn:substring(seicoVO.sc_date, 8, 10)}</span>
+                  <span class="month">${fn:substring(seicoVO.sc_date, 5, 7)}월</span>
+                </div>
+                <figure class="post_img">
+                  <a href="#">
+                    <img src="./images/apartmentcoffee.jpg" alt="blog post">
+                  </a>
+                </figure>                  
+                <div class="post_content">
+                  <div class="post_meta">
+                    <c:choose>
+                      <c:when test="${fn:length(seicoVO.sc_title) > 50}">
+                         <h2><a href="#">"<c:out value="${fn:substring(seicoVO.sc_title,0,50)}"/>..."</a></h2>
+                           </c:when>
+                             <c:otherwise>
+                               <h2><a href="#">"${seicoVO.sc_title}"</a></h2>
+                             </c:otherwise> 
+                    </c:choose>
+                    <div class="metaInfo">
+                      <span><i class=""></i>취업지원직종<a href="#">&nbsp; ${seicoVO.sc_jobs}</a> </span><br>
+                      <span><i class=""></i>지원직무<a href="#">&nbsp; ${seicoVO.sc_position}</a></span>
+                      <span><i class=""></i>난이도<a href="#">&nbsp; ${seicoVO.sc_stars}</a></span>
+                      <span><i class=""></i>근무지역<a href="#">&nbsp; ${seicoVO.sc_area}</a></span>
+                    </div>
+                  </div>
+                    <c:choose>
+                      <c:when test="${fn:length(seicoVO.sc_q) > 145}">
+                         <c:out value="${fn:substring(seicoVO.sc_tip,0,145)}"/>....
+                      </c:when>
+                      <c:otherwise>
+                         <p>${seicoVO.sc_q}</p>
+                      </c:otherwise> 
+                    </c:choose>
+                  </div>
+                  <div style='text-align:right; position:absolute; top:65%; right:0;'>
+                  <a class="btn btn-small btn-default" href="./read.do?sc_no=${seicoVO.sc_no }">Read More</a>
+                  </div>
+              </article> 
+              </div>
+              </div>
+              </div>
+              </div>
+              </section>
+   </c:forEach>
+    <DIV class='bottom'>${paging}</DIV>
+
+
 </body>
-<%-- body 종료 --%>
-</html>
+
+<!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>  
+<!-- -------------------------------------------- -->
+</html> 

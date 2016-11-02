@@ -91,6 +91,16 @@
         <option value="중식">중식</option>
         <option value="기타">기타</option>
       </select>
+          <label class='form_grp' for='gu_price'>가격</label>
+      <select name='gu_price' id='gu_price'>
+        <option value="${gurumeVO.gu_price}" selected="selected">${gurumeVO.gu_price}</option>
+        <option value="~5000원">~5000원</option>
+        <option value="5000~10000원">5000~10000원</option>
+        <option value="10000~20000원">10000~20000원</option>
+        <option value="20000~30000원">20000~30000원</option>
+        <option value="30000~50000원">30000~50000원</option>
+        <option value="50000원 이상">50000원 이상</option>
+      </select>
         <label class='form_grp' for='gu_stars'>별점</label>
       <select name='gu_stars' id='gu_stars'>
         <option value="${gurumeVO.gu_stars}" selected="selected">${gurumeVO.gu_stars}</option>
@@ -127,7 +137,7 @@
             </c:when>
           </c:choose>
       </li> 
-     <li>
+      <li>
         <label class='label' for='file2'>업로드 파일</label>
         <input type="file" name='file2MF' id='file2MF' size='40' >
       </li> 
@@ -146,7 +156,9 @@
 </DIV>
 
 
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
+    <div style= 'margin: 100px 0 0 0;  position: relative;'>      
+<jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>
   </div>
 </body>
  

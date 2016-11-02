@@ -1,139 +1,114 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title></title>
  
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  
-<script type="text/javascript" src="../js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
-<script type="text/javascript">
-  /* function customize(imgObj){
-    alert('file2 '+ imgObj.width());
-  } */
-  $(function (){
-    $('#file2').load(function(){ // 태그 메모리 상주후 작동
-      var width = $('#file2').width();
-      if ($('#file2').width() > screen.width * 0.6){
-        $('#file2').width('80%');      
-      }
-    });
-  });
-
-</script>
+<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
+<meta charset="UTF-8">
+<title>취업성공 후기 게시판 </title>    
+ 
 </head>
 <!-- ----------------------------------------- -->
-<body>
-<div class="container">
-     <jsp:include page="/menu/top.jsp" flush='false' />
+<jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
-   <div class='content_menu' style='width: 100%;'>
-    <A href='../seico/list4.do'>게시판 목록</A> >
-    <%-- <A href='./list.do?blogcategoryno=${blogcategoryVO.blogcategoryno}'>${blogcategoryVO.title }</A>｜ --%>
-    <A href='./create.do<%-- ?${gurumeVO.gu_no} --%>'>등록</A>｜
-    <A href="javascript:location.reload();">새로고침</A>
-    </div>
-  <DIV class='content'>
-    <FORM name='form_group' method="get" action='./update.do'>
-      <input type="hidden" name="sc_no" value="${seicoVO.sc_no}">
-      <%-- <input type="hidden" name="divisionno" value="${boardVO.divisionno}"> --%>
-      <fieldset class="fieldset">
-        <ul>
-         <li>
-            <label for='sc_area' style="width:150px;">지역 : </label>
-            <span>${seicoVO.sc_area}</span><br>
-          </li>
-          <li>
-            <label for='sc_jobs' style="width:150px;">분류 : </label>
-            <span>${seicoVO.sc_jobs}</span><br>
-          </li>
-          <li>
-            <label for='sc_title' style="width:150px;">제목 : </label>
-            <span>${seicoVO.sc_title}</span><br>
-          </li>
-          <li>
-            <label for='sc_name' style="width:150px;">닉네임 : </label>
-            <span>${seicoVO.sc_name}</span><br>
-          </li>
-            <li>
-            <label for='sc_cont' style="width:150px;">내용</label><br>
-          <TEXTAREA name='sc_cont' id='sc_cont' rows='10' cols='70'readonly="readonly">
-                  ${seicoVO.sc_cont}
-          </TEXTAREA>
-         <%--  <li>
-            <label for='sc_title' class="form_group" style="width:150px;">제목 : </label>
-            <span>${seicoVO.sc_title}</span><br>
-          </li>
-          <li>
-            <label for='sc_cont' class="form_group" style="width:150px;">내용 : </label>
-            <div>${seicoVO.sc_cont}</div>
-          </li> --%>
-     <%--      <li>
-            <label for="good" class="form_group" style="width:150px;">추천 수 : </label>
-            <span>${boardVO.good}</span>
-          </li> --%>
-          <li>
-            <label for="sc_date" class="form_group" style="width:150px;">등록일 : </label>
-            <span>${seicoVO.sc_date.substring(0, 16)}</span>
-          </li>
-          <li>
-            <label for="file1" class="form_group" style="width:150px;">
-            업로드 파일: 
-            <c:if test="${seicoVO.size2 > 0}">
-              <A href='${pageContext.request.contextPath}/download?dir=/seico/storage&filename=${seicoVO.file2}'>${seicoVO.file2}</A>  (${seicoVO.size2Label})
-            </c:if>
-            </label>
-            <div>
-              <c:set var='file2' value="${fn:toLowerCase(seicoVO.file2)}" />
-              <c:choose>
-                <c:when test="${fn:endsWith(file2, '.jpg')}">
-                  <IMG id='file2' src='./storage/${seicoVO.file1}' onload="customize(this);">
-                </c:when>
-                <c:when test="${fn:endsWith(file2, '.gif')}">
-                  <IMG id='file2'  src='./storage/${seicoVO.file1}' onload="customize(this);">
-                </c:when>
-                <c:when test="${fn:endsWith(file2, '.png')}">
-                  <IMG id='file2'  src='./storage/${seicoVO.file1}' onload="customize(this);">
-                </c:when>
-              </c:choose>
+<section class="wrapper">
+    <section class="page_head">
+        <div class="container">
+             <div class="row">
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+                        <nav id="breadcrumbs">
+                            <ul>
+                                <li><a href="../index.jsp">Home</a>/</li>
+                                <li><A href='./list.do'>목록</A></li>   
+                                <i class="fa fa-arrow-circle-right"> 취업성공 후기 게시판 </i>
+                            </ul> 
+                        </nav>
+                    </div>
+                </div>
             </div>
-          </li>
-   <%--        <li>
-            <label for="replycnt" class="form_grp" style="width:150px;">댓글수 : </label>
-            <span>${boardVO.replycnt}</span>
-          </li> --%>
-  <%--         <li>
-            <label for="" class='form_grp' style="width:150px;">블로그 카테고리 번호 : </label>
-            <span>${boardVO.divisionno}</span>
-          </li> --%>
-          <li class='right'>
-           <%--  <button type="button" onclick="location.href='./reply.do?boardno=${seicoVO.sc_no }&divisionno=${seicoVO.divisionno}&col=${searchDTO.col}&word=${searchDTO.word}'">답변</button> --%>
-            <button type="button" onclick="location.href='./list.do?sc_no=${seicoVO} &col=${searchDTO.col}&word=${searchDTO.word} --%>'">목록보기</button>
-            <button type="button" onclick="location.href='./update.do?sc_no=${seicoVO.sc_no} &col=${searchDTO.col}&word=${searchDTO.word}' --%>">수정</button> 
-            <button type="button" onclick="location.href='./delete.do?sc_no=${seicoVO.sc_no}'">삭제</button>
-          </li>
-        </ul>
-      </fieldset>
-    </FORM>
-  </DIV>
- 
-<!-- -------------------------------------------- -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
-</div>
+</section>
+</section>
+
+<section class="content blog">
+<div class="container">
+ <div class="row">
+   <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+    <div class="blog_single">
+            <article class="post">
+              <div class="post_date">
+                <span class="day">${fn:substring(seicoVO.sc_date, 8, 10)}</span> 
+                <span class="month">${fn:substring(seicoVO.sc_date, 5, 7)}월</span>
+              </div>
+              <div class="post_content">
+                <div class="post_meta">
+                  <h2><a href="#">${seicoVO.sc_title}</a></h2>
+                  <div class="metaInfo">
+                    <span><a>${fn:substring(seicoVO.sc_date, 0, 10)}</a></span> 
+                    <span>지역 <a>${seicoVO.sc_area}</a></span><br>
+                    <span>By <a>${seicoVO.sc_gender}</a></span>
+                    <span>면접경험 <a>${seicoVO.sc_ex}</a></span>
+                    <span>취업지원직종 IT> <a>${seicoVO.sc_jobs}</a></span>
+                    <span>직급 및 직무 <a>${seicoVO.sc_position}</a></span><br><br>
+                    <span>취업과정 <br><a>${seicoVO.sc_cont}</a></span>
+                  </div>
+                </div>
+                <p>면접질문<p><blockquote class="default">${seicoVO.sc_q}</blockquote>
+                <p>면접 팁 <br><br> ${seicoVO.sc_tip}</p>
+
+                <!-- <p>Donec in ut odio libero, at vulputate urna. Nulla
+                  tristique mi a massa convallis cursus. Nulla eu mi
+                  magna. Etiam suscipit commodo gravida. Cras suscipit,
+                  quam vitae adipiscing faucibus, risus nibh laoreet
+                  odio, a porttitor metus eros ut enim. Morbi augue
+                  velit, tempus mattis dignissim nec, porta sed risus.
+                  Donec eget magna eu lorem tristique pellentesque eget
+                  eu duiport titor metus eros ut enim.</p> -->
+              </div>
+            </article>
+          </div>
+        </div>
+
+  <!--Sidebar Widget-->
+  <div class="col-xs-12 col-md-4 col-lg-4 col-sm-4">
+    <div class="sidebar">
+      <div class="widget widget_categories">
+      
+        <div class="metaInfo" style='padding: 50px 0 50px 0;'>
+                <span>면접난이도 <a>${seicoVO.sc_stars}</a></span><br><br>
+                <span>취업경로 <a>${seicoVO.sc_where}</a></span><br><br>
+        </div>
+      
+        <div class="widget_title">
+          <h4><span>Categories</span></h4>
+        </div>
+          <ul class="arrows_list list_style">
+            <li><a href="#"> 솔데스크(10)</a></li>
+            <li><a href="#"> 보안코딩()</a></li>
+            <li><a href="#"> 매우힘듬()</a></li>
+            <li><a href="#"> 성공후기를 볼까요()</a></li>
+            <li><a href="#"> 공지사항으로 가볼까요()</a></li>
+            <li><a href="#"> 기업정보를 봅니다()</a></li>
+          </ul>
+        </div>
+       </div>
+      </div>
+      </div>
+<div class="col-xs-12 col-md-10 col-lg-5" style='position: relative; left: 20%;'>
+   <div style='position: relative; left: 72%;'>  
+     <jsp:include page="update.jsp" flush='false' />
+   </div>  
+   <div style='position: relative; left: 80%;'>   
+      <button type="button" class="btn btn-primary" onclick="location.href='./delete.do?if_no=${ifVO.if_no}'">삭제</button>
+      <button type="button" class="btn btn-default" onclick="location.href='./list.do?if_no=${ifVO.if_no }'">목록보기</button>        
+   </div>
+   </div>
+   </div></section>
 </body>
+
+<!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>  
 <!-- -------------------------------------------- -->
 </html> 

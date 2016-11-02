@@ -7,7 +7,14 @@ public class SeicoVO {
   private String sc_area;
   private String sc_jobs;
   private String sc_title;
+  private String sc_gender;
+  private String sc_position;
+  private String sc_q;
+  private String sc_tip;
+  private String sc_stars;
+  private String sc_where;
   private String sc_name;
+  private String sc_ex;
   private String sc_cont;
   private String sc_like;
   private String sc_date;
@@ -15,17 +22,20 @@ public class SeicoVO {
   private String file2;
   private int sc_cnt;
   private long size2;
-
-  
   
   /** Framework에서 자동 주입되는 업로드 파일 객체, 실제 컬럼은 존재하지 않음. */  
   private MultipartFile file2MF;
   
   /** size2의 컴마 저장 출력용 변수 */
   private String size2Label;
+  
+  public String getSc_ex() {
+    return sc_ex;
+  }
 
- 
-
+  public void setSc_ex(String sc_ex) {
+    this.sc_ex = sc_ex;
+  }
   
   public int getSc_cnt() {
     return sc_cnt;
@@ -99,7 +109,58 @@ public class SeicoVO {
   }
 
   public String getFile1() {
+    if(file1 == null) {
+      file1 = "";
+    }
     return file1;
+  }
+
+  public String getSc_gender() {
+    return sc_gender;
+  }
+
+  public void setSc_gender(String sc_gender) {
+    this.sc_gender = sc_gender;
+  }
+
+  public String getSc_position() {
+    return sc_position;
+  }
+
+  public void setSc_position(String sc_position) {
+    this.sc_position = sc_position;
+  }
+
+  public String getSc_q() {
+    return sc_q;
+  }
+
+  public void setSc_q(String sc_q) {
+    this.sc_q = sc_q;
+  }
+
+  public String getSc_tip() {
+    return sc_tip;
+  }
+
+  public void setSc_tip(String sc_tip) {
+    this.sc_tip = sc_tip;
+  }
+
+  public String getSc_stars() {
+    return sc_stars;
+  }
+
+  public void setSc_stars(String sc_stars) {
+    this.sc_stars = sc_stars;
+  }
+
+  public String getSc_where() {
+    return sc_where;
+  }
+
+  public void setSc_where(String sc_where) {
+    this.sc_where = sc_where;
   }
 
   public void setFile1(String file1) {
@@ -107,6 +168,9 @@ public class SeicoVO {
   }
 
   public String getFile2() {
+    if(file2==null) {
+      file2 = "";
+    }
     return file2;
   }
 
@@ -138,8 +202,4 @@ public class SeicoVO {
   public void setSize2Label(String size2Label) {
     this.size2Label = size2Label;
   }
-
- 
- 
-   
 }

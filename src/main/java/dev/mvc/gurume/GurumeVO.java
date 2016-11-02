@@ -36,6 +36,8 @@ public class GurumeVO {
   private int gu_no;
   private String gu_area;
   private String gu_menu;
+  private String gu_price;
+
   private String gu_title;
   private String gu_name;
   private String gu_cont;
@@ -147,6 +149,12 @@ public class GurumeVO {
   }
   public void setGu_no(int gu_no) {
     this.gu_no = gu_no;
+  }
+  public String getGu_price() {
+    return gu_price;
+  }
+  public void setGu_price(String gu_price) {
+    this.gu_price = gu_price;
   }
 
   }

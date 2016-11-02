@@ -46,6 +46,10 @@
       <input type="hidden" name="gu_no" value="${gurumeVO.gu_no}">
       <fieldset class="fieldset">
         <ul>
+           <li>
+            <label for='gu_title' style="width:150px;">제목 : </label>
+            <span>${gurumeVO.gu_title}</span><br>
+          </li>
           <li>
             <label for='gu_area' style="width:150px;">지역 : </label>
             <span>${gurumeVO.gu_area}</span><br>
@@ -55,9 +59,10 @@
             <span>${gurumeVO.gu_menu}</span><br>
           </li>
           <li>
-            <label for='gu_title' style="width:150px;">제목 : </label>
-            <span>${gurumeVO.gu_title}</span><br>
+            <label for='gu_price' style="width:150px;">가격대 : </label>
+            <span>${gurumeVO.gu_price}</span><br>
           </li>
+       
           <li>
             <label for='gu_name' style="width:150px;">닉네임 : </label>
             <span>${gurumeVO.gu_name}</span><br>
@@ -103,6 +108,9 @@
         <label for='content'>약도: </label>
         ${gurumeVO.gu_map}
       </li>   
+      
+      <li>
+      </li>
          <%--  <li>
             <label for="replycnt" style="width:150px;">댓글수 : </label>
             <span>${blogVO.replycnt}</span>
@@ -116,13 +124,16 @@
             <button type="button" onclick="location.href='./list4.do?gu_no=<%-- ?divisionno=${boardVO.divisionno} --%>&col=${searchDTO.col}&word=${searchDTO.word}'">목록보기</button>
             <button type="button" onclick="location.href='./update.do?gu_no=${gurumeVO.gu_no}&col=${searchDTO.col}&word=${searchDTO.word}'">수정</button>
             <button type="button" onclick="location.href='./delete.do?gu_no=${gurumeVO.gu_no}'">삭제</button>
+            <%-- <button type="button" onclick="location.href='./read.do?gu_no=${gurumeVO}"'>좋아요</button> --%>
           </li>
         </ul>
       </fieldset>
     </FORM>
   </DIV>
 
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
+  <div style= 'margin: 100px 0 0 0;  position: relative;'>      
+<jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>
   </div>
 </body>
 

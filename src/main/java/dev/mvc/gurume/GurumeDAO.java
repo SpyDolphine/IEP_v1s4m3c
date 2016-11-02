@@ -51,8 +51,6 @@ public class GurumeDAO implements GurumeDAOInter{
 
   @Override
   public List<GurumeVO> list4(HashMap Map) {
-    System.out.println("col: "+ Map.get("col"));
-    System.out.println("word: "+ Map.get("word"));
     return mybatis.selectList("gurume.list4", Map);
   }
 
