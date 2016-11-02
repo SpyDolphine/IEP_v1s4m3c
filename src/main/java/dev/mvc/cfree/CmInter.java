@@ -53,20 +53,18 @@ public interface CmInter {
   public List<CmVO> list(HashMap Map);
 
   /**
-   * 좋아요 
-   * <update id="likeup" parameterType="CmVO">
-   * @param gfreeVO
+   * 추천 기능
+   * @param cm_no
    * @return
    */
   public int likeup(int cm_no); 
   
   /**
-   * 좋아요 
-   * <update id="likedown" parameterType="CmVO">
-   * @param gfreeVO
+   * 비추천 기능
+   * @param cm_no
    * @return
    */
-  public int likedown(CmVO cmVO); 
+  public int likedown(int cm_no); 
   
   /**
    * 좋아요 

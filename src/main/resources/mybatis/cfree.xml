@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     where cm_no = #{cm_no}
   </update>  
 
-  <update id='likedown' parameterType="CmVO">
+  <update id='likedown' parameterType="int">
     update commu_free
     set likedown = likedown + 1
     where cm_no = #{cm_no}

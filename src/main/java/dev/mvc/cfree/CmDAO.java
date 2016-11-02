@@ -54,13 +54,12 @@ public class CmDAO implements CmInter{
   }
 
   @Override
-  public int likedown(CmVO cmVO) {
-    return mybatis.update("cfree.likedown", cmVO);
+  public int likedown(int cm_no) {
+    return mybatis.update("cfree.likedown", cm_no);
   }
 
   @Override
   public int heart(CmVO cmVO) {
     return mybatis.update("cfree.heart", cmVO);
   }
- 
 }

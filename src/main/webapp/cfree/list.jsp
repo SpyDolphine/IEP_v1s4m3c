@@ -10,41 +10,34 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+<script type="text/JavaScript"
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-$(function(){
-  $("#likeup").click(function(){
-      $.ajax({
-        type: 'get',
-        url : "<c:url value='./likeup.do'/>",
-        data : {
-          sampleInput : "<c:out value='${cm_no}'/>"
-        },
-        success : function(data, textStatus, jqXHR) {
-          //Sucess시, 처리
-        }, 
-        error : function(jqXHR, textStatus, errorThrown){
-          //Error시, 처리
-        }
-      });
-  });    
-});
+ // 추천
+ function likeup(cm_no){ // 응답 처리 함수
+    var params = 'cm_no=' + cm_no;
+    $.get('./likeup.do', params, likeup_res, 'json');
+    alert('성공' + cm_no);
+ }
+ 
+ function likeup_res(data){ // 응답 처리 함수
+   //alert('로그인이 필요합니다');
+   //return false;
+   $('#test_like' + data.cm_no).html(data.likeup);  
+ }
+ 
+ // 비추천
+ function likedown(cm_no){ // 응답 처리 함수
+   var params = 'cm_no=' + cm_no;
+   $.get('./likedown.do', params, likedown_res, 'json');
+   alert('성공' + cm_no);
+ }
 
-
-
-$(function(){
-  $("#likeup").click(function(){
-      $.ajax({
-              type: 'get'
-            , url: './likeup.do'
-            , data : 'cm_no'     
-            , dataType : 'html'
-            , success: function(data) {
-              $("#likeup").html(data);
-              }
-      }); 
-  })    
-})
+ function likedown_res(data){ // 응답 처리 함수
+   $('#test_unlike' + data.cm_no).html(data.likedown);  
+ }
+ 
     
 </script>
 
@@ -76,7 +69,7 @@ $(function(){
           <input type="hidden" name="cm_no" value="0"> 
           <input type="hidden" name="cm_nick" value="nick"> <!-- 임시값 -->
                 <div class="span3 offset1">
-                  <label for='cm_nick'><i class="fa fa-leaf"> nick</i></label> 
+                  <label for='cm_nick'><i class="fa fa-leaf"> nick </i></label> 
                 </div>
                 <div class="span3 offset2">                  
                   <input type="text" class="form-control" name='cm_title' id='cm_title' placeholder='제목을 입력하세요' required="required">
@@ -117,10 +110,10 @@ $(function(){
         <a href='#' onclick="alert('로그인이 필요합니다'); return false;" class="btn btn-primary btn-xs btn-alt">
         <i class="fa fa-comments-o"></i> 댓글</a>
      
-        <button id="likeup" class="btn btn-default btn-xs btn-alt">
-        <i class="fa fa-thumbs-o-up" style="color:red;"></i> 추천(${cmVO.likeup })</button>
-        <button id="likedown" class="btn btn-default btn-xs btn-alt" onclick="location.href='./likedown.do?cm_no=${cmVO.cm_no }'">
-        <i class="fa fa-thumbs-o-down" style="color:blue;"></i> 비추천(${cmVO.likedown })</button>
+        <button id="likeup" onclick="likeup(${cmVO.cm_no})" class="btn btn-default btn-xs btn-alt"> 
+        <i class="fa fa-thumbs-o-up" style="color:red;"></i> 추천(<SPAN id='test_like${cmVO.cm_no }'>${cmVO.likeup}</SPAN>)</button>
+        <button id="likedown" onclick="likedown(${cmVO.cm_no})" class="btn btn-default btn-xs btn-alt" >
+        <i class="fa fa-thumbs-o-down" style="color:blue;"></i> 비추천(<SPAN id='test_unlike${cmVO.cm_no }'>${cmVO.likedown}</SPAN>)</button>
         
       </div>
       <div style='clear: both;'></div>

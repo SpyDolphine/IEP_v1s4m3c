@@ -7,12 +7,15 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondition;
 
 import web.tool.*;
 
@@ -175,31 +178,38 @@ public class CmCont {
   /**
    * 추천 처리
    */
-  @RequestMapping(value = "/cfree/likeup.do", method = RequestMethod.GET)
-  public ModelAndView likeup(int cm_no) {
+  @ResponseBody
+  @RequestMapping(value = "/cfree/likeup.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+  public String likeup(int cm_no) {
     ModelAndView mav = new ModelAndView();
-
+    mav.addObject("cm_no", cmDAO.read(cm_no));
     
-    if (cmDAO.likeup(cm_no) == 1) {
-      mav.setViewName("redirect:/cfree/list.do");
-    } else {
-      
-    }
-  return mav;
-}
+    int cnt = cmDAO.likeup(cm_no); //필수템!@@!!!! 
+    int likeup = cmDAO.read(cm_no).getLikeup();
+  
+    JSONObject obj = new JSONObject();
+    obj.put("likeup", likeup);
+    obj.put("cm_no", cm_no);
+    
+    return obj.toJSONString();
+  }
   
   /**
    * 비추천 처리
    */
-  @RequestMapping(value = "/cfree/likedown.do", method = RequestMethod.GET)
-  public ModelAndView likedown(CmVO cmVO) {
+  @ResponseBody
+  @RequestMapping(value = "/cfree/likedown.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+  public String likedown(int cm_no) {
     ModelAndView mav = new ModelAndView();
+    mav.addObject("cm_no", cmDAO.read(cm_no));
+    
+    int cnt = cmDAO.likedown(cm_no);
+    int likedown = cmDAO.read(cm_no).getLikedown();
 
-    if (cmDAO.likedown(cmVO) == 1) {
-      mav.setViewName("redirect:/cfree/list.do");
-    } else {
-      
-    }
-  return mav;
-}
+    JSONObject obj = new JSONObject();
+    obj.put("likedown", likedown);
+    obj.put("cm_no", cm_no);
+    
+    return obj.toJSONString();
+  }
 }

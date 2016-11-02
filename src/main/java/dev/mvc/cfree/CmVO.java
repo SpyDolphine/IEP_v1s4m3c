@@ -7,8 +7,8 @@ public class CmVO {
      cm_nick      varchar2(30)     not null,    -- 닉네임
      cm_title     varchar2(120)    not null,    -- 게시글 제목
      cm_content   varchar2(4000)   not null,    -- 글 내용
-     cm_likeit    NUMBER(7)        default 0,   -- 추천                  
-     cm_unlike    NUMBER(7)        default 0,   -- 비추천 
+     likeup       NUMBER(7)        default 0,   -- 추천                  
+     likedown     NUMBER(7)        default 0,   -- 비추천 
      heart        NUMBER(7)        default 0,   -- 좋아요     
      cm_rdate     DATE             not null,    -- 등록날짜
      PRIMARY KEY(cm_no)
@@ -27,25 +27,6 @@ public class CmVO {
   private int likeup;
   /** 비추천 */
   private int likedown;
-  
-  public int getLikeup() {
-    return likeup;
-  }
-  public void setLikeup(int likeup) {
-    this.likeup = likeup;
-  }
-  public int getLikedown() {
-    return likedown;
-  }
-  public void setLikedown(int likedown) {
-    this.likedown = likedown;
-  }
-  public int getHeart() {
-    return heart;
-  }
-  public void setHeart(int heart) {
-    this.heart = heart;
-  }
   /** 좋아요 */
   private int heart;
   /** 등록날짜 */
@@ -82,6 +63,23 @@ public class CmVO {
   public void setCm_rdate(String cm_rdate) {
     this.cm_rdate = cm_rdate;
   }
-  
+  public int getLikeup() {
+    return likeup;
+  }
+  public void setLikeup(int likeup) {
+    this.likeup = likeup;
+  }
+  public int getLikedown() {
+    return likedown;
+  }
+  public void setLikedown(int likedown) {
+    this.likedown = likedown;
+  }
+  public int getHeart() {
+    return heart;
+  }
+  public void setHeart(int heart) {
+    this.heart = heart;
+  }  
   
 }
