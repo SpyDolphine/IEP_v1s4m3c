@@ -45,7 +45,7 @@ public class SeicoCont {
                              HttpSession session ) {
     System.out.println("--> create() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/seico/message"); // /webapp/member/message.jsp
+    mav.setViewName("/message"); // /webapp/member/message.jsp
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();

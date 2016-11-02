@@ -41,7 +41,7 @@ public class GurumeCont {
                                                HttpSession session) {
     // System.out.println("--> crte() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/gurume/message"); //상으니 메시지 사용시 기존 메시지파일 삭제하고 콘트 /gurume 부분 삭제 후 /message 파일사용
+    mav.setViewName("/message"); //상으니 메시지 사용시 기존 메시지파일 삭제하고 콘트 /gurume 부분 삭제 후 /message 파일사용
     System.out.println("created");
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -254,7 +254,7 @@ public class GurumeCont {
                              method = RequestMethod.POST)
   public ModelAndView delete2(int gu_no) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/gurume/message");
+    mav.setViewName("/message");
     /*System.out.println(gurumeVO.getDivisionno());*/
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
