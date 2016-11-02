@@ -1,8 +1,6 @@
 package dev.mvc.notice;
  
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import dev.mvc.servey.ServeyVO;
 import web.tool.Paging;
 import web.tool.SearchDTO;
 import web.tool.Tool;
@@ -99,7 +96,7 @@ public class NoticeCont {
     totalRecord = noticeDAO.count(hashMap);
     mav.addObject("totalRecord", noticeDAO.count(hashMap)); // 검색된 레코드 갯수
  
-    String paging = new Paging5().paging5(totalRecord, 
+    String paging = new Paging().paging5(totalRecord, 
                                                           searchDTO.getNowPage(), 
                                                           recordPerPage, 
                                                           searchDTO.getCol(), 
