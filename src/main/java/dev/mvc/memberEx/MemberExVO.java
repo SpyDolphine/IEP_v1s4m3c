@@ -12,6 +12,7 @@ public class MemberExVO {
   private String me_addr2;
   private String me_tel;
   private String me_date;
+  private String me_vis;
   
   /** 등록된 패스워드 */
   private String old_passwd;
@@ -111,4 +112,11 @@ public class MemberExVO {
   public void setUrl_address(String url_address) {
     this.url_address = url_address;
   }
+  public String getMe_vis() {
+    return me_vis;
+  }
+  public void setMe_vis(String me_vis) {
+    this.me_vis = me_vis;
+  }
+  
 }

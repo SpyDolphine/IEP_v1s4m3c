@@ -9,14 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 회원가입 등록 -->
   <insert id="create" parameterType="MemberExVO">
     INSERT INTO IEP_MEMBER(me_no, me_id, me_pw, me_nick, me_name, me_grade, me_zipcode,
-    me_addr1, me_addr2, me_tel, me_date, me_visible)
+    me_addr1, me_addr2, me_tel, me_date, me_vis)
     VALUES ((SELECT NVL(MAX(me_no), 0)+1 as me_no FROM IEP_MEMBER),
     #{me_id}, #{me_pw}, #{me_nick}, #{me_name}, 'M', #{me_zipcode}, #{me_addr1},
     #{me_addr2}, #{me_tel}, sysdate, 1)
   </insert>
   <insert id="create_com" parameterType="MemberExVO">
     INSERT INTO IEP_MEMBER(me_no, me_id, me_pw, me_nick, me_name, me_grade, me_zipcode,
-    me_addr1, me_addr2, me_tel, me_date, me_visible)
+    me_addr1, me_addr2, me_tel, me_date, me_vis)
     VALUES ((SELECT NVL(MAX(me_no), 0)+1 as me_no FROM IEP_MEMBER),
     #{me_id}, #{me_pw}, #{me_nick}, #{me_name}, 'C', #{me_zipcode}, #{me_addr1},
     #{me_addr2}, #{me_tel}, sysdate, 1)
@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 회원정보 확인 -->
   <select id="read" resultType="MemberExVO" parameterType="int">
     SELECT
-    me_no, me_id, me_nick, me_name, me_tel, me_zipcode, me_addr1, me_addr2, me_date
+    me_no, me_id, me_nick, me_name, me_tel, me_zipcode, me_addr1, me_addr2, me_date, me_vis
     FROM
     iep_member
     WHERE me_no = #{me_no}
@@ -73,24 +73,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   <!-- 회원 목록 -->
  <select id="memberlist"   resultType="MemberExVO">
-    select me_no, me_id, me_nick, me_addr1, me_tel, me_date, me_grade
+    select me_no, me_id, me_nick,me_name, me_addr1, me_tel, me_date, me_grade, me_vis
     from IEP_MEMBER
   </select>
   
   <!-- 회원 탈퇴 -->
   <update id="memberout" parameterType="MemberExVO">
   update iep_member
-  set me_visible = 2
-  where me_no={me_no};
+  set me_vis = #{me_vis}
+  where me_no=#{me_no}
   </update>
   <!-- 회원 복구 -->
   <update id="memberin" parameterType="MemberExVO">
   update iep_member
-  set me_visible = 1
-  where me_no={me_no};
+  set me_vis =  #{me_vis}
+  where me_no=#{me_no}
   </update>
   <!-- 비밀번호 체크 --> 
-    <select id="passwdCheck" resultType="int" parameterType="Map">
+<select id="passwdCheck" resultType="int" parameterType="Map">
     SELECT COUNT(me_no) as cnt
     FROM iep_member
     WHERE me_no=#{me_no} AND me_pw=#{me_pw}

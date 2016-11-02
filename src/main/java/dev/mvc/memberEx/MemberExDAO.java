@@ -61,7 +61,7 @@ public class MemberExDAO implements MemberExDAOInter {
   }
   @Override
   public int memberin(MemberExVO memberExVO){
-    return mybatis.update("memberex.memberout", memberExVO);
+    return mybatis.update("memberex.memberin", memberExVO);
   }
   @Override
   public List<MemberExVO> memberlist(){

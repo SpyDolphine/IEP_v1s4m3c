@@ -122,7 +122,9 @@ public class MemberExCont {
    * @return
    */
   @ResponseBody
-  @RequestMapping(value = "/memberex/checkNick.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+  @RequestMapping(value = "/memberex/checkNick.do", 
+                            method = RequestMethod.POST, 
+                            produces = "text/plain;charset=UTF-8")
   public String checkNick(String me_nick) {
 
     JSONObject obj = new JSONObject();
@@ -273,14 +275,14 @@ public class MemberExCont {
 
     if (memberExDAO.update(memberExVO) == 1) {
       msgs.add("회원정보가 수정되었습니다.");
-      links.add("<button type='button' onclick=\"location.href='./read.do?mno=" + memberExVO.getMe_no()
+      links.add("<button type='button' onclick=\"location.href='./read.do?me_no=" + memberExVO.getMe_no()
           + "'\">변경된 회원정보 확인</button>");
-      links.add("<button type='button' onclick=\"location.href='./index.do'\">홈페이지</button>");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
     } else {
       msgs.add("회원 정보 변경에 실패했습니다.");
       msgs.add("죄송하지만 다시한번 시도해주세요.");
       links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./index.do'\">홈페이지</button>");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
     }
 
     links.add("<button type='button' onclick=\"location.href='./index.jsp'\">목록</button>");
@@ -310,33 +312,65 @@ public class MemberExCont {
     return mav;
   }
 @RequestMapping(value = "/memberex/memberout.do", method = RequestMethod.GET)
-public ModelAndView memberout(MemberExVO memberExVO, HttpSession httpSession, HttpServletRequest request){
+public ModelAndView memberout(MemberExVO memberExVO){
   ModelAndView mav = new ModelAndView();
   mav.setViewName("/memberex/memberout");
   return mav;
   
 }
   @RequestMapping(value = "/memberex/memberout.do", method = RequestMethod.POST)
-  public ModelAndView memberout(MemberExVO memberExVO) {
+  public ModelAndView memberout(MemberExVO memberExVO, HttpSession session, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/memberex/message");
-
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
-
+    
     if (memberExDAO.memberout(memberExVO) == 1) {
       msgs.add("회원 탈퇴가 완료 되었습니다.");
-      links.add("<button type='button' onclick=\"location.href='./index.do'\">홈페이지</button>");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
+      session.invalidate(); // session 변수 삭제
     } else {
-      msgs.add("출력 순서 변경에 실패했습니다.");
+      msgs.add("회원탈퇴를 실패했습니다.");
       msgs.add("죄송하지만 다시한번 시도해주세요.");
       links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
       links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
-
-      mav.addObject("msgs", msgs);
-      mav.addObject("links", links);
+     
     }
+  
+    mav.addObject("msgs", msgs);
+    mav.addObject("links", links);
+    
+    return mav;
+  }
+  @RequestMapping(value = "/memberex/memberin.do", method = RequestMethod.GET)
+  public ModelAndView memberin(MemberExVO memberExVO){
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/memberex/memberin");
+    return mav;
+    
+  }
+  @RequestMapping(value = "/memberex/memberin.do", method = RequestMethod.POST)
+  public ModelAndView memberin(MemberExVO memberExVO, HttpServletRequest request) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/memberex/message");
+    ArrayList<String> msgs = new ArrayList<String>();
+    ArrayList<String> links = new ArrayList<String>();
+    
+    if (memberExDAO.memberin(memberExVO) == 1) {
+      msgs.add("회원 복귀가 완료 되었습니다.");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
+    } else {
+      msgs.add("회원 복귀가 실패했습니다.");
+      msgs.add("죄송하지만 다시한번 시도해주세요.");
+      links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
+      links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
+      System.out.println(memberExDAO.memberout(memberExVO));   
+     
+    }
+    mav.addObject("msgs", msgs);
+    mav.addObject("links", links);
     return mav;
   }
   @RequestMapping(value = "/memberex/memberlist.do", method = RequestMethod.GET)
@@ -376,22 +410,13 @@ public ModelAndView memberout(MemberExVO memberExVO, HttpSession httpSession, Ht
         msgs.add("패스워드 변경에 실패했습니다.");
         msgs.add("죄송하지만 다시한번 시도해주세요.");
         links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-        links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
-      }
-    }else{
-      msgs.add("현재 패스워드가 일치하지않습니다.");
-      msgs.add("죄송하지만 다시한번 시도해주세요.");
-      links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
- 
-    }
- 
+        links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
+      } 
     links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
- 
+     }
     mav.addObject("msgs", msgs);
     mav.addObject("links", links);
- 
+    
     return mav;
   }
-
 }

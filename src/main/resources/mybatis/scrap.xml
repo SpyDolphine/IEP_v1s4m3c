@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="scrap">
+<insert id="create" parameterType="ScrapVO">
+insert into scrap
+(sp_no, me_no, me_id,  me_nick, sp_title, sp_content, sp_date, ct_no)
+values((SELECT NVL(MAX(sp_no), 0)+1 as sp_no FROM scrap),
+ #{me_no}, #{me_id},  #{me_nick}, #{sp_title}, #{sp_content}, sysdate, #{ct_no})
+ </insert>
+ <select id="list" resultType="ScrapVO" parameterType="int">
+ select sp_no, sp_title, sp_content, sp_date
+from scrap
+where me_no=#{me_no}
+ </select>
+<delete id="delete"  parameterType="int">
+DELETE FROM scrap
+WHERE sp_no=#{sp_no} 
+</delete>
+</mapper>

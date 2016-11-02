@@ -42,17 +42,17 @@ public interface MemberExDAOInter {
    */
   public MemberExVO memberInfo(String me_id);
   /**
-   * 회원을 탈퇴 할경우 vis***가 2로 변환
+   * 회원을 탈퇴 할경우 vis***가 N로 변환
    * @param memberExVO
    * @return
    */
   public int memberout(MemberExVO memberExVO);
   /**
-   * 회원을 탈퇴 취소(복귀) 할경우 vis***가 1로 변환
+   * 회원을 탈퇴 취소(복귀) 할경우 vis***가 'y'로 변환
    * @param memberExVO
    * @return
    */
-  public int memberin(MemberExVO memberExVO);
+  public int memberin(MemberExVO  memberExVO);
   /**
    * 회원을 검색하지 않는 목록
    */
@@ -72,4 +72,7 @@ public interface MemberExDAOInter {
   * @return 변경된 레코드의 갯수
   */
  public int update_passwd(int me_no, String me_pw);
+ /**
+  * 회원 탈퇴
+  */
 }
