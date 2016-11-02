@@ -13,7 +13,7 @@ CREATE TABLE IEP_MEMBER(
     me_vis          char(1)       default 'y'   not null, --  È¸¿ø Å»Åð¿©ºÎ
     primary key(me_no)
 );
-
+drop table IEP_MEMBER
 select * from IEP_MEMBER
 
 update IEP_MEMBER
@@ -21,4 +21,8 @@ update IEP_MEMBER
 
   update iep_member
   set me_vis = 'y'
+  where me_no=1
+
+  update iep_member
+  set me_grade = 'A'
   where me_no=1

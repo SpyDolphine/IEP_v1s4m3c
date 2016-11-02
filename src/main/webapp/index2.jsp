@@ -41,9 +41,9 @@ function open_win(){
       <a class='menu_link' href='./memberex/memberlist.do'>회원 목록</a> |
      </c:if>
       <a class='menu_link' href='./memberex/read.do?me_no=${sessionScope.me_no }'>회원관리 수정</a> |
-      <a class='menu_link' href = '<%=root %>/board/list.do'>게시판</a>|
-      <a class='menu_link' href = '<%=root %>/scrap/sp_list.do'>스크랩 함</a>|
-      <a class='menu_link' href = '<%=root %>/calender/cl_list.do'>일정</a>|
+      <a class='menu_link' href = '<%=root %>/contest/list.do'>공모전</a>|
+      <a class='menu_link' href = '<%=root %>/scrap/list.do?me_no=${sessionScope.me_no }'>스크랩 함</a>|
+      <a class='menu_link' href = '<%=root %>/calender/calandermode.jsp'>일정</a>|
   </c:if>
 
  

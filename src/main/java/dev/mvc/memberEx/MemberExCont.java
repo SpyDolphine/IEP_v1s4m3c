@@ -308,7 +308,7 @@ public class MemberExCont {
   public ModelAndView memberInfo(MemberExVO memberExVO, HttpSession session, HttpServletRequest request, String me_id) {
     System.out.println("--> 사용자 접속: " + request.getRemoteAddr());
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/index"); // /webapp/index.jsp
+    mav.setViewName("/index2"); // /webapp/index.jsp
     return mav;
   }
 @RequestMapping(value = "/memberex/memberout.do", method = RequestMethod.GET)
