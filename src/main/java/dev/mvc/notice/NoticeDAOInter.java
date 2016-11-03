@@ -20,6 +20,13 @@ public interface NoticeDAOInter {
   public List<NoticeVO> list(HashMap Map);
   
   /**
+   * 공지사항 목록
+   * <select id="list" resultType="NoticeVO" resultType="HashMap">
+   * @return 회원 목록
+   */
+  public List<NoticeVO> Nlist();
+  
+  /**
    * Code를 수정합니다.
    * <update id="update" parameterType="CodeVO"> 
    * @param codeVO

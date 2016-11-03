@@ -38,6 +38,10 @@
         <fieldset>
           <ul>
             <li>
+              <label class='label' for='content'>공지사항 여부</label>
+              <input type='checkbox' name='nt_nt' value="Y">
+            </li>
+            <li>
               <label class='label' for='nt_title'>제목</label>
               <input type='text' name='nt_title' value='제목' required="required">
             </li>

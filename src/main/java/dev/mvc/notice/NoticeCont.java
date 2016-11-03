@@ -90,7 +90,9 @@ public class NoticeCont {
       vo.setNt_title(Tool.textLength(vo.getNt_title(), 10));
       vo.setNt_date(vo.getNt_date().substring(0, 10));
     }
+    List<NoticeVO> Nlist = noticeDAO.Nlist();
     mav.addObject("list", list);
+    mav.addObject("Nlist", Nlist);
     mav.addObject("root", request.getContextPath());
     
     totalRecord = noticeDAO.count(hashMap);

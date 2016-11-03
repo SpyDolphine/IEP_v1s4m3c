@@ -4,7 +4,7 @@ public class NoticeVO {
   /*
     CREATE TABLE notice ( -- 공지사항 테이블
       nt_no       NUMBER(7)      NOT NULL, -- 글 번호
-      me_no       NUMBER(7)      ,         -- 회원번호
+      me_no       NUMBER(7)      not null,         -- 회원번호
       nt_title    VARCHAR2(120)  NOT NULL, -- 제목
       nt_content  VARCHAR2(4000) NOT NULL, -- 내용
       nt_date       DATE         NOT NULL, -- 등록시간    
@@ -15,6 +15,7 @@ public class NoticeVO {
   private int nt_no;
   private int me_no;
   private String nt_title;
+  private char nt_nt;
   private String nt_content;
   private String nt_date;
   
@@ -47,6 +48,12 @@ public class NoticeVO {
   }
   public void setNt_date(String nt_date) {
     this.nt_date = nt_date;
+  }
+  public char getNt_nt() {
+    return nt_nt;
+  }
+  public void setNt_nt(char nt_nt) {
+    this.nt_nt = nt_nt;
   }
   
 }

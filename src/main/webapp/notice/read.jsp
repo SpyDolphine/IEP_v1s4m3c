@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.context.request.SessionScope"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -35,8 +36,10 @@
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
   <div class='content_menu' style='width: 100%;'>
+            <c:if test="${sessionScope.me_no = ${noticeVO.me_no}}">
             <A href="./update.do?nt_no=${noticeVO.nt_no}">수정 |</A>
-            <A href="./delete.do?nt_no=${noticeVO.nt_no}" onclick="return confirm('삭제할꺼냐')">삭제 |</A>
+            <A href="./delete.do?nt_no=${noticeVO.nt_no}" onclick="return confirm('삭제하시겠나요?')">삭제 |</A>
+            </c:if>
     <A href="javascript:location.reload();">새로고침</A>｜
   </div>
   <DIV class='content'>
@@ -58,8 +61,10 @@
           </li>
           <li class='right'>
             <A href="./list.do">목록 |</A>
+            <c:if test="${sessionScope.me_no = ${noticeVO.me_no}}">
             <A href="./update.do?nt_no=${noticeVO.nt_no}">수정 |</A>
-            <A href="./delete.do?nt_no=${noticeVO.nt_no}" onclick="return confirm('삭제할꺼냐')">삭제</A>
+            <A href="./delete.do?nt_no=${noticeVO.nt_no}" onclick="return confirm('삭제하시겠나요?')">삭제</A>
+            </c:if>
           </li>
         </ul>
       </fieldset>

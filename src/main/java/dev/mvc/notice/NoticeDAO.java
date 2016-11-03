@@ -39,6 +39,10 @@ public class NoticeDAO implements NoticeDAOInter{
   public int count(HashMap hashMap) {
     return mybatis.selectOne("notice.count", hashMap);
   }
+  @Override
+  public List<NoticeVO> Nlist() {
+    return mybatis.selectList("notice.Nlist");
+  }
   
 }
  

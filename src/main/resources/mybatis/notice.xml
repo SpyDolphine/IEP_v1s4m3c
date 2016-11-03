@@ -4,8 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "notice">
   <insert id="create" parameterType="NoticeVO">
-  INSERT INTO notice(nt_no, me_no, nt_title, nt_content )
-  VALUES((SELECT NVL(MAX(nt_no), 0)+1 as nt_no FROM notice), #{me_no}, #{nt_title}, #{nt_content})
+  INSERT INTO notice(nt_no, me_no, nt_nt, nt_title, nt_content )
+  VALUES((SELECT NVL(MAX(nt_no), 0)+1 as nt_no FROM notice), #{me_no}, #{nt_nt}, #{nt_title}, #{nt_content})
   </insert>
   
   <!-- 조회 -->
@@ -19,15 +19,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <update id="update" parameterType="NoticeVO">
     UPDATE notice 
     SET nt_title=#{nt_title}, nt_content=#{nt_content} 
-    WHERE nt_no=#{nt_no}
+    WHERE nt_no=#{nt_no} and me_no=#{me_no}
   </update> 
   
   <!-- 삭제 -->
   <delete id="delete" parameterType="HashMap">
     DELETE FROM notice
-    WHERE nt_no IN
+    WHERE me_no=#{me_no} and nt_no IN
     <foreach collection="arr" item="nt_no" index="index" separator="," open="(" close=")">
-    #{nt_no}
+    #{nt_no} 
     </foreach>
   </delete>
 
@@ -45,8 +45,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE nt_title LIKE '%' || #{word} || '%'  OR nt_content LIKE '%' || #{word} || '%' 
       </when>      
     </choose>
-  </select>        
-  
+  </select>  
+  <!-- ********** 공지사항리스트 ********** -->        
+  <select id="Nlist" resultType="NoticeVO">
+  SELECT nt_no, me_no, nt_nt, nt_title, nt_content, nt_date
+  FROM notice
+  WHERE nt_nt = 'Y'
+  ORDER BY nt_no DESC
+  </select>
  <!-- ********** 페이징에 따른 변경 시작 ********** -->   
  <select id="list" resultType="NoticeVO" parameterType="HashMap" >
     SELECT nt_no, me_no, nt_title, nt_content, nt_date, r

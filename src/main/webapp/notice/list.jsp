@@ -56,6 +56,11 @@ function checkDel() {
   
  }
 </script>
+<style>
+.nlist{
+background-color: skyblue;
+}
+</style>
 </head>
 <section class="wrapper">
   <section class="page_head">
@@ -74,8 +79,8 @@ function checkDel() {
     </div>
   </section>
 </section>
-<body>
-<form name='form'>
+<body >
+<form name='form' >
   <DIV class='title'>공지사항 목록</DIV>
     전체선택 : <input type="checkbox" id="allCheck"/>  
     <input type="button" onclick="checkDel(); " value="삭제">
@@ -93,7 +98,16 @@ function checkDel() {
       <TH class='th'>제목</TH>
       <TH class='th'>기타</TH>
     </TR>
-    
+    <c:forEach var="vo" items="${Nlist }">
+    <TR class='nlist'>
+      <TD><input type="checkbox" name="check" id="check" value="${vo.nt_no}"></TD>
+      <TD class='td'>${vo.nt_no}</TD>
+      <TD class='td'><a href='./read.do?nt_no=${vo.nt_no}'>${vo.nt_title}</a></TD>
+      <TD class='td'>
+        <A href="./update.do?nt_no=${vo.nt_no}"><IMG src='../menu/images/update.png' title='수정'></A>
+      </TD>
+    </TR>
+    </c:forEach>
     <c:forEach var="vo" items="${list }">
     <TR>
       <TD><input type="checkbox" name="check" id="check" value="${vo.nt_no}"></TD>

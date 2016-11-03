@@ -42,7 +42,8 @@
     <DIV class='content' style='width: 70%;'>
       <FORM name='frm' method='POST' action='./update.do'
                   enctype="multipart/form-data">
-        <input type='hidden' name='nt_no' value='${noticeVO.nt_no}'>
+        <input type='hidden' name='nt_no' value='${noticeVO.nt_no}'><!-- 현재 글 번호 -->
+        <input type='hidden' name='me_no' value='${sessionScope.me_no}'><!-- 현재 접속한 유저의 번호 -->
           <ul>
           <li>
             <label class='form_grp' for='title'>제목</label>
