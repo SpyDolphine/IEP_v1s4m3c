@@ -12,14 +12,12 @@
 
 <div class="dividerHeading">
   <c:forEach var="serveyVO" items="${list}">
-    <LI>
-      ${serveyVO.item}
+      <i class="fa fa-tag"></i> ${serveyVO.item}
         <div class="progress">
           <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${serveyVO.aver}" aria-valuemin="0" aria-valuemax="100" style="width: ${serveyVO.aver}%">
           ${serveyVO.aver}%
             <span class="sr-only">${serveyVO.aver}% Complete</span>
           </div>
         </div>
-    </LI>
   </c:forEach>
 </div>

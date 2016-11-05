@@ -35,7 +35,7 @@
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">설문조사</i> 
+                                <i class="fa fa-arrow-circle-right"> 설문조사</i> 
                             </ul> 
                         </nav>
                     </div>
@@ -45,50 +45,52 @@
 </section>
 
 <body>
-<div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-   
-<DIV id='panel_frm_delete' class='content' style='padding: 10px 0px 10px 0px; background-color: #FFFF00; width: 70%; text-align: center;'>
-<FORM name='frm_remove' id='frm_remove' method='POST' action='./delete.do'>
-  <input type='hidden' name='sb_no' id='sb_no'> 
-  
-  삭제하면 복구 할 수 없습니다. 정말로 삭제하시겠습니까?
-    
-  <button type="submit" id='submit'>삭제</button>
-  <button type="button" onclick="delete_cancel()">취소</button>
-</FORM>
-</DIV>
-<TABLE class='table'>
+      <DIV id='panel_frm_delete' class='content' style='padding: 10px 0px 10px 0px; background-color: #FFFFFF; border: 1px solid; width: 40%; text-align: center;'>
+      <FORM name='frm_remove' id='frm_remove' method='POST' action='./delete.do'>
+        <input type='hidden' name='sb_no' id='sb_no'> 
+        
+        삭제하면 복구 할 수 없습니다. 정말로 삭제하시겠습니까?
+          
+        <button type="submit" id='submit'>삭제</button>
+        <button type="button" onclick="delete_cancel()">취소</button>
+      </FORM>
+      </DIV>
 
+<div class="list_content" style='width: 55%;'>
+<table class="table table-striped">
+<p style='text-align: right;'>
+  <A href='./create.do' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 설문 등록하기</i></A>
+</p>
+
+ <thead> 
   <TR>
-    <TH>번호</TH>
-    <TH>제목</TH>
-    <TH>기타</TH>
+    <TH style="width: 5%;">번호</TH>
+    <TH style="width: 80%;">제목</TH>
+    <TH style="width: 15%;">기타</TH>
   </TR>
+ </thead> 
  
+ <tbody>
   <c:forEach var="vo" items="${list }">
   <TR>
-    <TD>${vo.sb_no}</TD>
-    <TD><a href="./read.do?sb_no=${vo.sb_no}">${vo.title}</a></TD>
+    <TD style='vertical-align: middle;'>${vo.sb_no}</TD>
+    <TD style='vertical-align: middle;' id='boardtitle'><a href="./read.do?sb_no=${vo.sb_no}">${vo.title}</a></TD>
     <TD>
-      <A href="./update.do?sb_no=${vo.sb_no}"><IMG src='../menu/images/update.png' title='수정'></A>
-      <A href="javascript:deleteOne(${vo.sb_no})"><IMG src='../menu/images/delete.png' title='삭제'></A>
+      <A href="./update.do?sb_no=${vo.sb_no}"><i class="fa fa-pencil"></i>수정</A>&nbsp;
+      <A href="javascript:deleteOne(${vo.sb_no})"><i class="fa fa-trash-o"></i>삭제</A>
     </TD>
   </TR>
   </c:forEach>
- 
+</tbody>
 </TABLE>
  
-<DIV class='bottom'>
-  <button type='button' onclick="location.href='./create.do'">등록</button>
-  <button type='button' onclick="location.reload();">새로 고침</button>
-</DIV>
    </div>
  </div>
 </div>
-</body>
 <DIV class='bottom'>${paging}</DIV>
+</body>
 <!-- -------------------------------------------- -->
 <div style= 'margin: 100px 0 0 0;  position: relative;'>  
   <jsp:include page="/menu/bottom.jsp" flush='false' />

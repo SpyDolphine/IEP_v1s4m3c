@@ -21,6 +21,12 @@ function autoResize(i)
     (i).height=iframeHeight+20;
 }
 </script>
+<style>
+hr {
+    margin: 0;
+    padding: 0;
+}
+</style>
 <section class="wrapper">
     <section class="page_head">
         <div class="container">
@@ -30,7 +36,7 @@ function autoResize(i)
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">설문조사</i> 
+                                <i class="fa fa-arrow-circle-right"> 설문조사</i> 
                             </ul> 
                         </nav>
                     </div>
@@ -44,35 +50,28 @@ function autoResize(i)
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
    
-
-  <DIV class='content'>
-    <FORM name='form_group' method="get">
-      <input type="hidden" name="sb_no" value="${serveyboardVO.sb_no}">
-      <fieldset class="fieldset">
-        <ul>
-      <li>
-        <label class='form_grp' for='title'>제목</label>
-        <input type='text' name='title' value='${serveyboardVO.title}' size='60' readonly="readonly">
-      </li>
-      <li>
-        <label class='form_grp' for='content'>내용</label><br>
-        <TEXTAREA name='content' rows='10' cols='70' readonly="readonly">${serveyboardVO.content}</TEXTAREA>
-      </li>
-      <li>
-          <iframe src="../servey/list.do?sb_no=${serveyboardVO.sb_no}" onload="autoResize(this)" scrolling="no" frameborder="0"></iframe> 
-      </li>
-
-     </ul>
-      </fieldset>
-    </FORM>
+  <div class="write_content" style='width: 90%;'>
+    <input type="hidden" name="sb_no" value="${serveyboardVO.sb_no}">
+    <div style='text-align: left;'>&nbsp;&nbsp;${serveyboardVO.title}</div>
+    <p style='text-align: right;'>
+      <A href='./update.do?sb_no=${serveyboardVO.sb_no}'>수정</A> |
+      <A href='./delete.do?sb_no=${serveyboardVO.sb_no}' onclick="return confirm('삭제 하시겠습니까?')">삭제</A>
+    </p>   
+    <hr>
+    
+  <fieldset class="fieldset" style='margin: 50px 0 0 0;'>
+   <ul>
+    <li>
+      <blockquote class="default" style="background-color: bule;">${serveyboardVO.content}</blockquote>
+    </li>
+    <li>
+        <iframe src="../servey/list.do?sb_no=${serveyboardVO.sb_no}" onload="autoResize(this)" scrolling="no" frameborder="0"></iframe> 
+    </li>
+   </ul>
+   </fieldset>
 
   </DIV>
-    <div>
-    <A href='./list.do'>목록</A>｜
-    <A href='./update.do?sb_no=${serveyboardVO.sb_no}'>수정</A>｜
-    <A href='./delete.do?sb_no=${serveyboardVO.sb_no}'>삭제</A> 
-  </div>
-   </div>
+ </div>
  </div>
 </div>
 </body>

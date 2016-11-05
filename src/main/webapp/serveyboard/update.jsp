@@ -44,7 +44,7 @@ function autoResize(i)
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
    
-<DIV class='content' >
+<div class="write_content" style='width: 90%;'>
 <FORM name='form_grp' method='POST' action='./update.do'>
 <input type='hidden' name='sb_no' id='sb_no' value='${serveyboardVO.sb_no}'>
   <fieldset>

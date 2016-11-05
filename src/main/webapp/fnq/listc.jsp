@@ -72,21 +72,38 @@ function checkDel() {
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-<DIV class='title'>자주하는 ${ch} 질문</DIV>
-    전체선택 : <input type="checkbox" id="allCheck"/>  
-    <input type="button" onclick="checkDel(); " value="삭제">
+    <DIV class='left'>
+    <h4><i class="fa fa-question-circle"></i> 자주하는 ${ch} 질문 </h4><br>
+    </DIV>    
+    <div style='clear: both;'></div>    
     
-<DIV class='content' style='width: 50%;'>
+<DIV class='content' style='width: 80%;'>
 <FORM name='frm' method='GET'>
+<div class='left'>
+   &nbsp;<input type="checkbox" id="allCheck"/> 전체선택 
+   <A onclick="checkDel();" class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i> 삭제</A>
+</div> 
+<div class='right'>
+  <A href='./create.do' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 글쓰기</i></A>
+</div> 
+<div style='clear: both;'></div> 
+
 <section class="content faq">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-9">
         <div class="panel-group accordion" id="accordion">
           <c:forEach var="fnqVO" items="${list }">
+          <div class='left'>
+          <input type="checkbox" name="check" id="check" value="${fnqVO.fq_no}">
+          </div>
+          <br>
+          <div class='right'>
+          <A href='./update.do?fq_no=${fnqVO.fq_no}'><i class="fa fa-pencil"></i> 수정</A>  
+          </div>      
+          <div style='clear: both;'></div>        
             <div class="panel panel-default">
               <div class="panel-heading">
-                    <input type="checkbox" name="check" id="check" value="${fnqVO.fq_no}">
                 <h4 class="panel-title" style="text-align: left">
                     <a data-toggle="collapse" data-parent="#accordion" href="#${fnqVO.fq_no}">
                         ${fnqVO.fq_question}
@@ -94,17 +111,11 @@ function checkDel() {
                 </h4>
               </div>
               <div id="${fnqVO.fq_no}" class="panel-collapse collapse">
-                  <div class="panel-body">${fnqVO.fq_answer}
-                   <button type="button" class="close" onclick="location.href='./delete.do?fq_no=${fnqVO.fq_no}'">
-                     <i class="fa fa-trash-o"></i></button>
-                   <button type="button" class="close" onclick="location.href='./update.do?fq_no=${fnqVO.fq_no}'">
-                     <i class="fa fa-pencil"></i>&nbsp;</button>  
-                   </div>                
+                  <div class="panel-body">${fnqVO.fq_answer} </div>
               </div>
             </div>
           </c:forEach>
         </div>
-        <button type='button' onclick="location.href='./create.do'">등록</button>
       </div>
     </div>
   </div>
