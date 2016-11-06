@@ -104,6 +104,8 @@ background-color: skyblue;
     </TR>
    </thead>
     
+    
+   <tbody> 
     <c:forEach var="vo" items="${Nlist }">
     <TR class='nlist'>
       <TD><input type="checkbox" name="check" id="check" value="${vo.nt_no}"></TD>
@@ -124,6 +126,7 @@ background-color: skyblue;
       </TD>
     </TR>
     </c:forEach>
+   </tbody> 
   </TABLE>
 </form>
 <form name="frmSearch" method="get" action="./list.do">  

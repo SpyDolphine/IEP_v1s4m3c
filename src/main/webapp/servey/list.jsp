@@ -20,7 +20,7 @@
            ${serveyVO.serveyno == serveyVO.serveyno?"checked='checked'":""}>
         ${serveyVO.item}
       </label>
-      <a href="../servey/delete.do?serveyno=${serveyVO.serveyno}" onclick="return confirm('삭제 하시겠습니까?')">&nbsp;<i class="fa fa-trash-o"></i></a>
+      <a href="../servey/delete.do?serveyno=${serveyVO.serveyno}" onclick="return confirm('항목을 삭제 하시겠습니까?')">&nbsp;<i class="fa fa-trash-o"></i></a>
       <br>
   </c:forEach>
   <div class='left'>

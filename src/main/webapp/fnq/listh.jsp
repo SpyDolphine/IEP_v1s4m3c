@@ -72,13 +72,15 @@ function checkDel() {
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-    <DIV class='left'>
-    <h4><i class="fa fa-question-circle"></i> 자주하는 ${ch} 질문 </h4><br>
-    </DIV>    
-    <div style='clear: both;'></div>    
     
 <DIV class='content' style='width: 80%;'>
 <FORM name='frm' method='GET'>
+    <DIV class='left'>
+       <div class="widget_title">
+          <h4><i class="fa fa-question-circle"></i> 자주하는 ${ch} 질문<br></h4>
+       </div>
+    </DIV>    
+    <div style='clear: both;'></div>    
 <div class='left'>
    &nbsp;<input type="checkbox" id="allCheck"/> 전체선택 
    <A onclick="checkDel();" class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i> 삭제</A>
