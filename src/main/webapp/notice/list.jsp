@@ -71,7 +71,7 @@ background-color: skyblue;
             <ul>
               <li><a href="../index.jsp">Home</a>/</li>
               <li><A href='./list.do'>목록</A></li>   
-              <i class="fa fa-arrow-circle-right">공지사항</i> 
+              <i class="fa fa-arrow-circle-right"> 공지사항</i> 
             </ul> 
           </nav>
         </div>
@@ -79,25 +79,33 @@ background-color: skyblue;
     </div>
   </section>
 </section>
-<body >
-<form name='form' >
-  <DIV class='title'>공지사항 목록</DIV>
-    전체선택 : <input type="checkbox" id="allCheck"/>  
-    <input type="button" onclick="checkDel(); " value="삭제">
-    
-  <TABLE class='table' style='width: 70%;'>
-    <colgroup>
-      <col style='width: 10%;'/>
-      <col style='width: 10%;'/>
-      <col style='width: 60%;'/>
-      <col style='width: 20%;'/>
-    </colgroup>
+
+<body>
+<div class="container">
+ <div class="row" align='center'>
+   <div class="col-xs-12 col-lg-12">
+    <div class="list_content" style='width: 90%;'>
+      <p style='text-align: right;'>
+        <A href='./create.do' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 글쓰기</i></A>
+      </p>
+   <form name='form'>
+   <div class='left'>
+     &nbsp;<input type="checkbox" id="allCheck"/> 전체선택 
+     <A onclick="checkDel();" class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i> 삭제</A>
+   </div>
+   
+  <table class="table table-striped">
+   <thead>
     <TR>
-      <TH class='th'>선택</TH>
-      <TH class='th'>번호</TH>
-      <TH class='th'>제목</TH>
-      <TH class='th'>기타</TH>
+      <TH style='width: 5%;'>선택</TH>
+      <TH style='width: 5%;'>번호</TH>
+      <TH style='width: 80%;'>제목</TH>
+      <TH style='width: 10%;'>기타</TH>
     </TR>
+   </thead>
+    
+    
+   <tbody> 
     <c:forEach var="vo" items="${Nlist }">
     <TR class='nlist'>
       <TD><input type="checkbox" name="check" id="check" value="${vo.nt_no}"></TD>
@@ -114,10 +122,11 @@ background-color: skyblue;
       <TD class='td'>${vo.nt_no}</TD>
       <TD class='td'><a href='./read.do?nt_no=${vo.nt_no}'>${vo.nt_title}</a></TD>
       <TD class='td'>
-        <A href="./update.do?nt_no=${vo.nt_no}"><IMG src='../menu/images/update.png' title='수정'></A>
+        <A href="./update.do?nt_no=${vo.nt_no}"><i class="fa fa-pencil"></i> 수정</A>
       </TD>
     </TR>
     </c:forEach>
+   </tbody> 
   </TABLE>
 </form>
 <form name="frmSearch" method="get" action="./list.do">  
@@ -142,11 +151,13 @@ background-color: skyblue;
   </div>
 </DIV>
 </form>
+
+</div>
+</div>
+</div>
+</div>
    
-  <DIV class='bottom'>
-    <button type='button' onclick="location.href='./create.do'">등록</button>
-    <button type='button' onclick="location.reload();">새로 고침</button>
-  </DIV>
+
 <!-- -------------------------------------------- -->
 </body>
 <DIV class='bottom'>${paging}</DIV>

@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 조회 -->
   <select id="read" resultType="NoticeVO" parameterType="int">
-    SELECT nt_no, me_no, nt_title, nt_content, nt_date 
+    SELECT nt_no, me_no, nt_title, nt_nt, nt_content, nt_date 
     FROM notice
     WHERE nt_no=#{nt_no}
   </select>
@@ -19,15 +19,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <update id="update" parameterType="NoticeVO">
     UPDATE notice 
     SET nt_title=#{nt_title}, nt_content=#{nt_content} 
-    WHERE nt_no=#{nt_no} and me_no=#{me_no}
+    WHERE nt_no=#{nt_no}
   </update> 
   
   <!-- 삭제 -->
   <delete id="delete" parameterType="HashMap">
     DELETE FROM notice
-    WHERE me_no=#{me_no} and nt_no IN
+    WHERE nt_no IN
     <foreach collection="arr" item="nt_no" index="index" separator="," open="(" close=")">
-    #{nt_no} 
+      #{nt_no}
     </foreach>
   </delete>
 

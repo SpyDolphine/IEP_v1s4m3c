@@ -170,4 +170,5 @@ public class NoticeCont {
     mav.setViewName("redirect:/notice/list.do");
     return mav;
   }
+  
 }
