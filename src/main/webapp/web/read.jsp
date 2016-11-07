@@ -107,7 +107,6 @@
             <span>${webVO.wb_replycnt}</span>
           </li>
           <li class='right'>
-            <button type="button" onclick="location.href='./reply.do?wb_no=${webVO.wb_no }&wb_no=${webVO.wb_no}&col=${searchDTO.col}&word=${searchDTO.word}'">답변</button>
             <button type="button" onclick="location.href='./list.do?wb_no=${webVO.wb_no}&col=${searchDTO.col}&word=${searchDTO.word}'">목록보기</button>
             <button type="button" onclick="location.href='./update.do?wb_no=${webVO.wb_no}&col=${searchDTO.col}&word=${searchDTO.word}'">수정</button>
             <button type="button" onclick="location.href='./delete.do?wb_no=${webVO.wb_no}'">삭제</button>
