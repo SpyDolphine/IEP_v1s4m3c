@@ -43,10 +43,10 @@ public class FnqCont {
   ModelAndView mav = new ModelAndView();
   
   if (fnqDAO.create(fnqVO) == 1) {
-    if(fnqVO.getFq_CH().equals('H')){
+    if(fnqVO.getFq_CH().equals("H")){
       mav.setViewName("redirect:/fnq/listh.do");
     }
-    if(fnqVO.getFq_CH().equals('C')){
+    if(fnqVO.getFq_CH().equals("C")){
       mav.setViewName("redirect:/fnq/listc.do");
     }
   } else {

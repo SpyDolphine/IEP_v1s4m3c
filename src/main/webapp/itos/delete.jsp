@@ -29,27 +29,24 @@
 <!-- ----------------------------------------- -->
  
   <div class='content_menu'>
-    <A href='../seico/list.do'>전체 게시판 목록</A> >
-   <%--  <A href='./list.do?divisionno=${boardVO.divisionno }'>${divisionVO.title}</A>｜
-    <A href="./create.do?divisionno=${boardVO.divisionno }">등록</A>｜
-    <A href="./update.do?boardno=${boardVO.boardno}">수정</A>｜
-    <A href="./delete.do?boardno=${boardVO.boardno}&divisionno=${boardVO.divisionno }">삭제</A>｜
-    <A href="./reply.do?divisionno=${boardVO.divisionno }">답변</A>｜ --%>
+    <A href='./list.do?io_no=${itosVO.io_no }'>${itosVO.io_title}</A>｜
+    <A href="./create.do?io_no=${itosVO.io_no }">등록</A>｜
+    <A href="./update.do?io_no=${itosVO.io_no}">수정</A>｜
+    <A href="./delete.do?io_no=${itosVO.io_no}">삭제</A>｜
+    <A href="./reply.do?io_no=${itosVO.io_no }">답변</A>｜
     <A href="javascript:location.reload();">새로고침</A>
   </div>
  
 <DIV class = 'content'>
   <FORM name='frm' method='POST' action='./delete.do'
              onsubmit = 'return send();'>
-    <input type='hidden' name='sc_no' value='${sc_no}'>
-    
- <%--    <input type="hidden" name="divisionno" value="${divisionno }"> --%>
+    <input type='hidden' name='io_no' value='${io_no }'>
     
     <div class="form-group">
       <div class="col-xs-12 col-lg-12" style='text-align: center;'>
           <br><br>
           
-         삭제하시겠습니까? 삭제하시면 복구 할 수 없습니다.<br>
+         <b style="color:white;">삭제하시겠습니까? 삭제하시면 복구 할 수 없습니다.</b><br>
          
           <br><br>
           <button type = "submit" class="btn btn-danger">삭제 진행</button>
@@ -63,7 +60,9 @@
 </DIV>
 
 <!-- -------------------------------------------- -->
+     <div style= 'margin: 100px 0 0 0;  position: relative;'>
      <jsp:include page="/menu/bottom.jsp" flush='false' />     
+     </div>
      </div>
 </body>
 <!-- -------------------------------------------- -->

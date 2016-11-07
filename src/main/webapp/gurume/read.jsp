@@ -74,8 +74,39 @@
           </TEXTAREA>
       </li>
           <li>
-            <label for='gu_stars' style="width:150px;">별점 : </label>
-            <span>${gurumeVO.gu_stars}</span>
+            <label for='gu_stars' style="width:150px;"class="form_group" >별점 : </label>
+             <span name='gu_stars' id='gu_stars' rows='10' cols='70' readonly="readonly">
+             
+            
+               <c:choose>
+            <c:when test="${gurumeVO.gu_stars == 1 }">
+            <img src="../gurume/images/red1.png" width=20px>
+            </c:when>
+            <c:when test="${gurumeVO.gu_stars == 2 }">
+            <img src="../gurume/images/red2.png" width=20px>
+            <img src="../gurume/images/red2.png" width=20px>
+            </c:when>
+            <c:when test="${gurumeVO.gu_stars == 3 }">
+            <img src="../gurume/images/red3.png"width= 20px>
+            <img src="../gurume/images/red3.png" width=20px>
+            <img src="../gurume/images/red3.png" width=20px>
+            </c:when>
+            <c:when test="${gurumeVO.gu_stars == 4 }">
+            <img src="../gurume/images/red4.png" width=20px>
+            <img src="../gurume/images/red4.png" width=20px>
+            <img src="../gurume/images/red4.png" width=20px>
+            <img src="../gurume/images/red4.png" width=20px>
+            </c:when>
+            <c:when test="${gurumeVO.gu_stars == 5 }">
+            <img src="../gurume/images/red5.png"width=20px >
+            <img src="../gurume/images/red5.png" width=20px>
+            <img src="../gurume/images/red5.png" width=20px>
+            <img src="../gurume/images/red5.png" width=20px>
+            <img src="../gurume/images/red5.png" width=20px>
+            </c:when>
+            </c:choose> 
+            
+           </span> 
           </li>
         
           <li>

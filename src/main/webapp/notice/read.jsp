@@ -35,13 +35,6 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-  <div class='content_menu' style='width: 100%;'>
-            <!-- <c:if test="${sessionScope.me_no = ${noticeVO.me_no}}"> -->
-            <A href="./update.do?nt_no=${noticeVO.nt_no}">수정 |</A>
-            <A href="./delete.do?nt_no=${noticeVO.nt_no}" onclick="return confirm('삭제하시겠나요?')">삭제 |</A>
-            <!-- </c:if> -->
-    <A href="javascript:location.reload();">새로고침</A>｜
-  </div>
   <DIV class='content'>
     <FORM name='form_group' method="get" action='./update.do'>
       <input type="hidden" name="nt_no" value="nt_no=${noticeVO.nt_no}">
@@ -61,10 +54,8 @@
           </li>
           <li class='right'>
             <A href="./list.do">목록 |</A>
-            <!-- <c:if test="${sessionScope.me_no = ${noticeVO.me_no}}"> -->
             <A href="./update.do?nt_no=${noticeVO.nt_no}">수정 |</A>
             <A href="./delete.do?arr=${noticeVO.nt_no}" onclick="return confirm('삭제하시겠나요?')">삭제</A>
-            <!-- </c:if> -->
           </li>
         </ul>
       </fieldset>

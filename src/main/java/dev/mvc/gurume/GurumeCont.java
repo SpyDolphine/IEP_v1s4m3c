@@ -40,6 +40,7 @@ public class GurumeCont {
                                                HttpServletRequest request, 
                                                HttpSession session) {
     // System.out.println("--> crte() POST called.");
+    
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/message"); //상으니 메시지 사용시 기존 메시지파일 삭제하고 콘트 /gurume 부분 삭제 후 /message 파일사용
     System.out.println("created");
@@ -104,9 +105,12 @@ public class GurumeCont {
    * @return
    */
   @RequestMapping(value = "/gurume/list.do", method = RequestMethod.GET)
-  public ModelAndView list(){
+  public ModelAndView list(HttpServletRequest request){
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/gurume/list4"); // list_total.jsp
+    
+    int star = Integer.parseInt(request.getParameter("star"));
+    
     
     List<GurumeVO> list = gurumeDAO.list();
     Iterator<GurumeVO> iter = list.iterator();
@@ -115,7 +119,11 @@ public class GurumeCont {
       /*gurumeVO.setGu_no(gurumeVO.getGu_no());*/
       gurumeVO.setGu_title(Tool.textLength(gurumeVO.getGu_title(),10));
       gurumeVO.setGu_date(gurumeVO.getGu_date().substring(0, 10)); 
-     /* gurumeVO.setFile1(Tool.textLength(gurumeVO.getFile1(),10));
+      
+    /*  gurumeVO.setGu_stars(star);*/
+      
+      
+      /* gurumeVO.setFile1(Tool.textLength(gurumeVO.getFile1(),10));
       gurumeVO.setFile2(Tool.textLength(gurumeVO.getFile2(),10));
     */
     }
@@ -131,12 +139,16 @@ public class GurumeCont {
    */
   @RequestMapping(value = "/gurume/read.do", 
                              method = RequestMethod.GET)
-  public ModelAndView read(int gu_no) {
+  public ModelAndView read(int gu_no/*, HttpServletRequest request*/) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/gurume/read");
+   /* int gu_stars = Integer.parseInt(request.getParameter("gu_stars"));*/
+    /*int star = Integer.parseInt(request.getParameter("star"));*/
+    
     GurumeVO gurumeVO = gurumeDAO.read(gu_no);
     /*mav.addObject("gurumeVO", gurumeVO); */
     gurumeDAO.cntup(gu_no);
+    /*gurumeVO.setGu_stars(gu_stars);*/
     
     mav.addObject("gurumeVO", gurumeVO); 
     gurumeVO.getSize2Label();

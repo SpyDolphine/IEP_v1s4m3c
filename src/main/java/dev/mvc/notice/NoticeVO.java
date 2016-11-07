@@ -15,7 +15,7 @@ public class NoticeVO {
   private int nt_no;
   private int me_no;
   private String nt_title;
-  private char nt_nt;
+  private String nt_nt;
   private String nt_content;
   private String nt_date;
   
@@ -49,10 +49,10 @@ public class NoticeVO {
   public void setNt_date(String nt_date) {
     this.nt_date = nt_date;
   }
-  public char getNt_nt() {
+  public String getNt_nt() {
     return nt_nt;
   }
-  public void setNt_nt(char nt_nt) {
+  public void setNt_nt(String nt_nt) {
     this.nt_nt = nt_nt;
   }
   

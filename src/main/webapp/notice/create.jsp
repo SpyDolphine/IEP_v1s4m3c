@@ -38,15 +38,16 @@
         <fieldset>
           <ul>
             <li>
-              <label class='label' for='content'>공지사항 여부</label>
-              <input type='checkbox' name='nt_nt' value="Y">
+              <labelfor='content'>공지사항 여부 :</label>
+              YES &nbsp;<input type='radio' name='nt_nt' value="Y">
+              NO &nbsp;<input type='radio' name='nt_nt' value="N">
             </li>
             <li>
-              <label class='label' for='nt_title'>제목</label>
+              <labelfor='nt_title'>제목</label>
               <input type='text' name='nt_title' value='제목' required="required">
             </li>
             <li>
-              <label class='label' for='content'>내용</label>
+              <labelfor='content'>내용</label>
               <textarea name='nt_content' required="required" cols="100" rows="10"></textarea>
             </li>
             <li class='right'>

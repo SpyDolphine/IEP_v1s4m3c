@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
  
+ 
 <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 <script type="text/javascript" src="../js/tool.js"></script>
 <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
@@ -31,6 +32,71 @@
   
 
 </script>
+<script type="text/javascript">
+
+var locked = 0;
+
+function show(gu_stars){
+  if(locked)
+    return;
+  var i;
+  var images;
+  var el;
+  var e = document.getElementById('startext');
+  var stateMsg;
+  
+  for(i=i; i<=gu_stars; i++){
+    images = 'images'+i;
+    el= document.getElementById(images);
+    el.src="../gurume/images/grape1.png";
+  }
+  
+  switch(gu_stars){
+  case 1:
+    stateMsg ="제발";
+    break;
+  case 2:
+    stateMsg ="부탁이다";
+    break;
+  case 3:
+    stateMsg ="집에";
+    break;
+  case 4:
+    stateMsg ="가고싶어";
+    break;
+  case 5:
+    stateMsg ="보내줘";
+    break;
+    default:
+      stateMsg="";
+  }
+  e.innerHTML = stateMsg;
+}
+function noshow(gu_stars){
+  if(locked)
+    return;
+  var i;
+  var images;
+  var el;
+  
+  for(i=1; i<=gu_stars; i++){
+    images= 'images'+i;
+    el= document.getElementById(images);
+    el.src = "../gurume/images/red1.png";
+    
+  }
+}
+function lock(gu_stars){
+  show(gu_stars);
+  locked=1;
+}
+function mark(gu_stars){
+  lock(gu_stars);
+  alert("선택"+gu_stars);
+  document.frm.gu_stars.value=gu_stars;
+  
+}
+</script>
  
 </head> 
  
@@ -40,7 +106,7 @@
      
      
  <div class='content_menu' style='width: 100%;'>
-    <A href='../gurume/list.do'>게시판 목록</A> > 
+    <A href='../gurume/list4.do'>게시판 목록</A> > 
    <%--  <A href='./list.do?divisionno=${divisionVO.divisionno }'>${divisionVO.title }</A>｜
     <A href='./create.do?divisionno=${divisionVO.divisionno }'>등록</A>｜ --%>
     <A href="javascript:location.reload();">새로고침</A>
@@ -101,24 +167,52 @@
         <option value="30000~50000원">30000~50000원</option>
         <option value="50000원 이상">50000원 이상</option>
       </select>
-        <label class='form_grp' for='gu_stars'>별점</label>
-      <select name='gu_stars' id='gu_stars'>
+          <li>
+        <label class='form_grp' for='gu_name'>닉네임</label>
+        <input type='text' name='gu_name' id='gu_name'value="${gurumeVO.gu_name}"size='15' required="required">
+      </li>
+        
+     <%--          <li><label >별점</label>
+      <p class='gu_stars' id='gu_start' name='gu_stars' value="${gurumeVO.gu_stars}">
+          <a href="#" class="on">★</a>
+          <a href="#">★</a>
+          <a href="#">★</a>
+          <a href="#">★</a>
+          <a href="#">★</a>
+      </p> 
+        </li> --%>
+ <%--   <label class='form_grp' for='gu_stars'>별점</label>
+   <select name='gu_stars' id='gu_stars'>
         <option value="${gurumeVO.gu_stars}" selected="selected">${gurumeVO.gu_stars}</option>
         <option value="★">★</option>
         <option value="★★">★★</option>
         <option value="★★★">★★★</option>
         <option value="★★★★">★★★★</option>
         <option value="★★★★★">★★★★★</option>
-      </select>
-       </li>
-       <li>
-        <label class='form_grp' for='gu_name'>닉네임</label>
-        <input type='text' name='gu_name' id='gu_name'value="${gurumeVO.gu_name}"size='15' required="required">
+      </select>   </li> --%>
+        <li>
+        <label class='form_grp' id=gu_stars align=center value="${gurumeVO.gu_stars}">${gurumeVO.gu_stars}</label><br>
+         <img id=images1 onmouseover=show(1) onclick=mark(1) onmouseout=noshow(1) src="../gurume/images/grape1.png" width=30px>
+         <img id=images2 onmouseover=show(2) onclick=mark(2) onmouseout=noshow(2) src="../gurume/images/grape1.png" width=30px>
+         <img id=images3 onmouseover=show(3) onclick=mark(3) onmouseout=noshow(3) src="../gurume/images/grape1.png" width=30px>
+         <img id=images4 onmouseover=show(4) onclick=mark(4) onmouseout=noshow(4) src="../gurume/images/grape1.png" width=30px>
+         <img id=images5 onmouseover=show(5) onclick=mark(5) onmouseout=noshow(5) src="../gurume/images/grape1.png" width=30px>
+       </span>
+       <span id=startext></span>
+        <input type="hidden" name="gu_stars" />
       </li>
+   
       <li>
         <label class='form_grp' for='gu_cont'>내용</label><br>
         <TEXTAREA name='gu_cont' id='gu_cont' rows='10' cols='70'>${gurumeVO.gu_cont}</TEXTAREA>
       </li>
+       <li>
+        <label for='content'>약도: </label><br>
+        <textarea name='gu_map' id='gu_map' rows='5' cols='70''>
+        ${gurumeVO.gu_map}
+        </textarea>
+      </li>     
+      
        <li>
         <label class='form_grp' for='file1'>등록된 파일</label>
           <c:set var='file2' value="${fn:toLowerCase(gurumeVO.file2)}" />
@@ -141,12 +235,7 @@
         <label class='label' for='file2'>업로드 파일</label>
         <input type="file" name='file2MF' id='file2MF' size='40' >
       </li> 
-      <li>
-        <label for='content'>약도: </label>
-        <textarea name='gu_map' id='gu_map' rows='5' style='width:100%;'>
-        ${gurumeVO.gu_map}
-        </textarea>
-      </li>        
+    
       <li class='right'>
          <button type="submit">수정</button>
         <button type="button" onclick="location.href='./list.do<%-- ?divisionno=${boardVO.divisionno} --%>'">목록[취소]</button>
