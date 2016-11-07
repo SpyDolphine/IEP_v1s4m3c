@@ -1,34 +1,47 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ 
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
-<meta charset="UTF-8"> 
-<title></title> 
-
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
+<meta charset="UTF-8">
+<title>WEB 공부 게시판</title>    
+ 
+</head>
+<!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
 
 <script type="text/JavaScript">
   window.onload=function(){
     CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
   };
 </script>
-
-</head> 
+<!-- ----------------------------------------- -->
+<section class="wrapper">
+    <section class="page_head">
+        <div class="container">
+             <div class="row">
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+                        <nav id="breadcrumbs">
+                            <ul>
+                                <li><a href="../index.jsp">Home</a>/</li>
+                                <li><A href='./list.do'>목록</A></li>   
+                                <i class="fa fa-arrow-circle-right"> WEB게시판 </i>
+                            </ul> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+</section>
+</section>
 
 <body>
-  <div class="container">
-     <jsp:include page="/menu/top.jsp" flush='false' />
-
-  <div class='content_menu' style='width: 100%;'>
+<div class="container">
+ <div class="row" align='center'>
+   <div class="col-xs-12 col-lg-12">
+   
+ <div class='content_menu' style='width: 100%;'>
     <A href='../web/list.do'>게시판 목록</A> > 
     <A href='./create.do'>등록</A>｜
     <A href="javascript:location.reload();">새로고침</A>
@@ -38,14 +51,14 @@
     <FORM name='frm' method='POST' action='./create.do'
               enctype="multipart/form-data">
       <div class="form-group">   
-        <label for="wb_title" class="col-xs-2 col-lg-2 control-label">web공부 게시판</label>
+        <label for="wb_title" class="col-xs-2 col-lg-2 control-label">WEB공부 게시판</label>
         <div class="col-xs-10 col-lg-10">
           <input type='text' class="form-control" name='wb_title' id='title' value='EX)JSP' size='60' required="required">
       </div>
       <div class="form-group">   
-        <label for="content" class="col-xs-2 col-lg-2 control-label">web</label>
+        <label for="content" class="col-xs-2 col-lg-2 control-label">WEB</label>
         <div class="col-xs-10 col-lg-10">
-          <textarea class="form-control" name='wb_content' id='content'  rows='10' cols='70'>web을 등록해주세요</textarea>
+          <textarea class="form-control" name='wb_content' id='content'  rows='10' cols='70'>게시물을 등록해주세요</textarea>
         </div>
       </div>   
       <div class="form-group">   
@@ -64,11 +77,14 @@
       </DIV>
     </FORM>
   </DIV>
-
-     <div style= 'margin: 100px 0 0 0;  position: relative;'>
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
-  </div>     
-  </div>
+   </div>
+ </div>
+</div>
 </body>
 
+<!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>  
+<!-- -------------------------------------------- -->
 </html> 
