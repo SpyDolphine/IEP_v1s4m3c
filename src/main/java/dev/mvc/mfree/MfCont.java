@@ -7,15 +7,20 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSplitPaneUI;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.cfree.CmDAO;
 import web.tool.*;
 
 @Controller
@@ -190,16 +195,16 @@ public class MfCont {
    * @return
    */
   @RequestMapping(value = "/mfree/delete.do", method = RequestMethod.GET)
-  public ModelAndView delete(int cm_no) {
+  public ModelAndView delete(@RequestParam List<String> arr) { // 파라메터 값을 배열로 바로 받는다
     ModelAndView mav = new ModelAndView();
-
-    MfVO mfVO = mfDAO.read(cm_no);
-    if (mfDAO.delete(cm_no) == 1) {
-      mav.setViewName("redirect:/mfree/list.do");
-    } else {
-    }
-  return mav;
-}
+    
+    HashMap<String, Object> hashMap = new HashMap<String, Object>(); // 해쉬맵으로 저장해서 보내줌
+    hashMap.put("arr", arr); // 배열에 자동으로 담아서 넘겨주고
+    mfDAO.delete(hashMap);  // 내가 원하는 함수에 담아서 실행하고
+    mav.setViewName("redirect:/mfree/list.do"); // 실행한뒤 돌아가고싶은 주소로 GO
+    return mav;
+ 
+  }
  
   /**
    * 게시판 목록을 검색+페이징+답변을
@@ -419,5 +424,57 @@ public class MfCont {
     
     return mav;
   }
+  
+  
+  /**
+   * 좋아요 처리
+   */
+  @ResponseBody
+  @RequestMapping(value = "/mfree/likeit.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+  public String likeit(int cm_no) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("cm_no", mfDAO.read(cm_no));
+    //mav.addObject("likedown", mfDAO.likedown(cm_no));
+    
+    mfDAO.likeit(cm_no); //필수템!@@!!!! 
+    int cm_likeit= mfDAO.read(cm_no).getCm_likeit();
+  
+    JSONObject obj = new JSONObject();
+    obj.put("cm_likeit", cm_likeit);
+    obj.put("cm_no", cm_no);
+    
+/*    boolean a = true;
+    if(a == true) {
+                  System.out.println("a : " + a);
+      obj.put("cm_likeit", cm_likeit);
+      obj.put("cm_no", cm_no);
+                  System.out.println("cm_likeit : " + cm_likeit);
+      a = false;
+                  System.out.println("a : " + a);
+    } else {
+      obj.put("likedown", mfDAO.likedown(cm_no));
+      obj.put("cm_no", cm_no);
+      System.out.println("likedown" + mfDAO.likedown(cm_no));
+    }*/
+    
+    return obj.toJSONString();
+  }
+  
+/* *//**
+   * 좋아요 취소
+   *//*
+  @ResponseBody
+  @RequestMapping(value = "/mfree/likedown.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+  public String likedown(int cm_no) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("cm_no", mfDAO.read(cm_no));
+    
+    mfDAO.likedown(cm_no); //필수템!@@!!!! 
+  
+    JSONObject obj = new JSONObject();
+    obj.put("likedown", mfDAO.likedown(cm_no));
+    
+    return obj.toJSONString();
+  }  */
 
 }

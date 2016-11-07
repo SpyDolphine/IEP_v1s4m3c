@@ -34,7 +34,7 @@ public interface MfInter {
    * @param cm_no
    * @return
    */
-  public int delete(int cm_no);  
+  public int delete(HashMap hashmap);  
   
   /**
    * 한건의 레코드 조회
@@ -113,4 +113,17 @@ public interface MfInter {
    */
   public int minlist();  
   
+  /**
+   * 좋아요 기능
+   * @param cm_no
+   * @return
+   */
+  public int likeit(int cm_no);   
+  
+  /**
+   * 좋아요 취소기능
+   * @param cm_no
+   * @return
+   */
+  public int likedown(int cm_no);     
 }

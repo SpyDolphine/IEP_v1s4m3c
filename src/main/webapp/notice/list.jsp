@@ -109,7 +109,7 @@ background-color: skyblue;
     <c:forEach var="vo" items="${Nlist }">
     <TR>
       <TD><input type="checkbox" name="check" id="check" value="${vo.nt_no}"></TD>
-      <TD><i class="fa fa-flag"></i></TD>
+      <TD><A class="btn btn-default btn-xs btn-warning"><i class="fa fa-flag"> 공지</i></A></TD>
       <TD><a href='./read.do?nt_no=${vo.nt_no}'>${vo.nt_title}</a></TD>
       <TD>
         <A href="./update.do?nt_no=${vo.nt_no}"><i class="fa fa-pencil"></i> 수정 |</A>
