@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     DELETE FROM notice
     WHERE nt_no IN
     <foreach collection="arr" item="nt_no" index="index" separator="," open="(" close=")">
-      #{nt_no}
+    #{nt_no}
     </foreach>
   </delete>
 
