@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 수정 -->
   <update id="update" parameterType="NoticeVO">
     UPDATE notice 
-    SET nt_title=#{nt_title}, nt_content=#{nt_content} 
+    SET nt_title=#{nt_title}, nt_content=#{nt_content}, nt_nt=#{nt_nt}
     WHERE nt_no=#{nt_no} and me_no=#{me_no}
   </update> 
   

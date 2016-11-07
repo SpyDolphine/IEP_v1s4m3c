@@ -136,22 +136,11 @@ public class NoticeCont {
   @RequestMapping(value = "/notice/update.do", method = RequestMethod.POST)
   public ModelAndView update(NoticeVO noticeVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/notice/message");
- 
-    ArrayList<String> msgs = new ArrayList<String>();
-    ArrayList<String> links = new ArrayList<String>();
  
     if (noticeDAO.update(noticeVO) == 1) {
       mav.setViewName("redirect:/notice/list.do");
     } else {
-      msgs.add("수정에 실패했습니다.");
-      msgs.add("죄송하지만 다시한번 시도해주세요.");
-      links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
-      links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
- 
-      mav.addObject("msgs", msgs);
-      mav.addObject("links", links);
+      
     }
     return mav;
   }

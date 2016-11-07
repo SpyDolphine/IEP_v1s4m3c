@@ -43,8 +43,21 @@
       <FORM name='frm' method='POST' action='./update.do'
                   enctype="multipart/form-data">
         <input type='hidden' name='nt_no' value='${noticeVO.nt_no}'><!-- 현재 글 번호 -->
-        <input type='hidden' name='me_no' value='${sessionScope.me_no}'><!-- 현재 접속한 유저의 번호 -->
+        <input type='hidden' name='me_no' value='1'><!-- 현재 접속한 유저의 번호 -->
           <ul>
+          <li>
+            <label for='content'>공지사항 여부 :</label>
+            <c:choose>
+              <c:when test="${noticeVO.nt_nt eq 'Y'}">
+              YES &nbsp;<input type='radio' name='nt_nt' value="Y"  checked>
+              NO &nbsp;<input type='radio' name='nt_nt' value="N" >
+              </c:when>
+              <c:when test="${noticeVO.nt_nt eq 'N'}">
+              YES &nbsp;<input type='radio' name='nt_nt' value="Y"  >
+              NO &nbsp;<input type='radio' name='nt_nt' value="N" checked>
+              </c:when>
+            </c:choose>
+          </li>
           <li>
             <label class='form_grp' for='title'>제목</label>
             <input type='text' name='nt_title' value='${noticeVO.nt_title}' size='60' required="required">
