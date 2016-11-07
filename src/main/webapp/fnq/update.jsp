@@ -34,7 +34,14 @@
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
       <div class='content_menu' style='width: 100%;'>
-        <A href='../division/list.do'>목록</A> > 
+      <c:choose>
+        <c:when test="${fnqVO.fq_CH eq 'H'}">
+          <A href='../fnq/listh.do'>목록</A> > 
+        </c:when>
+        <c:when test="${fnqVO.fq_CH eq 'C'}">
+          <A href='../fnq/listc.do'>목록</A> > 
+        </c:when>
+      </c:choose>
         <A href="javascript:location.reload();">새로고침</A>
       </div>
       <DIV class='content' style='width: 100%;'>
@@ -53,7 +60,7 @@
               <TEXTAREA name='fq_answer' rows='10' cols='70'>${fnqVO.fq_answer}</TEXTAREA>
             </li>
             <li class='right'>
-              <button type="submit">등록</button>
+              <button type="submit">수정</button>
               <button type="button" onclick="location.href='./list.do'">취소</button>
             </li>         
           </ul>
@@ -66,6 +73,8 @@
 
  
 <!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>
 <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>
 <!-- -------------------------------------------- -->
 </html> 
