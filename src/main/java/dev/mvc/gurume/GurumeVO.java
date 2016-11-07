@@ -3,17 +3,6 @@ package dev.mvc.gurume;
 import org.springframework.web.multipart.MultipartFile;
 
 public class GurumeVO {
-
-  /*gu_no                             NUMBER(7)    NOT NULL    PRIMARY KEY,
-  gu_name                           VARCHAR2(40)     NOT NULL,
-  gu_title                          VARCHAR2(120)    NOT NULL,
-  gu_cont                           VARCHAR2(4000)     NOT NULL,
-  gu_cnt                            NUMBER(7)    DEFAULT 0     NULL ,
-  gu_stars                          NUMBER(7)    DEFAULT 0     NULL ,
-  gu_date                           DATE     NOT NULL,
-  gu_file                           VARCHAR2(100)    NULL ,
-  gu_size                           NUMBER(7)    DEFAULT 0     NULL */
-  
  /* gu_no                             NUMBER(7)      NOT NULL    PRIMARY KEY, -- 글 번호
   gu_area                           VARCHAR2(40)   NOT NULL,                -- 지역
   gu_menu                           VARCHAR2(40)   NOT NULL,                -- 메뉴 종류
@@ -31,18 +20,22 @@ public class GurumeVO {
   gu_size2                          NUMBER(7)      DEFAULT 0,               -- 파일 사이즈
   gu_map                            VARCHAR2(500)  NOT NULL                 -- 지도
   */
- 
-
   private int gu_no;
   private String gu_area;
   private String gu_menu;
   private String gu_price;
-
   private String gu_title;
   private String gu_name;
   private String gu_cont;
   private int gu_cnt;
-  private String gu_stars;
+ /* private String gu_stars;*/
+  private int gu_stars;
+  public int getGu_stars() {
+    return gu_stars;
+  }
+  public void setGu_stars(int gu_stars) {
+    this.gu_stars = gu_stars;
+  }
   private String gu_date;
   private String file1;
   private String file2;
@@ -124,12 +117,7 @@ public class GurumeVO {
   }
   public void setGu_cnt(int gu_cnt) {
     this.gu_cnt = gu_cnt;
-  }
-  public String getGu_stars() {
-    return gu_stars;
-  }
-  public void setGu_stars(String gu_stars) {
-    this.gu_stars = gu_stars;
+ 
   }
   public String getGu_date() {
     return gu_date;

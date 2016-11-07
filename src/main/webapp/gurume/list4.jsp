@@ -6,8 +6,8 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8">
-<title>맛집 게시판 </title>    
- 
+<title>맛집 게시판 </title>   
+
 </head>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
@@ -94,8 +94,36 @@
            <td style='vertical-align: middle;'>
              <a href="./read.do?gu_no=${vo.gu_no}">${vo.gu_title}</a> </td>
             <td style='vertical-align: middle;'>${vo.gu_name}</td>
-            <td style='vertical-align: middle;'>${vo.gu_stars}</td>
             
+            <td style='vertical-align: middle;'>
+            <c:choose>
+            <c:when test="${vo.gu_stars == 1 }">
+            <img src="../gurume/images/red1.png" width=20px>
+            </c:when>
+            <c:when test="${vo.gu_stars == 2 }">
+            <img src="../gurume/images/red2.png" width=20px>
+            <img src="../gurume/images/red2.png" width=20px>
+            </c:when>
+            <c:when test="${vo.gu_stars == 3 }">
+            <img src="../gurume/images/red3.png"width=20px >
+            <img src="../gurume/images/red3.png" width=20px>
+            <img src="../gurume/images/red3.png" width=20px>
+            </c:when>
+            <c:when test="${vo.gu_stars == 4 }">
+            <img src="../gurume/images/red4.png" width=20px>
+            <img src="../gurume/images/red4.png" width=20px>
+            <img src="../gurume/images/red4.png" width=20px>
+            <img src="../gurume/images/red4.png" width=20px>
+            </c:when>
+            <c:when test="${vo.gu_stars == 5 }">
+            <img src="../gurume/images/red5.png"width=20px >
+            <img src="../gurume/images/red5.png" width=20px>
+            <img src="../gurume/images/red5.png" width=20px>
+            <img src="../gurume/images/red5.png" width=20px>
+            <img src="../gurume/images/red5.png" width=20px>
+            </c:when>
+            </c:choose>
+            </td>
             
        <%--     <c:choose>
                 <c:when test="${vo.ansnum == 0 }">

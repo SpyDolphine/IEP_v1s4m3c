@@ -16,13 +16,30 @@ public class SeicoVO {
   private String sc_name;
   private String sc_ex;
   private String sc_cont;
-  private String sc_like;
+  private int    sc_like;
+  private int    sc_likeup;
+  private int    sc_likedown;
   private String sc_date;
   private String file1;
   private String file2;
   private int sc_cnt;
   private long size2;
   
+  public int getSc_likeup() {
+    return sc_likeup;
+  }
+
+  public void setSc_likeup(int sc_likeup) {
+    this.sc_likeup = sc_likeup;
+  }
+
+  public int getSc_likedown() {
+    return sc_likedown;
+  }
+
+  public void setSc_likedown(int sc_likedown) {
+    this.sc_likedown = sc_likedown;
+  }
   /** Framework에서 자동 주입되는 업로드 파일 객체, 실제 컬럼은 존재하지 않음. */  
   private MultipartFile file2MF;
   
@@ -92,11 +109,11 @@ public class SeicoVO {
     this.sc_cont = sc_cont;
   }
 
-  public String getSc_like() {
+  public int getSc_like() {
     return sc_like;
   }
 
-  public void setSc_like(String sc_like) {
+  public void setSc_like(int sc_like) {
     this.sc_like = sc_like;
   }
 
