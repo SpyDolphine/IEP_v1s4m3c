@@ -138,8 +138,8 @@ $(function(){
             <td style='vertical-align: middle;'>${vo.io_file2}</td>
             <td style='vertical-align: middle;'>${vo.io_replycnt}</td>
             <td style='vertical-align: middle;'>
-              <a href="./update.do?io_no=${vo.io_no}"><img src="./images/update.png" title="수정" border='0'/></a>
-              <a href="./delete.do?io_no=${vo.io_no} "><img src="./images/delete.png" title="삭제"  border='0'/></a>
+              <a href="./update.do?io_no=${vo.io_no}"><i class="fa fa-pencil"></i> 수정 |</a>
+              <a href="./delete.do?io_no=${vo.io_no} "><i class="fa fa-trash-o"></i> 삭제</a>
             
             </td>
             <td>${vo.io_grpno }</td>

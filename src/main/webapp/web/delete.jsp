@@ -40,7 +40,6 @@
     <A href="./create.do?wb_no=${webVO.wb_no }">등록</A>｜
     <A href="./update.do?wb_no=${webVO.wb_no}">수정</A>｜
     <A href="./delete.do?wb_no=${webVO.wb_no}">삭제</A>｜
-    <A href="./reply.do?wb_no=${webVO.wb_no }">답변</A>｜
     <A href="javascript:location.reload();">새로고침</A>-
   </div>
 

@@ -50,16 +50,16 @@
         </div>
         <div class="content" style='width: 100%;'>
           <table class="table" style='width: 100%;'>
-            <colgroup>
-              <col style="width: 10%;"></col>
-              <col style="width: 30%;"></col>
-              <col style="width: 10%;"></col>
-              <col style="width: 10%;"></col>
-              <col style="width: 5%;"></col>
-              <col style="width: 15%;"></col>
-              <col style="width: 10%;"></col>
-              <col style="width: 10%;"></col>
-            </colgroup>
+      <colgroup>
+        <col style="width: 10%;"></col>
+        <col style="width: 25%;"></col>
+        <col style="width: 10%;"></col>
+        <col style="width: 10%;"></col>
+        <col style="width: 5%;"></col>
+        <col style="width: 15%;"></col>
+        <col style="width: 8%;"></col>
+        <col style="width: 15%;"></col>
+      </colgroup>
 
             <%-- table 컬럼 --%>
             <thead>
@@ -88,10 +88,9 @@
                   <td>${vo.ap_file1}</td>
                   <td>${vo.ap_file2}</td>
                   <td>${vo.ap_replycnt}</td>
-                  <td><a href="./update.do?ap_no=${vo.ap_no}"><img
-                      src="./images/update.png" title="수정" border='0' /></a>
-                    <a href="./delete.do?ap_no=${vo.ap_no}"><img
-                      src="./images/delete.png" title="삭제" border='0' /></a>
+                  <td>
+                  <a href="./update.do?ap_no=${vo.ap_no}"><i class="fa fa-pencil"></i> 수정 |</a>
+                  <a href="./delete.do?ap_no=${vo.ap_no}"><i class="fa fa-trash-o"></i> 삭제</a>
 
                   </td>
                 </tr>
