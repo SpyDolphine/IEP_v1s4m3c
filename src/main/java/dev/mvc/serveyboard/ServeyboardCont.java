@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.notice.NoticeVO;
@@ -177,27 +178,13 @@ public class ServeyboardCont {
    * @return
    */
   @RequestMapping(value = "/serveyboard/delete.do", method = RequestMethod.GET)
-  public ModelAndView delete2(int sb_no) {
+  public ModelAndView delete(@RequestParam List<String> arr) {
     ModelAndView mav = new ModelAndView();
-    mav.addObject("sb_no", sb_no);
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("arr", arr);
+    serveyboardDAO.delete(hashMap);
+    mav.setViewName("redirect:/serveyboard/list.do");
     return mav;
   }  
-  
-  /**
-   * 레코드 1건을 삭제합니다.
-   * @param sb_no
-   * @return
-   */
-  @RequestMapping(value = "/serveyboard/delete.do", method = RequestMethod.POST)
-  public ModelAndView delete(int sb_no) {
-    ModelAndView mav = new ModelAndView();
- 
-      if (serveyboardDAO.delete(sb_no) == 1) {
-        mav.setViewName("redirect:/serveyboard/list.do");
-      } else {
- 
-      }
-    return mav;
-  }
   
 }

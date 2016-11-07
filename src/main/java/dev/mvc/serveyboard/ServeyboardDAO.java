@@ -37,8 +37,8 @@ public class ServeyboardDAO implements ServeyboardDAOInter{
   }
 
   @Override
-  public int delete(int sb_no) {
-    return mybatis.delete("serveyboard.delete", sb_no);
+  public int delete(HashMap hashMap) {
+    return mybatis.delete("serveyboard.delete", hashMap);
   }
 
   @Override
