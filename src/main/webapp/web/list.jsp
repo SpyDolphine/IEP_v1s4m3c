@@ -56,8 +56,8 @@ $(function(){
         <col style="width: 10%;"></col>
         <col style="width: 5%;"></col>
         <col style="width: 15%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 10%;"></col>
+        <col style="width: 7%;"></col>
+        <col style="width: 13%;"></col>
       </colgroup>
           
       <%-- table 컬럼 --%>
@@ -88,8 +88,8 @@ $(function(){
             <td>${vo.wb_file2}</td>
             <td>${vo.wb_replycnt}</td>
             <td>
-              <a href="./update.do?wb_no=${vo.wb_no}"><img src="./images/update.png" title="수정" border='0'/></a>
-              <a href="./delete.do?wb_no=${vo.wb_no}"><img src="./images/delete.png" title="삭제"  border='0'/></a>
+              <a href="./update.do?wb_no=${vo.wb_no}"><i class="fa fa-pencil"></i> 수정 |</a>
+              <a href="./delete.do?wb_no=${vo.wb_no}"><i class="fa fa-trash-o"></i> 삭제</a>
 
             </td>
           </tr>
