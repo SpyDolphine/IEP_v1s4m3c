@@ -8,11 +8,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -304,4 +306,41 @@ public class SeicoCont {
     mav.addObject("paging", paging);
     return mav;
     }
+  /**
+   * 추천 처리
+   */
+  @ResponseBody
+  @RequestMapping(value = "/seico/likeup.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+  public String likeup(int sc_no) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("sc_no", seicoDAO.read(sc_no));
+    
+    int cnt = seicoDAO.likeup(sc_no); //필수템!@@!!!! 
+    int likeup = seicoDAO.read(sc_no).getSc_likeup();
+  
+    JSONObject obj = new JSONObject();
+    obj.put("sc_likeup", likeup);
+    obj.put("sc_no", sc_no);
+    
+    return obj.toJSONString();
+  }
+  
+  /**
+   * 비추천 처리
+   */
+  @ResponseBody
+  @RequestMapping(value = "/seico/likedown.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+  public String likedown(int sc_no) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("sc_no", seicoDAO.read(sc_no));
+    
+    int cnt = seicoDAO.likedown(sc_no);
+    int likedown = seicoDAO.read(sc_no).getSc_likedown();
+
+    JSONObject obj = new JSONObject();
+    obj.put("likedown", likedown);
+    obj.put("sc_no", sc_no);
+    
+    return obj.toJSONString();
+  }
 }

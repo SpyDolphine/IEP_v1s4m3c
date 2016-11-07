@@ -10,11 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 INSERT INTO seico(sc_no,
                   sc_area, sc_jobs, sc_gender, sc_position, sc_title, sc_name, sc_cont, 
-                  sc_q, sc_tip, sc_stars, sc_ex, sc_where, sc_date, file1, file2, size2 )
+                  sc_q, sc_tip, sc_stars, sc_ex, sc_where, sc_date, file1, file2, size2,sc_like, sc_likeup, sc_likedown )
 VALUES((SELECT NVL(MAX(sc_no), 0) + 1 as sc_no FROM seico),
  #{sc_area}, #{sc_jobs},#{sc_gender},#{sc_position}, #{sc_title}, #{sc_name}, 
  #{sc_cont}, #{sc_q},#{sc_tip},#{sc_stars}, #{sc_ex},#{sc_where}, sysdate, 
- #{file1}, #{file2}, #{size2}) 
+ #{file1}, #{file2}, #{size2}, 0, 0, 0) 
  
  </insert>
 
@@ -25,16 +25,16 @@ SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_date, file1, file2, size2,
 
 <select parameterType="int" id="read" resultType="SeicoVO"> 
   SELECT sc_no, 
-       sc_area, sc_jobs, sc_gender, sc_position, sc_title, sc_name, sc_cont,sc_q, sc_tip, sc_stars, sc_cnt,sc_like, sc_ex, sc_where, sc_date, 
+       sc_area, sc_jobs, sc_gender, sc_position, sc_title, sc_name, sc_cont,sc_q, sc_tip, sc_stars, sc_cnt,sc_like, sc_likeup, sc_likedown, sc_ex, sc_where, sc_date, 
        file1, file2, size2 
   FROM seico 
   WHERE sc_no=#{sc_no} 
   </select>
 
-<update parameterType="int" id="like"> 
+<!-- <update parameterType="int" id="like"> 
   UPDATE seico 
   SET sc_like= sc_like+1 WHERE sc_no=#{sc_no} 
-  </update>
+  </update> -->
 
 <update parameterType="SeicoVO" id="update"> 
   UPDATE seico 
@@ -46,16 +46,28 @@ SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_date, file1, file2, size2,
   
   WHERE sc_no=#{sc_no} </update>
 
-<update parameterType="int" id="cntup"> 
-  UPDATE seico 
-  SET sc_cnt= sc_cnt+1 
-  WHERE sc_no=#{sc_no} 
-</update>
+  <update parameterType="int" id="cntup"> 
+    UPDATE seico 
+    SET sc_cnt= sc_cnt+1 
+    WHERE sc_no=#{sc_no} 
+  </update>
 
-<delete parameterType="int" id="delete"> 
-DELETE FROM seico 
-WHERE sc_no=#{sc_no} 
-</delete>
+  <delete parameterType="int" id="delete"> 
+  DELETE FROM seico 
+  WHERE sc_no=#{sc_no} 
+  </delete>
+
+  <update id='likeup' parameterType="int">
+    update seico
+    set sc_likeup = sc_likeup + 1
+    where sc_no = #{sc_no}
+  </update>  
+
+  <update id='likedown' parameterType="int">
+    update seico
+    set sc_likedown = sc_likedown + 1
+    where sc_no = #{sc_no}
+  </update> 
 
 <!-- ********** 검색에 따른 변경 시작 ********** -->
 
@@ -108,9 +120,9 @@ SELECT COUNT(*) as sc_cnt FROM seico
 
 
 <select parameterType="HashMap" id="list" resultType="SeicoVO">
-SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2, r 
- FROM( SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2, rownum as r 
-  FROM( SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2 
+SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2,sc_like, r 
+ FROM( SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2,sc_like, rownum as r 
+  FROM( SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2, sc_like
 FROM seico 
 
 <choose>

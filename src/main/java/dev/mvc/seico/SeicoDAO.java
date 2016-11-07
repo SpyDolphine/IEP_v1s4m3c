@@ -58,6 +58,18 @@ public class SeicoDAO implements SeicoDAOInter {
   public List<SeicoVO> list(HashMap<String, Object> Map) {
     return mybatis.selectList("seico.list", Map);
     
+  }
+   @Override
+    public int likeup(int sc_no) {
+      return mybatis.update("seico.likeup", sc_no);
+    }
+
+    @Override
+    public int likedown(int sc_no) {
+      return mybatis.update("seico.likedown", sc_no);
+    }
+    
+  }
     /* @Override
   public List<GurumeVO> list4(HashMap Map) {
     System.out.println("col: "+ Map.get("col"));
@@ -72,6 +84,4 @@ public class SeicoDAO implements SeicoDAOInter {
     System.out.println("endNum: "+ hashMap.get("endNum"));
     return mybatis.selectOne("seico.count", hashMap);
   }*/
-  }
 
-}

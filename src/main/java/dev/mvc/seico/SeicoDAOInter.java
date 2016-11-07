@@ -60,6 +60,21 @@ public interface SeicoDAOInter {
    * @return
    */
   public int count(HashMap hashMap);
+  
+
+ /**
+   * 추천 기능
+   * @param sc_no
+   * @return
+   */
+  public int likeup(int sc_no); 
+  
+  /**
+   * 비추천 기능
+   * @param sc_no
+   * @return
+   */
+  public int likedown(int sc_no);
 
   
   public List<SeicoVO> list(HashMap<String, Object> Map);
