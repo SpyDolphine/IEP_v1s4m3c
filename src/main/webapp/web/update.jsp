@@ -92,7 +92,7 @@
       <li>
         <label class='label' for='wb_file2'>업로드 파일</label>
         <input type="file" name='file2MF' id='file2MF' size='40' >
-      </li>
+      </li> 
       <li class='right'>
          <button type="submit">수정</button>
         <button type="button" onclick="location.href='./list.do?wb_no=${webVO.wb_no}'">목록[취소]</button>
