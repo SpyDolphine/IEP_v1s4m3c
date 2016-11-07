@@ -50,10 +50,7 @@ function checkDel() {
       return;
      }
   } else {
-    
   }
- 
-  
  }
 </script>
 <style>

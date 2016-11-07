@@ -75,9 +75,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </update> 
    
   <!-- 삭제 -->
-  <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="HashMap">
     DELETE FROM serveyboard
-    WHERE sb_no=#{sb_no}
+    WHERE sb_no IN
+    <foreach collection="arr" item="sb_no" index="index" separator="," open="(" close=")">
+    #{sb_no}
+    </foreach>
   </delete>
 
   

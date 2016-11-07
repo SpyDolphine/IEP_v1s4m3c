@@ -199,12 +199,12 @@ public class FnqCont {
     ModelAndView mav = new ModelAndView();
     FnqVO fnqVO = fnqDAO.read(Integer.parseInt(arr.get(0)));
     HashMap<String, Object> hashMap = new HashMap<String, Object>();
-    if(fnqVO.getFq_CH().equals('H')){
+    if(fnqVO.getFq_CH().equals("H")){
       hashMap.put("arr", arr);
       fnqDAO.delete(hashMap);
       mav.setViewName("redirect:/fnq/listh.do");
     }
-    if(fnqVO.getFq_CH().equals('C')){
+    if(fnqVO.getFq_CH().equals("C")){
       hashMap.put("arr", arr);
       fnqDAO.delete(hashMap);
       mav.setViewName("redirect:/fnq/listc.do");

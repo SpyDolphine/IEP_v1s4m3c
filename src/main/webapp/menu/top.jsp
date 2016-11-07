@@ -33,6 +33,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.matchHeight-min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-scrolltofixed-min.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- 맨위로 -->
+
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 
@@ -63,9 +65,24 @@ function bookmarksite(title,url) {
    }
 } 
 </script>
-
+<style>
+a.iep-top {
+    position: fixed;
+    right: 15px;
+    bottom: 50px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-align: center;
+    width: 45px;
+    height: 45px;
+    font-size: 40px;
+    /*background-color: rgba(50,50,50,0.5);*/
+    background-color:#323232; opacity:0.5; filter:alpha(opacity=50); /*ie8 호환을 위한코드 위와 동일한 것임 호환필요없으면 한줄로 rgba적으면됨*/
+    z-index: 999;
+}
+</style>
 </head>
-
+<a href="#" class="iep-top"><i class="fa fa-upload" style="text-align: right;"></i></a>
 <body class="home">
     <header id="header">
         <div id="top-bar">

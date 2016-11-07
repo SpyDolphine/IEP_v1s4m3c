@@ -74,7 +74,6 @@ function checkDel() {
    <div class="col-xs-12 col-lg-12">
     
 <DIV class='content' style='width: 80%;'>
-<FORM name='frm' method='GET'>
     <DIV class='left'>
        <div class="widget_title">
           <h4><i class="fa fa-question-circle"></i> 자주하는 ${ch} 질문<br></h4>
@@ -123,7 +122,6 @@ function checkDel() {
     </div>
   </div>
 </section>
-</FORM>
 </DIV>
    </div>
  </div>

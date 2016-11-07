@@ -152,7 +152,6 @@ public class NoticeCont {
   @RequestMapping(value = "/notice/delete.do", method = RequestMethod.GET)
   public ModelAndView delete(@RequestParam List<String> arr) {
     ModelAndView mav = new ModelAndView();
-    
     HashMap<String, Object> hashMap = new HashMap<String, Object>();
     hashMap.put("arr", arr);
     noticeDAO.delete(hashMap);

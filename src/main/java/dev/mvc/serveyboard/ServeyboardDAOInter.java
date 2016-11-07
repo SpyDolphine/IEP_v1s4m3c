@@ -41,7 +41,7 @@ public interface ServeyboardDAOInter {
    * @param serveyno 삭제할 항목 번호
    * @return 삭제된 레코드 갯수
    */
-  public int delete(int sb_no);
+  public int delete(HashMap hashMap);
   
   /**
    * 설문조사 항목 총합
