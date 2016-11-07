@@ -29,8 +29,8 @@ public class MfDAO implements MfInter{
   }
 
   @Override
-  public int delete(int cm_no) {
-    return mybatis.delete("mfree.delete", cm_no);
+  public int delete(HashMap hashmap) {
+    return mybatis.delete("mfree.delete", hashmap);
   }
 
   @Override
@@ -86,6 +86,16 @@ public class MfDAO implements MfInter{
   @Override
   public int minlist() {
     return mybatis.selectOne("mfree.minlist");
+  }
+
+  @Override
+  public int likeit(int cm_no) {
+    return mybatis.update("mfree.likeit", cm_no);
+  }
+
+  @Override
+  public int likedown(int cm_no) {
+    return mybatis.update("mfree.likedown", cm_no);
   }
  
 }
