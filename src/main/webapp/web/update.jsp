@@ -91,7 +91,9 @@
 </DIV>
 
 
+     <div style= 'margin: 100px 0 0 0;  position: relative;'>
      <jsp:include page="/menu/bottom.jsp" flush='false' />     
+  </div>    
   </div>
 </body>
  
