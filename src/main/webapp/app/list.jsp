@@ -9,6 +9,7 @@
 <title>APP 공부 게시판</title>
 
 </head>
+
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 

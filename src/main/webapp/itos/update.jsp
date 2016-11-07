@@ -1,23 +1,17 @@
-<%@ page contentType="text/html; charset=UTF-8" %> 
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
-<meta charset="UTF-8"> 
-<title></title> 
+<meta charset="UTF-8">
+<title>중고 장터</title>    
  
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
- 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- 
-<script type="text/javascript" src="../js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
-<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+</head>
+<!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
+
 <script type="text/JavaScript">
   window.onload=function(){
    CKEDITOR.replace('content');
@@ -31,21 +25,38 @@
   
 
 </script>
- 
-</head> 
- 
+
+<!-- ----------------------------------------- -->
+<section class="wrapper">
+    <section class="page_head">
+        <div class="container">
+             <div class="row">
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+                        <nav id="breadcrumbs">
+                            <ul>
+                                <li><a href="../index.jsp">Home</a>/</li>
+                                <li><A href='./list.do'>목록</A></li>   
+                                <i class="fa fa-arrow-circle-right">중고 장터</i>
+                            </ul> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+</section>
+</section>
+
 <body>
-  <div class="container">
-    <jsp:include page="/menu/top.jsp" flush='false' />
-     
-     
+<div class="container">
+ <div class="row" align='center'>
+   <div class="col-xs-12 col-lg-12">
+   
   <div class='content_menu' style='width: 100%;'>
     <A href='../itos/list.do'>게시판 목록</A> > 
     <A href='./list.do?io_no=${itosVO.io_no }'>${itosVO.io_title }</A>｜
     <A href="javascript:history.back();">취소</A>
   </div>
   
- 
+
   
   <DIV class='content' style='width: 100%;'>
   <FORM name='frm' method='POST' action='./update.do'
@@ -95,11 +106,14 @@
     </ul>
   </FORM>
 </DIV>
-
-     <div style= 'margin: 100px 0 0 0;  position: relative;'>
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
-  </div>
-  </div>
+   </div>
+ </div>
+</div>
 </body>
- 
+
+<!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>  
+<!-- -------------------------------------------- -->
 </html> 
