@@ -77,7 +77,8 @@ hr {
 
     <div class="write_content" style='width: 90%;'>
       <input type="hidden" name="cm_no" value="${mfVO.cm_no}">
-      <div style='text-align: left;'>&nbsp;&nbsp;${mfVO.cm_title}</div><p style='text-align: right;'>
+      <div style='text-align: left;'>&nbsp;&nbsp;${mfVO.cm_title}</div>
+      <p style='text-align: right;'>
         <span style='color: #cccccc;'>${mfVO.cm_date.substring(0, 16)}</span> |
         <A href="./update.do?cm_no=${mfVO.cm_no}">수정</A> |
         <A href="./delete.do?cm_no=${mfVO.cm_no }&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}"
