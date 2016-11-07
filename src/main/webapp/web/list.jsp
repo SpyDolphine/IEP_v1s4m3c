@@ -1,40 +1,47 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
-<!DOCTYPE html>
-<html lang="ko">
-<head>
+<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
 <meta charset="UTF-8">
-<title></title>
+<title>WEB 공부 게시판</title>    
  
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
+</head>
+<!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    
-<script type="text/javascript" src="../js/tool.js"></script>
 <script type="text/javascript">
 $(function(){
- 
+
 });
 </script>
- 
-<script type="text/javascript">
-</script>
-</head>
- 
-<%-- body 시작 --%>
-<body leftmargin="0" topmargin="0">
+<!-- ----------------------------------------- -->
+<section class="wrapper">
+    <section class="page_head">
+        <div class="container">
+             <div class="row">
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+                        <nav id="breadcrumbs">
+                            <ul>
+                                <li><a href="../index.jsp">Home</a>/</li>
+                                <li><A href='./list.do'>목록</A></li>   
+                                <i class="fa fa-arrow-circle-right">WEB 공부 게시판</i> 
+                            </ul> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+</section>
+</section>
+
+<body>
 <div class="container">
-     <jsp:include page="/menu/top.jsp" flush='false' />
-<%-- ---------------------------------------------------------------------------------------------- --%>
-  <div class='content_menu' style='width: 90%;'>
+ <div class="row" align='center'>
+   <div class="col-xs-12 col-lg-12">
+   
+<div class='content_menu' style='width: 90%;'>
     <A href='../web/list.do'>전체 게시판 목록</A> ｜
     <A href='./list.do'>web게시판</A>｜
     <A href='./create.do'>등록</A>｜
@@ -49,8 +56,8 @@ $(function(){
         <col style="width: 10%;"></col>
         <col style="width: 5%;"></col>
         <col style="width: 15%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 10%;"></col>
+        <col style="width: 7%;"></col>
+        <col style="width: 13%;"></col>
       </colgroup>
           
       <%-- table 컬럼 --%>
@@ -81,8 +88,8 @@ $(function(){
             <td>${vo.wb_file2}</td>
             <td>${vo.wb_replycnt}</td>
             <td>
-              <a href="./update.do?wb_no=${vo.wb_no}"><img src="./images/update.png" title="수정" border='0'/></a>
-              <a href="./delete.do?wb_no=${vo.wb_no}"><img src="./images/delete.png" title="삭제"  border='0'/></a>
+              <a href="./update.do?wb_no=${vo.wb_no}"><i class="fa fa-pencil"></i> 수정 |</a>
+              <a href="./delete.do?wb_no=${vo.wb_no}"><i class="fa fa-trash-o"></i> 삭제</a>
 
             </td>
           </tr>
@@ -92,12 +99,15 @@ $(function(){
     </table>
     <br><br>
   </div>
- 
-<%-- ---------------------------------------------------------------------------------------------- --%>
-     <div style= 'margin: 100px 0 0 0;  position: relative;'>
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
-  </div>    
-     </div>
+
+   </div>
+ </div>
+</div>
 </body>
-<%-- body 종료 --%>
-</html>
+
+<!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>  
+<!-- -------------------------------------------- -->
+</html> 

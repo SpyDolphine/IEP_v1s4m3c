@@ -1,26 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title></title>
  
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
+<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
+<meta charset="UTF-8">
+<title>APP 공부 게시판</title>    
+ 
+</head>
+<!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  
-<script type="text/javascript" src="../js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
 <script type="text/javascript">
   /* function customize(imgObj){
     alert('file2 '+ imgObj.width());
@@ -35,12 +26,31 @@
   });
 
 </script>
-</head>
+
 <!-- ----------------------------------------- -->
+<section class="wrapper">
+    <section class="page_head">
+        <div class="container">
+             <div class="row">
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+                        <nav id="breadcrumbs">
+                            <ul>
+                                <li><a href="../index.jsp">Home</a>/</li>
+                                <li><A href='./list.do'>목록</A></li>   
+                                <i class="fa fa-arrow-circle-right">APP 공부 게시판</i>
+                            </ul> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+</section>
+</section>
+
 <body>
 <div class="container">
-     <jsp:include page="/menu/top.jsp" flush='false' />
-<!-- ----------------------------------------- -->
+ <div class="row" align='center'>
+   <div class="col-xs-12 col-lg-12">
+   
   <div class='content_menu' style='width: 100%;'>
     <A href='./list.do?ap_no=${appVO.ap_no}&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}'></A>｜
     <A href='./create.do?ap_no=${appVO.ap_no}'>등록</A>｜
@@ -74,7 +84,7 @@
             <label for="ap_file1" class="form_group" style="width:150px;">
             업로드 파일: 
             <c:if test="${appVO.ap_size2 > 0}">
-              <A href='${pageContext.request.contextPath}/download?dir=/blog/storage&filename=${appVO.ap_file2}'>${appVO.ap_file2}</A>  (${appVO.size2Label})
+              <A href='${pageContext.request.contextPath}/download?dir=/app/storage&filename=${appVO.ap_file2}'>${appVO.ap_file2}</A>  (${appVO.size2Label})
             </c:if>
             </label>
             <div>
@@ -106,12 +116,14 @@
       </fieldset>
     </FORM>
   </DIV>
- 
-<!-- -------------------------------------------- -->
-<div style= 'margin: 100px 0 0 0;  position: relative;'>
-<jsp:include page="/menu/bottom.jsp" flush='false' />
-</div>
+   </div>
+ </div>
 </div>
 </body>
+
+<!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>  
 <!-- -------------------------------------------- -->
 </html> 

@@ -47,10 +47,10 @@ public class WebCont {
     ArrayList<String> links = new ArrayList<String>();
 
     if (WebDAO.create(webVO) == 1) {
-      msgs.add("수업자료가(이) 등록되었습니다.");
+      msgs.add("게시물이(가) 등록되었습니다.");
       links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
     } else {
-      msgs.add("수업자료 등록에 실패했습니다.");
+      msgs.add("게시물 등록에 실패했습니다.");
       msgs.add("죄송하지만 다시한번 시도해주세요.");
       links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
       links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
@@ -179,7 +179,7 @@ public class WebCont {
       // 수정후 조회로 자동 이동
       mav.setViewName("redirect:/web/read.do?wb_no=" + webVO.getWb_no()); // 확장자 명시
     }else{
-      msgs.add("게시판 수정에 실패 하셨습니다.");
+      msgs.add("게시물 수정에 실패 하셨습니다.");
       links.add("<button type='button' onclick=\"history.back()\">다시 시도</button>");
       links.add("<button type='button' onclick=\"location.href='./list.do?wb_no="+webVO.getWb_no()+"'\">목록</button>");
       mav.addObject("msgs", msgs);
@@ -221,7 +221,7 @@ public class WebCont {
       mav.setViewName("redirect:/web/list.do?wb_no=" + webVO.getWb_no());//확장자 명시
  
     } else {
-      msgs.add("글 삭제에 실패했습니다.");
+      msgs.add("게시물 삭제에 실패했습니다.");
       links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
       links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
       links.add("<button type='button' onclick=\"location.href='./list.do?wb_no="+webVO.getWb_no()+"'\">목록</button>");
