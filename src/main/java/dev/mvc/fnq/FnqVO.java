@@ -24,7 +24,8 @@ CREATE TABLE fnq (                         -- 자주묻는 질문
   /** 날짜 */
   private String fq_date;
   /** 홈페이지용인지 회사용인지 판별문자 */
-  private Character fq_CH;
+  private String fq_CH;
+  
   public int getFq_no() {
     return fq_no;
   }
@@ -55,10 +56,12 @@ CREATE TABLE fnq (                         -- 자주묻는 질문
   public void setFq_date(String fq_date) {
     this.fq_date = fq_date;
   }
-  public Character getFq_CH() {
+  public String getFq_CH() {
     return fq_CH;
   }
-  public void setFq_CH(Character fq_CH) {
+  public void setFq_CH(String fq_CH) {
     this.fq_CH = fq_CH;
   }
+  
+
 }
