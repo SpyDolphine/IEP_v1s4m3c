@@ -107,22 +107,25 @@ background-color: skyblue;
     
    <tbody> 
     <c:forEach var="vo" items="${Nlist }">
-    <TR class='nlist'>
+    <TR>
       <TD><input type="checkbox" name="check" id="check" value="${vo.nt_no}"></TD>
-      <TD class='td'>${vo.nt_no}</TD>
-      <TD class='td'><a href='./read.do?nt_no=${vo.nt_no}'>${vo.nt_title}</a></TD>
-      <TD class='td'>
-        <A href="./update.do?nt_no=${vo.nt_no}"><IMG src='../menu/images/update.png' title='수정'></A>
+      <TD><i class="fa fa-flag"></i></TD>
+      <TD><a href='./read.do?nt_no=${vo.nt_no}'>${vo.nt_title}</a></TD>
+      <TD>
+        <A href="./update.do?nt_no=${vo.nt_no}"><i class="fa fa-pencil"></i> 수정 |</A>
+        <A href="./delete.do?arr=${vo.nt_no}" onclick="return confirm('삭제하시겠나요?')">삭제</A>
       </TD>
     </TR>
     </c:forEach>
+    
     <c:forEach var="vo" items="${list }">
     <TR>
       <TD><input type="checkbox" name="check" id="check" value="${vo.nt_no}"></TD>
       <TD class='td'>${vo.nt_no}</TD>
       <TD class='td'><a href='./read.do?nt_no=${vo.nt_no}'>${vo.nt_title}</a></TD>
       <TD class='td'>
-        <A href="./update.do?nt_no=${vo.nt_no}"><i class="fa fa-pencil"></i> 수정</A>
+        <A href="./update.do?nt_no=${vo.nt_no}"><i class="fa fa-pencil"></i> 수정 |</A>
+        <A href="./delete.do?arr=${vo.nt_no}" onclick="return confirm('삭제하시겠나요?')">삭제</A>
       </TD>
     </TR>
     </c:forEach>
