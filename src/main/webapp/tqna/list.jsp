@@ -75,7 +75,7 @@
             <input type="submit" value="검색">
           </div>
         </form>
-
+ 
         <div class="content" style='width: 100%;'>
           <table class="table table-striped" style='width: 100%;'>
             <%-- table 컬럼 --%>
@@ -151,11 +151,9 @@
                     </c:choose></td>
                   <td style='vertical-align: middle;'>${vo.qa_file2}</td>
                   <td style='vertical-align: middle;'>${vo.qa_replycnt}</td>
-                  <td style='vertical-align: middle;'><a
-                    href="./update.do?qa_no=${vo.qa_no}"><img
-                      src="./images/update.png" title="수정" border='0' /></a>
-                    <a href="./delete.do?qa_no=${vo.qa_no} "><img
-                      src="./images/delete.png" title="삭제" border='0' /></a>
+                  <td style='vertical-align: middle;'>
+                  <a href="./update.do?qa_no=${vo.qa_no}"><i class="fa fa-pencil"></i> 수정 |</a>
+                  <a href="./delete.do?qa_no=${vo.qa_no} "><i class="fa fa-trash-o"></i> 삭제</a>
 
                   </td>
                   <td>${vo.qa_grpno }</td>
