@@ -6,7 +6,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8">
-<title>설문조사</title>    
+<title>설문조사</title>     
 </head>
 
 <!-- ----------------------------------------- -->
