@@ -9,6 +9,7 @@
 <title>설문조사</title>    
  
 </head>
+
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
@@ -55,7 +56,7 @@ hr {
     <div style='text-align: left;'>&nbsp;&nbsp;${serveyboardVO.title}</div>
     <p style='text-align: right;'>
       <A href='./update.do?sb_no=${serveyboardVO.sb_no}'>수정</A> |
-      <A href='./delete.do?sb_no=${serveyboardVO.sb_no}' onclick="return confirm('삭제 하시겠습니까?')">삭제</A>
+      <A href='./delete.do?arr=${serveyboardVO.sb_no}' onclick="return confirm('삭제 하시겠습니까?')">삭제</A>
     </p>   
     <hr>
     
