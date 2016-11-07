@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "itos">
+  <insert id="create" parameterType="ItosVO">
+    INSERT INTO ITOS(io_no, 
+                         io_title, io_content, io_good, io_file1, io_file2, io_size2,
+                         io_cnt, io_replycnt, io_date, io_cost, io_grpno, io_indent, io_ansnum)  
+    VALUES((SELECT NVL(MAX(io_no), 0) + 1 as io_no FROM ITOS),
+                          #{io_title}, #{io_content}, 0, #{io_file1}, #{io_file2}, #{io_size2}, 
+                          0, 0, sysdate, #{io_cost}, 
+                          (SELECT NVL(MAX(io_grpno), 0) + 1 as io_grpno FROM ITOS), 0, 0)
+  </insert>
+
+  <select id="list" resultType="ItosVO">
+    SELECT io_no,
+           io_title, io_content, io_good, io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date,
+           io_cost,io_grpno, io_indent, io_ansnum
+    FROM ITOS
+    ORDER BY io_grpno DESC, io_ansnum ASC
+    
+  </select> 
+  
+    <select id="read" resultType="ItosVO" parameterType="int">
+    SELECT io_no,
+           io_title, io_content, io_good, io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date,
+           io_cost, io_grpno, io_indent, io_ansnum
+    FROM ITOS
+    WHERE io_no=#{io_no}
+  </select>
+  
+    <update id='update' parameterType="ItosVO">
+    UPDATE ITOS
+    SET io_no=#{io_no}, io_title=#{io_title}, io_content=#{io_content}, io_file1=#{io_file1}, io_file2=#{io_file2}, io_size2=#{io_size2}, io_cost=#{io_cost}
+    WHERE io_no=#{io_no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM ITOS
+    WHERE io_no=#{io_no}
+  </delete>
+  
+<!-- **********       답변 관련 시작       ********** -->
+  <!-- 답변 순서 변경 -->
+  <update id='updateAnsnum' parameterType="ItosVO">
+    UPDATE ITOS
+    SET io_ansnum = io_ansnum + 1
+    WHERE io_no=#{io_no} AND io_grpno = #{io_grpno} AND io_ansnum > #{io_ansnum}
+  </update>
+ 
+  <!-- 답변 등록 -->
+  <insert id="reply" parameterType="ItosVO">
+    INSERT INTO ITOS(io_no,
+                          io_title, io_content, io_good, io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date, 
+                          io_cost, io_grpno, io_indent, io_ansnum)  
+    VALUES((SELECT NVL(MAX(io_no), 0) + 1 as io_no FROM ITOS),
+            #{io_title}, #{io_content}, 0, #{io_file1}, #{io_file2}, 0, 0, 0, sysdate,
+            #{io_cost},#{io_grpno}, #{io_indent}, #{io_ansnum})
+  </insert>
+ 
+  <!-- 답변에 따른 목록 -->
+  <select id="list1" resultType="ItosVO" parameterType="HashMap" >
+    SELECT io_no, io_title, io_content, io_good, 
+               io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date, io_grpno, io_indent, io_ansnum, r
+    FROM(
+             SELECT io_no, io_title, io_content, io_good,
+                        io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date, io_grpno, io_indent, io_ansnum, rownum as r
+             FROM(
+                      SELECT io_no, io_title, io_content, io_good,
+                                 io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date, io_grpno, io_indent, io_ansnum
+                      FROM ITOS
+ 
+                      WHERE io_no=#{io_no}
+                      ORDER BY io_grpno DESC, io_ansnum ASC
+             )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
+  </select> 
+ 
+  <!-- **********       답변 관련 종료       ********** -->
+</mapper>
