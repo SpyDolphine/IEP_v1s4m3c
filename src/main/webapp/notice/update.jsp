@@ -34,11 +34,6 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-    <div class='content_menu' style='width: 100%;'>
-      <A href='../list.do'>게시판 목록</A> > 
-      <A href='./list.do?nt_no=${noticeVO.nt_no }'>${noticeVO.nt_title }</A>｜
-      <A href="javascript:history.back();">취소</A>
-    </div>
     <DIV class='content' style='width: 70%;'>
       <FORM name='frm' method='POST' action='./update.do'
                   enctype="multipart/form-data">
