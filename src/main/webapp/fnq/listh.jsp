@@ -146,7 +146,6 @@ function checkDel() {
       <c:when test="${searchDTO.col == 'total' }">
         <input type="text" name="word" size="15" value="">
       </c:when>
-      
     </c:choose>
      
     <input type="submit" value="검색"> 
