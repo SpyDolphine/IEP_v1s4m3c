@@ -10,6 +10,47 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+<script type="text/JavaScript">
+  function checkDel() {
+    var r = confirm('삭제하시겠습니까?');
+  
+    var chkList = document.getElementsByName('check');
+    var arr = new Array();
+    var cnt = 0;
+    if (r == true) {
+      for ( var idx = chkList.length - 1; 0 <= idx; idx--) {
+        if (chkList[idx].checked) {
+         arr[cnt] = chkList[idx].value;
+         cnt++;
+        }
+       }
+       if (arr.length != 0) {
+         location.href='./delete.do?arr='+arr;
+       } else {
+         alert('체크를 하셔야합니다.');
+         return;
+       }
+     } else {
+       alert('취소합니다');
+     }
+    }
+  
+  $(function(){
+    //전체선택 체크박스 클릭
+  $("#allCheck").click(function(){
+    //만약 전체 선택 체크박스가 체크된상태일경우
+    if($("#allCheck").prop("checked")) {
+      //해당화면에 전체 checkbox들을 체크해준다
+      $("input[type=checkbox]").prop("checked",true);
+    // 전체선택 체크박스가 해제된 경우
+    } else {
+      //해당화면에 모든 checkbox들의 체크를해제시킨다.
+      $("input[type=checkbox]").prop("checked",false);
+    }
+  })
+  });
+  
+</script>
 </head>
  
 <section class="wrapper">
@@ -38,6 +79,10 @@
       <p style='text-align: right;'>
         <A href='./create.do' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 글쓰기</i></A>
       </p>
+      <div class='left'>
+        &nbsp;<input type="checkbox" id="allCheck"/> 전체선택 
+        <A onclick="checkDel();" class="btn btn-default btn-xs"><i class="fa fa-trash-o"></i> 삭제</A>
+      </div>
       <%-- table 컬럼 --%>
       <thead>
         <tr>
@@ -54,7 +99,7 @@
       <tbody>
         <c:forEach var="vo" items="${list }">
           <tr>
-            <td style='vertical-align: middle;'>${vo.cm_no}</td>
+            <td style='vertical-align: middle;'><input type="checkbox" name="check" id="check" value="${vo.cm_no}">&nbsp;${vo.cm_no}</td>
             <td style='vertical-align: middle;' id='boardtitle'>
               <c:choose>
                 <c:when test="${vo.ansnum == 0 }">

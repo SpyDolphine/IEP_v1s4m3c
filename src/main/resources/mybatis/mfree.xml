@@ -26,9 +26,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE cm_no=#{cm_no}
   </update>   
   
-  <delete id="delete" parameterType="int">
+  <!-- 다중 삭제 기능 -->
+  <delete id="delete" parameterType="HashMap">
     DELETE FROM commu_meet
-    WHERE cm_no=#{cm_no}
+    WHERE cm_no IN 
+    <foreach collection="arr" item="cm_no" index="index" separator="," open="(" close=")"> 
+    #{cm_no} 
+    </foreach>   
   </delete>  
   
   <select id="read" resultType="MfVO">
@@ -80,8 +84,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     where grpno = #{grpno}
     order by ansnum
   </select>  
- <!-- **********       관련글 관련 종료       ********** -->  
+ <!-- **********       관련글 관련 종료       ********** -->
+ 
+ <!-- **********       좋아요 관련 종료       ********** -->    
+  <update id='likeit' parameterType="int">
+    update commu_meet
+    set cm_likeit = cm_likeit + 1
+    where cm_no = #{cm_no}
+  </update>
   
+  <update id='likedown' parameterType="int">
+    update commu_meet
+    set cm_likeit = cm_likeit - 1
+    where cm_no = #{cm_no}
+  </update>  
+ <!-- **********       좋아요 관련 종료       ********** -->
+    
  <!-- **********       답변 관련 시작       ********** -->
   <!-- 답변 순서 변경 -->
   <update id='updateAnsnum' parameterType="MfVO">
