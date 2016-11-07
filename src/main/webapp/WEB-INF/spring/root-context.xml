@@ -33,7 +33,12 @@
                           dev.mvc.cfree,
                           dev.mvc.mfree,
                           dev.mvc.ifree,
-                          dev.mvc.gfree
+                          dev.mvc.gfree,
+                          dev.mvc.APP,
+                          dev.mvc.ITOS,
+                          dev.mvc.license,
+                          dev.mvc.TQNA,
+                          dev.mvc.WEB
                    "/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>

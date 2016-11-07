@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace = "app">
+  <insert id="create" parameterType="AppVO">
+    INSERT INTO APP(ap_no, 
+                          ap_title, ap_content, ap_good, ap_file1, ap_file2, ap_size2,
+                          ap_cnt, ap_replycnt, ap_date, ap_indent, ap_ansnum)  
+    VALUES((SELECT NVL(MAX(ap_no), 0) + 1 as ap_no FROM APP),
+                          #{ap_title}, #{ap_content}, 0, #{ap_file1}, #{ap_file2}, #{ap_size2}, 
+                          0, 0, sysdate, 0, 0) 
+  </insert> 
+
+  <select id="list" resultType="AppVO">
+    SELECT ap_no,
+           ap_title, ap_content, ap_good, ap_file1, ap_file2, ap_size2, ap_cnt, ap_replycnt, ap_date,
+           ap_indent, ap_ansnum
+    FROM APP
+    ORDER BY ap_no DESC 
+  </select> 
+  
+    <select id="read" resultType="AppVO" parameterType="int">
+    SELECT ap_no,
+           ap_title, ap_content, ap_good, ap_file1, ap_file2, ap_size2, ap_cnt, ap_replycnt, ap_date,
+           ap_indent, ap_ansnum
+    FROM APP
+    WHERE ap_no=#{ap_no}
+  </select>
+  
+    <update id='update' parameterType="AppVO">
+    UPDATE APP
+    SET ap_title=#{ap_title}, ap_content=#{ap_content}, ap_file1=#{ap_file1}, ap_file2=#{ap_file2}, ap_size2=#{ap_size2}
+    WHERE ap_no=#{ap_no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM APP
+    WHERE ap_no=#{ap_no}
+  </delete>
+
+</mapper>
