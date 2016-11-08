@@ -40,7 +40,7 @@ public class FailReplyCont {
                              HttpServletRequest request, 
                              HttpSession session) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/failreply/message");
+    mav.setViewName("/message");
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
     
@@ -174,7 +174,7 @@ public class FailReplyCont {
   @RequestMapping(value = "/failreply/reply.do", method = RequestMethod.POST)
   public ModelAndView reply(FailReplyVO failreplyVO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/failreply/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();

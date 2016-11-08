@@ -55,7 +55,7 @@ public class ReplyCont {
                              HttpServletRequest request, 
                              HttpSession session) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/reply/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -186,7 +186,7 @@ public class ReplyCont {
   @RequestMapping(value = "/reply/reply.do", method = RequestMethod.POST)
   public ModelAndView reply(ReplyVO replyVO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/reply/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
