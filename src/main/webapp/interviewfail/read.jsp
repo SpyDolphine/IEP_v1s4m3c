@@ -102,13 +102,13 @@ function autoResize(i)
   <div class="col-xs-12 col-md-4 col-lg-4 col-sm-4">
     <div class="sidebar">
       <div class="widget widget_categories">
-        <div class="metaInfo" style='padding: 50px 0 50px 0;'>
+        <div class="metaInfo" style='border: 3px solid #f2f2f2; padding: 20px; margin: 0 0 30px 0;'>
                 <span>면접난이도 <a>${ifVO.if_level}</a></span><br><br>
                 <span>취업경로 <a>${ifVO.if_where}</a></span><br><br>
                 <span>채용방식 <a>${ifVO.if_how}</a></span><br><br>
                 <span>발표시기 <a>${ifVO.if_when}</a></span>
         </div>
-        <div class="widget_title">
+<!--    <div class="widget_title">
           <h4><span>Categories</span></h4>
         </div>
           <ul class="arrows_list list_style">
@@ -118,7 +118,78 @@ function autoResize(i)
             <li><a href="#"> 성공후기를 볼까요()</a></li>
             <li><a href="#"> 공지사항으로 가볼까요()</a></li>
             <li><a href="#"> 기업정보를 봅니다()</a></li>
-          </ul>
+          </ul> -->
+<!--------------------------------------------- 오른쪽 위젯  ------------------------------------------>          
+        <div class="widget_title">
+          <h4><span>LOOK AT ME!</span></h4>
+        </div>
+         <div class="widget widget_tab">
+            <div class="velocity-tab sidebar-tab">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#Popular" data-toggle="tab">실시간 인기글</a></li>
+                    <li class=""><a href="#Recent" data-toggle="tab">많이본 글</a></li>
+                    <li class="last-tab"><a href="#Comment" data-toggle="tab"><i class="fa fa-comments-o"></i>인기댓글</a></li>
+                </ul>
+
+                <div  class="tab-content clearfix">
+                    <div class="tab-pane fade active in" id="Popular">
+                        <ul class="recent_tab_list">
+                            <li>
+                                <span><a href="#"></a></span>
+                                <a href="#">인기글을 내보내줘랏!!!!!</a>
+                                <i>${fn:substring(ifVO.if_date, 0, 16)}</i>
+                            </li>
+                            <li>
+                                <span><a href="#"></a></span>
+                                <a href="#">두번째 인기글이닷!!!!!</a>
+                                <i>${fn:substring(ifVO.if_date, 0, 16)}</i>
+                            </li>
+                            <li class="last-tab">
+                                <span><a href="#"></a></span>
+                                <a href="#">라스트탭은 무슨차이잉가!!!</a>
+                                <i>${fn:substring(ifVO.if_date, 0, 16)}</i>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="Recent">
+                        <ul class="recent_tab_list">
+                            <li>
+                                <span><a href="#"></a></span>
+                                <a href="#">Various versions has evolved over the years</a>
+                                <i>October 18, 2015</i>
+                            </li>
+                            <li>
+                                <span><a href="#"></a></span>
+                                <a href="#">Rarious versions has evolve over the years</a>
+                                <i>October 17, 2015</i>
+                            </li>
+                            <li class="last-tab">
+                                <span><a href="#"></a></span>
+                                <a href="#">Marious versions has evolven over the years</a>
+                                <i>October 16, 2015</i>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="Comment">
+                        <ul class="comments">
+                            <li class="comments_list clearfix">
+                                <a class="post-thumbnail" href="#"></a>
+                                <p><strong><a href="#">Prambose</a> <i>says: </i> </strong> Morbi augue velit, tempus mattis dignissim nec, porta sed risus. Donec eget magna eu lorem tristique pellentesque eget eu dui. Fusce lacinia tempor malesuada.</p>
+                            </li>
+                            <li class="comments_list clearfix">
+                                <a class="post-thumbnail" href="#"></a>
+                                <p><strong><a href="#">Makaroni</a> <i>says: </i> </strong> Tempus mattis dignissim nec, porta sed risus. Donec eget magna eu lorem tristique pellentesque eget eu dui. Fusce lacinia tempor malesuada.</p>
+                            </li>
+                            <li class="comments_list clearfix">
+                                <a class="post-thumbnail" href="#"></a>
+                                <p><strong><a href="#">Prambanan</a> <i>says: </i> </strong> Donec convallis, metus nec tempus aliquet, nunc metus adipiscing leo, a lobortis nisi dui ut odio. Nullam ultrices, eros accumsan vulputate faucibus, turpis tortor.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>         
+<!--------------------------------------------- 오른쪽 위젯종료  ------------------------------------------>                  
         </div>
        </div>
       </div>
