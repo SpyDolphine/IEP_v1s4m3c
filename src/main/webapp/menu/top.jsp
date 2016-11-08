@@ -33,8 +33,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.matchHeight-min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-scrolltofixed-min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- 맨위로 -->
-
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 
