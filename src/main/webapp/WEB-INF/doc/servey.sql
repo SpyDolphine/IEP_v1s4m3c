@@ -1,8 +1,8 @@
 CREATE TABLE serveyboard( -- 게시판
-  sb_no        NUMBER(7)        NOT NULL, -- 게시판 번호
-  title        VARCHAR2(200)    NOT NULL,                    -- 게시판 이름
-  content      VARCHAR2(4000)   NOT NULL,                    -- 게시판 내용
-  rdate        DATE             NOT NULL,                    -- 등록일
+  sb_no        NUMBER(7)        NOT NULL,       -- 게시판 번호
+  title        VARCHAR2(200)    NOT NULL,       -- 게시판 이름
+  content      VARCHAR2(4000)   NOT NULL,       -- 게시판 내용
+  rdate        DATE             NOT NULL,       -- 등록일
   PRIMARY KEY(sb_no) 
 );
 
