@@ -116,6 +116,18 @@ public class AboutmeCont {
    * @param aboutmeVO
    * @return
    */
+  @RequestMapping(value = "/aboutme/update.do", method = RequestMethod.GET)
+  public ModelAndView update(int am_no) {
+    ModelAndView mav = new ModelAndView();
+    
+    mav.addObject("aboutmeVO", aboutmeDAO.read(am_no));
+    return mav;
+  }  
+  /**
+   * 수정합니다
+   * @param aboutmeVO
+   * @return
+   */
   @RequestMapping(value = "/aboutme/update.do", method = RequestMethod.POST)
   public ModelAndView update(AboutmeVO aboutmeVO) {
     ModelAndView mav = new ModelAndView();
