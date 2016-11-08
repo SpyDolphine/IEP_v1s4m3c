@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Oracle 기반 -->
+<mapper namespace = "reply">
+  <insert id="create" parameterType="ReplyVO">
+    INSERT INTO reply(rno, cm_no, rnick, rcontent, likeup, likedown, rdate, 
+                      grpno, indent, ansnum)
+    VALUES ((SELECT NVL(MAX(rno), 0)+1 as rno FROM reply),  #{cm_no}, #{rnick}, #{rcontent}, 0, 0, sysdate,
+           (SELECT NVL(MAX(grpno), 0)+1 as grpno FROM reply), 0, 0)
+  </insert>
+  
+  <update id='update' parameterType="ReplyVO">
+    UPDATE reply
+    SET rcontent=#{rcontent}
+    WHERE rno=#{rno}
+  </update>   
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM reply
+    WHERE rno=#{rno}
+  </delete>  
+  
+  <select id="read" resultType="ReplyVO" parameterType="int">
+    SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum
+    FROM reply
+    WHERE cm_no = #{cm_no}
+  </select>
+ <!-- ********** 추천에 따른 변경 시작 ********** -->   
+  <update id='likeup' parameterType="int">
+    update reply
+    set likeup = likeup + 1
+    where rno = #{rno}
+  </update>  
+
+  <update id='likedown' parameterType="int">
+    update reply
+    set likedown = likedown + 1
+    where rno = #{rno}
+  </update> 
+
+  <!-- ********** 추천 변경 종료 ********** --> 
+  
+ <!-- ********** 댓글에 따른 변경 시작 ********** -->  
+   <!-- 댓글 등록 -->
+   <insert id="reply" parameterType="ReplyVO">
+       INSERT INTO reply(rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum)  
+       VALUES((SELECT NVL(MAX(rno), 0) + 1 as rno FROM reply), #{cm_no}, #{rnick}, #{rcontent},0, 0, sysdate,
+             #{grpno}, #{indent}, #{ansnum})
+   </insert> 
+  
+   <!-- 댓글에 따른 목록 -->
+   <select id="replylist" resultType="ReplyVO" parameterType="int" >
+      SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum, rownum as r
+      FROM(
+              SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum
+              FROM reply
+              WHERE cm_no=#{cm_no}
+              ORDER BY grpno DESC, ansnum ASC
+      )
+   </select>    
+ 
+ <!-- 댓글에 따른 read -->
+   <select id="replyread" resultType="ReplyVO" parameterType="int">
+    SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum
+    FROM reply
+    WHERE rno = #{rno}
+   </select>
+  
+  <!-- 댓글 순서 변경 -->
+  <update id='updateAnsnum' parameterType="ReplyVO">
+    UPDATE reply
+    SET ansnum = ansnum + 1
+    WHERE grpno = #{grpno} AND ansnum > #{ansnum}
+  </update>
+  
+  <!-- 댓글 수 조회 -->
+  <select id="replycnt" parameterType="int">
+  select count(*)rno
+  from reply
+  where cm_no = #{cm_no}
+  </select>
+  <!-- ********** 답변에 따른 변경 종료 ********** -->  
+</mapper>

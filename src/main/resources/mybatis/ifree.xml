@@ -26,10 +26,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE cm_no=#{cm_no}
   </update>   
   
-  <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="HashMap">
     DELETE FROM commu_info
-    WHERE cm_no=#{cm_no}
-  </delete>  
+    WHERE cm_no IN
+    <foreach collection="arr" item="cm_no" index="index" separator="," open="(" close=")">
+    #{cm_no}
+    </foreach>   
+  </delete>   
   
   <select id="read" resultType="IfreeVO">
     SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
@@ -94,7 +97,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <insert id="reply" parameterType="IfreeVO">
     INSERT INTO commu_info(cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
                            cm_cnt, cm_date, replycnt, grpno, indent, ansnum)  
-    VALUES((SELECT NVL(MAX(cm_no), 0) + 1 as cm_no FROM commu_meet), #{cm_nick},
+    VALUES((SELECT NVL(MAX(cm_no), 0) + 1 as cm_no FROM commu_info), #{cm_nick},
             #{cm_title}, #{cm_content}, #{file1}, #{file2}, #{size2}, 0, #{cm_map}, #{cm_url}, 0, sysdate, 0,
             #{grpno}, #{indent}, #{ansnum})
   </insert>

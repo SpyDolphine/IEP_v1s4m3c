@@ -41,7 +41,7 @@ public class IfCont {
   public ModelAndView create(IfVO ifVO) {
     System.out.println("--> create() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/message"); // /webapp/member/message.jsp
+    mav.setViewName("/interviewfail/message"); // /webapp/member/message.jsp
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -174,7 +174,7 @@ public class IfCont {
                              method = RequestMethod.POST)
   public ModelAndView delete(IfVO ifVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/message");
+    mav.setViewName("/interviewfail/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
