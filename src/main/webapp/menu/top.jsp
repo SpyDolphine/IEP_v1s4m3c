@@ -131,8 +131,8 @@ a.iep-top {
                                     <li class="active"><a href="#">공지사항</a>
                                         <ul class="dropdown-menu">
                                             <li class="active"><a href="<%=root %>/notice/list.do">공지사항</a></li>
-                                            <li><a href="<%=root %>/fnq/listh.do">일반 F&A</a></li>
-                                            <li><a href="<%=root %>/fnq/listc.do">기업 F&A</a></li>
+                                            <li><a href="<%=root %>/fnq/list.do?fq_ch=H">일반 F&A</a></li>
+                                            <li><a href="<%=root %>/fnq/list.do?fq_ch=C">기업 F&A</a></li>
                                         </ul>
                                     </li>
 

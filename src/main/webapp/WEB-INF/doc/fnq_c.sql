@@ -7,8 +7,8 @@ CREATE TABLE fnq (                         -- 자주묻는 질문
   fq_question     VARCHAR2(4000) NOT NULL, -- 질문
   fq_answer       VARCHAR2(4000) NOT NULL, -- 답변
   fq_date         DATE        default sysdate  NOT NULL, -- 등록시간    
-  fq_CH           CHAR      NOT NULL,            -- 홈페이지질문인지 회사질문이지 분별
-  FOREIGN KEY (me_no) REFERENCES IEP_MEMBER (me_no), -- 카테고리번호
+  fq_CH           CHAR      NOT NULL,            -- 어느게시판인지 구별  A-자소서, C, I, H
+  FOREIGN KEY (me_no) REFERENCES IEP_MEMBER (me_no) ON DELETE CASCADE, -- 카테고리번호
   PRIMARY KEY (fq_no)       -- 한번 등록된 값은 중복 안됨
 );
 
