@@ -48,7 +48,7 @@ public class GfreeCont {
                                     HttpSession session) {
     System.out.println("--> create() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/gfree/message"); // /webapp/gfree/message.jsp
+    mav.setViewName("/message"); // /webapp/gfree/message.jsp
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -282,7 +282,7 @@ public class GfreeCont {
   @RequestMapping(value = "/gfree/reply.do", method = RequestMethod.POST)
   public ModelAndView reply(GfreeVO gfreeVO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/gfree/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();

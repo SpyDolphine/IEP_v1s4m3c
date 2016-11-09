@@ -48,7 +48,7 @@ public class IfreeCont {
                                     HttpSession session) {
     System.out.println("--> create() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/ifree/message"); // /webapp/ifree/message.jsp
+    mav.setViewName("/message"); // /webapp/ifree/message.jsp
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -282,7 +282,7 @@ public class IfreeCont {
   @RequestMapping(value = "/ifree/reply.do", method = RequestMethod.POST)
   public ModelAndView reply(IfreeVO ifreeVO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/ifree/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();

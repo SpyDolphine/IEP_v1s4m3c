@@ -66,5 +66,4 @@ public interface CmInter {
    */
   public int likedown(int cm_no); 
   
-  
 }

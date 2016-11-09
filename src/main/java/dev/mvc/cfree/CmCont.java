@@ -47,7 +47,7 @@ public class CmCont {
   public ModelAndView create(CmVO cmvo) {
     System.out.println("--> create() POST called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/cfree/message"); // /webapp/cfree/message.jsp
+    mav.setViewName("/message"); // /webapp/cfree/message.jsp
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -86,7 +86,7 @@ public class CmCont {
   @RequestMapping(value = "/cfree/update.do", method = RequestMethod.POST)
   public ModelAndView update(CmVO cmVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/cfree/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();

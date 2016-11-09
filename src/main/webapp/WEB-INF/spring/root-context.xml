@@ -38,7 +38,9 @@
                           dev.mvc.ITOS,
                           dev.mvc.license,
                           dev.mvc.TQNA,
-                          dev.mvc.WEB
+                          dev.mvc.WEB,
+                          dev.mvc.reply, 
+                          dev.mvc.failreply
                    "/>
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>

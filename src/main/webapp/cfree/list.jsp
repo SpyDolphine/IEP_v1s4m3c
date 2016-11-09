@@ -12,13 +12,14 @@
 <!-- ----------------------------------------- -->
 <script type="text/JavaScript"
         src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/JavaScript" src="../js/jquery.easing.1.3.js"></script>     
 <script type="text/javascript">
 
  // 추천
  function likeup(cm_no){ // 응답 처리 함수
     var params = 'cm_no=' + cm_no;
     $.get('./likeup.do', params, likeup_res, 'json');
-    alert('성공' + cm_no);
+    //alert('성공' + cm_no);
  }
  
  function likeup_res(data){ // 응답 처리 함수
@@ -31,16 +32,53 @@
  function likedown(cm_no){ // 응답 처리 함수
    var params = 'cm_no=' + cm_no;
    $.get('./likedown.do', params, likedown_res, 'json');
-   alert('성공' + cm_no);
+   //alert('성공' + cm_no);
  }
 
  function likedown_res(data){ // 응답 처리 함수
    $('#test_unlike' + data.cm_no).html(data.likedown);  
  }
  
-    
-</script>
+//-----------------------------------------------------------------------------------------------------------------//
 
+ //iframe resize
+  function autoResize(i)
+ {
+     var iframeHeight=
+     (i).contentWindow.document.body.scrollHeight;
+     (i).height= iframeHeight/2 + 120;
+ }   
+ 
+/*   function autoResize(i){
+   var resizeHeight = $("#reply").height();
+   (i).contentWindow.document.body.scrollHeight + 200;
+   (i).height= resizeHeight + 150;
+ } */
+ 
+ $(document).ready(function(){
+   $(".menu>a").click(function(){
+       $(this).next("div").toggleClass("hide");
+   });
+});
+ 
+</script>
+<style>
+.hr > hr {
+ margin: 10px 0 10px 0;
+ padding: 0;
+}
+
+.comment_area > hr {
+ margin: 0;
+ padding: 0;
+}
+
+.comment_area {
+    background-color: #fafafa;
+}
+
+
+</style>
 </head>
  
 <section class="wrapper">
@@ -76,7 +114,7 @@
                 </div>
                 <br>
                 <textarea  rows="5" class="form-control" name='cm_content' id='cm_content' 
-                placeholder='취업 준비생들의 소통 공간을 위한 자유 게시판 입니다. 타인에게 불쾌감을 주는 욕설 또는 비하하는 글은 임의로 삭제될 수 있습니다.' required="required"></textarea>
+                placeholder='취업 준비생들의 소통 공간을 위한 자유 게시판 입니다. 저작권등 다른 사람의 권리를 침해하거나 명예를 훼손하는 게시물은 이용약관 및 관련 법률에 의해 제재를 받을 수 있습니다. 건전한 토론문화와 양질의 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정계층/민족,종교등을 비하하는 댓글은 임의로 삭제될 수 있습니다.' required="required"></textarea>
                 <button type="submit" id='submit' class="btn btn-success btn-xs" style='float:right; margin: 5px;'>
                 <i class="fa fa-pencil"></i> 등록</button>
                 <div style='clear:both;'></div>
@@ -95,30 +133,33 @@
            <A href="./update.do?cm_no=${cmVO.cm_no}&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}"><i class="fa fa-pencil"></i></A>
            <a href="./delete.do?cm_no=${cmVO.cm_no }" onclick="return confirm('삭제 하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
       </p>      
-      <hr>
+      <div class="hr"><hr></div>
+      <div class='right'>
+        <button id="likeup" onclick="likeup(${cmVO.cm_no})" class="btn btn-default btn-xs btn-alt"> 
+        <i class="fa fa-thumbs-o-up" style="color:red;"></i> 추천(<SPAN id='test_like${cmVO.cm_no }'>${cmVO.likeup}</SPAN>)</button>
+        <button id="likedown" onclick="likedown(${cmVO.cm_no})" class="btn btn-default btn-xs btn-alt" >
+        <i class="fa fa-thumbs-o-down" style="color:blue;"></i> 비추천(<SPAN id='test_unlike${cmVO.cm_no }'>${cmVO.likedown}</SPAN>)</button>
+      </div>
+      <div style='clear: both;'></div>
       <div style='clear: both;'></div>
       
-      <fieldset style='margin: 30px 0 0 0;'>
+      <fieldset style='margin: 10px 0 0 0;'>
         <ul>
           <li>
             ${cmVO.cm_content}
           </li>
         </ul>
       </fieldset>
-      
-      <div class='right'>
-        <a href='#' onclick="alert('로그인이 필요합니다'); return false;" class="btn btn-primary btn-xs btn-alt">
-        <i class="fa fa-comments-o"></i> 댓글</a>
-     
-        <button id="likeup" onclick="likeup(${cmVO.cm_no})" class="btn btn-default btn-xs btn-alt"> 
-        <i class="fa fa-thumbs-o-up" style="color:red;"></i> 추천(<SPAN id='test_like${cmVO.cm_no }'>${cmVO.likeup}</SPAN>)</button>
-        <button id="likedown" onclick="likedown(${cmVO.cm_no})" class="btn btn-default btn-xs btn-alt" >
-        <i class="fa fa-thumbs-o-down" style="color:blue;"></i> 비추천(<SPAN id='test_unlike${cmVO.cm_no }'>${cmVO.likedown}</SPAN>)</button>
-        
-      </div>
-      <div style='clear: both;'></div>
-      <hr>
-      
+<!------------------------------------------------- 댓글 시작  --------------------------------------------->
+<div class="menu">
+  <a href='#' onclick="alert('로그인이 필요합니다'); return false;" class="btn btn-primary btn-xs btn-alt">
+  <i class="fa fa-comments-o"></i> 댓글</a> 
+   <div class="hide"> 
+   <iframe id="iframe" width="100%" onload="autoResize(this)" frameborder="0" src="../reply/replylist.do?cm_no=${cmVO.cm_no }"></iframe>
+   </div>
+</div>   
+<!------------------------------------------------- 댓글 종료  --------------------------------------------->   
+   <hr>   
   </c:forEach>
 </TABLE>
 </div>

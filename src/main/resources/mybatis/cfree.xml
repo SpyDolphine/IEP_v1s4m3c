@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- Oracle 기반 -->
 <mapper namespace = "cfree">
   <insert id="create" parameterType="CmVO">
-    INSERT INTO commu_free(cm_no, cm_nick, cm_title, cm_content, likeup, likedown,cm_rdate )
+    INSERT INTO commu_free(cm_no, cm_nick, cm_title, cm_content, likeup, likedown, cm_rdate )
     VALUES ((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_free), 
                                   #{cm_nick}, #{cm_title}, #{cm_content}, 0, 0, sysdate)
   </insert>
@@ -39,6 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     set likedown = likedown + 1
     where cm_no = #{cm_no}
   </update> 
+
   <!-- ********** 추천 변경 종료 ********** --> 
   <select id="count" resultType="int" parameterType="HashMap" >
     SELECT COUNT(*) as cnt

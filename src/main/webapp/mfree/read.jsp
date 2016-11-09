@@ -81,7 +81,7 @@ hr {
       <p style='text-align: right;'>
         <span style='color: #cccccc;'>${mfVO.cm_date.substring(0, 16)}</span> |
         <A href="./update.do?cm_no=${mfVO.cm_no}">수정</A> |
-        <A href="./delete.do?cm_no=${mfVO.cm_no }&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}"
+        <A href="./delete.do?arr=${mfVO.cm_no}&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}"
             onclick="return confirm('삭제 하시겠습니까?')">삭제</A>
       </p>      
       <hr>
