@@ -34,12 +34,11 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-
     <DIV class='title'>자소서 쓰는 요령</DIV>
-     
-    <DIV class='content' style='width: 50%;'>
-    <FORM name='frm' method='POST'>
     <button type='button' onclick="location.href='./create.do'">등록</button>
+     
+<%--     <DIV class='content' style='width: 50%;'>
+    <FORM name='frm' method='POST'>
     <section class="content faq">
       <div class="container">
         <div class="row">
@@ -67,8 +66,32 @@
       </div>
     </section>
     </FORM>
-    </DIV>
+    </DIV> --%>
+<!-- ------------------------------------------------------------------------------- -->
+                           
+<div class="widget widget_tab">
+    <div class="velocity-tab sidebar-tab">
+        <ul class="nav nav-tabs">
+            <c:forEach var="aboutmeVO" items="${list }">
+            <c:set var="string" value="${aboutmeVO.am_title}" />
+          <li class="" ><a href="#${aboutmeVO.am_no}" data-toggle="tab">${fn:substring(string,0,10)}</a></li>
+          </c:forEach>
+        </ul>
 
+        <div  class="tab-content clearfix">
+          <c:forEach var="aboutmeVO" items="${list }">
+            <div class="tab-pane fade" id="${aboutmeVO.am_no}">
+              <ul class="recent_tab_list" >
+                  <li class="comments_list clearfix">
+                        <a href="#">${aboutmeVO.am_no} ${aboutmeVO.am_content}</a>
+                  </li>
+              </ul>
+            </div>
+          </c:forEach>
+        </div>
+    </div>
+</div>
+<!-- ------------------------------------------------------------------------------- -->
    </div>
  </div>
 </div>
