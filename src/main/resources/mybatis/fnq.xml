@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "fnq">
+  <!-- 항목 등록-->
+  <insert id="create" parameterType="FnqVO">
+  INSERT into fnq(fq_no, 
+                    me_no, fq_question, fq_answer , fq_CH)
+  VALUES((SELECT NVL(MAX(fq_no), 0)+1 as fq_no FROM fnq), 
+                    #{me_no}, #{fq_question}, #{fq_answer}, #{fq_CH})
+  </insert>
+
+  <!-- 홈페이지 목록 -->
+  <select id="listh" resultType="FnqVO">
+            SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH, r
+    FROM(
+             SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH, rownum as r
+             FROM(
+                     SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH
+                      FROM fnq
+                      <choose>
+                        <when test="col == 'title'">
+                           where fq_question LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'content'">
+                           where fq_answer LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'title_content'">
+                           where fq_question LIKE '%' || #{word} || '%'  OR fq_answer LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                      ORDER BY fq_no DESC
+             ) WHERE fq_CH = 'H'
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]> 
+  </select>
+
+  <!-- 회사질문 목록 -->
+  <select id="listc" resultType="FnqVO">
+            SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH, r
+    FROM(
+             SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH, rownum as r
+             FROM(
+                     SELECT fq_no, fq_question, fq_answer, fq_date, fq_CH
+                      FROM fnq
+                      <choose>
+                        <when test="col == 'title'">
+                           where fq_question LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'content'">
+                           where fq_answer LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'title_content'">
+                           where fq_question LIKE '%' || #{word} || '%'  OR fq_answer LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                      ORDER BY fq_no DESC
+             ) where fq_CH = 'C'
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]> 
+  </select>
+
+  <!-- 읽어옴  -->
+  <select id="read" resultType="FnqVO">
+    SELECT fq_no, fq_question, fq_answer, fq_CH
+    FROM fnq
+    WHERE fq_no = #{fq_no}
+  </select>  
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="FnqVO">
+    UPDATE fnq
+    SET fq_question=#{fq_question}, fq_answer=#{fq_answer} 
+    WHERE fq_no=#{fq_no}
+  </update> 
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="HashMap">
+    DELETE FROM fnq
+    WHERE fq_no IN
+    <foreach collection="arr" item="fq_no" index="index" separator="," open="(" close=")">
+    #{fq_no}
+    </foreach>
+  </delete>
+  
+  <!-- 회사 총 글 수 -->
+  <select id="countC" resultType="int" parameterType="HashMap" >
+    SELECT COUNT(*) as cnt
+    FROM (select fq_ch, fq_question, fq_answer
+            from fnq 
+             where fq_ch = 'C' )
+    <choose>
+      <when test="col == 'title'">
+        WHERE fq_question LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'content'">
+        WHERE fq_answer LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'title_content'">
+        WHERE fq_question LIKE '%' || #{word} || '%'  OR fq_answer LIKE '%' || #{word} || '%' 
+      </when>      
+    </choose>
+  </select>   
+  
+  <!-- 홈페이지 총 글 수 -->
+  <select id="countH" resultType="int" parameterType="HashMap" >
+    SELECT COUNT(*) as cnt
+    FROM (select fq_ch, fq_question, fq_answer
+            from fnq 
+             where fq_ch = 'H' )
+    <choose>
+      <when test="col == 'title'">
+        WHERE fq_question LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'content'">
+        WHERE fq_answer LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'title_content'">
+        WHERE fq_question LIKE '%' || #{word} || '%'  OR fq_answer LIKE '%' || #{word} || '%' 
+      </when>      
+    </choose>
+  </select>   
+</mapper>
