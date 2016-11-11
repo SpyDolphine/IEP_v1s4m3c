@@ -36,61 +36,28 @@
    <div class="col-xs-12 col-lg-12">
     <DIV class='title'>자소서 쓰는 요령</DIV>
     <button type='button' onclick="location.href='./create.do'">등록</button>
-     
-<%--     <DIV class='content' style='width: 50%;'>
-    <FORM name='frm' method='POST'>
-    <section class="content faq">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="panel-group accordion" id="accordion">
+      <div class="widget widget_tab">
+          <div class="velocity-tab sidebar-tab">
+              <ul class="nav nav-tabs">
                 <c:forEach var="aboutmeVO" items="${list }">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#${aboutmeVO.am_no}">
-                          ${aboutmeVO.am_title}
-                      </a>
-                      <button type='button' onclick="location.href='./update.do?am_no=${aboutmeVO.am_no}'">수정</button>
-                      <button type='button' onclick="location.href='./delete.do?am_no=${aboutmeVO.am_no}'">삭제</button>
-                  </h4>
-                </div>
-                <div id="${aboutmeVO.am_no}" class="panel-collapse collapse">
-                    <div class="panel-body">${aboutmeVO.am_content}</div>
-                </div>
-              </div>
+                  <c:set var="string" value="${aboutmeVO.am_title}" />
+                <li class="" ><a href="#${aboutmeVO.am_no}" data-toggle="tab">${fn:substring(string,0,10)}</a></li>
                 </c:forEach>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    </FORM>
-    </DIV> --%>
-<!-- ------------------------------------------------------------------------------- -->
-                           
-<div class="widget widget_tab">
-    <div class="velocity-tab sidebar-tab">
-        <ul class="nav nav-tabs">
-            <c:forEach var="aboutmeVO" items="${list }">
-            <c:set var="string" value="${aboutmeVO.am_title}" />
-          <li class="" ><a href="#${aboutmeVO.am_no}" data-toggle="tab">${fn:substring(string,0,10)}</a></li>
-          </c:forEach>
-        </ul>
-
-        <div  class="tab-content clearfix">
-          <c:forEach var="aboutmeVO" items="${list }">
-            <div class="tab-pane fade" id="${aboutmeVO.am_no}">
-              <ul class="recent_tab_list" >
-                  <li class="comments_list clearfix">
-                        <a href="#">${aboutmeVO.am_no} ${aboutmeVO.am_content}</a>
-                  </li>
               </ul>
-            </div>
-          </c:forEach>
-        </div>
-    </div>
-</div>
+      
+              <div  class="tab-content clearfix">
+                <c:forEach var="aboutmeVO" items="${list }">
+                  <div class="tab-pane fade" id="${aboutmeVO.am_no}">
+                    <ul class="recent_tab_list" >
+                        <li class="comments_list clearfix">
+                              <a href="#">${aboutmeVO.am_no} ${aboutmeVO.am_content}</a>
+                        </li>
+                    </ul>
+                  </div>
+                </c:forEach>
+              </div>
+          </div>
+      </div>
 <!-- ------------------------------------------------------------------------------- -->
    </div>
  </div>
@@ -113,7 +80,6 @@
       <c:when test="${searchDTO.col == 'total' }">
         <input type="text" name="word" size="15" value="">
       </c:when>
-      
     </c:choose>
      
     <input type="submit" value="검색"> 

@@ -49,7 +49,7 @@ public class AboutmeCont {
   if (aboutmeDAO.create(aboutmeVO) == 1) { 
     mav.setViewName("redirect:/aboutme/list.do");
   } else {
-  msgs.add("항목등록에 실패했습니다.");
+  msgs.add("등록에 실패했습니다.");
   msgs.add("죄송하지만 다시한번 시도해주세요.");
   links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
   links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
