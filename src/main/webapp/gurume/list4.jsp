@@ -166,6 +166,8 @@
         </figcaption>
    </figure>
      </c:forEach>
+     
+     
  
 </body>
 
