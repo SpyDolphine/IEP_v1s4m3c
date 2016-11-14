@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Oracle 기반 -->
+<mapper namespace = "dat">
+  <insert id="create" parameterType="DatVO">
+    INSERT INTO dat(dno, gu_no, d_name, d_cont, likeup, likedown, d_date, 
+                      grpno, indent, ansnum)
+    VALUES ((SELECT NVL(MAX(dno), 0)+1 as do FROM dat),  #{gu_no}, #{d_name}, #{d_cont}, 0, 0, sysdate,
+           (SELECT NVL(MAX(grpno), 0)+1 as grpno FROM dat), 0, 0)
+  </insert>
+  
+  <update id='update' parameterType="DatVO">
+    UPDATE dat
+    SET d_cont=#{d_cont}
+    WHERE dno=#{dno}
+  </update>   
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM dat
+    WHERE dno=#{dno}
+  </delete>  
+  
+  <select id="read" resultType="DatVO" parameterType="int">
+    SELECT dno, guno, d_name, d_cont, likeup, likedown, d_date, grpno, indent, ansnum
+    FROM dat
+    WHERE gu_no = #{gu_no}
+  </select>
+ <!-- ********** 추천에 따른 변경 시작 ********** -->   
+  <update id='likeup' parameterType="int">
+    update dat
+    set likeup = likeup + 1
+    where dno = #{dno}
+  </update>  
+
+  <update id='likedown' parameterType="int">
+    update dat
+    set likedown = likedown + 1
+    where dno = #{dno}
+  </update> 
+
+  <!-- ********** 추천 변경 종료 ********** --> 
+  
+ <!-- ********** 댓글에 따른 변경 시작 ********** -->  
+   <!-- 댓글 등록 -->
+   <insert id="dat" parameterType="DatVO">
+       INSERT INTO dat(dno, gu_no, d_name, d_cont, likeup, likedown, d_date, grpno, indent, ansnum)  
+       VALUES((SELECT NVL(MAX(dno), 0) + 1 as dno FROM dat), #{gu_no}, #{d_name}, #{d_cont},0, 0, sysdate,
+             #{grpno}, #{indent}, #{ansnum})
+   </insert> 
+  
+   <!-- 댓글에 따른 목록 -->
+   <select id="datlist" resultType="DatVO" parameterType="int" >
+      SELECT dno, gu_no, d_name, d_cont, likeup, likedown, d_date, grpno, indent, ansnum, rownum as r
+      FROM(
+              SELECT dno, gu_no, d_name, d_cont, likeup, likedown, d_date, grpno, indent, ansnum
+              FROM dat
+              WHERE gu_no=#{gu_no}
+              ORDER BY grpno DESC, ansnum ASC
+      )
+   </select>    
+ 
+ <!-- 댓글에 따른 read -->
+   <select id="datread" resultType="DatVO" parameterType="int">
+    SELECT dno, gu_no, d_name, d_cont, likeup, likedown, d_date, grpno, indent, ansnum
+    FROM dat
+    WHERE dno = #{dno}
+   </select>
+  
+  <!-- 댓글 순서 변경 -->
+  <update id='updateAnsnum' parameterType="DatVO">
+    UPDATE dat
+    SET ansnum = ansnum + 1
+    WHERE grpno = #{grpno} AND ansnum > #{ansnum}
+  </update>
+  
+  <!-- 댓글 수 조회 -->
+  <select id="datcnt" parameterType="int">
+  select count(*)dno
+  from dat
+  where gu_no = #{gu_no}
+  </select>
+  <!-- ********** 답변에 따른 변경 종료 ********** -->  
+</mapper>
