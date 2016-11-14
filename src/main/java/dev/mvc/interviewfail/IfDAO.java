@@ -40,6 +40,16 @@ public class IfDAO implements IfInter{
   @Override
   public int update(IfVO ifVO) {
     return mybatis.update("interviewfail.update", ifVO);
+  }
+
+  @Override
+  public int update_cnt(int if_no) {
+    return mybatis.update("interviewfail.update_cnt", if_no);
+  }
+
+  @Override
+  public List<IfVO> manylist() {
+    return mybatis.selectList("interviewfail.manylist");
   }  
  
 }

@@ -63,29 +63,29 @@
 <!------------------------------------------------- 댓글 시작  --------------------------------------------->
  <div class="comment_area">
    <br>
-     <c:forEach var="replyVO" items="${list }">
-        <input type="hidden" name="rno" value="${replyVO.rno}">
-        <input type="hidden" name="cm_no" value="${replyVO.cm_no}">
+     <c:forEach var="commuReplyVO" items="${list }">
+        <input type="hidden" name="rno" value="${commuReplyVO.rno}">
+        <input type="hidden" name="cm_no" value="${commuReplyVO.cm_no}">
         <div style='float: left; font-weight:bold;'>
-        &nbsp;<i class="fa fa-comment-o"></i> &nbsp;${replyVO.rnick}
+        &nbsp;<i class="fa fa-comment-o"></i> &nbsp;${commuReplyVO.rnick}
         </div>  
         <p style='float: right;'>
-          <span style='color: #cccccc;'>${replyVO.rdate.substring(0, 10)}</span> &nbsp; &nbsp;
-             <A href="../reply/update.do?rno=${replyVO.rno}"><i class="fa fa-pencil"></i></A>
-             <a href="./delete.do?rno=${replyVO.rno }" onclick="return confirm('삭제 하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
+          <span style='color: #cccccc;'>${commuReplyVO.rdate.substring(0, 10)}</span> &nbsp; &nbsp;
+             <A href="../commuReply/update.do?rno=${commuReplyVO.rno}"><i class="fa fa-pencil"></i></A>
+             <a href="./delete.do?rno=${commuReplyVO.rno }" onclick="return confirm('삭제 하시겠습니까?')"><i class="fa fa-trash-o"></i></a>
         </p>      
         <fieldset style='margin: 10px 0 0 0;'>
           <ul>
             <li>
-              ${replyVO.rcontent}
+              ${commuReplyVO.rcontent}
             </li>
           </ul>
         </fieldset>   
         <div class='right'>
-          <button id="likeup" onclick="likeup(${replyVO.rno})" class="btn btn-default btn-xs btn-alt"> 
-          <i class="fa fa-thumbs-o-up" style="color:red;"></i> 추천(<SPAN id='test_like${replyVO.rno }'>${replyVO.likeup}</SPAN>)</button>
-          <button id="likedown" onclick="likedown(${replyVO.rno})" class="btn btn-default btn-xs btn-alt" >
-          <i class="fa fa-thumbs-o-down" style="color:blue;"></i> 비추천(<SPAN id='test_unlike${replyVO.rno }'>${replyVO.likedown}</SPAN>)</button>
+          <button id="likeup" onclick="likeup(${commuReplyVO.rno})" class="btn btn-default btn-xs btn-alt"> 
+          <i class="fa fa-thumbs-o-up" style="color:red;"></i> 추천(<SPAN id='test_like${commuReplyVO.rno }'>${commuReplyVO.likeup}</SPAN>)</button>
+          <button id="likedown" onclick="likedown(${commuReplyVO.rno})" class="btn btn-default btn-xs btn-alt" >
+          <i class="fa fa-thumbs-o-down" style="color:blue;"></i> 비추천(<SPAN id='test_unlike${commuReplyVO.rno }'>${commuReplyVO.likedown}</SPAN>)</button>
         </div>
         <div style='clear: both;'></div>
         <div class='hr'><hr></div> 

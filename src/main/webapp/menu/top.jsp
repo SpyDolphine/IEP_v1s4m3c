@@ -199,9 +199,9 @@ a.iep-top {
                                     <li><a href="#" >커뮤니티</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="<%=root %>/cfree/list.do">자유게시판</a></li>
-                                            <li><a href="<%=root %>/mfree/list.do">정모방</a></li>
-                                            <li><a href="<%=root %>/ifree/list.do">정보공유방</a></li>
-                                            <li><a href="<%=root %>/gfree/list.do">상담/공감방</a></li>                                                                                        
+                                            <li><a href="<%=root %>/community/listA.do">정모방</a></li>
+                                            <li><a href="<%=root %>/community/listB.do">정보공유방</a></li>
+                                            <li><a href="<%=root %>/community/listC.do">상담/공감방</a></li>                                                                                        
                                         </ul>
                                     </li>   
                                     <li><a href="#">Q&A</a>
