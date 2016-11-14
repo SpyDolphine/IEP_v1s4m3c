@@ -32,7 +32,8 @@
 
 <div style='position: relative; top:40%; left:55%;'>
 <jsp:include page="createboot.jsp" flush='false' />
-</div>
+</div> <!-- 오른쪽 등록 폼 -->
+
 
    <c:forEach var="seicoVO" items="${list }">
     <section class="content blog">
@@ -86,21 +87,9 @@
               </div>
               </div>
               </section>
-                  <!-- <a href='#' onclick="alert('로그인이 필요합니다'); return false;" class="btn btn-primary btn-xs btn-alt"> -->
-       <!--  <i class="fa fa-comments-o"></i> 댓글</a> -->
-     
-       <%--  <button id="likeup" onclick="likeup(${seicoVO.sc_no})" class="btn btn-default btn-xs btn-alt"> 
-        <i class="fa fa-thumbs-o-up" style="color:red;"></i> 추천(<SPAN id='test_like${scVO.sc_no }'>${scVO.likeup}</SPAN>)</button>
-        <button id="likedown" onclick="likedown(${seicoVO.sc_no})" class="btn btn-default btn-xs btn-alt" >
-        <i class="fa fa-thumbs-o-down" style="color:blue;"></i> 비추천(<SPAN id='test_unlike${seicoVO.sc_no }'>${scVO.likedown}</SPAN>)</button>
-        
-      </div>
-      <div style='clear: both;'></div>
-      <hr> --%>
-      
+
    </c:forEach>
     <DIV class='bottom'>${paging}</DIV>
-
 
 </body>
 

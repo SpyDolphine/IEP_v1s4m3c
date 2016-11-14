@@ -28,6 +28,10 @@ public class IfCont {
     System.out.println("--> IfCont created.");
   }
   
+  /**
+   * 등록
+   * @return
+   */
   @RequestMapping(value = "/interviewfail/createboot.do", method = RequestMethod.GET)
   public ModelAndView create() {
     System.out.println("--> create() GET called.");
@@ -102,7 +106,10 @@ public class IfCont {
     String if_content = ifVO.getIf_content();
     if_content = Tool.convertChar(if_content);  
     ifVO.setIf_content(if_content);
+    
     mav.addObject("ifVO", ifVO); 
+    mav.addObject("manylist", ifDAO.manylist());
+    mav.addObject("cnt", ifDAO.update_cnt(if_no));
     
     return mav;
   }  
@@ -195,4 +202,27 @@ public class IfCont {
     
     return mav;
   }
+  
+  /**
+   * 많이본글 목록을 출력합니다.
+   * 
+   * @return
+   */
+  @RequestMapping(value = "/interviewfail/manylist.do", method = RequestMethod.GET)
+  public ModelAndView manylist() {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/interviewfail/manylist");      // list_total.jsp
+    
+    List<IfVO> manylist = ifDAO.manylist();
+    
+    Iterator<IfVO> iter = manylist.iterator();
+    while(iter.hasNext() == true){  // 다음 요소 검사
+      IfVO ifVO = iter.next();  // 요소 추출
+      ifVO.setIf_no(ifVO.getIf_no());
+    }
+    
+    mav.addObject("manylist", manylist);
+    
+    return mav;
+  }  
 }

@@ -19,6 +19,13 @@ function autoResize(i)
    (i).height= iframeHeight;
 }   
 
+function Resize(i)
+{
+   var iframeHeight=
+   (i).contentWindow.document.body.scrollHeight;
+   (i).height= iframeHeight +270;
+}   
+
 </script>
 </head>
  
@@ -126,65 +133,33 @@ function autoResize(i)
          <div class="widget widget_tab">
             <div class="velocity-tab sidebar-tab">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#Popular" data-toggle="tab">실시간 인기글</a></li>
-                    <li class=""><a href="#Recent" data-toggle="tab">많이본 글</a></li>
-                    <li class="last-tab"><a href="#Comment" data-toggle="tab"><i class="fa fa-comments-o"></i>인기댓글</a></li>
+                    <li class="active"><a href="#Popular" data-toggle="tab">많이 본 글</a></li>
+                    <li class=""><a href="#Recent" data-toggle="tab">실시간 인기글</a></li>
+                    <li class="last-tab"><a href="#Comment" data-toggle="tab"><i class="fa fa-comments-o"></i> 인기댓글</a></li>
                 </ul>
-
                 <div  class="tab-content clearfix">
                     <div class="tab-pane fade active in" id="Popular">
+                    <c:forEach var="ifVO" begin="0" end="5" step="1" items="${manylist}">
                         <ul class="recent_tab_list">
                             <li>
                                 <span><a href="#"></a></span>
-                                <a href="#">인기글을 내보내줘랏!!!!!</a>
-                                <i>${fn:substring(ifVO.if_date, 0, 16)}</i>
-                            </li>
-                            <li>
-                                <span><a href="#"></a></span>
-                                <a href="#">두번째 인기글이닷!!!!!</a>
-                                <i>${fn:substring(ifVO.if_date, 0, 16)}</i>
-                            </li>
-                            <li class="last-tab">
-                                <span><a href="#"></a></span>
-                                <a href="#">라스트탭은 무슨차이잉가!!!</a>
+                                <a href="./read.do?if_no=${ifVO.if_no }">${ifVO.if_title}</a>
                                 <i>${fn:substring(ifVO.if_date, 0, 16)}</i>
                             </li>
                         </ul>
+                    </c:forEach>
                     </div>
                     <div class="tab-pane fade" id="Recent">
                         <ul class="recent_tab_list">
-                            <li>
-                                <span><a href="#"></a></span>
-                                <a href="#">Various versions has evolved over the years</a>
-                                <i>October 18, 2015</i>
-                            </li>
-                            <li>
-                                <span><a href="#"></a></span>
-                                <a href="#">Rarious versions has evolve over the years</a>
-                                <i>October 17, 2015</i>
-                            </li>
                             <li class="last-tab">
                                 <span><a href="#"></a></span>
-                                <a href="#">Marious versions has evolven over the years</a>
+                                <a href="#">게시글 좋아요♥ 쿠키를 이용해야해...</a>
                                 <i>October 16, 2015</i>
                             </li>
                         </ul>
                     </div>
                     <div class="tab-pane fade" id="Comment">
-                        <ul class="comments">
-                            <li class="comments_list clearfix">
-                                <a class="post-thumbnail" href="#"></a>
-                                <p><strong><a href="#">Prambose</a> <i>says: </i> </strong> Morbi augue velit, tempus mattis dignissim nec, porta sed risus. Donec eget magna eu lorem tristique pellentesque eget eu dui. Fusce lacinia tempor malesuada.</p>
-                            </li>
-                            <li class="comments_list clearfix">
-                                <a class="post-thumbnail" href="#"></a>
-                                <p><strong><a href="#">Makaroni</a> <i>says: </i> </strong> Tempus mattis dignissim nec, porta sed risus. Donec eget magna eu lorem tristique pellentesque eget eu dui. Fusce lacinia tempor malesuada.</p>
-                            </li>
-                            <li class="comments_list clearfix">
-                                <a class="post-thumbnail" href="#"></a>
-                                <p><strong><a href="#">Prambanan</a> <i>says: </i> </strong> Donec convallis, metus nec tempus aliquet, nunc metus adipiscing leo, a lobortis nisi dui ut odio. Nullam ultrices, eros accumsan vulputate faucibus, turpis tortor.</p>
-                            </li>
-                        </ul>
+                        <iframe id="iframe" width="100%" onload="Resize(this)" frameborder="0" scrolling="no" src="../reply/populreply.do"></iframe>
                     </div>
                 </div>
             </div>

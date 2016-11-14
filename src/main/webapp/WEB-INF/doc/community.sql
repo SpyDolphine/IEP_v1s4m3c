@@ -1,48 +1,8 @@
 <커뮤니티> 
 자유게시판     정보공유방       스터디정모방      상담 / 공감방
 
-drop table commu_free
--- 자유게시판(실시간 업데이트) : 커뮤니티 메인 페이지
-create table commu_free (
- cm_no        NUMBER(7)        not null,    -- 글 번호
- cm_nick      varchar2(30)     not null,    -- 닉네임
- cm_title     varchar2(120)    not null,    -- 게시글 제목
- cm_content   varchar2(4000)   not null,    -- 글 내용
- likeup       NUMBER(7)        default 0,   -- 추천                  
- likedown     NUMBER(7)        default 0,   -- 비추천 
- cm_rdate     DATE             not null,    -- 등록날짜
- PRIMARY KEY(cm_no)
-);
 
-1. 글추가
-INSERT INTO commu_free(cm_no, cm_nick, cm_title, cm_content, likeup, likedown, heart, cm_rdate)
-VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_free), '닉네임', '제목','내용', 0,0,0, sysdate);
-
-2. 목록
-SELECT cm_no, cm_nick, cm_title, cm_content, likeup, likedown, heart, cm_rdate
-FROM commu_free
-ORDER BY cm_no desc;
-
-drop table commu_free;
-delete from commu_free;
-
-3. 좋아요 기능
-update commu_free
-set cm_likeit = cm_likeit + 1
-where cm_no = 43
-
-    update commu_free
-    set likeup = likeup + 1
-    where cm_no = 1
-
-
-----------------------------------------------------------------------------------------------------------------------
--- 스터디 정모방(사진/파일/동영상(썸네일) 들어가야함)
-drop table commu_meet;
-delete table commu_meet; 
-select * from commu_meet
-
-create table commu_meet (
+create table community (
  cm_no        NUMBER(7)        not null,                         -- 글 번호
  cm_nick      varchar2(30)     not null,                         -- 닉네임
  cm_title     varchar2(120)    not null,                         -- 게시글 제목
@@ -55,265 +15,237 @@ create table commu_meet (
  cm_url       varchar2(500)    null,                             -- 출처  
  cm_cnt       NUMBER(7)        default 0,                        -- 조회수
  cm_date      DATE             not null,                         -- 등록날짜
- replycnt     NUMBER(7)        DEFAULT 0       NOT NULL, 
+ replycnt     NUMBER(7)        DEFAULT 0       NOT NULL,         -- 댓글수
  grpno        NUMBER(7)        NOT NULL,
  indent       NUMBER(2)        DEFAULT 0       NOT NULL,
  ansnum       NUMBER(5)        DEFAULT 0       NOT NULL, 
- PRIMARY KEY(cm_no)
-);
-
--- 글넘버 최대값
-SELECT NVL(MAX(cm_no), 0) as cm_no 
-FROM commu_meet
-where indent = 0
-
--- 글넘버 최소값
-SELECT NVL(MIN(cm_no), 0) as cm_no 
-FROM commu_meet
-where indent = 0
-
-
-
-1. 글추가
-INSERT INTO commu_meet(cm_no, cm_nick, cm_title, cm_content, cm_file1, cm_file2, cm_size2, cm_likeit, cm_map, cm_url, 
-                        cm_cnt, cm_date, replycnt, grpno, indent, ansnum)
-VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_meet),'nick', '1title','content', 'ummer_m.jpg', 'summer.jpg',
-        0, 0, 'map', 'url', 0, sysdate, 0 ,0, 0, 0);
-        
-
--답변
-
-INSERT INTO commu_meet(cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
-                        cm_cnt, cm_date, replycnt, grpno, indent, ansnum)
-VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_meet),'nick', '1title','content', 'ummer_m.jpg', 'summer.jpg',
-        0, 0, 'map', 'url', 0, sysdate, 0 ,1, 0, 0);
-
-2. 목록
-
-         SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-                replycnt, grpno, indent, ansnum, rownum
-         FROM(
-                  SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-                         replycnt, grpno, indent, ansnum, rownum
-                  FROM commu_meet
-                  ORDER BY grpno DESC, ansnum ASC
-         )
-         WHERE rownum >=1;
-         
-				SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-				        replycnt, grpno, indent, ansnum, rownum
-				FROM(         
-									select cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-									                replycnt, grpno, indent, ansnum, rownum
-									from commu_meet
-						where ansnum = 0
-						order by cm_no
-				)
-
-			  SELECT cm_no, cm_title, cm_date, grpno, rownum
-			  FROM(         
-			            SELECT cm_no, cm_title, cm_date, grpno, rownum
-			            from commu_meet
-			      where ansnum = 0
-			      order by cm_no
-			  )
-  
-3. 새로운 답변을 최신으로 등록하기위해 기존 답변을 뒤로 미룹니다.
-
-UPDATE commu_meet
-SET ansnum = ansnum + 1
-WHERE grpno = 1 AND ansnum > 1;
-
-4. 조회수 증가
-update commu_meet
-set cm_cnt = cm_cnt + 1
-where cm_no = 7
-
-
-----------------------------------------------------------------------------------------------------------------------
-
--- 정보공유방(사진/파일/동영상(썸네일) 들어가야함)
-drop table commu_info
-delete table commu_info
-
-create table commu_info (
- cm_no        NUMBER(7)        not null,                         -- 글 번호
- cm_nick      varchar2(30)     not null,                         -- 닉네임
- cm_title     varchar2(120)    not null,                         -- 게시글 제목
- cm_content   varchar2(4000)   not null,                         -- 글 내용
- file1        VARCHAR2(100)    NULL ,
- file2        VARCHAR2(50)     NULL ,
- size2        NUMBER(9)        DEFAULT 0 ,
- cm_likeit    NUMBER(7)        default 0,                        -- 좋아요기능
- cm_map       varchar2(1024)   null,                             -- 지도
- cm_url       varchar2(500)    null,                             -- 출처  
- cm_cnt       NUMBER(7)        default 0,                        -- 조회수
- cm_date      DATE             not null,                         -- 등록날짜
- replycnt     NUMBER(7)        DEFAULT 0       NOT NULL, 
- grpno        NUMBER(7)        NOT NULL,
- indent       NUMBER(2)        DEFAULT 0       NOT NULL,
- ansnum       NUMBER(5)        DEFAULT 0       NOT NULL, 
+ cm_ch        CHAR             NOT NULL,                         -- 각 리스트 채널
  PRIMARY KEY(cm_no)
 );
 
 1. 글추가
-INSERT INTO commu_info(cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
-                        cm_cnt, cm_date, replycnt, grpno, indent, ansnum)
-VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_info),'nick', '1title','content', 'ummer_m.jpg', 'summer.jpg',
-        0, 0, 'map', 'url', 0, sysdate, 0 ,0, 0, 0);
+INSERT INTO community(cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
+                        cm_cnt, cm_date, replycnt, grpno, indent, ansnum, cm_ch)
+VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM community),'nick', '1title','content', 'ummer_m.jpg', 'summer.jpg',
+        0, 0, 'map', 'url', 0, sysdate, 0 ,0, 0, 0, 'A');
         
--답변
+INSERT INTO community(cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
+                        cm_cnt, cm_date, replycnt, grpno, indent, ansnum, cm_ch)
+VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM community),'aaa', '1title','content', 'ummer_m.jpg', 'summer.jpg',
+        0, 0, 'map', 'url', 0, sysdate, 0 ,0, 0, 0, 'A');   
 
-INSERT INTO commu_info(cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
-                        cm_cnt, cm_date, replycnt, grpno, indent, ansnum)
-VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_info),'nick', '1title','content', 'ummer_m.jpg', 'summer.jpg',
-        0, 0, 'map', 'url', 0, sysdate, 0 ,1, 0, 0);        
-        
-2. 목록
+INSERT INTO community(cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
+                        cm_cnt, cm_date, replycnt, grpno, indent, ansnum, cm_ch)
+VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM community),'aaa', '1title','content', 'ummer_m.jpg', 'summer.jpg',
+        0, 0, 'map', 'url', 0, sysdate, 0 ,0, 0, 0, 'B'); 
+    
 
+select * from community
+2-1. 전체 목록(A)
 SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-        replycnt, grpno, indent, ansnum, r
- FROM(
-	         SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-	                replycnt, grpno, indent, ansnum, rownum as r
-	         FROM(
-	                  SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-	                         replycnt, grpno, indent, ansnum
-	                  FROM commu_info
-	                  ORDER BY grpno DESC, ansnum ASC
-	             )
-	         )
- WHERE rownum >=1;
-         
-SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-        replycnt, grpno, indent, ansnum, rownum
-FROM(         
-          select cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-                          replycnt, grpno, indent, ansnum, rownum
-          from commu_info
-    where ansnum = 0
-    order by cm_no
-)
-
-SELECT cm_no, cm_title, cm_date, grpno, rownum
-FROM(         
-          SELECT cm_no, cm_title, cm_date, grpno, rownum
-          from commu_info
-    where ansnum = 0
-    order by cm_no
-)
-
-3. 새로운 답변을 최신으로 등록하기위해 기존 답변을 뒤로 미룹니다.
-
-UPDATE commu_info
-SET ansnum = ansnum + 1
-WHERE grpno = 1 AND ansnum > 1;
-
-4. 조회수 증가
-update commu_info
-set cm_cnt = cm_cnt + 1
-where cm_no = 7   
-
-5. 글넘버 최대값
-SELECT NVL(MAX(cm_no), 0) as cm_no 
-FROM commu_info
-where indent = 0
-
-6. 글넘버 최소값
-SELECT NVL(MIN(cm_no), 0) as cm_no 
-FROM commu_info
-where indent = 0
-
-----------------------------------------------------------------------------------------------------------------------
-
--- 상담/공감방(사진/파일/동영상(썸네일) 들어가야함)
-create table commu_gonggam (
- cm_no        NUMBER(7)        not null,                         -- 글 번호
- cm_nick      varchar2(30)     not null,                         -- 닉네임
- cm_title     varchar2(120)    not null,                         -- 게시글 제목
- cm_content   varchar2(4000)   not null,                         -- 글 내용
- file1        VARCHAR2(100)    NULL ,
- file2        VARCHAR2(50)     NULL ,
- size2        NUMBER(9)        DEFAULT 0 ,
- cm_likeit    NUMBER(7)        default 0,                        -- 좋아요기능
- cm_map       varchar2(1024)   null,                             -- 지도
- cm_url       varchar2(500)    null,                             -- 출처  
- cm_cnt       NUMBER(7)        default 0,                        -- 조회수
- cm_date      DATE             not null,                         -- 등록날짜
- replycnt     NUMBER(7)        DEFAULT 0       NOT NULL, 
- grpno        NUMBER(7)        NOT NULL,
- indent       NUMBER(2)        DEFAULT 0       NOT NULL,
- ansnum       NUMBER(5)        DEFAULT 0       NOT NULL, 
- PRIMARY KEY(cm_no)
-);
-
-drop table commu_gonggam
-delete table commu_gonggam
-
-1. 글추가
-INSERT INTO commu_gonggam(cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
-                        cm_cnt, cm_date, replycnt, grpno, indent, ansnum)
-VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_gonggam),'nick', '1title','content', 'ummer_m.jpg', 'summer.jpg',
-        0, 0, 'map', 'url', 0, sysdate, 0 ,0, 0, 0);
-        
--답변
-
-INSERT INTO commu_gonggam(cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
-                        cm_cnt, cm_date, replycnt, grpno, indent, ansnum)
-VALUES((SELECT NVL(MAX(cm_no), 0)+1 as cm_no FROM commu_gonggam),'nick', '1title','content', 'ummer_m.jpg', 'summer.jpg',
-        0, 0, 'map', 'url', 0, sysdate, 0 ,1, 0, 0);        
-        
-2. 목록
-
-SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-        replycnt, grpno, indent, ansnum, r
+        replycnt, grpno, indent, ansnum, cm_ch, r
  FROM(
            SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-                  replycnt, grpno, indent, ansnum, rownum as r
+                  replycnt, grpno, indent, ansnum, cm_ch, rownum as r
            FROM(
                     SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-                           replycnt, grpno, indent, ansnum
-                    FROM commu_gonggam
+                           replycnt, grpno, indent, ansnum, cm_ch
+                    FROM community
+                    where cm_ch = 'A'
                     ORDER BY grpno DESC, ansnum ASC
                )
            )
  WHERE rownum >=1;
-         
+ 
+2-2. 전체 목록(B)
 SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-        replycnt, grpno, indent, ansnum, rownum
+        replycnt, grpno, indent, ansnum, cm_ch, r
+ FROM(
+           SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
+                  replycnt, grpno, indent, ansnum, cm_ch, rownum as r
+           FROM(
+                    SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
+                           replycnt, grpno, indent, ansnum, cm_ch
+                    FROM community
+                    where cm_ch = 'B'
+                    ORDER BY grpno DESC, ansnum ASC
+               )
+           )
+ WHERE rownum >=1;
+ 
+3-1. 관련글 목록(A)
+SELECT cm_no, cm_title, cm_date, grpno, cm_ch
 FROM(         
-          select cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, cm_cnt, cm_date,
-                          replycnt, grpno, indent, ansnum, rownum
-          from commu_info
-    where ansnum = 0
+    SELECT cm_no, cm_title, cm_date, grpno, cm_ch, rownum
+    from community
+    where ansnum = 0 and cm_ch = 'A'
     order by cm_no
+  )
+  
+3-2. 관련글 목록(B)
+SELECT cm_no, cm_title, cm_date, grpno, cm_ch
+FROM(         
+    SELECT cm_no, cm_title, cm_date, grpno, cm_ch, rownum
+    from community
+    where ansnum = 0 and cm_ch = 'B'
+    order by cm_no
+  )
+  
+4. 관련글 Read
+SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
+                     cm_cnt, cm_date, replycnt, grpno, indent, ansnum, rownum, cm_ch
+FROM(         
+  SELECT cm_no, cm_nick, cm_title, cm_content, file1, file2, size2, cm_likeit, cm_map, cm_url, 
+             cm_cnt, cm_date, replycnt, grpno, indent, ansnum, rownum, cm_ch
+  from community
+  where ansnum = 0 
+  order by cm_no
+)
+where grpno = 1
+
+5-1. 관련글 정렬 리스트(A)
+select cm_no, cm_nick, cm_title, cm_date, grpno, indent, ansnum, cm_ch
+from community
+where grpno = 1 and cm_ch = 'A'
+order by ansnum
+
+5-2. 관련글 정렬 리스트(B)
+select cm_no, cm_nick, cm_title, cm_date, grpno, indent, ansnum, cm_ch
+from community
+where grpno = 0 and cm_ch = 'B'
+order by ansnum
+
+6. 삭제
+delete from community
+
+-- 댓글
+select * from commuReply
+drop table commuReply
+delete from commuReply
+
+create table commuReply(
+ rno          NUMBER(7)       not null,                   -- 글 번호
+ cm_no        NUMBER(7)       not null,                   -- 글 번호
+ rnick        varchar2(30)    not null,                   -- 닉네임
+ rcontent     varchar2(4000)  not null,                   -- 글 내용
+ likeup       NUMBER(7)       default 0,                  -- 추천
+ likedown     NUMBER(7)       default 0,                  -- 비추천
+ grpno        NUMBER(7)       NOT NULL,
+ indent       NUMBER(2)       DEFAULT 0,
+ ansnum       NUMBER(5)       DEFAULT 0,  
+ rdate        DATE            not null,                   -- 등록날짜
+ replycnt     NUMBER(7)       DEFAULT 0,
+ FOREIGN KEY (cm_no) REFERENCES community(cm_no) on delete cascade,
+ PRIMARY KEY(rno)
 )
 
-SELECT cm_no, cm_title, cm_date, grpno, rownum
-FROM(         
-          SELECT cm_no, cm_title, cm_date, grpno, rownum
-          from commu_gonggam
-    where ansnum = 0
-    order by cm_no
-)
+    SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum
+    FROM failReply
+    WHERE cm_no = 7
+
+1. 조회
+   SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum, replycnt, r
+   FROM(
+           SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum, replycnt, rownum as r
+           FROM(
+                    SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum, replycnt
+                    FROM commuReply
+                    ORDER BY grpno DESC, ansnum ASC
+             )
+    )
+ WHERE rownum >=1;
+ 
+2. 글작성
+INSERT INTO commuReply(rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum, replycnt)
+VALUES((SELECT NVL(MAX(rno), 0)+1 as rno FROM commuReply), 3, 'nick2', 'content', 0, 0, sysdate, 
+       (SELECT NVL(MAX(grpno), 0) + 1 as grpno FROM commuReply), 0, 0, 1);  
 
 3. 새로운 답변을 최신으로 등록하기위해 기존 답변을 뒤로 미룹니다.
-
-UPDATE commu_gonggam
+UPDATE commuReply
 SET ansnum = ansnum + 1
-WHERE grpno = 1 AND ansnum > 1;
+WHERE cm_no=3 and grpno = 1 AND ansnum > 1;
 
-4. 조회수 증가
-update commu_gonggam
-set cm_cnt = cm_cnt + 1
-where cm_no = 7   
+4. 댓글 수 조회
+select count(*)rno
+from commuReply
+where cm_no = 3
 
-5. 글넘버 최대값
-SELECT NVL(MAX(cm_no), 0) as cm_no 
-FROM commu_gonggam
-where indent = 0
+5. 댓글 읽기
+SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum
+FROM commuReply
+WHERE rno = 21  
 
-6. 글넘버 최소값
-SELECT NVL(MIN(cm_no), 0) as cm_no 
-FROM commu_gonggam
-where indent = 0
+6. 추천많은 댓글 정렬
+select likeup, cm_no, rcontent, rdate
+from commuReply
+order by likeup desc
+
+
+--------------------------------------------------------------------------------------------------------------
+
+-- 댓글
+select * from reply
+drop table reply
+delete from reply
+
+create table reply(
+ rno          NUMBER(7)       not null,                   -- 글 번호
+ cm_no        NUMBER(7)       not null,                   -- 글 번호
+ rnick        varchar2(30)    not null,                   -- 닉네임
+ rcontent     varchar2(4000)  not null,                   -- 글 내용
+ likeup       NUMBER(7)       default 0,                  -- 추천
+ likedown     NUMBER(7)       default 0,                  -- 비추천
+ grpno        NUMBER(7)       NOT NULL,
+ indent       NUMBER(2)       DEFAULT 0,
+ ansnum       NUMBER(5)       DEFAULT 0,  
+ rdate        DATE            not null,                   -- 등록날짜
+ PRIMARY KEY(rno), 
+ FOREIGN KEY (cm_no) REFERENCES commu_free(cm_no) on delete cascade
+)
+
+    SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum
+    FROM reply
+    WHERE cm_no = 7
+
+1. 조회
+   SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum, r
+   FROM(
+           SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum, rownum as r
+           FROM(
+                    SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum
+                    FROM reply
+                    ORDER BY grpno DESC, ansnum ASC
+             )
+    )
+ WHERE rownum >=1;
+ 
+2. 글작성
+INSERT INTO reply(rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum)
+VALUES((SELECT NVL(MAX(rno), 0)+1 as rno FROM reply), 5, 'nick', 'content', 0, 0, sysdate, 
+       (SELECT NVL(MAX(grpno), 0) + 1 as grpno FROM reply), 0, 0);  
+
+INSERT INTO reply(rno, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum)
+VALUES((SELECT NVL(MAX(rno), 0)+1 as rno FROM reply),'nick', 'content', 0, 0, sysdate, 
+       (SELECT NVL(MAX(grpno), 0) + 1 as grpno FROM reply), 0, 1);  
+ 
+INSERT INTO reply(rno, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum)
+VALUES((SELECT NVL(MAX(rno), 0)+1 as rno FROM reply),'nick', 'content', 0, 0, sysdate, 
+       (SELECT NVL(MAX(grpno), 0) + 1 as grpno FROM reply), 0, 2);         
+       
+3. 새로운 답변을 최신으로 등록하기위해 기존 답변을 뒤로 미룹니다.
+UPDATE reply
+SET ansnum = ansnum + 1
+WHERE cm_no=3 and grpno = 1 AND ansnum > 1;
+
+4. 댓글 수 조회
+select count(*)rno
+from reply
+where cm_no = 4
+
+5. 댓글 읽기
+SELECT rno, cm_no, rnick, rcontent, likeup, likedown, rdate, grpno, indent, ansnum
+FROM reply
+WHERE rno = 21
+
+
+-------------------------------------------------------------------------------------------------------------------------------

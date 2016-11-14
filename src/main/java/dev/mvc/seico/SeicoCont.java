@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import web.tool.Paging;
 import web.tool.SearchDTO;
 import web.tool.Tool;
 import web.tool.Upload;
@@ -297,7 +298,7 @@ public class SeicoCont {
     totalRecord = seicoDAO.count(hashMap);
     mav.addObject("totalRecord", seicoDAO.count(hashMap)); // 검색된 레코드 갯수
     
-    String paging = new Paging2().paging5(
+    String paging = new Paging().paging726( 
                         totalRecord, 
                         searchDTO.getNowPage(), 
                         recordPerPage, 

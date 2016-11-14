@@ -33,6 +33,13 @@ public interface IfInter {
    * @return
    */
   public int update(IfVO ifVO);
+  
+  /**
+   * 댓글조회수
+   * @param if_no
+   * @return
+   */
+  public int update_cnt(int if_no);    
 
   /**
    * 삭제
@@ -41,4 +48,11 @@ public interface IfInter {
    * @return
    */
   public int delete(int if_no);  
+  
+  /**
+   * 많이본 글 목록
+   * <select id="list" resultType="IfVO">
+   * @return 목록
+   */
+  public List<IfVO> manylist();   
 }

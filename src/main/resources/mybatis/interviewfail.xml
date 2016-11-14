@@ -7,36 +7,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace = "interviewfail">
   <insert id="createboot" parameterType="IfVO">
     INSERT INTO interview_fail(if_no,if_title,if_id,if_nick,if_gender,if_company,if_position,if_region,if_content,if_q,if_a,
-                               if_level,if_exper,if_where,if_how,if_when, if_date)
+                               if_level,if_exper,if_where,if_how,if_when, if_date, if_cnt)
     VALUES ((SELECT NVL(MAX(if_no), 0)+1 as if_no FROM interview_fail), #{if_title}, #{if_id}, #{if_nick},
             #{if_gender}, #{if_company}, #{if_position},#{if_region}, #{if_content}, #{if_q}, #{if_a},
-            #{if_level}, #{if_exper}, #{if_where}, #{if_how}, #{if_when}, sysdate)
-  
-<!--     INSERT INTO interview_fail (boardno, divisionno, me_no, if_no, if_gender, if_company, if_position, if_region, if_q, if_a, 
-                                if_level, if_exper, if_where, if_how, if_when)
-    VALUES (#{boardno}, #{divisionno}, #{me_no},(SELECT NVL(MAX(if_no), 0)+1 as if_no FROM interview_fail),
-           #{if_gender}, #{if_company}, #{if_position},#{if_region}, #{if_q}, #{if_a},
-           #{if_level}, #{if_exper}, #{if_where}, #{if_how}, #{if_when}) -->
+            #{if_level}, #{if_exper}, #{if_where}, #{if_how}, #{if_when}, sysdate, 0)
   </insert>
   
   <!-- 검색을하지 않는 전체 목록 -->
   <select id="list" resultType="IfVO">
       SELECT if_no, if_title, if_id, if_nick, if_gender, if_company, if_position, if_region, if_content, if_q, if_a,
-             if_level, if_exper, if_where, if_how, if_when, if_date
+             if_level, if_exper, if_where, if_how, if_when, if_date, if_cnt
       FROM interview_fail
       ORDER BY if_no DESC
-  
-<!--      SELECT b.boardno, b.divisionno, b.me_no, b.title, b.content, b.rdate, b.grpno, b.good,
-            if.boardno, if.divisionno, if.me_no, if.if_no, if.if_gender, if.if_company, if.if_position, if.if_region, if.if_q, if.if_a, 
-            if.if_level, if.if_exper, if.if_where, if.if_how, if.if_when
-     FROM board b, interview_fail if
-     WHERE b.boardno = if.boardno
-     ORDER BY b.boardno, if.if_no; -->
   </select>
 
   <select id="read" resultType="IfVO" parameterType="int">
     SELECT if_no, if_title, if_id, if_nick, if_gender, if_company, if_position, if_region, if_content, if_q, if_a,
-           if_level, if_exper, if_where, if_how, if_when, if_date
+           if_level, if_exper, if_where, if_how, if_when, if_date, if_cnt
     FROM interview_fail
     WHERE if_no= #{if_no}
   </select> 
@@ -53,4 +40,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     DELETE FROM interview_fail
     WHERE if_no=#{if_no}
   </delete>  
+  
+  <!-- 조회수 증가 -->
+  <update id='update_cnt' parameterType="IfVO">
+    UPDATE interview_fail
+    SET if_cnt = if_cnt + 1
+    WHERE if_no=#{if_no}
+  </update>    
+  
+  <!-- 많이 본글 조회 -->
+  <select id="manylist" resultType="IfVO">
+    select if_cnt, if_no, if_title, if_date
+    from interview_fail
+    order by if_cnt desc
+  </select>   
 </mapper>
