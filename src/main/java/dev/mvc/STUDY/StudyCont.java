@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import web.tool.SearchDTO;
 import web.tool.Tool;
 
@@ -133,9 +134,11 @@ import web.tool.Tool;
     public ModelAndView update(int sy_no) {
       ModelAndView mav = new ModelAndView();
       mav.setViewName("/STUDY/update");
+      StudyVO studyVO = StudyDAO.read(sy_no);
       mav.addObject("studyVO", StudyDAO.read(sy_no) );
       return mav;
     }
+
     /**
      * 레코드 1건을 삭제합니다.
      * @param sy_no
