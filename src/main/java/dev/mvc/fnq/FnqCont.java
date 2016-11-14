@@ -22,7 +22,7 @@ import web.tool.Tool;
 public class FnqCont {
   @Autowired
   @Qualifier("dev.mvc.fnq.FnqDAO")
-  private FnqDAOInter fnqDAO;
+  private FnqDAOInter fnqDAO; 
 
   
   public FnqCont(){
