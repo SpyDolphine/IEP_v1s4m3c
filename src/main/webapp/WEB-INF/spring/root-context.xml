@@ -32,12 +32,11 @@
                           dev.mvc.mfree,
                           dev.mvc.ifree,
                           dev.mvc.gfree,
-                          dev.mvc.APP,
+                          dev.mvc.STUDY,
                           dev.mvc.tip,
                           dev.mvc.ITOS,
                           dev.mvc.license,
-                          dev.mvc.TQNA,
-                          dev.mvc.WEB,
+                          dev.mvc.TQNA,,
                           dev.mvc.reply, 
                           dev.mvc.failreply
                    "/>
