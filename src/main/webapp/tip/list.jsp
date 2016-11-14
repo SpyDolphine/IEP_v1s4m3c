@@ -65,8 +65,9 @@
  </div>
 </div>
 </body>
-<form name="frmSearch" method="get" action="./list.do">  
+<form name="frmSearch" method="get" action="./list.do?tp_ch=${tp_ch}"> 
 <DIV class='bottom'>
+  <input type="hidden" name="tp_ch" value="${tp_ch}">
   <div style='text-align: center;'>
      <select name="col"> 
       <option value="">선택</option> 
