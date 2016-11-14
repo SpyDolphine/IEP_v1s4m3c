@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="seico"> 
+
+<insert id="createboot" parameterType="SeicoVO" > 
+
+INSERT INTO seico(sc_no,
+                  sc_area, sc_jobs, sc_gender, sc_position, sc_title, sc_name, sc_cont, 
+                  sc_q, sc_tip, sc_stars, sc_ex, sc_where, sc_date, file1, file2, size2,sc_like, sc_likeup, sc_likedown )
+VALUES((SELECT NVL(MAX(sc_no), 0) + 1 as sc_no FROM seico),
+ #{sc_area}, #{sc_jobs},#{sc_gender},#{sc_position}, #{sc_title}, #{sc_name}, 
+ #{sc_cont}, #{sc_q},#{sc_tip},#{sc_stars}, #{sc_ex},#{sc_where}, sysdate, 
+ #{file1}, #{file2}, #{size2}, 0, 0, 0) 
+ 
+ </insert>
+
+<!-- <select id="list" resultType="SeicoVO"> 
+SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_date, file1, file2, size2, sc_cnt FROM seico ORDER BY sc_no DESC 
+</select> -->
+
+
+<select parameterType="int" id="read" resultType="SeicoVO"> 
+  SELECT sc_no, 
+       sc_area, sc_jobs, sc_gender, sc_position, sc_title, sc_name, sc_cont,sc_q, sc_tip, sc_stars, sc_cnt,sc_like, sc_likeup, sc_likedown, sc_ex, sc_where, sc_date, 
+       file1, file2, size2 
+  FROM seico 
+  WHERE sc_no=#{sc_no} 
+  </select>
+
+<!-- <update parameterType="int" id="like"> 
+  UPDATE seico 
+  SET sc_like= sc_like+1 WHERE sc_no=#{sc_no} 
+  </update> -->
+
+<update parameterType="SeicoVO" id="update"> 
+  UPDATE seico 
+  
+  SET sc_title=#{sc_title}, sc_name=#{sc_name}, sc_cont=#{sc_cont}, sc_jobs=#{sc_jobs},
+  sc_area=#{sc_area}, sc_gender=#{sc_gender},sc_position=#{sc_position},sc_q=#{sc_q},
+  sc_tip=#{sc_tip}, sc_stars=#{sc_stars}, sc_ex=#{sc_ex}, sc_where=#{sc_where},
+  file1=#{file1}, file2=#{file2}, size2=#{size2} 
+  
+  WHERE sc_no=#{sc_no} </update>
+
+  <update parameterType="int" id="cntup"> 
+    UPDATE seico 
+    SET sc_cnt= sc_cnt+1 
+    WHERE sc_no=#{sc_no} 
+  </update>
+
+  <delete parameterType="int" id="delete"> 
+  DELETE FROM seico 
+  WHERE sc_no=#{sc_no} 
+  </delete>
+
+  <update id='likeup' parameterType="int">
+    update seico
+    set sc_likeup = sc_likeup + 1
+    where sc_no = #{sc_no}
+  </update>  
+
+  <update id='likedown' parameterType="int">
+    update seico
+    set sc_likedown = sc_likedown + 1
+    where sc_no = #{sc_no}
+  </update> 
+
+<!-- ********** 검색에 따른 변경 시작 ********** -->
+
+
+
+<select parameterType="HashMap" id="list2" resultType="SeicoVO">
+SELECT sc_no, sc_title, file1, file2, size2, sc_cnt, sc_date, 
+FROM seico 
+<!-- WHERE sc_no=#{sc_no} -->
+
+
+
+
+<choose>
+
+<when test="col == 'title'"> AND sc_title LIKE '%' || #{word} || '%' </when>
+
+<when test="col == 'content'"> AND sc_cont LIKE '%' || #{word} || '%' </when>
+
+<when test="col == 'title_content'"> AND sc_title LIKE '%' || #{word} || '%' OR sc_cont LIKE '%' || #{word} || '%' </when>
+
+</choose>
+ORDER BY sc_no DESC 
+</select>
+
+
+<select parameterType="HashMap" id="count" resultType="int">
+SELECT COUNT(*) as sc_cnt FROM seico 
+<!-- WHERE sc_no=#{sc_no} -->
+
+
+
+<choose>
+
+<when test="col == 'title'"> WHERE sc_title LIKE '%' || #{word} || '%' </when>
+
+<when test="col == 'content'"> WHERE sc_cont LIKE '%' || #{word} || '%' </when>
+
+<when test="col == 'title_sc_content'"> WHERE sc_title LIKE '%' || #{word} || '%' OR sc_cont LIKE '%' || #{word} || '%' </when>
+
+</choose>
+
+</select>
+
+<!-- ********** 검색에 따른 변경 종료 ********** -->
+
+
+<!-- ********** 페이징에 따른 종료 ********** -->
+
+
+
+<select parameterType="HashMap" id="list" resultType="SeicoVO">
+SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2,sc_like, r 
+ FROM( SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2,sc_like, rownum as r 
+  FROM( SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2, sc_like
+FROM seico 
+
+<choose>
+
+<when test="col == 'title'"> WHERE sc_title LIKE '%' || #{word} || '%' </when>
+
+<when test="col == 'content'"> WHERE sc_cont LIKE '%' || #{word} || '%' </when>
+
+<when test="col == 'title_content'"> WHERE sc_title LIKE '%' || #{word} || '%' OR sc_cont LIKE '%' || #{word} || '%' </when>
+
+</choose>
+ORDER BY sc_no DESC ) ) WHERE 
+<![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
+</select>
+
+
+<!-- ********** 페이징에 따른 종료 ********** -->
+
+</mapper>
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Oracle 기반 -->
+<mapper namespace = "sdat">
+  <insert id="create" parameterType="SdatVO">
+    INSERT INTO sdat(sd_no, sc_no, sd_name, sd_cont, likeup, likedown, sd_date, 
+                      grpno, indent, ansnum)
+    VALUES ((SELECT NVL(MAX(sd_no), 0)+1 as do FROM sdat),  #{sc_no}, #{sd_name}, #{sd_cont}, 0, 0, sysdate,
+           (SELECT NVL(MAX(grpno), 0)+1 as grpno FROM sdat), 0, 0)
+  </insert>
+  
+  <update id='update' parameterType="SdatVO">
+    UPDATE sdat
+    SET sd_cont=#{sd_cont}
+    WHERE sd_no=#{sd_no}
+  </update>   
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM sdat
+    WHERE sd_no=#{sd_no}
+  </delete>  
+  
+  <select id="read" resultType="SdatVO" parameterType="int">
+    SELECT sd_no, sc_no, sd_name, sd_cont, likeup, likedown, sd_date, grpno, indent, ansnum
+    FROM sdat
+    WHERE sc_no = #{sc_no}
+  </select>
+ <!-- ********** 추천에 따른 변경 시작 ********** -->   
+  <update id='likeup' parameterType="int">
+    update sdat
+    set likeup = likeup + 1
+    where sd_no = #{sd_no}
+  </update>  
+
+  <update id='likedown' parameterType="int">
+    update sdat
+    set likedown = likedown + 1
+    where sd_no = #{sd_no}
+  </update> 
+
+  <!-- ********** 추천 변경 종료 ********** --> 
+  
+ <!-- ********** 댓글에 따른 변경 시작 ********** -->  
+   <!-- 댓글 등록 -->
+   <insert id="sdat" parameterType="SdatVO">
+       INSERT INTO sdat(sd_no, sc_no, sd_name, sd_cont, likeup, likedown, sd_date, grpno, indent, ansnum)  
+       VALUES((SELECT NVL(MAX(sd_no), 0) + 1 as sd_no FROM sdat), #{sc_no}, #{sd_name}, #{sd_cont},0, 0, sysdate,
+             #{grpno}, #{indent}, #{ansnum})
+   </insert> 
+  
+   <!-- 댓글에 따른 목록 -->
+   <select id="sdatlist" resultType="SdatVO" parameterType="int" >
+      SELECT sd_no, sc_no, sd_name, sd_cont, likeup, likedown, sd_date, grpno, indent, ansnum, rownum as r
+      FROM(
+              SELECT sd_no, sc_no, sd_name, sd_cont, likeup, likedown, sd_date, grpno, indent, ansnum
+              FROM sdat
+              WHERE sc_no=#{sc_no}
+              ORDER BY grpno DESC, ansnum ASC
+      )
+   </select>    
+ 
+ <!-- 댓글에 따른 read -->
+   <select id="sdatread" resultType="SdatVO" parameterType="int">
+    SELECT sd_no, sc_no, sd_name, sd_cont, likeup, likedown, sd_date, grpno, indent, ansnum
+    FROM sdat
+    WHERE sd_no = #{sd_no}
+   </select>
+  
+  <!-- 댓글 순서 변경 -->
+  <update id='updateAnsnum' parameterType="SdatVO">
+    UPDATE sdat
+    SET ansnum = ansnum + 1
+    WHERE grpno = #{grpno} AND ansnum > #{ansnum}
+  </update>
+  
+  <!-- 댓글 수 조회 -->
+  <select id="sdatcnt" parameterType="int">
+  select count(*)sd_no
+  from sdat
+  where sc_no = #{sc_no}
+  </select>
+  <!-- ********** 답변에 따른 변경 종료 ********** -->  
+</mapper>
