@@ -98,7 +98,7 @@ import web.tool.Tool;
       totalRecord = StudyDAO.count(gate);
       mav.addObject("totalRecord",totalRecord); // 검색된 레코드 갯수
       
-      String paging = new Paging().paging5(totalRecord, searchDTO.getNowPage(), recordPerPage,gate);
+      String paging = new PagingStudy().paging5(totalRecord, searchDTO.getNowPage(), recordPerPage,gate);
       mav.addObject("paging", paging);
       return mav;
     }
