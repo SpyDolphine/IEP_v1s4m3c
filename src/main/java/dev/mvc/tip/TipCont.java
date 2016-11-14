@@ -101,11 +101,12 @@ public class TipCont {
     totalRecord = tipDAO.count(hashMap);
     mav.addObject("totalRecord", totalRecord); // 검색된 레코드 갯수
      
-    String paging = new Paging().paging5(totalRecord, 
+    String paging = new Paging().paging4(totalRecord, 
                                        searchDTO.getNowPage(), 
                                        recordPerPage, 
                                        searchDTO.getCol(), 
-                                       searchDTO.getWord());
+                                       searchDTO.getWord(),
+                                       tp_ch);
     mav.addObject("paging", paging);
     return mav;
   }
