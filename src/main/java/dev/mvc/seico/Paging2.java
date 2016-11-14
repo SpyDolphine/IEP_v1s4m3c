@@ -14,7 +14,7 @@ public class Paging2 {
    * @param word 검색어
    * @return 페이징 생성 문자열
    */ 
-  public String paging5(int totalRecord, int nowPage, int recordPerPage, String col, String word){ 
+  public String paging726(int totalRecord, int nowPage, int recordPerPage, String col, String word){ 
     int pagePerBlock = 10; // 블럭당 페이지 수 
     int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // 전체 페이지  
     int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// 전체 그룹 

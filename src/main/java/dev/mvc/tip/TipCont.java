@@ -96,6 +96,7 @@ public class TipCont {
       vo.setTp_date(vo.getTp_date().substring(0, 10));
     }
     mav.addObject("list", list);
+    mav.addObject("tp_ch", tp_ch);
     mav.addObject("root", request.getContextPath());
     
     totalRecord = tipDAO.count(hashMap);

@@ -28,14 +28,7 @@ public class GurumeVO {
   private String gu_name;
   private String gu_cont;
   private int gu_cnt;
- /* private String gu_stars;*/
   private int gu_stars;
-  public int getGu_stars() {
-    return gu_stars;
-  }
-  public void setGu_stars(int gu_stars) {
-    this.gu_stars = gu_stars;
-  }
   private String gu_date;
   private String file1;
   private String file2;
@@ -144,7 +137,12 @@ public class GurumeVO {
   public void setGu_price(String gu_price) {
     this.gu_price = gu_price;
   }
-
+  public int getGu_stars() {
+    return gu_stars;
+  }
+  public void setGu_stars(int gu_stars) {
+    this.gu_stars = gu_stars;
+  }
   }
   
 

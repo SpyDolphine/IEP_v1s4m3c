@@ -21,6 +21,7 @@ public class IfVO {
    if_when     varchar2(50)   null,                         -- 발표시기
    if_likeit   number(7)      default 0,                    -- 좋아요(추천합니다)
    if_date     date           not null,                     -- 날짜
+   if_cnt      NUMBER(7)      default 0,                    -- 조회수   
    PRIMARY KEY(if_no)
 );
    */
@@ -43,6 +44,7 @@ public class IfVO {
   private String if_when;
   private int if_likeit; 
   private String if_date;
+  private int if_cnt;
   
   
   public int getIf_no() {
@@ -152,6 +154,12 @@ public class IfVO {
   }
   public void setIf_date(String if_date) {
     this.if_date = if_date;
+  }
+  public int getIf_cnt() {
+    return if_cnt;
+  }
+  public void setIf_cnt(int if_cnt) {
+    this.if_cnt = if_cnt;
   }
 }
 

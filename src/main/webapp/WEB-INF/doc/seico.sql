@@ -52,34 +52,10 @@ VALUES((SELECT NVL(MAX(sc_no), 0)+1 as sc_no FROM seico),
 
 
 INSERT INTO seico(sc_no, 
-            sc_area, sc_jobs, sc_title, sc_name, sc_cont, sc_cnt, sc_like, sc_date, file1, file2, size2 )  
+                  sc_area, sc_jobs, sc_gender, sc_position, sc_title, sc_name, sc_cont,sc_q, sc_tip, sc_stars,
+                  sc_cnt,sc_like, sc_ex, sc_where, sc_date, file1, file2, size2 )  
 VALUES((SELECT NVL(MAX(sc_no), 0) + 1 as sc_no FROM seico),
             '서울', 'SE', '합격했다능', '손마늘', '아싸', 0, 0, sysdate, 'fall.jpg','fall.jpg', 0 );
-INSERT INTO seico(sc_no, 
-            sc_area, sc_jobs, sc_title, sc_name, sc_cont, sc_cnt, sc_like, sc_date, file1, file2, size2 )  
-VALUES((SELECT NVL(MAX(sc_no), 0) + 1 as sc_no FROM seico),
-            '서울', 'SE', '합격했다능', '손마늘', '아싸', 0, 0, sysdate, 'fall.jpg','fall.jpg', 0 );
-INSERT INTO seico(sc_no, 
-            sc_area, sc_jobs, sc_title, sc_name, sc_cont, sc_cnt, sc_like, sc_date, file1, file2, size2 )  
-VALUES((SELECT NVL(MAX(sc_no), 0) + 1 as sc_no FROM seico),
-            '서울', 'SE', '합격했다능', '손마늘', '아싸', 0, 0, sysdate, 'fall.jpg','fall.jpg', 0 );
-INSERT INTO seico(sc_no, 
-            sc_area, sc_jobs, sc_title, sc_name, sc_cont, sc_cnt, sc_like, sc_date, file1, file2, size2 )  
-VALUES((SELECT NVL(MAX(sc_no), 0) + 1 as sc_no FROM seico),
-            '서울', 'SE', '합격했다능', '손마늘', '아싸', 0, 0, sysdate, 'fall.jpg','fall.jpg', 0 );
-INSERT INTO seico(sc_no, 
-            sc_area, sc_jobs, sc_title, sc_name, sc_cont, sc_cnt, sc_like, sc_date, file1, file2, size2 )  
-VALUES((SELECT NVL(MAX(sc_no), 0) + 1 as sc_no FROM seico),
-            '서울', 'SE', '합격했다능', '손마늘', '아싸', 0, 0, sysdate, 'fall.jpg','fall.jpg', 0 );
-INSERT INTO seico(sc_no, 
-            sc_area, sc_jobs, sc_title, sc_name, sc_cont, sc_cnt, sc_like, sc_date, file1, file2, size2 )  
-VALUES((SELECT NVL(MAX(sc_no), 0) + 1 as sc_no FROM seico),
-            '서울', 'SE', '합격했다능', '손마늘', '아싸', 0, 0, sysdate, 'fall.jpg','fall.jpg', 0 );
-INSERT INTO seico(sc_no, 
-            sc_area, sc_jobs, sc_title, sc_name, sc_cont, sc_cnt, sc_like, sc_date, file1, file2, size2 )  
-VALUES((SELECT NVL(MAX(sc_no), 0) + 1 as sc_no FROM seico),
-            '서울', 'SE', '합격했다능', '손마늘', '아싸', 0, 0, sysdate, 'fall.jpg','fall.jpg', 0 );
-            
             
             
     SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2, r

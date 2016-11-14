@@ -14,19 +14,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 총 글수  -->
   <select id="count" resultType="int" parameterType="HashMap" >
-    SELECT COUNT(*) as cnt
+  SELECT COUNT(*) as cnt
+    FROM (SELECT *
     FROM tip
     <choose>
       <when test="col == 'title'">
-        WHERE tp_title LIKE '%' || #{word} || '%' 
+        WHERE tp_title LIKE '%' || #{word} || '%'
       </when>
       <when test="col == 'content'">
-        WHERE tp_content LIKE '%' || #{word} || '%' 
+        WHERE tp_content LIKE '%' || #{word} || '%'
       </when>
       <when test="col == 'title_content'">
-        WHERE tp_title LIKE '%' || #{word} || '%'  OR tp_content LIKE '%' || #{word} || '%' 
-      </when>      
-    </choose>
+        WHERE tp_title LIKE '%' || #{word} || '%'  OR tp_content LIKE '%' || #{word} || '%'
+      </when>
+    </choose>)
+        WHERE tp_ch=#{tp_ch}
   </select>   
   
   <!-- 목록 -->

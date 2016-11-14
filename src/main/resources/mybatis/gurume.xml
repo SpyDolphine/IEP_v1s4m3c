@@ -11,7 +11,7 @@ INSERT INTO gurume(gu_no,
        gu_area, gu_menu, gu_price, gu_title, gu_name, gu_cont, gu_stars, gu_date, file1, file2,
         size2, gu_map)  
 VALUES((SELECT NVL(MAX(gu_no), 0) + 1 as gu_no FROM gurume),
-        #{gu_area}, #{gu_menu},#{gu_price}, #{gu_title}, #{gu_name}, #{gu_cont}, 0, sysdate, #{file1}, #{file2},
+        #{gu_area}, #{gu_menu},#{gu_price}, #{gu_title}, #{gu_name}, #{gu_cont}, #{gu_stars}, sysdate, #{file1}, #{file2},
         #{size2}, #{gu_map})
  </insert>
   

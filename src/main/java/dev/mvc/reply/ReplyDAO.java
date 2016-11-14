@@ -70,4 +70,9 @@ public class ReplyDAO implements ReplyDAOInter {
   public ReplyVO replyread(int rno) {
     return mybatis.selectOne("reply.replyread", rno);
   }
+
+  @Override
+  public List<ReplyVO> populreply() {
+    return mybatis.selectList("reply.populreply");
+  }
 }

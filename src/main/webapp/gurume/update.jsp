@@ -48,24 +48,24 @@ function show(gu_stars){
   for(i=1; i<=gu_stars; i++){
     images = 'images'+i;
     el= document.getElementById(images);
-    el.src="../gurume/images/red1.png";
+    el.src="../gurume/images/yellow.png";
   }
   
   switch(gu_stars){
   case 1:
-    stateMsg ="1 어피치";
+    stateMsg ="";
     break;
   case 2:
-    stateMsg ="2 어피치";
+    stateMsg ="";
     break;
   case 3:
-    stateMsg ="3 어피치";
+    stateMsg ="";
     break;
   case 4:
-    stateMsg ="4 어피치";
+    stateMsg ="";
     break;
   case 5:
-    stateMsg ="5 어피치";
+    stateMsg ="";
     break;
     default:
       stateMsg="";
@@ -97,7 +97,7 @@ function mark(gu_stars){
   for(i=1; i<=gu_stars; i++){
     images = 'images'+i;
     el= document.getElementById(images);
-    el.src="../gurume/images/red1.png";
+    el.src="../gurume/images/yellow.png";
   }
   for(i=gu_stars+1; i<=5; i++){
     images= 'images'+i;
@@ -180,16 +180,7 @@ function mark(gu_stars){
         <label class='form_grp' for='gu_name'>닉네임</label>
         <input type='text' name='gu_name' id='gu_name'value="${gurumeVO.gu_name}"size='15' required="required">
       </li>
-     
- <%--   <label class='form_grp' for='gu_stars'>별점</label>
-   <select name='gu_stars' id='gu_stars'>
-        <option value="${gurumeVO.gu_stars}" selected="selected">${gurumeVO.gu_stars}</option>
-        <option value="★">★</option>
-        <option value="★★">★★</option>
-        <option value="★★★">★★★</option>
-        <option value="★★★★">★★★★</option>
-        <option value="★★★★★">★★★★★</option>
-      </select>   </li> --%>
+
        <li>
         <label class='form_grp' id=gu_stars align=center>별점</label>
          <span>
@@ -238,7 +229,7 @@ function mark(gu_stars){
     
       <li class='right'>
          <button type="submit">수정</button>
-        <button type="button" onclick="location.href='./list.do<%-- ?divisionno=${boardVO.divisionno} --%>'">목록[취소]</button>
+        <button type="button" onclick="location.href='./list4.do<%-- ?divisionno=${boardVO.divisionno} --%>'">목록[취소]</button>
       </li>         
     </ul>
   </FORM>

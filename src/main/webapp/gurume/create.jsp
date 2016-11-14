@@ -61,24 +61,24 @@ function show(gu_stars){
   for(i=1; i<=gu_stars; i++){
     images = 'images'+i;
     el= document.getElementById(images);
-    el.src="../gurume/images/red1.png";
+    el.src="../gurume/images/yellow.png";
   }
   
   switch(gu_stars){
   case 1:
-    stateMsg ="1 어피치";
+    stateMsg ="";
     break;
   case 2:
-    stateMsg ="2 어피치";
+    stateMsg ="";
     break;
   case 3:
-    stateMsg ="3 어피치";
+    stateMsg ="";
     break;
   case 4:
-    stateMsg ="4 어피치";
+    stateMsg ="";
     break;
   case 5:
-    stateMsg ="5 어피치";
+    stateMsg ="";
     break;
     default:
       stateMsg="";
@@ -110,7 +110,7 @@ function mark(gu_stars){
   for(i=1; i<=gu_stars; i++){
     images = 'images'+i;
     el= document.getElementById(images);
-    el.src="../gurume/images/red1.png";
+    el.src="../gurume/images/yellow.png";
   }
   for(i=gu_stars+1; i<=5; i++){
     images= 'images'+i;
@@ -189,7 +189,8 @@ function mark(gu_stars){
       </li>
       <li>
         <label class='form_grp' for='content'>약도: </label><br>
-        <textarea name='gu_map' id='gu_map' rows='5' cols='70' ></textarea>
+        <textarea name='gu_map' id='gu_map' rows='5' cols='70' 
+        placeholder="다음 지도에서 위치 검색 후, 약도 만들기로 소스를 생성하여 붙여넣어 주세요." ></textarea>
       </li>     
      <li>
         <label class='form_grp' for='file1'>Thumb 파일</label>

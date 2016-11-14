@@ -270,10 +270,32 @@ public class ReplyCont {
     CmVO cmVO = cmDAO.read(cm_no);
     
     mav.addObject("replyVO", replyVO); 
+    mav.addObject("populreply", replyDAO.populreply());
     mav.addObject("cm_no", cm_no); 
     
     return mav;
   }
    
-  
+  /**
+   * 인기댓글 목록을 출력합니다.
+   * 
+   * @return
+   */
+  @RequestMapping(value = "/reply/populreply.do", method = RequestMethod.GET)
+  public ModelAndView populreply() {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/reply/populreply");      // populreply.jsp
+    
+    List<ReplyVO> populreply = replyDAO.populreply();
+    
+    Iterator<ReplyVO> iter = populreply.iterator();
+    while(iter.hasNext() == true){  // 다음 요소 검사
+      ReplyVO replyVO = iter.next();  // 요소 추출
+      replyVO.setRno(replyVO.getRno());
+    }
+    
+    mav.addObject("populreply", populreply);
+    
+    return mav;
+  }    
 }

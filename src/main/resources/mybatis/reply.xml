@@ -83,4 +83,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   where cm_no = #{cm_no}
   </select>
   <!-- ********** 답변에 따른 변경 종료 ********** -->  
+  
+  <!-- 인기 댓글 -->
+  <select id="populreply" resultType="ReplyVO">
+    select likeup, if_no, rcontent, rdate
+    from failReply
+    order by likeup desc
+  </select> 
 </mapper>

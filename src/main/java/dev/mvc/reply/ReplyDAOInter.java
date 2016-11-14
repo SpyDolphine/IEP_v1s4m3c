@@ -3,6 +3,8 @@ package dev.mvc.reply;
 import java.util.HashMap;
 import java.util.List;
 
+import dev.mvc.interviewfail.IfVO;
+
 public interface ReplyDAOInter {
   
   /**
@@ -88,4 +90,11 @@ public interface ReplyDAOInter {
    * @return
    */
   public int replycnt(int cm_no);
+  
+  /**
+   * 많이본 글 목록
+   * <select id="list" resultType="IfVO">
+   * @return 목록
+   */
+  public List<ReplyVO> populreply();     
 }

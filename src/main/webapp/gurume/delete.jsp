@@ -29,7 +29,7 @@
 <!-- ----------------------------------------- -->
  
   <div class='content_menu'>
-    <A href='../division/list.do'>전체 게시판 목록</A> >
+    <A href='../gurume/list4.do'>전체 게시판 목록</A> >
    <%--  <A href='./list.do?divisionno=${boardVO.divisionno }'>${divisionVO.title}</A>｜ --%>
     <A href="./create.do<%-- ?divisionno=${boardVO.divisionno } --%>">등록</A>｜
     <A href="./update.do?gu_no=${gurumeVO.gu_no}">수정</A>｜

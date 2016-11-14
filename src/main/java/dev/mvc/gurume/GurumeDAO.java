@@ -57,8 +57,6 @@ public class GurumeDAO implements GurumeDAOInter{
 
   @Override
   public int count(HashMap hashMap) {
-    System.out.println("startNum: "+ hashMap.get("startNum"));
-    System.out.println("endNum: "+ hashMap.get("endNum"));
     return mybatis.selectOne("gurume.count", hashMap);
   }
 
