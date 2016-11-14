@@ -32,7 +32,7 @@ public class TipCont {
       method = RequestMethod.GET)
   public ModelAndView create() {
   ModelAndView mav = new ModelAndView();
-  mav.setViewName("/tip/create"); // /webapp/aboutme/create.jsp
+  mav.setViewName("/tip/create"); // /webapp/tip/create.jsp
   return mav;
   }
   
