@@ -41,10 +41,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- ********** 페이징에 따른 변경 시작 ********** -->
   <select id="list" resultType="StudyVO" parameterType="HashMap" >
-  SELECT sy_no, title, content, file1, file2, size2, cnt, sy_date, gate , rownum
-  FROM STUDY
-  WHERE <![CDATA[rownum >=#{startNum} AND rownum <= #{endNum}]]> AND gate=#{gate}
-  ORDER BY sy_no DESC
+  SELECT sy_no, title, content, sy_date, gate , r
+  FROM (
+            SELECT sy_no, title, content, sy_date, gate , rownum as r
+            FROM (
+                      SELECT sy_no, title, content, cnt, sy_date, gate
+                      FROM STUDY
+                      ORDER BY sy_no DESC
+                      )
+  )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>   AND gate=#{gate}
   </select>  
     <!-- ********** 페이징에 따른 변경 종료 ********** -->
 </mapper>

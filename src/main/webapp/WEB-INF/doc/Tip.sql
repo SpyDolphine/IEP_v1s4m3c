@@ -58,7 +58,9 @@ CREATE TABLE tip (
     WHERE r=1 AND r <= 3 and tp_ch='A'
     
     
-    
+
+  
+
 5. 수정
     UPDATE tip 
     SET tp_title='질문 수정', tp_content='답변 수정' , tp_ch='A'

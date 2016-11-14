@@ -5,12 +5,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import web.tool.SearchDTO;
@@ -64,12 +65,13 @@ import web.tool.Tool;
      */
     @RequestMapping(value = "/STUDY/list.do", 
                                method = RequestMethod.GET)
-    public ModelAndView list(SearchDTO searchDTO,String gate) {
+    public ModelAndView list(SearchDTO searchDTO, HttpServletRequest request, String gate) {
       ModelAndView mav = new ModelAndView();
       mav.setViewName("/STUDY/list1"); // /webapp/STUDY/list.jsp
-      int totalRecord = 0;
+
    
       HashMap<String, Object> hashMap = new HashMap<String, Object>();
+      
       int recordPerPage = 10; // 페이지당 출력할 레코드 갯수
       // 페이지에서 출력할 시작 레코드 번호 계산, nowPage는 1부터 시작
       int beginOfPage = (searchDTO.getNowPage() - 1) * 10;
@@ -81,6 +83,8 @@ import web.tool.Tool;
       hashMap.put("startNum", startNum);
       hashMap.put("endNum", endNum);
       hashMap.put("gate", gate);
+      
+      int totalRecord = 0;
        
       List<StudyVO> list = StudyDAO.list(hashMap); // 페이징을 이용한 리스트
       Iterator<StudyVO> iter = list.iterator();
@@ -88,17 +92,16 @@ import web.tool.Tool;
         StudyVO vo = iter.next(); // 요소 추출
         vo.setTitle(Tool.textLength(vo.getTitle(), 10));
         vo.setSy_date(vo.getSy_date().substring(0, 10));
-        // vo.setFile1(Tool.textLength(10, vo.getFile1()));
-        // vo.setFile2(Tool.textLength(10, vo.getFile2()));
-        vo.setSize2Label(Tool.unit(vo.getSize2()));
+
       }
-      mav.addObject("list", list);
-      mav.addObject("gate", gate);
       
+      mav.addObject("list", list);
+      mav.addObject("root", request.getContextPath());
+      mav.addObject("gate", gate);
       totalRecord = StudyDAO.count(gate);
       mav.addObject("totalRecord",totalRecord); // 검색된 레코드 갯수
       
-      String paging = new PagingStudy().paging5(totalRecord, searchDTO.getNowPage(), recordPerPage,gate);
+      String paging = new PagingStudy().paging10(totalRecord, searchDTO.getNowPage(), recordPerPage, gate);
       mav.addObject("paging", paging);
       return mav;
     }

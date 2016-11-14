@@ -39,7 +39,14 @@ WHERE sy_no=1;
 DELETE FROM STUDY
 WHERE sy_no=1;
 
-  SELECT sy_no, title, content, file1, file2, size2, cnt, sy_date, gate , rownum
-  FROM STUDY 
-  WHERE rownum >=1 AND rownum<= 2 AND gate='WJ'
-  ORDER BY sy_no DESC
+     SELECT sy_no, title, content, sy_date, gate , r
+  FROM (
+            SELECT sy_no, title, content, sy_date, gate , rownum as r
+            FROM (
+                      SELECT sy_no, title, content, sy_date, gate
+                      FROM STUDY
+                      ORDER BY sy_no DESC
+                      )
+  )
+  WHERE r =1 AND r<= 3 AND gate='WJ'
+  
