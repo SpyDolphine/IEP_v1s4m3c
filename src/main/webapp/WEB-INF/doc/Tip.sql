@@ -46,6 +46,19 @@ CREATE TABLE tip (
     WHERE tp_ch = #{tp_ch}
     ORDER BY tp_no DESC
     
+    SELECT tp_no, tp_title, tp_content, tp_date, tp_ch, r
+    FROM(
+             SELECT tp_no, tp_title, tp_content, tp_date, tp_ch, rownum as r
+             FROM(
+                      SELECT tp_no, tp_title, tp_content, tp_date, tp_ch
+                      FROM tip
+                      ORDER BY tp_no DESC
+             )
+    )
+    WHERE r=1 AND r <= 3 and tp_ch='A'
+    
+    
+    
 5. 수정
     UPDATE tip 
     SET tp_title='질문 수정', tp_content='답변 수정' , tp_ch='A'

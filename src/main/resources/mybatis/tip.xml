@@ -51,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                       ORDER BY tp_no DESC
              )
     )
-    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>   AND tp_ch=#{tp_ch}
   </select>   
 
 
