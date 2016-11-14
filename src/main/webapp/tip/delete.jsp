@@ -34,33 +34,18 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-
-    <div class='content_menu' style='width: 100%;'>
-      <A href='../division/list.do'>목록</A> > 
-      <A href="javascript:location.reload();">새로고침</A>
-    </div>
+    <DIV class='title'>삭제</DIV>
+ 
+    <DIV class='message' style='width: 60%;'>
+    <FORM name='frm' method='POST' action='./delete.do'>
+      <input type='hidden' name='tp_no' value='${tp_no}'>
       
-    <DIV class='content' style='width: 100%;'>
-      <FORM name='frm' method='POST' action='./update.do'
-                  enctype="multipart/form-data">
-        <input type='hidden' name='am_no' value='${aboutmeVO.am_no}'>
-          <ul>
-          <li>
-            <label class='form_grp' for='content'>제목</label><br>
-            <TEXTAREA name='am_title' rows='10' cols='70'>${aboutmeVO.am_title}</TEXTAREA>
-          </li>
-          <li>
-            <label class='form_grp' for='content'>내용</label><br>
-            <TEXTAREA name='am_content' rows='10' cols='70'>${aboutmeVO.am_content}</TEXTAREA>
-          </li>
-          <li class='right'>
-            <button type="submit">등록</button>
-            <button type="button" onclick="location.href='./list.do'">취소</button>
-          </li>         
-        </ul>
-      </FORM>
+      삭제하면 복구 할 수 없습니다.
+      <br><br>
+      <button type="submit">삭제</button>
+      <button type="button" onclick="location.href='./list.do'">취소[목록]</button>
+    </FORM>
     </DIV>
-
    </div>
  </div>
 </div>

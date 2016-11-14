@@ -12,18 +12,6 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
-<script>
-window.onload=function(){
-  CKEDITOR.replace('am_content');  // <TEXTAREA>태그 id 값
-};
-
-// content: textarea name
-if (CKEDITOR.instances['content'].getData() == '') {
-  window.alert('내용을 입력해 주세요.');
-  CKEDITOR.instances['content'].focus();
-  return false;
-}  
-</script>
 <section class="wrapper">
     <section class="page_head">
         <div class="container">
@@ -33,37 +21,47 @@ if (CKEDITOR.instances['content'].getData() == '') {
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">자소서</i>
+                                <i class="fa fa-arrow-circle-right">자소서</i> 
                             </ul> 
                         </nav>
                     </div>
                 </div>
             </div>
-    </section>
+</section>
 </section>
 
 <body>
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-      <DIV class='content' style='width: 100%;'>
-        <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data">
-            <ul>
-            <li>
-              <label>제목</label><br>
-              <input name='am_title'>
-            </li>
-            <li>
-              <label class='form_grp' for='content'>내용</label><br>
-              <TEXTAREA name='am_content' id='am_content' rows='10' cols='70'></TEXTAREA>
-            </li>
-            <li class='right'>
-              <button type="submit">등록</button>
-              <button type="button" onclick="location.href='./list.do'">취소</button>
-            </li>         
-          </ul>
-        </FORM>
-      </DIV>
+
+    <div class='content_menu' style='width: 100%;'>
+      <A href='../division/list.do'>목록</A> > 
+      <A href="javascript:location.reload();">새로고침</A>
+    </div>
+      
+    <DIV class='content' style='width: 100%;'>
+      <FORM name='frm' method='POST' action='./update.do'
+                  enctype="multipart/form-data">
+        <input type='hidden' name='tp_no' value='${tipVO.tp_no}'>
+        <input type='hidden' name='tp_ch' value='${tipVO.tp_ch}'>
+          <ul>
+          <li>
+            <label class='form_grp' for='content'>제목</label><br>
+            <TEXTAREA name='tp_title' rows='10' cols='70'>${tipVO.tp_title}</TEXTAREA>
+          </li>
+          <li>
+            <label class='form_grp' for='content'>내용</label><br>
+            <TEXTAREA name='tp_content' rows='10' cols='70'>${tipVO.tp_content}</TEXTAREA>
+          </li>
+          <li class='right'>
+            <button type="submit">등록</button>
+            <button type="button" onclick="location.href='./list.do'">취소</button>
+          </li>         
+        </ul>
+      </FORM>
+    </DIV>
+
    </div>
  </div>
 </div>

@@ -12,6 +12,18 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+<script>
+window.onload=function(){
+  CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
+};
+
+// content: textarea name
+if (CKEDITOR.instances['content'].getData() == '') {
+  window.alert('내용을 입력해 주세요.');
+  CKEDITOR.instances['content'].focus();
+  return false;
+}  
+</script>
 <section class="wrapper">
     <section class="page_head">
         <div class="container">
@@ -21,31 +33,42 @@
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">자소서</i> 
+                                <i class="fa fa-arrow-circle-right">자소서</i>
                             </ul> 
                         </nav>
                     </div>
                 </div>
             </div>
-</section>
+    </section>
 </section>
 
 <body>
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-    <DIV class='title'>삭제</DIV>
- 
-    <DIV class='message' style='width: 60%;'>
-    <FORM name='frm' method='POST' action='./delete.do'>
-      <input type='hidden' name='am_no' value='${am_no}'>
-      
-      삭제하면 복구 할 수 없습니다.
-      <br><br>
-      <button type="submit">삭제</button>
-      <button type="button" onclick="location.href='./list.do'">취소[목록]</button>
-    </FORM>
-    </DIV>
+      <DIV class='content' style='width: 100%;'>
+        <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data">
+            <ul>
+            <li>
+              <label class='form_grp' for='content'>선택</label><br>
+              <input type='radio' name='tp_ch' value='A'>자소서
+              <input type='radio' name='tp_ch' value='I'>면접
+            </li>
+            <li>
+              <label>제목</label><br>
+              <input name='tp_title'>
+            </li>
+            <li>
+              <label class='form_grp' for='content'>내용</label><br>
+              <TEXTAREA name='tp_content' id='content' rows='10' cols='70'></TEXTAREA>
+            </li>
+            <li class='right'>
+              <button type="submit">등록</button>
+              <button type="button" onclick="location.href='./list.do'">취소</button>
+            </li>         
+          </ul>
+        </FORM>
+      </DIV>
    </div>
  </div>
 </div>

@@ -6,7 +6,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8">
-<title>자소서</title>    
+<title>Tip</title>    
  
 </head>
 <!-- ----------------------------------------- -->
@@ -34,23 +34,25 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-    <DIV class='title'>자소서 쓰는 요령</DIV>
+    <DIV class='title'>Tip</DIV>
     <button type='button' onclick="location.href='./create.do'">등록</button>
       <div class="widget widget_tab">
           <div class="velocity-tab sidebar-tab">
               <ul class="nav nav-tabs">
-                <c:forEach var="aboutmeVO" items="${list }">
-                  <c:set var="string" value="${aboutmeVO.am_title}" />
-                <li class="" ><a href="#${aboutmeVO.am_no}" data-toggle="tab">${fn:substring(string,0,10)}</a></li>
+                <c:forEach var="tipVO" items="${list }">
+                  <c:set var="string" value="${tipVO.tp_title}" />
+                <li class="" ><a href="#${tipVO.tp_no}" data-toggle="tab">${fn:substring(string,0,10)}</a></li>
                 </c:forEach>
               </ul>
       
               <div  class="tab-content clearfix">
-                <c:forEach var="aboutmeVO" items="${list }">
-                  <div class="tab-pane fade" id="${aboutmeVO.am_no}">
+                <c:forEach var="tipVO" items="${list }">
+                  <div class="tab-pane fade" id="${tipVO.tp_no}">
                     <ul class="recent_tab_list" >
+                        <A href='./delete.do?tp_no=${tipVO.tp_no}'>삭제 |</A>
+                        <A href='./update.do?tp_no=${tipVO.tp_no}'>수정</A></li>
                         <li class="comments_list clearfix">
-                              <a href="#">${aboutmeVO.am_no} ${aboutmeVO.am_content}</a>
+                              <a href="#">${tipVO.tp_content}</a>
                         </li>
                     </ul>
                   </div>
