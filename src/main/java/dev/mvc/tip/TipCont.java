@@ -27,7 +27,7 @@ public class TipCont {
   public TipCont(){
     System.out.println("--> TipCont created.");
   }
-  
+   
   @RequestMapping(value = "/tip/create.do", 
       method = RequestMethod.GET)
   public ModelAndView create() {
