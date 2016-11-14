@@ -39,11 +39,11 @@ WHERE sy_no=1;
 DELETE FROM STUDY
 WHERE sy_no=1;
 
-     SELECT sy_no, title, content, sy_date, gate , r
+     SELECT sy_no, title, content, file1, file2, size2, cnt, sy_date, gate , r
   FROM (
-            SELECT sy_no, title, content, sy_date, gate , rownum as r
+            SELECT sy_no, title, content, file1, file2, size2, cnt, sy_date, gate , rownum as r
             FROM (
-                      SELECT sy_no, title, content, sy_date, gate
+                      SELECT sy_no, title, content, file1, file2, size2, cnt, sy_date, gate
                       FROM STUDY
                       ORDER BY sy_no DESC
                       )
