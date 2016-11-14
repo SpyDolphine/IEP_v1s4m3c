@@ -151,8 +151,8 @@ a.iep-top {
 
                                     <li><a href="#" >면접</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="<%=root %>/aboutme/list.do">자소서</a></li>
-                                            <li><a href="<%=root %>/interview/list.do">면접</a></li>
+                                            <li><a href="<%=root %>/aboutme/list.do?tp_ch=A">자소서</a></li>
+                                            <li><a href="<%=root %>/interview/list.do?tp_ch=I">면접</a></li>
                                         </ul>
                                     </li>
 
