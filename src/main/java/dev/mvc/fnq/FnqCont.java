@@ -23,7 +23,7 @@ public class FnqCont {
   @Autowired
   @Qualifier("dev.mvc.fnq.FnqDAO")
   private FnqDAOInter fnqDAO; 
-
+ 
   
   public FnqCont(){
     System.out.println("--> FnqCont created.");
