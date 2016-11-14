@@ -79,6 +79,23 @@
 
 
 </style>
+<style>
+.hr > hr {
+ margin: 10px 0 10px 0;
+ padding: 0;
+}
+
+.comment_area > hr {
+ margin: 0;
+ padding: 0;
+}
+
+.comment_area {
+    background-color: #fafafa;
+}
+
+
+</style>
 </head>
  
 <section class="wrapper">
