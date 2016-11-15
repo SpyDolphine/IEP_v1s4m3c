@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import dev.mvc.ITOS.ItosVO;
 import web.tool.SearchDTO;
 import web.tool.Tool;
 import web.tool.Upload;
@@ -122,7 +121,7 @@ import web.tool.Upload;
       Iterator<StudyVO> iter = list.iterator();
       while (iter.hasNext() == true) { // 다음 요소 검사
         StudyVO vo = iter.next(); // 요소 추출
-        vo.setTitle(Tool.textLength(vo.getTitle(), 10));
+        vo.setTitle(Tool.textLength(vo.getTitle(), 25));
         vo.setSy_date(vo.getSy_date().substring(0, 10));
         vo.setFile1(Tool.textLength(vo.getFile1(), 10));
         vo.setFile2(Tool.textLength(vo.getFile2(), 10));
@@ -134,6 +133,24 @@ import web.tool.Upload;
       totalRecord = StudyDAO.count(gate);
       mav.addObject("totalRecord",totalRecord); // 검색된 레코드 갯수
       
+      if(gate.equals("AJ")){
+        mav.addObject("ti", "JAVA");
+      }
+      if(gate.equals("AC")){
+        mav.addObject("ti", "C언어");
+      }
+      if(gate.equals("AP")){
+        mav.addObject("ti", "파이썬");
+      }
+      if(gate.equals("WH")){
+        mav.addObject("ti", "HTML");
+      }
+      if(gate.equals("WC")){
+        mav.addObject("ti", "CSS");
+      }
+      if(gate.equals("WJ")){
+        mav.addObject("ti", "JSP");
+      }
       String paging = new PagingStudy().paging10(totalRecord, searchDTO.getNowPage(), recordPerPage, gate);
       mav.addObject("paging", paging);
       return mav;

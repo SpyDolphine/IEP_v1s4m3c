@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import web.tool.AES256Util;
+import web.tool.DESedeCrypto;
 import web.tool.Tool;
 
 @Controller
@@ -36,15 +38,33 @@ public class MemberExCont {
   }
   
   @RequestMapping(value = "/memberex/create.do", method = RequestMethod.POST)
-  public ModelAndView create(MemberExVO memberexVO) {
+  public ModelAndView create(MemberExVO memberexVO, DESedeCrypto security) {
     System.out.println("--> create() Post called.");
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/memberex/message");
-
+    
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
-
+    // 인증키 등록 
+    String auth = Tool.key();
+    
+    memberexVO.setMe_auth(auth);
+    // 비밀번호 암호화하여 저장
+    String me_pw = memberexVO.getMe_pw();
+    AES256Util aes256;
+    try {
+      aes256 = new AES256Util();
+      String me_pwsc = aes256.aesEncode(me_pw);
+      memberexVO.setMe_pw(me_pwsc);
+      
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    
+    
+    
     if (memberExDAO.create(memberexVO) == 1) {
+
       msgs.add("회원가입이 처리되었습니다.");
       msgs.add("가입해주셔서 감사합니다.");
       links.add("<button type='button' onclick=\"location.href='./login.do'\">로그인</button>");
@@ -129,7 +149,7 @@ public class MemberExCont {
 
     JSONObject obj = new JSONObject();
 
-    int cnt = memberExDAO.checkId(me_nick);
+    int cnt = memberExDAO.checkNick(me_nick);
     obj.put("cnt", cnt);
 
     return obj.toJSONString();
@@ -173,15 +193,31 @@ public class MemberExCont {
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
 
-    if (memberExDAO.login(memberExVO) == 1) {
+    // 비밀번호 암호화하여 저장
+    String me_pw = memberExVO.getMe_pw();
+    AES256Util aes256;
+    try {
+      aes256 = new AES256Util();
+      String me_pwsc = aes256.aesEncode(me_pw);
+      memberExVO.setMe_pw(me_pwsc);
+      
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    
+   if (memberExDAO.login(memberExVO) == 1) {
       session.setAttribute("me_id", memberExVO.getMe_id());
+      session.setAttribute("me_pw", memberExVO.getMe_pw());
+      
       if (memberExDAO.memberInfo(me_id) != null) {
         int me_no = memberExDAO.memberInfo(me_id).getMe_no();
         String me_nick = memberExDAO.memberInfo(me_id).getMe_nick();
         String me_grade = memberExDAO.memberInfo(me_id).getMe_grade();
+        String me_vis = memberExDAO.memberInfo(me_id).getMe_vis();
         session.setAttribute("me_no", me_no);
         session.setAttribute("me_nick", me_nick);
         session.setAttribute("me_grade", me_grade);
+        session.setAttribute("me_vis", me_vis);
       }
       // ------------------------------------------------------------------
       // id 저장 관련 쿠키 저장
@@ -308,7 +344,7 @@ public class MemberExCont {
   public ModelAndView memberInfo(MemberExVO memberExVO, HttpSession session, HttpServletRequest request, String me_id) {
     System.out.println("--> 사용자 접속: " + request.getRemoteAddr());
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/index2"); // /webapp/index.jsp
+    mav.setViewName("/index"); // /webapp/index.jsp
     return mav;
   }
 @RequestMapping(value = "/memberex/memberout.do", method = RequestMethod.GET)

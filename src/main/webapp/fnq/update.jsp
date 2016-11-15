@@ -20,7 +20,8 @@
                         <nav id="breadcrumbs">
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
-                                <li><A href='./list.do'>목록</A></li>   
+                                <li><A href='./listh.do'>홈페이지 질문 목록 |</A></li>   
+                                <li><A href='./listc.do'>회사 질문 목록</A></li>    
                                 <i class="fa fa-arrow-circle-right">FnQ</i>
                             </ul> 
                         </nav>

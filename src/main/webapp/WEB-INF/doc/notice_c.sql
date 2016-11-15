@@ -3,12 +3,10 @@ DROP TABLE notice;
 
 CREATE TABLE notice ( -- 공지사항 테이블
   nt_no       NUMBER(7)      NOT NULL, -- 글 번호
-  me_no       NUMBER(7)      NOT NULL, -- 회원번호
-  nt_nt       CHAR(1)      default 'N', -- 회원번호
+  nt_nt       CHAR(1)      default 'N', -- 공지사항여부
   nt_title    VARCHAR2(120)  NOT NULL, -- 제목
   nt_content  VARCHAR2(4000) NOT NULL, -- 내용
   nt_date       DATE        default sysdate  NOT NULL, -- 등록시간    
-  FOREIGN KEY (me_no) REFERENCES IEP_MEMBER (me_no), -- 카테고리번호
   PRIMARY KEY (nt_no)       -- 한번 등록된 값은 중복 안됨
 );
 

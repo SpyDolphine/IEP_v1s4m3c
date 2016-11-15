@@ -13,7 +13,22 @@ public class MemberExVO {
   private String me_tel;
   private String me_date;
   private String me_vis;
+  private String me_auth;
+  private String me_confirm;
   
+  
+  public String getMe_auth() {
+    return me_auth;
+  }
+  public void setMe_auth(String me_auth) {
+    this.me_auth = me_auth;
+  }
+  public String getMe_confirm() {
+    return me_confirm;
+  }
+  public void setMe_confirm(String me_confirm) {
+    this.me_confirm = me_confirm;
+  }
   /** 등록된 패스워드 */
   private String old_passwd;
   /** id 저장 여부 */

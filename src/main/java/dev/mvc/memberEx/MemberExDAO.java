@@ -82,4 +82,8 @@ public class MemberExDAO implements MemberExDAOInter {
     map.put("me_pw", me_pw);
     return mybatis.update("memberex.update_passwd", map);
   }
+  @Override
+  public int confirm(MemberExVO memberExVO){
+    return mybatis.update("memberex.confirm", memberExVO);
+  }
 }

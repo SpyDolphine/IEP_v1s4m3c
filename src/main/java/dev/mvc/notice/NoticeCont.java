@@ -87,7 +87,7 @@ public class NoticeCont {
     Iterator<NoticeVO> iter = list.iterator();
     while (iter.hasNext() == true) { // 다음 요소 검사
       NoticeVO vo = iter.next(); // 요소 추출
-      vo.setNt_title(Tool.textLength(vo.getNt_title(), 10));
+      //vo.setNt_title(Tool.textLength(vo.getNt_title(), 10));
       vo.setNt_date(vo.getNt_date().substring(0, 10));
     }
     List<NoticeVO> Nlist = noticeDAO.Nlist();
@@ -116,7 +116,10 @@ public class NoticeCont {
   public ModelAndView read(int nt_no) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/notice/read"); // /webapp/notice/read.jsp
-    mav.addObject("noticeVO", noticeDAO.read(nt_no));
+    NoticeVO noticeVO = noticeDAO.read(nt_no);
+    
+    noticeVO.setNt_content(web.tool.Tool.convertChar(noticeVO.getNt_content()));
+    mav.addObject("noticeVO", noticeVO);
     return mav;
   }
   

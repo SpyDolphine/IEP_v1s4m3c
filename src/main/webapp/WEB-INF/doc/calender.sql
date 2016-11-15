@@ -1,19 +1,42 @@
 CREATE TABLE calender(
-    cl_no                             NUMBER(7)    NOT NULL    PRIMARY KEY,
-    me_no                             NUMBER(7)     NULL ,
-    me_id                             VARCHAR2(100)    NOT NULL,
-    cl_title                          VARCHAR2(120)    NOT NULL,
-    cl_content                        VARCHAR2(100)    NOT NULL,
-    startdate                          varchar2(30)   NULL,
-    enddate                          varchar2(30)   NULL,
-    cl_date                           DATE     NOT NULL,
-    boardno                             NUMBER(7)    NULL ,
-    sp_no                             NUMBER(7)    NULL ,
+    cl_no                             NUMBER(7)    NOT NULL    PRIMARY KEY,   -- 일정 넘버
+    me_no                             NUMBER(7)     NULL ,      -- 회원 번호
+    me_id                             VARCHAR2(100)    NOT NULL,    -- 회원아이디
+    title                          VARCHAR2(120)    NOT NULL,    -- 캘린더 제목
+    content                        VARCHAR2(100)    NULL,   --  캘린더 내용
+    startdate                          varchar2(30)   NULL,       -- 일정 시작일  
+    enddate                          varchar2(30)   NULL,       -- 일정 마감일
+    statedate                         varchar2(30)   NULL,        -- 일정 발표 일
+    daydate                             varchar2(30)   NULL,        -- 일정 당일
+    cl_date                           DATE     NOT NULL,            -- 일정 등록일
+    sp_no                             NUMBER(7)    NULL ,           -- 스크랩 번호
+    sp_content                        VARCHAR2(100)    NULL,
   FOREIGN KEY (me_no) REFERENCES iep_member (me_no),
-  FOREIGN KEY (boardno) REFERENCES board (boardno),
   FOREIGN KEY (sp_no) REFERENCES scrap (sp_no)
 );
 
+1) 일정 등록 부분
+insert into calender(cl_no, me_no, me_id, sp_no, title, content, startdate, enddate, statedate, daydate, cl_date, sp_content)
+values ((SELECT NVL(MAX(cl_no), 0)+1 as cl_no FROM calender), 
+            2, 'cdy1213@naver.com', 2, '공모전 1', '공모전 1이래요', '2016-11-11', '2016-11-11', '2016-11-11', '2016-11-11', sysdate, '스크랩내용');
+insert into calender(cl_no, me_no, me_id, sp_no, title, content, startdate, enddate, statedate, daydate, cl_date, sp_content)
+values ((SELECT NVL(MAX(cl_no), 0)+1 as cl_no FROM calender), 
+          #{me_no}, #{me_id}, #{sp_no}, #{title}, #{content}, #{startdate}, #{enddate}, #{statedate}, #{daydate}, #{cl_date}, #{sp_content})
+2) 일정 목록 부분
+select title, content, startdate, enddate, statedate, daydate
+from calender;
+3) 일정 확인 부분
+select title, content, startdate, enddate, statedate, daydate, cl_date
+from calender 
+where cl_no = 1
+4) 일정 수정 부분
+update calender
+set title = '공모전 수정', content='공모전 1를 수정합니다.', startdate = '2016-12-11', enddate='2016-12-11', statedate = '2016-12-13', daydate='2016-12-15'
+where cl_no=1;
+5) 일정 삭제
+delete from calender where cl_no=1;
+6) 일정 테이블 완전 삭제
+drop table calender
 COMMENT ON TABLE calender is '일정';
 COMMENT ON COLUMN calender.cl_no is '일정번호';
 COMMENT ON COLUMN calender.cl_id is '일정이메일';
@@ -62,7 +85,7 @@ CREATE TABLE scrap(
     sp_title                          VARCHAR2(120)    NOT NULL,
     sp_content                        VARCHAR2(100)    NOT NULL,
     sp_date                           DATE     NOT NULL,
-    ct_no                             NUMBER(7)    NULL ,
+    ct_no                             NUMBER(7)  unique not  NULL  ,
     FOREIGN KEY (me_no) REFERENCES iep_member (me_no),
     FOREIGN KEY (ct_no) REFERENCES iep_contest (ct_no)
 );

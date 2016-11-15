@@ -142,7 +142,7 @@ a.iep-top {
                                                 <a href="about.html">채용 정보</a>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="#">기업 정보</a></li>
-                                                    <li><a href="<%=root %>/gurume/list.do">근처 맛집</a></li>
+                                                    <li><a href="<%=root %>/gurume/list4.do">근처 맛집</a></li>
                                                 </ul>
                                             </li>                                        
                                             <li><a href="#">블랙리스트</a></li>
@@ -166,20 +166,10 @@ a.iep-top {
                                     <li><a href="#">공부방</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="#">웹 스터디방</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="#">HTML</a></li>
-                                                    <li><a href="#">CSS5</a></li>
-                                                    <li><a href="#">Spring</a></li>
-                                                </ul>
+                                                <a href="<%=root %>/STUDY/list.do?gate=AJ">APP 스터디방</a>
                                             </li>
                                             <li>
-                                                <a href="#">컴퓨터 언어방</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="#">JAVA</a></li>
-                                                    <li><a href="#">JSP</a></li>
-                                                    <li><a href="#">JQuery</a></li>
-                                                </ul>
+                                                <a href="<%=root %>/STUDY/list.do?gate=WH">WEB 언어방</a>
                                             </li>
                                             <li>
                                                 <a href="#">자격증</a>

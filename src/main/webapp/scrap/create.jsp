@@ -25,36 +25,33 @@
  </head> 
  
 <body>
-<%=request.getParameter("ct_no")%>
+ <input type="hidden" name="ct_no" value="<%=request.getParameter("ct_no")%>">
+
   <form action="./create.do" method="post" id = "frm">
   <div class="form-group">   
-        <label for="me_id" class="col-xs-2 col-lg-2 control-label">아이디</label>
        <input type="hidden" name="ct_no" value="<%=ct_no%>">
        <input type="hidden" name="ct_title" value="${contestVO.ct_title}">
         <input type="hidden" name="me_no" value="${sessionScope.me_no}">
         <input type="hidden" id="me_id" name="me_id"  value=" ${sessionScope.me_id }">
         <input type="hidden" id="nowUrl" name="nowUrl"  value=" <%=nowUrl %>">
         <div class="col-xs-10 col-lg-10">
-          ${sessionScope.me_id }
         </div>
         </div>
         
-         <label for="me_nick" class="col-xs-2 col-lg-2 control-label">닉네임</label>
         <div class="col-xs-10 col-lg-10">
         <input type="hidden" id="me_nick" name="me_nick"  value=" ${sessionScope.me_nick }">
-            ${sessionScope.me_nick }
+            ${sessionScope.me_nick }님 스크랩 하시겠습니까?
         </div>
         <div class="form-group">   
-        <label for="sp_title" class="col-xs-2 col-lg-2 control-label">제목</label>
+        
         <div class="col-xs-10 col-lg-10">
-          <input type='text' class="form-control" name='sp_title' id='sp_title' size='60' value= '<%=ct_title %>'>
+          <input type='hidden' class="form-control" name='sp_title' id='sp_title' size='60' value= '<%=ct_title %>'>
         </div>
       </div>   
        <div class="form-group">   
-        <label for="sp_content" class="col-xs-2 col-lg-2 control-label">스크랩 내용</label>
+        
         <div class="col-xs-10 col-lg-10">
-          <input type='text' class="form-control" name=
-          'sp_content' id='sp_content' size='20' value = "<%=nowUrl %>" required="required" >
+          <input type='hidden' class="form-control" name='sp_content' id='sp_content' size='20' value = "<%=nowUrl %>" required="required" >
         </div>
       </div>   
        

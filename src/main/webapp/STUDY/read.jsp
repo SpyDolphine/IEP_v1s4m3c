@@ -7,11 +7,9 @@
 <head> 
 <meta charset="UTF-8">
 <title>공부 게시판</title>    
- 
-</head>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
-
+<!-- ----------------------------------------- -->
 <script type="text/javascript">
   /* function customize(imgObj){
     alert('file2 '+ imgObj.width());
@@ -24,10 +22,15 @@
       }
     });
   });
-
 </script>
+<style>
+hr {
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+</style>
+</head>
 
-<!-- ----------------------------------------- -->
 <section class="wrapper">
     <section class="page_head">
         <div class="container">
@@ -37,7 +40,7 @@
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do?gate=${studyVO.gate}'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">공부 게시판</i>
+                                <i class="fa fa-arrow-circle-right"> 글읽기</i>
                             </ul> 
                         </nav>
                     </div>
@@ -50,64 +53,54 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-   
-  <div class='content_menu' style='width: 100%;'>
-    <A href='./list.do?gate=${studyVO.gate}&nowPage=${searchDTO.nowPage}'></A>｜
-    <A href='./create.do?gate=${studyVO.gate}'>등록</A>｜
-    <A href='./update.do?sy_no=${studyVO.sy_no}'>수정</A>｜
-    <A href='./delete.do?sy_no=${studyVO.sy_no}'>삭제</A>
-    <A href="javascript:location.reload();">새로고침</A>｜
-  </div>
-  <DIV class='content'>
-    <FORM name='form_group' method="get" action='./update.do'>
-      <input type="hidden" name="sy_no" value="${studyVO.sy_no}">
-      <fieldset class="fieldset">
-        <ul>
-          <li>
-            <label for='title' class="form_group" style="width:150px;">제목 : </label>
-            <span>${studyVO.title}</span><br>
-          </li>
-          <li>
-            <label for='content' class="form_group" style="width:150px;">내용 : </label>
-            <div>${studyVO.content}</div>
-          </li>
-          <li>
-            <label for="sy_date" class="form_group" style="width:150px;">등록일 : </label>
-            <span>${studyVO.sy_date.substring(0, 16)}</span>
-          </li>
-          <li>
-            <label for="file1" class="form_group" style="width:150px;">
-            업로드 파일: 
-            <c:if test="${studyVO.size2 > 0}">
-              <A href='${pageContext.request.contextPath}/download?dir=/STUDY/storage&filename=${studyVO.file2}'>${studyVO.file2}</A>  (${studyVO.size2Label})
-            </c:if>
-            </label>
-            <div>
-              <c:set var='file2' value="${fn:toLowerCase(studyVO.file2)}" />
-              <c:choose>
-                <c:when test="${fn:endsWith(file2, '.jpg')}">
-                  <IMG id='file2' src='./storage/${studyVO.file2}' onload="customize(this);">
-                </c:when>
-                <c:when test="${fn:endsWith(file2, '.gif')}">
-                  <IMG id='file2'  src='./storage/${studyVO.file2}' onload="customize(this);">
-                </c:when>
-                <c:when test="${fn:endsWith(file2, '.png')}">
-                  <IMG id='file2'  src='./storage/${studyVO.file2}' onload="customize(this);">
-                </c:when>
-              </c:choose>
-            </div>
-          </li>
-          <li class='right'>
-            <button type="button" onclick="location.href='./list.do?sy_no=${studyVO.sy_no}">목록보기</button>
-            <button type="button" onclick="location.href='./update.do?sy_no=${studyVO.sy_no}">수정</button>
-            <button type="button" onclick="location.href='./delete.do?sy_no=${studyVO.sy_no}'">삭제</button>
-          </li>
-        </ul>
-      </fieldset>
-    </FORM>
-  </DIV>
-   </div>
- </div>
+  
+  <div class="write_content" style='width: 90%;'>
+  <FORM name='form_group' method="get" action='./update.do'>
+  <input type="hidden" name="sy_no" value="${studyVO.sy_no}">
+    <hr>
+      <div style='text-align: left;'>&nbsp;&nbsp;${studyVO.title}</div>
+      <p style='text-align: right;'>
+        <span style='color: #cccccc;'>${studyVO.sy_date.substring(0, 16)}</span> |
+        <A href='./create.do?gate=${studyVO.gate}'>등록</A>｜
+        <A href='./update.do?sy_no=${studyVO.sy_no}'>수정</A>｜
+        <A href="./delete.do?sy_no=${studyVO.sy_no}">삭제</A>
+      </p>      
+    <hr>  
+  &nbsp;<i class="fa fa-leaf"> 닉네임을 넣어주세요</i>
+  
+  <fieldset style='margin: 50px 0 0 0;'>
+    <ul>
+      <li>
+        ${studyVO.content}
+      </li>  
+      <li>
+        <label for="file1" class="form_group" style="width:150px;">
+        업로드 파일: 
+        <c:if test="${studyVO.size2 > 0}">
+          <A href='${pageContext.request.contextPath}/download?dir=/STUDY/storage&filename=${studyVO.file2}'>${studyVO.file2}</A>  (${studyVO.size2Label})
+        </c:if>
+        </label>
+        <div>
+          <c:set var='file2' value="${fn:toLowerCase(studyVO.file2)}" />
+          <c:choose>
+            <c:when test="${fn:endsWith(file2, '.jpg')}">
+              <IMG id='file2' src='./storage/${studyVO.file2}' onload="customize(this);">
+            </c:when>
+            <c:when test="${fn:endsWith(file2, '.gif')}">
+              <IMG id='file2'  src='./storage/${studyVO.file2}' onload="customize(this);">
+            </c:when>
+            <c:when test="${fn:endsWith(file2, '.png')}">
+              <IMG id='file2'  src='./storage/${studyVO.file2}' onload="customize(this);">
+            </c:when>
+          </c:choose>
+        </div>
+      </li>
+      </ul>
+    </fieldset> 
+  </FORM>
+</div>      
+</DIV>
+</div>
 </div>
 </body>
 

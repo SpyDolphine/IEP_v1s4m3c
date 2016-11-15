@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.memberEx.MemberExDAOInter;
+import web.tool.Paging;
 import web.tool.SearchDTO;
 import web.tool.Tool;
 import web.tool.Upload;
@@ -60,7 +61,6 @@ public class ContestCont {
     size2 = file2MF.getSize();
     if (size2 > 0) {
       file2 = Upload.saveFileSpring(file2MF, upDir);
-
       // -------------------------------------------------------------------
       // Thumb 파일 생성
       // -------------------------------------------------------------------
@@ -119,24 +119,39 @@ public class ContestCont {
     hashMap.put("startNum", startNum);
     hashMap.put("endNum", endNum);
 
-    List<ContestVO> list = contestDAO.list();
+    List<ContestVO> list = contestDAO.list(hashMap);
     Iterator<ContestVO> iter = list.iterator();
     while (iter.hasNext() == true) { // 다음 요소 검사
       ContestVO vo = iter.next(); // 요소 추출
-      vo.setCt_title(Tool.textLength(vo.getCt_title(), 10)); // 문자열 10자 분리
-      // vo.setCt_rdate(vo.getCt_rdate().substring(0, 10)); // 년월일
+      //vo.setCt_title(Tool.textLength(vo.getCt_title(), 10)); // 문자열 10자 분리
+      //vo.setCt_rdate(vo.getCt_rdate().substring(0, 10)); // 년월일
       // vo.setFile1(Tool.textLength(vo.getFile1(), 10));
-      vo.setCt_file2(Tool.textLength(vo.getCt_file2(), 10));
+      //vo.setCt_startdate(vo.getCt_startdate().substring(0, 10));
+      //vo.setCt_enddate(vo.getCt_enddate().substring(0, 10));
+      //vo.setCt_daydate(vo.getCt_daydate().substring(0, 10));
+     // vo.setCt_file2(Tool.textLength(vo.getCt_file2(), 10));
     }
     mav.addObject("list", list);
+    
+    mav.addObject("root", request.getContextPath());
+    mav.addObject("totalRecord", contestDAO.count(hashMap)); // 검색된 레코드 갯수
 
+    
+    String paging = new Paging().paging5(
+        totalRecord, 
+        searchDTO.getNowPage(), 
+        recordPerPage, 
+        searchDTO.getCol(), 
+        searchDTO.getWord());
+      mav.addObject("paging", paging);
+      
     return mav;
   }
 
   /**
    * 글을 조회합니다
    * 
-   * @param blogno
+   * @param ct_no
    * @return
    */
   @RequestMapping(value = "/contest/read.do", method = RequestMethod.GET)

@@ -87,8 +87,9 @@ public class FnqCont {
     Iterator<FnqVO> iter = list.iterator();
     while (iter.hasNext() == true) { // 다음 요소 검사
       FnqVO vo = iter.next(); // 요소 추출
-      vo.setFq_question(Tool.textLength(vo.getFq_question(), 10));
+      //vo.setFq_question(Tool.textLength(vo.getFq_question(), 10));
       vo.setFq_date(vo.getFq_date().substring(0, 10));
+      vo.setFq_answer(web.tool.Tool.convertChar(vo.getFq_answer()));
     } 
     mav.addObject("list", list);
     mav.addObject("root", request.getContextPath());
@@ -138,8 +139,9 @@ public class FnqCont {
     Iterator<FnqVO> iter = list.iterator();
     while (iter.hasNext() == true) { // 다음 요소 검사
       FnqVO vo = iter.next(); // 요소 추출
-      vo.setFq_question(Tool.textLength(vo.getFq_question(), 10));
+      //vo.setFq_question(Tool.textLength(vo.getFq_question(), 10));
       vo.setFq_date(vo.getFq_date().substring(0, 10));
+      vo.setFq_answer(web.tool.Tool.convertChar(vo.getFq_answer()));
     } 
     mav.addObject("list", list);
     mav.addObject("root", request.getContextPath());
