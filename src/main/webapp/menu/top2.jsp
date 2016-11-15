@@ -35,8 +35,13 @@
 
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
-
 <script type="text/javascript"> 
+function com(){
+  if(<%=session.getAttribute("me_id")%> ==null){
+    alert("로그인 후에 사용 하여 주세요");
+    Location.reload();
+  }
+
 function bookmarksite(title,url) { 
    // Internet Explorer
    if(document.all)
@@ -83,22 +88,29 @@ function open_win(){
                     </div>
                     <div class="col-sm-4 top-info">
                            <c:if test="${empty sessionScope.me_id }">
-                            <a class='' href='./memberex/login.do'>로그인</a> |
+                            <a class='' href='<%=root %>/memberex/login.do'>로그인</a> |
                             <a class=''  href="javascript:open_win();">회원가입</a> |
                           </c:if> 
                             <c:if test="${not empty sessionScope.me_id}">
-                              ${ sessionScope.me_nick} 님 환영합니다. <br>
-                                <a class='' href='./memberex/logout.do'>로그 아웃</a> |
+                              ${ sessionScope.me_nick} 님 환영합니다. 
+                              <c:if test="${sessionScope.me_grade eq 'A' }">
+                              (관리자)
+                              </c:if>
+                              <c:if test="${sessionScope.me_grade eq 'C' }">
+                              (기업회원)
+                              </c:if>
+                              <c:if test="${sessionScope.me_grade eq 'M' }">
+                              (사용자)
+                              </c:if>
+                              <br>
+                                <a class='' href='<%=root %>/memberex/logout.do'>로그 아웃</a> |
                                 <c:if test="${sessionScope.me_grade eq 'A'}">
-                            <a class='' href='./memberex/memberlist.do'>회원 목록</a> |
+                            <a class='' href='<%=root %>/memberex/memberlist.do'>회원 목록</a> |
                                 </c:if>
-                            <a class='' href='./memberex/read.do?me_no=${sessionScope.me_no }'>회원관리 수정</a> |
-                            <a class='' href = '<%=root %>/contest/list.do'>공모전</a>|
+                            <a class='' href='<%=root %>/memberex/read.do?me_no=${sessionScope.me_no }'>회원관리 수정</a> |
                             <a class='' href = '<%=root %>/scrap/list.do?me_no=${sessionScope.me_no}'>스크랩 함</a>|
                             <a class='' href = '<%=root %>/calender/calendermode.jsp'>일정</a>|
                          </c:if>
-                            <a href="" >개인회원</a>  |
-                            <a href="" >기업회원</a>  |
                             <a href="<%=root %>/index.jsp" >HOME</a>  |
                             <a href="javascript:bookmarksite('IEP 프로젝트', 'http://localhost:9090/IEP/index.jsp')"><i class="fa fa-bookmark"></i> BOOKMARK</a>
                     </div>
@@ -128,6 +140,7 @@ function open_win(){
                             </div>
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
+                                <c:if test="${sessionScope.me_id != null }" >
                                     <li class="active"><a href="#">공지사항</a>
                                         <ul class="dropdown-menu">
                                             <li class="active"><a href="<%=root %>/notice/list.do">공지사항</a></li>
@@ -135,7 +148,16 @@ function open_win(){
                                             <li><a href="<%=root %>/fnq/listc.do">기업 F&A</a></li>
                                         </ul>
                                     </li>
-
+                                </c:if>
+                                <c:if test="${sessionScope.me_id  == null }">
+                                    <li class="active"><a href="#">공지사항</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="active"><a href="<%=root %>/memberex/login.do" onclick="javascript:com()">공지사항</a></li>
+                                            <li><a href="<%=root %>/memberex/login.do" onclick="javascript:com()">일반 F&A</a></li>
+                                            <li><a href="<%=root %>/memberex/login.do" onclick="javascript:com()" >기업 F&A</a></li>
+                                        </ul>
+                                    </li>
+                                </c:if>
                                     <li><a href="#">회사정보</a>
                                         <ul class="dropdown-menu">
                                             <li>
@@ -192,10 +214,14 @@ function open_win(){
                                             </li>                                            
                                         </ul>
                                     </li>
-
-                                    <li><a href="<%=root %>/contest/list.do">공모전</a>
+                                    <li>
+                                    <c:if test="${sessionScope.me_id eq null }">
+                                    <a href="<%=root %>/memberex/login.do" onclick="javascript:com()">공모전</a>
+                                   </c:if>
+                                     <c:if test="${sessionScope.me_id != null }">
+                                    <a href="<%=root %>/contest/list.do">공모전</a>
+                                    </c:if>
                                     </li>
-                                    
                                     <li><a href="#" >커뮤니티</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="<%=root %>/cfree/list.do">자유게시판</a></li>
