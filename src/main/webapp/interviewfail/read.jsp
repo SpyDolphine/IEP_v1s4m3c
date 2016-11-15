@@ -74,15 +74,6 @@ function Resize(i)
                 </div>
                 <p>면접질문<p><blockquote class="default">${ifVO.if_q}</blockquote>
                 <p>면접 답변 <br><br> ${ifVO.if_a}</p>
-
-                <p>Donec in ut odio libero, at vulputate urna. Nulla
-                  tristique mi a massa convallis cursus. Nulla eu mi
-                  magna. Etiam suscipit commodo gravida. Cras suscipit,
-                  quam vitae adipiscing faucibus, risus nibh laoreet
-                  odio, a porttitor metus eros ut enim. Morbi augue
-                  velit, tempus mattis dignissim nec, porta sed risus.
-                  Donec eget magna eu lorem tristique pellentesque eget
-                  eu duiport titor metus eros ut enim.</p>
               </div>
             </article>
           </div>
