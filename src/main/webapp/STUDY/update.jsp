@@ -44,6 +44,7 @@
       <FORM name='frm' method='POST' action='./update.do'
                   enctype="multipart/form-data">
         <input type='hidden' name='sy_no' value='${studyVO.sy_no}'>
+        <input type='hidden' name='gate' value='${studyVO.gate}'>
           <ul>
           <li>
             <label class='form_grp' for='content'>제목</label><br>

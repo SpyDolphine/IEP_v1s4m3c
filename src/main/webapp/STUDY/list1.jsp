@@ -36,7 +36,7 @@ $(function(){
 <%-- ---------------------------------------------------------------------------------------------- --%>
   <div class='content_menu' style='width: 90%;'>
 
-    <A href='./create.do?gate=${gate}' }>등록</A>｜
+    <A href='./create.do?gate=${gate}'>등록</A>｜
     <A href="javascript:location.reload();">새로고침</A>
   </div>
   <div class="content" style='width: 100%;'>
