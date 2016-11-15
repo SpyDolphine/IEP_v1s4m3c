@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "tip">
+  <!-- 항목 등록-->
+  <insert id="create" parameterType="TipVO">
+  INSERT into tip(tp_no, 
+                    tp_title, tp_content, tp_ch)
+  VALUES((SELECT NVL(MAX(tp_no), 0)+1 as tp_no FROM tip), 
+                    #{tp_title}, #{tp_content}, #{tp_ch})
+  </insert>
+  
+  <!-- 총 글수  -->
+  <select id="count" resultType="int" parameterType="HashMap" >
+  SELECT COUNT(*) as cnt
+    FROM (SELECT *
+    FROM tip
+    <choose>
+      <when test="col == 'title'">
+        WHERE tp_title LIKE '%' || #{word} || '%'
+      </when>
+      <when test="col == 'content'">
+        WHERE tp_content LIKE '%' || #{word} || '%'
+      </when>
+      <when test="col == 'title_content'">
+        WHERE tp_title LIKE '%' || #{word} || '%'  OR tp_content LIKE '%' || #{word} || '%'
+      </when>
+    </choose>)
+        WHERE tp_ch=#{tp_ch}
+  </select>   
+  
+  <!-- 목록 -->
+  <select id="list" resultType="TipVO" parameterType="HashMap" >
+    SELECT tp_no, tp_title, tp_content, tp_date, tp_ch, r
+    FROM(
+             SELECT tp_no, tp_title, tp_content, tp_date, tp_ch, rownum as r
+             FROM(
+                      SELECT tp_no, tp_title, tp_content, tp_date, tp_ch
+                      FROM tip
+                      <choose>
+                        <when test="col == 'title'">
+                           where tp_title LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'content'">
+                           where tp_content LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'title_content'">
+                           where tp_title LIKE '%' || #{word} || '%'  OR tp_content LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                      ORDER BY tp_no DESC
+             )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>   AND tp_ch=#{tp_ch}
+  </select>   
+
+
+  <!-- 읽어옴  -->
+  <select id="read" resultType="TipVO">
+    SELECT tp_no, tp_title, tp_content, tp_ch
+    FROM tip
+    WHERE tp_no = #{tp_no}
+  </select>  
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="TipVO">
+    UPDATE tip
+    SET tp_title=#{tp_title}, tp_content=#{tp_content}, tp_ch = #{tp_ch}
+    WHERE tp_no=#{tp_no}
+  </update> 
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM tip
+    WHERE tp_no=#{tp_no}
+  </delete>
+    
+</mapper>

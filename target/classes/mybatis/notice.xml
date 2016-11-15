@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "notice">
+  <insert id="create" parameterType="NoticeVO">
+  INSERT INTO notice(nt_no,  nt_nt, nt_title, nt_content )
+  VALUES((SELECT NVL(MAX(nt_no), 0)+1 as nt_no FROM notice), #{nt_nt}, #{nt_title}, #{nt_content})
+  </insert>
+  
+  <!-- 조회 -->
+  <select id="read" resultType="NoticeVO" parameterType="int">
+    SELECT nt_no, nt_title, nt_nt, nt_content, nt_date 
+    FROM notice
+    WHERE nt_no=#{nt_no}
+  </select>
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="NoticeVO">
+    UPDATE notice 
+    SET nt_title=#{nt_title}, nt_content=#{nt_content}, nt_nt=#{nt_nt}
+    WHERE nt_no=#{nt_no}
+  </update> 
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="HashMap">
+    DELETE FROM notice
+    WHERE nt_no IN
+    <foreach collection="arr" item="nt_no" index="index" separator="," open="(" close=")">
+    #{nt_no}
+    </foreach>
+  </delete>
+
+  <select id="count" resultType="int" parameterType="HashMap" >
+    SELECT COUNT(*) as cnt
+    FROM notice
+    <choose>
+      <when test="col == 'title'">
+        WHERE nt_title LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'content'">
+        WHERE nt_content LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'title_content'">
+        WHERE nt_title LIKE '%' || #{word} || '%'  OR nt_content LIKE '%' || #{word} || '%' 
+      </when>      
+    </choose>
+  </select>  
+  <!-- ********** 공지사항리스트 ********** -->        
+  <select id="Nlist" resultType="NoticeVO">
+  SELECT nt_no,  nt_nt, nt_title, nt_content, nt_date
+  FROM notice
+  WHERE nt_nt = 'Y'
+  ORDER BY nt_no DESC
+  </select>
+ <!-- ********** 페이징에 따른 변경 시작 ********** -->   
+ <select id="list" resultType="NoticeVO" parameterType="HashMap" >
+    SELECT nt_no,  nt_title, nt_content, nt_date, r
+    FROM(
+             SELECT nt_no,  nt_title, nt_content, nt_date, rownum as r
+             FROM(
+                      SELECT nt_no,  nt_title, nt_content, nt_date
+                      FROM notice
+                      <choose>
+                        <when test="col == 'title'">
+                           where nt_title LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'content'">
+                           where nt_content LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'title_content'">
+                           where nt_title LIKE '%' || #{word} || '%'  OR nt_content LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                      ORDER BY nt_no DESC
+             )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
+  </select>    
+  <!-- ********** 페이징에 따른 변경 종료 ********** -->     
+</mapper>

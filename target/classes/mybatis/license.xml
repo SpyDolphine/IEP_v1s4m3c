@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace = "license">
+  <insert id="create" parameterType="LicenseVO">
+    INSERT INTO license(lc_no, 
+                          lc_title, lc_content, lc_good, lc_file1, lc_file2, lc_size2,
+                          lc_cnt, lc_replycnt, lc_date, lc_indent, lc_ansnum)  
+    VALUES((SELECT NVL(MAX(lc_no), 0) + 1 as lc_no FROM license),
+                          #{lc_title}, #{lc_content}, 0, #{lc_file1}, #{lc_file2}, #{lc_size2}, 
+                          0, 0, sysdate, 0, 0) 
+  </insert> 
+
+  <select id="list" resultType="LicenseVO">
+    SELECT lc_no,
+           lc_title, lc_content, lc_good, lc_file1, lc_file2, lc_size2, lc_cnt, lc_replycnt, lc_date,
+           lc_indent, lc_ansnum
+    FROM license
+    ORDER BY lc_no DESC 
+  </select> 
+  
+    <select id="read" resultType="LicenseVO" parameterType="int">
+    SELECT lc_no,
+           lc_title, lc_content, lc_good, lc_file1, lc_file2, lc_size2, lc_cnt, lc_replycnt, lc_date,
+           lc_indent, lc_ansnum
+    FROM license
+    WHERE lc_no=#{lc_no}
+  </select>
+  
+    <update id='update' parameterType="LicenseVO">
+    UPDATE license
+    SET lc_title=#{lc_title}, lc_content=#{lc_content}, lc_file1=#{lc_file1}, lc_file2=#{lc_file2}, lc_size2=#{lc_size2}
+    WHERE lc_no=#{lc_no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM license
+    WHERE lc_no=#{lc_no}
+  </delete>
+
+</mapper>

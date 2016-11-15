@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "study">
+  <insert id="create" parameterType="StudyVO">
+    INSERT INTO STUDY(sy_no, title, content, file1, file2, size2, cnt, sy_date, gate)
+    VALUES((SELECT NVL(MAX(sy_no), 0)+1 as sy_no FROM STUDY), #{title}, #{content},
+     #{file1}, #{file2}, 0, 0, sysdate, #{gate})
+  </insert>
+
+     <select id="read" resultType="StudyVO" parameterType="int">
+    SELECT sy_no,
+           title, content, file1, file2, size2, cnt, sy_date, gate
+    FROM STUDY
+    WHERE sy_no=#{sy_no}
+  </select>
+  
+    <update id='update' parameterType="StudyVO">
+    UPDATE STUDY
+    SET title=#{title}, content=#{content}, file1=#{file1}, file2=#{file2}, size2=#{size2}
+    WHERE sy_no=#{sy_no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM STUDY
+    WHERE sy_no = #{sy_no}
+  </delete>
+  
+    <!-- ********** 검색에 따른 변경 시작 ********** -->
+  
+   <select id="count" resultType="int" parameterType="String" >
+    SELECT COUNT(*) as cnt
+    FROM STUDY
+    WHERE gate=#{gate}
+    
+  </select>        
+ 
+  <!-- ********** 검색에 따른 변경 종료 ********** -->
+  
+  <!-- ********** 페이징에 따른 변경 시작 ********** -->
+  <select id="list" resultType="StudyVO" parameterType="HashMap" >
+  SELECT sy_no, title, content, file1, file2, size2, cnt, sy_date, gate , r
+  FROM (
+            SELECT sy_no, title, content, file1, file2, size2, cnt, sy_date, gate , rownum as r
+            FROM (
+                      SELECT sy_no, title, content, file1, file2, size2, cnt, sy_date, gate
+                      FROM STUDY
+                      ORDER BY sy_no DESC
+                      )
+  )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>   AND gate=#{gate}
+  </select>  
+    <!-- ********** 페이징에 따른 변경 종료 ********** -->
+</mapper>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "enterprise_information">
+
+  <!-- 기업정보 등록 -->
+  <insert id="create" parameterType="EnterpriseInformationVO">
+    INSERT INTO enterprise_info (ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, 
+                                 ei_business, ei_url, ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, 
+                                 ei_map, ei_tpic, ei_date)
+    VALUES((SELECT NVL(MAX(ei_no), 0)+1 as ei_no FROM enterprise_info), #{me_no}, #{ei_corporationname}, #{ei_slotname}, 
+           #{ei_crn}, #{ei_employees}, #{ei_established}, #{ei_business}, #{ei_url}, #{ei_ci}, #{ei_majorbusiness}, 
+           #{ei_logofile1}, #{ei_logofile2}, #{ei_logosize2}, #{ei_map}, #{ei_tpic}, sysdate)
+  </insert>
+  
+  <!-- 검색을하지 않는 전체 목록 -->
+  <select id="list" resultType="EnterpriseInformationVO">
+    SELECT ei_no, me_name, me_nick, me_id, me_pw, me_tel, me_addr1, me_addr2, me_zipcode, ei_corporationname,
+           ei_corporationname, ei_slotname, ei_crn, me_email, ei_date 
+    FROM enterprise_info
+    ORDER BY ei_no ASC
+  </select>
+  
+  <select id="count" resultType="int" parameterType="HashMap" >
+    SELECT COUNT(*) as cnt
+    FROM enterprise_info
+<!--     WHERE divisionno=#{divisionno} -->
+    <choose>
+     <when test="col == 'name'">
+<!-- AND title LIKE '%' || #{word} || '%' -->
+<!--     WHERE me_name LIKE '%' || #{word} || '%' -->
+<!--     AND ei_corporationname LIKE '%' || #{word} || '%' -->
+    WHERE ei_corporationname LIKE '%' || #{word} || '%'
+     </when>
+     <when test="col == 'business'">
+<!-- AND title LIKE '%' || #{word} || '%' -->
+<!--     WHERE me_id LIKE '%' || #{word} || '%' -->
+<!--     AND ei_business LIKE '%' || #{word} || '%' -->
+    WHERE ei_business LIKE '%' || #{word} || '%'
+     </when>
+     <when test="col == 'name_business'">
+<!-- AND title LIKE '%' || #{word} || '%' OR content LIKE '%' || #{word} || '%' -->
+<!--     WHERE me_name LIKE '%' || #{word} || '%' OR me_id LIKE '%' || #{word} || '%' -->
+<!--     AND ei_corporationname LIKE '%' || #{word} || '%' OR ei_business LIKE '%' || #{word} || '%' -->
+    WHERE ei_corporationname LIKE '%' || #{word} || '%' OR ei_business LIKE '%' || #{word} || '%' 
+     </when>      
+    </choose>
+
+  </select> 
+  
+  <!--     <select id="list4" resultType="EnterpriseInformationVO" parameterType="HashMap" > -->
+  <select id="list4" resultType="EnterpriseInformationVO" parameterType="HashMap" >                   
+    SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, ei_url, 
+           ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, ei_map, ei_tpic, ei_date, r
+    FROM(
+             SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, 
+                    ei_url, ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, ei_map, ei_tpic, ei_date, 
+                    rownum as r 
+             FROM(
+                      SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, 
+                             ei_business, ei_url, ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, 
+                             ei_map, ei_tpic, ei_date
+<!--                              ei_slotname, ei_crn, me_email, ei_date, grpno, indent, ansnum -->
+                      FROM enterprise_info
+<!--                       WHERE me_no=#{me_no} -->
+                      <choose>
+                        <when test="col == 'name'">
+<!--                            AND title LIKE '%' || #{word} || '%'  -->
+<!--                            WHERE me_name LIKE '%' || #{word} || '%'  -->
+<!--                            AND ei_corporationname LIKE '%' || #{word} || '%' -->
+                           WHERE ei_corporationname LIKE '%' || #{word} || '%'
+                        </when>
+                        <when test="col == 'business'">
+<!--                            AND title LIKE '%' || #{word} || '%'  -->
+<!--                            WHERE me_id LIKE '%' || #{word} || '%'  -->
+<!--                            AND ei_business LIKE '%' || #{word} || '%' -->
+                           WHERE ei_business LIKE '%' || #{word} || '%'
+                        </when>
+                        <when test="col == 'name_business'">
+<!--                            AND title LIKE '%' || #{word} || '%'  OR content LIKE '%' || #{word} || '%' -->
+<!--                            WHERE me_name LIKE '%' || #{word} || '%' OR me_id LIKE '%' || #{word} || '%'  -->
+<!--                            AND ei_corporationname LIKE '%' || #{word} || '%' OR ei_business LIKE '%' || #{word} || '%'  -->
+                           WHERE ei_corporationname LIKE '%' || #{word} || '%' OR ei_business LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                       ORDER BY me_no DESC
+             )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
+    
+  </select>
+  
+  <!-- ********** 페이징에 따른 변경 종료 ********** -->
+  
+  <!-- 기업정보 조회 -->
+  <select id="read" resultType="EnterpriseInformationVO" parameterType="int">
+    SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, 
+           ei_url, ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, ei_map, ei_tpic, ei_date
+    FROM enterprise_info
+    WHERE ei_no = #{ei_no}
+  </select>
+  
+  <!-- 기업정보 조회 -->
+  <select id="updateread" resultType="EnterpriseInformationVO" parameterType="int">
+    SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, 
+           ei_url, ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, ei_map, ei_tpic, ei_date
+    FROM enterprise_info
+    WHERE ei_no = #{ei_no}
+  </select>
+  
+  <!-- 기업정보 수정 -->
+  <update id="update" parameterType="EnterpriseInformationVO">
+    UPDATE enterprise_info
+    SET ei_corporationname=#{ei_corporationname}, ei_slotname=#{ei_slotname}, ei_crn=#{ei_crn}, 
+        ei_employees=#{ei_employees}, ei_established=#{ei_established}, ei_business=#{ei_business}, 
+        ei_url=#{ei_url}, ei_ci=#{ei_ci}, ei_majorbusiness=#{ei_majorbusiness}, ei_logofile1=#{ei_logofile1}, 
+        ei_logofile2=#{ei_logofile2}, ei_logosize2=#{ei_logosize2}, ei_map=#{ei_map}, ei_tpic=#{ei_tpic}    
+    WHERE ei_no = #{ei_no}
+  </update>
+  
+  <!-- 기업정보 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM enterprise_info
+    WHERE ei_no = #{ei_no}
+  </delete>
+   
+</mapper>

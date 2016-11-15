@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Oracle 기반 -->
+<mapper namespace = "interviewfail">
+  <insert id="createboot" parameterType="IfVO">
+    INSERT INTO interview_fail(if_no,if_title,if_id,if_nick,if_gender,if_company,if_position,if_region,if_content,if_q,if_a,
+                               if_level,if_exper,if_where,if_how,if_when, if_date, if_cnt)
+    VALUES ((SELECT NVL(MAX(if_no), 0)+1 as if_no FROM interview_fail), #{if_title}, #{if_id}, #{if_nick},
+            #{if_gender}, #{if_company}, #{if_position},#{if_region}, #{if_content}, #{if_q}, #{if_a},
+            #{if_level}, #{if_exper}, #{if_where}, #{if_how}, #{if_when}, sysdate, 0)
+  </insert>
+  
+  <!-- 검색을하지 않는 전체 목록 -->
+  <select id="list" resultType="IfVO">
+      SELECT if_no, if_title, if_id, if_nick, if_gender, if_company, if_position, if_region, if_content, if_q, if_a,
+             if_level, if_exper, if_where, if_how, if_when, if_date, if_cnt
+      FROM interview_fail
+      ORDER BY if_no DESC
+  </select>
+
+  <select id="read" resultType="IfVO" parameterType="int">
+    SELECT if_no, if_title, if_id, if_nick, if_gender, if_company, if_position, if_region, if_content, if_q, if_a,
+           if_level, if_exper, if_where, if_how, if_when, if_date, if_cnt
+    FROM interview_fail
+    WHERE if_no= #{if_no}
+  </select> 
+  
+  <update id='update' parameterType="IfVO">
+    UPDATE interview_fail
+    SET if_title=#{if_title}, if_gender=#{if_gender}, if_company=#{if_company}, if_position=#{if_position}, if_region=#{if_region}, 
+        if_content=#{if_content}, if_q=#{if_q}, if_a=#{if_a}, if_level=#{if_level}, if_exper=#{if_exper}, if_where=#{if_where}, 
+        if_how=#{if_how}, if_when=#{if_when}
+    WHERE if_no=#{if_no}
+  </update>   
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM interview_fail
+    WHERE if_no=#{if_no}
+  </delete>  
+  
+  <!-- 조회수 증가 -->
+  <update id='update_cnt' parameterType="IfVO">
+    UPDATE interview_fail
+    SET if_cnt = if_cnt + 1
+    WHERE if_no=#{if_no}
+  </update>    
+  
+  <!-- 많이 본글 조회 -->
+  <select id="manylist" resultType="IfVO">
+    select if_cnt, if_no, if_title, if_date
+    from interview_fail
+    order by if_cnt desc
+  </select>   
+</mapper>

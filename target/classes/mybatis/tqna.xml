@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "tqna">
+  <insert id="create" parameterType="TqnaVO">
+    INSERT INTO TQNA(qa_no, 
+                         qa_title, qa_content, qa_good, qa_file1, qa_file2, qa_size2,
+                         qa_cnt, qa_replycnt, qa_date, qa_grpno, qa_indent, qa_ansnum)  
+    VALUES((SELECT NVL(MAX(qa_no), 0) + 1 as qa_no FROM TQNA),
+                          #{qa_title}, #{qa_content}, 0, #{qa_file1}, #{qa_file2}, #{qa_size2}, 
+                          0, 0, sysdate, 
+                          (SELECT NVL(MAX(qa_grpno), 0) + 1 as qa_grpno FROM TQNA), 0, 0)
+  </insert>
+
+  <select id="list" resultType="TqnaVO">
+    SELECT qa_no,
+           qa_title, qa_content, qa_good, qa_file1, qa_file2, qa_size2, qa_cnt, qa_replycnt, qa_date,
+           qa_grpno, qa_indent, qa_ansnum
+    FROM TQNA
+    ORDER BY qa_grpno DESC, qa_ansnum ASC
+    
+  </select> 
+  
+    <select id="read" resultType="TqnaVO" parameterType="int">
+    SELECT qa_no,
+           qa_title, qa_content, qa_good, qa_file1, qa_file2, qa_size2, qa_cnt, qa_replycnt, qa_date,
+           qa_grpno, qa_indent, qa_ansnum
+    FROM TQNA
+    WHERE qa_no=#{qa_no}
+  </select>
+  
+    <update id='update' parameterType="TqnaVO">
+    UPDATE TQNA
+    SET qa_no=#{qa_no}, qa_title=#{qa_title}, qa_content=#{qa_content},
+         qa_file1=#{qa_file1}, qa_file2=#{qa_file2}, qa_size2=#{qa_size2}
+    WHERE qa_no=#{qa_no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM TQNA
+    WHERE qa_no=#{qa_no}
+  </delete>
+  
+  <select id="count" resultType="int" parameterType="String" >
+    SELECT COUNT(*) as cnt
+    FROM TQNA   
+  </select>
+  
+<!-- **********       답변 관련 시작       ********** -->
+  <!-- 답변 순서 변경 -->
+  <update id='updateAnsnum' parameterType="TqnaVO">
+    UPDATE TQNA
+    SET qa_ansnum = qa_ansnum + 1
+    WHERE qa_no=#{qa_no} AND qa_grpno = #{qa_grpno} AND qa_ansnum > #{qa_ansnum}
+  </update>
+ 
+  <!-- 답변 등록 -->
+  <insert id="reply" parameterType="TqnaVO">
+    INSERT INTO TQNA(qa_no,
+                          qa_title, qa_content, qa_good, qa_file1, qa_file2, qa_size2, qa_cnt, qa_replycnt, qa_date, 
+                          qa_grpno, qa_indent, qa_ansnum)  
+    VALUES((SELECT NVL(MAX(qa_no), 0) + 1 as qa_no FROM TQNA),
+            #{qa_title}, #{qa_content}, 0, #{qa_file1}, #{qa_file2}, 0, 0, 0, sysdate,
+            #{qa_grpno}, #{qa_indent}, #{qa_ansnum})
+  </insert>
+ 
+  <!-- 답변에 따른 목록 -->
+  <select id="list1" resultType="TqnaVO" parameterType="HashMap" >
+    SELECT qa_no, qa_title, qa_content, qa_good, 
+               qa_file1, qa_file2, qa_size2, qa_cnt, qa_replycnt, qa_date, qa_grpno, qa_indent, qa_ansnum, r
+    FROM(
+             SELECT qa_no, qa_title, qa_content, qa_good,
+                        qa_file1, qa_file2, qa_size2, qa_cnt, qa_replycnt, qa_date, qa_grpno, qa_indent, qa_ansnum, rownum as r
+             FROM(
+                      SELECT qa_no, qa_title, qa_content, qa_good,
+                                 qa_file1, qa_file2, qa_size2, qa_cnt, qa_replycnt, qa_date, qa_grpno, qa_indent, qa_ansnum
+                      FROM TQNA
+                      ORDER BY qa_grpno DESC, qa_ansnum ASC
+             )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]> 
+  </select> 
+ 
+  <!-- **********       답변 관련 종료       ********** -->
+</mapper>

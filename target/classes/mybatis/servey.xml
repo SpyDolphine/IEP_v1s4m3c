@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "servey">
+
+  <!-- 항목 등록-->
+  <insert id="create" parameterType="ServeyVO">
+    INSERT INTO servey(serveyno, sb_no, 
+                item) 
+    VALUES ((SELECT NVL(MAX(serveyno), 0) + 1 as serveyno FROM servey), #{sb_no},
+              #{item})
+  </insert>
+
+  <!-- 전체 목록 -->
+  <select id="list" resultType="ServeyVO">
+    SELECT serveyno, item, cnt , AVER, sb_no
+    FROM servey
+    WHERE sb_no = #{sb_no}
+  </select>
+  
+  <!-- 읽어옴  -->
+  <select id="read" resultType="ServeyVO">
+    SELECT serveyno, item, cnt , aver, sb_no
+    FROM servey
+    WHERE serveyno = #{serveyno}
+  </select>
+  
+  <!-- 합 구함 -->
+  <select id="sum" resultType="int" parameterType="int">
+    SELECT sum(cnt) 
+    FROM servey 
+    WHERE sb_no = #{sb_no}
+  </select>
+  
+  <!-- 결과 -->
+  <select id="result" resultType="ServeyVO" parameterType="int">
+    SELECT aver 
+    FROM servey 
+    WHERE serveyno = #{serveyno}
+    oder by aver DESC
+  </select>
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="ServeyVO">
+    UPDATE servey 
+    SET item=#{item}
+    WHERE serveyno=#{serveyno}
+  </update> 
+  
+  <!-- 백분율 저장 -->
+  <update id="percent" parameterType="ServeyVO">
+    UPDATE servey 
+    SET aver=#{aver}
+    WHERE serveyno=#{serveyno}
+  </update>
+  
+  <!-- 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM servey
+    WHERE serveyno=#{serveyno}
+  </delete>
+  
+  <!-- 투표 -->
+  <update id="vote" parameterType="int">
+    UPDATE servey 
+    SET cnt= cnt +1
+    WHERE serveyno=#{serveyno}
+  </update>
+  
+  
+</mapper>
