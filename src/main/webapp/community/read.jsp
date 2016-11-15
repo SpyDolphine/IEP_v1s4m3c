@@ -59,6 +59,11 @@ hr {
     margin: 0;
     padding: 0;
 }
+
+.map {
+  margin : 30px 30px 50px 38px;
+  
+}
 </style>
 </head>
  
@@ -84,7 +89,6 @@ hr {
                                   <i class="fa fa-arrow-circle-right"> ${chC }</i> 
                                 </c:when>                                
                               </c:choose>
-                              
                           </ul> 
                       </nav>
                   </div>
@@ -208,8 +212,14 @@ hr {
               </c:choose>
             </div>
           </li>
-
         </ul>
+      <br>
+      <div class='map'>  
+        ${commuVO.cm_map}
+      </div>        
+      <div class='right'>                   
+        출처 : ${commuVO.cm_url}
+      </div>  
       </fieldset>
       
       <div class='right'>
