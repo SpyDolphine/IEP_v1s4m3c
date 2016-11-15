@@ -47,8 +47,8 @@
       </div>
       <div>  
         <label for='if_company'>취업지원직종 IT></label>
-        <select name='if_company' id='if_company'>
-           <option value="상세직종" selected="selected">상세직종</option>
+        <select name='if_company' id='if_company' required>
+           <option value="">상세직종</option>
            <option value="DBA(Database Admin.)">DBA(Database Admin.)</option>
            <option value="ERP">ERP</option>
            <option value="QA(Quality Assurance)">QA(Quality Assurance)</option>
@@ -68,8 +68,8 @@
         </select>
         &nbsp; &nbsp;
         <label for='if_position'>직급 및 직무</label>
-        <select name='if_position' id='if_position'>
-           <option value="직급 및 직무" selected="selected">직급 및 직무</option>
+        <select name='if_position' id='if_position' required>
+           <option value="" selected="selected">직급 및 직무</option>
            <option value="사원-대졸">사원-대졸</option>
            <option value="사원-전문대졸">사원-전문대졸</option>
            <option value="사원-고졸">사원-고졸</option>
@@ -87,8 +87,9 @@
         </select> 
         &nbsp; &nbsp; 
         <label for='if_region'>근무지역</label>
-        <select name='if_region' id='if_region'>
-           <option value="서울" selected="selected">서울</option>
+        <select name='if_region' id='if_region' required>
+           <option value="" selected="selected">지역</option>
+           <option value="서울">서울</option>
            <option value="인천">인천</option>
            <option value="대구">대구</option>
            <option value="대전">대전</option>
@@ -126,8 +127,9 @@
       </div>        
       <div>  
         <label for='if_level'>면접 난이도</label>
-        <select name='if_level' id='if_level'>
-           <option value="★" selected="selected">★</option>
+        <select name='if_level' id='if_level' required>
+           <option value="" selected="selected">난이도 선택</option>
+           <option value="★">★</option>
            <option value="★★">★★</option>
            <option value="★★★">★★★</option>
            <option value="★★★★">★★★★</option>
