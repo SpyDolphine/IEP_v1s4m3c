@@ -4,13 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "notice">
   <insert id="create" parameterType="NoticeVO">
-  INSERT INTO notice(nt_no, me_no, nt_nt, nt_title, nt_content )
-  VALUES((SELECT NVL(MAX(nt_no), 0)+1 as nt_no FROM notice), #{me_no}, #{nt_nt}, #{nt_title}, #{nt_content})
+  INSERT INTO notice(nt_no,  nt_nt, nt_title, nt_content )
+  VALUES((SELECT NVL(MAX(nt_no), 0)+1 as nt_no FROM notice), #{nt_nt}, #{nt_title}, #{nt_content})
   </insert>
   
   <!-- 조회 -->
   <select id="read" resultType="NoticeVO" parameterType="int">
-    SELECT nt_no, me_no, nt_title, nt_nt, nt_content, nt_date 
+    SELECT nt_no, nt_title, nt_nt, nt_content, nt_date 
     FROM notice
     WHERE nt_no=#{nt_no}
   </select>
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <update id="update" parameterType="NoticeVO">
     UPDATE notice 
     SET nt_title=#{nt_title}, nt_content=#{nt_content}, nt_nt=#{nt_nt}
-    WHERE nt_no=#{nt_no} and me_no=#{me_no}
+    WHERE nt_no=#{nt_no}
   </update> 
   
   <!-- 삭제 -->
@@ -48,18 +48,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>  
   <!-- ********** 공지사항리스트 ********** -->        
   <select id="Nlist" resultType="NoticeVO">
-  SELECT nt_no, me_no, nt_nt, nt_title, nt_content, nt_date
+  SELECT nt_no,  nt_nt, nt_title, nt_content, nt_date
   FROM notice
   WHERE nt_nt = 'Y'
   ORDER BY nt_no DESC
   </select>
  <!-- ********** 페이징에 따른 변경 시작 ********** -->   
  <select id="list" resultType="NoticeVO" parameterType="HashMap" >
-    SELECT nt_no, me_no, nt_title, nt_content, nt_date, r
+    SELECT nt_no,  nt_title, nt_content, nt_date, r
     FROM(
-             SELECT nt_no, me_no, nt_title, nt_content, nt_date, rownum as r
+             SELECT nt_no,  nt_title, nt_content, nt_date, rownum as r
              FROM(
-                      SELECT nt_no, me_no, nt_title, nt_content, nt_date
+                      SELECT nt_no,  nt_title, nt_content, nt_date
                       FROM notice
                       <choose>
                         <when test="col == 'title'">

@@ -92,8 +92,9 @@ public class TipCont {
     Iterator<TipVO> iter = list.iterator();
     while (iter.hasNext() == true) { // 다음 요소 검사
       TipVO vo = iter.next(); // 요소 추출
-      vo.setTp_title(Tool.textLength(vo.getTp_title(), 10));
+      //vo.setTp_title(Tool.textLength(vo.getTp_title(), 10));
       vo.setTp_date(vo.getTp_date().substring(0, 10));
+      vo.setTp_content(web.tool.Tool.convertChar(vo.getTp_content()));
     }
     mav.addObject("list", list);
     mav.addObject("tp_ch", tp_ch);
