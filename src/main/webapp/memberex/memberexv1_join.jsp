@@ -8,7 +8,6 @@
 <meta charset="UTF-8"> 
 <title></title> 
  <style type="text/css">
- 
 .myButton {
   -moz-box-shadow:inset 0px 2px 0px 0px #54a3f7;
   -webkit-box-shadow:inset 0px 2px 0px 0px #54a3f7;
@@ -30,7 +29,7 @@
   font-family:Arial;
   font-size:18px;
   font-weight:bold;
-  padding:32px 12px;
+  padding:12px 32px;
   text-decoration:none;
   text-shadow:1px 6px 0px #154682;
 }
@@ -49,10 +48,12 @@
   top:1px;
 }
 
-        
+hr {
+  border: 3px solid #286090;
+  margin: 20px 20px 40px 20px ;
+}
  
- 
- </style>
+</style>
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
 <script type="text/JavaScript"
@@ -66,11 +67,29 @@
 <!-- ----------------------------------------- -->
 <body>
 <!-- ----------------------------------------- -->
-<div style="text-align: center ">
- <a  class="myButton" onclick="javascript:opener.location.href='./agreement.jsp'; self.close();">사용자회원</a>
- <a  class="myButton" onclick="javascript:opener.location.href='./agreement_com.jsp'; self.close();">기업회원</a>
-  </div>
+
+<div style="text-align: center;">
+ <h2>IEP 회원가입</h2>
+ IT 취업준비생 사이트에 오신것을 환영합니다!<br>
+ 고객님께 맞는 회원 종류를 선택하신 후, 가입해 주시기 바랍니다.
+ <hr>
+ <img src='./images/general.jpg' style='width:30%; margin: 0 20px 0 0;'>
+ <img src='./images/employee.jpg' style='width:30%; margin: 0 0 0 20px;'>
+</div>
+<div style="text-align: center;"> 
+ <a class="myButton" style='margin: 0 11% 0 0;' onclick="javascript:opener.location.href='./agreement.jsp'; self.close();">사용자회원</a>
+ <a class="myButton" style='margin: 0 0 0 8%;' onclick="javascript:opener.location.href='./agreement_com.jsp'; self.close();">기업회원</a>
+</div>
 <!-- -------------------------------------------- -->
 </body>
 <!-- -------------------------------------------- -->
 </html> 
+
+
+
+
+
+
+
+
+

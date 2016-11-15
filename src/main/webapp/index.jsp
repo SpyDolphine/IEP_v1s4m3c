@@ -9,7 +9,7 @@
 <head> 
 <script type="text/javascript">
 function open_win(){
-  window.open('<%=root%>/memberex/memberexv1_join.jsp','popup', 'width=500, height=300,left=200px,top=200px');
+  window.open('<%=root%>/memberex/memberexv1_join.jsp','popup', 'width=800, height=500,left=500px,top=300px');
 }
 function com(){
   if(<%=session.getAttribute("me_id")%> ==null){
@@ -51,7 +51,7 @@ function com(){
                         </div>
                         <div class="service-content">
                             <h3>설문 조사</h3>
-                            <p> 오늘의 설문조사 내용입니다. 조퇴할까요? </p>
+                            <p> 오늘의 설문조사 내용입니다. <br> 버튼을 눌러 설문조사에 참여해주세요! </p>
                             <div class="read">
                                 <a href="./serveyboard/list.do">Read more</a>
                             </div>
@@ -108,7 +108,7 @@ function com(){
                         </c:if>
                         </div>
                     </div>
-                </div>
+                
                 <div class="col-md-3 col-sm-6">
                     <div class="serviceBox_2 blue">
                         <div class="service-icon">
@@ -132,9 +132,9 @@ function com(){
                            </div>
                         </div>
                       </c:if>
-                        
                     </div>
                 </div>
+              </div>
             </div>
         
     <div style= 'margin: 100px 0 0 0;  position: relative;'>      
