@@ -6,7 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="ko">
-<head>
+<head> 
 <meta charset="UTF-8">
 <title>★★★ 각 게시판 이름을 적어주세요 !</title>
 <script type="text/javascript">

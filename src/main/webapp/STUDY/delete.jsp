@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>STUDY 공부 게시판</title>    
  
-</head>
+</head> 
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->

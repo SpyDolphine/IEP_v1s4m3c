@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>공지사항</title>    
  
-</head>
+</head> 
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->

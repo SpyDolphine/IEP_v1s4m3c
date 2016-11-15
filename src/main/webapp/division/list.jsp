@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <title>게시판 목록</title> 
- 
+  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

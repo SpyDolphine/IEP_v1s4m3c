@@ -8,7 +8,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <title></title> 
- 
+  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

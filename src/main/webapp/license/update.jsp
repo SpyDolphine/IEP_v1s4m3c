@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8">
 <title>자격증 게시판</title>    
- 
+  
 </head>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />

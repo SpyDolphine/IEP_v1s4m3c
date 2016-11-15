@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>자소서</title>    
  
-</head>
+</head> 
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->

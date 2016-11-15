@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8">
 <title>STUDY</title>    
- 
+  
 </head>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />

@@ -6,7 +6,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8"> 
-<title></title> 
+<title></title>  
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
