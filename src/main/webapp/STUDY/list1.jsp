@@ -14,7 +14,7 @@
 
 function change1(obj){
   obj.style.background = '#d1d1e0';
-}
+} 
 function change2(obj){
   obj.style.background = '#f2f2f2';
 }
