@@ -16,6 +16,8 @@ CREATE TABLE IEP_MEMBER(
     primary key(me_no)
 );
 
+
+
 CREATE TABLE uriLog(
    urilogno NUMBER(7)                   NOT NULL, -- 일련 번호
    id          VARCHAR(10) DEFAULT 'guest' NOT NULL, -- 아이디
