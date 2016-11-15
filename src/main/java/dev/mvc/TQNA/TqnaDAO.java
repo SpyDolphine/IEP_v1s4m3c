@@ -1,5 +1,6 @@
 package dev.mvc.TQNA;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -40,4 +41,24 @@ public class TqnaDAO implements TqnaDAOInter {
     return mybatis.delete("tqna.delete", qa_no);
   }
 
+  @Override
+  public int count(HashMap hashmap) {
+    return mybatis.selectOne("tqna.count", hashmap);
+  }
+
+  @Override
+  public int updateAnsnum(TqnaVO vo) {
+    return mybatis.update("tqna.updateAnsnum", vo);
+  }
+ 
+  @Override
+  public int reply(TqnaVO vo) {
+    return mybatis.insert("tqna.reply", vo);
+  }
+ 
+  @Override 
+  public List<TqnaVO> list1(HashMap map) {
+    return mybatis.selectList("tqna.list1", map);
+  }
+ 
 }

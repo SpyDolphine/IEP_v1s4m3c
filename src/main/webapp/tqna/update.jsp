@@ -1,17 +1,23 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
-<meta charset="UTF-8">
-<title>Q&A 게시판</title>    
+<meta charset="UTF-8"> 
+<title></title>  
  
-</head>
-<!-- ----------------------------------------- -->
-<jsp:include page="/menu/top.jsp" flush='false' />
-
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+ 
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/tool.js"></script>
+<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
 <script type="text/JavaScript">
   window.onload=function(){
    CKEDITOR.replace('content');
@@ -25,38 +31,21 @@
   
 
 </script>
-
-<!-- ----------------------------------------- -->
-<section class="wrapper">
-    <section class="page_head">
-        <div class="container">
-             <div class="row">
-                 <div class="col-lg-12 col-md-12 col-sm-12">
-                        <nav id="breadcrumbs">
-                            <ul>
-                                <li><a href="../index.jsp">Home</a>/</li>
-                                <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">Q&A 게시판</i>
-                            </ul> 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-</section>
-</section>
-
+ 
+</head> 
+ 
 <body>
-<div class="container">
- <div class="row" align='center'>
-   <div class="col-xs-12 col-lg-12">
-   
+  <div class="container">
+    <jsp:include page="/menu/top.jsp" flush='false' />
+     
+     
   <div class='content_menu' style='width: 100%;'>
     <A href='../tqna/list.do'>게시판 목록</A> > 
-    <A href='./list.do?qa_no=${tqnaVO.qa_no }'></A>｜
+    <A href='./list.do?qa_no=${tqnaVO.qa_no }'>${tqnaVO.qa_title }</A>｜
     <A href="javascript:history.back();">취소</A>
   </div>
   
-
+ 
   
   <DIV class='content' style='width: 100%;'>
   <FORM name='frm' method='POST' action='./update.do'
@@ -71,8 +60,29 @@
       <li>
         <label class='form_grp' for='qa_content'>내용</label><br>
         <TEXTAREA name='qa_content' id='qa_content' rows='10' cols='70'>${tqnaVO.qa_content}</TEXTAREA>
-      </li> 
- 
+      </li>
+      <li>
+        <label class='form_grp' for='qa_file2'>등록된 파일</label>
+          <c:set var='qa_file2' value="${fn:toLowerCase(tqnaVO.qa_file2)}" />
+          <c:choose>
+            <c:when test="${fn:endsWith(qa_file2, '.jpg')}">
+              <IMG src='./storage/${tqnaVO.qa_file1}'>
+            </c:when>
+            <c:when test="${fn:endsWith(qa_file2, '.gif')}">
+              <IMG id='qa_file2'  src='./storage/${tqnaVO.qa_file1}'>
+            </c:when>
+            <c:when test="${fn:endsWith(qa_file2, '.png')}">
+              <IMG id='qa_file2'  src='./storage/${tqnaVO.qa_file1}'>
+            </c:when>
+            <c:when test="${tqnaVO.qa_file2.length() > 0}">
+              ${tqnaVO.qa_file1 } 
+            </c:when>
+          </c:choose>
+      </li>
+      <li>
+        <label class='label' for='qa_file2'>업로드 파일</label>
+        <input type="file" name='file2MF' id='file2MF' size='40' >
+      </li>
       <li class='right'>
          <button type="submit">수정</button>
         <button type="button" onclick="location.href='./list.do?qa_no=${tqnaVO.qa_no}'">목록[취소]</button>
@@ -80,14 +90,10 @@
     </ul>
   </FORM>
 </DIV>
-   </div>
- </div>
-</div>
-</body>
 
-<!-- -------------------------------------------- -->
-<div style= 'margin: 100px 0 0 0;  position: relative;'>  
-  <jsp:include page="/menu/bottom.jsp" flush='false' />
-</div>  
-<!-- -------------------------------------------- -->
+
+     <jsp:include page="/menu/bottom.jsp" flush='false' />     
+  </div>
+</body>
+ 
 </html> 
