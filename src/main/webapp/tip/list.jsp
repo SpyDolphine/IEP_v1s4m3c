@@ -20,7 +20,7 @@
                         <nav id="breadcrumbs">
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
-                                <li><A href='./list.do'>목록</A></li>   
+                                <li><A href='./list.do?tp_ch=${tp_ch}'>목록</A></li>   
                                 <i class="fa fa-arrow-circle-right">자소서</i> 
                             </ul> 
                         </nav>
