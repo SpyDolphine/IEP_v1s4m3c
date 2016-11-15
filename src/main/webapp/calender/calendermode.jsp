@@ -24,7 +24,7 @@
         center: 'title',
         right: 'month,agendaWeek,agendaDay,listMonth'
       },
-      defaultDate: '2016-09-12',
+      defaultDate: new Date,
       locale: initialLocaleCode,
       buttonIcons: false, // show the prev/next text
       navLinks: true, // can click day/week names to navigate views
@@ -32,13 +32,7 @@
       eventLimit: true, // allow "more" link when too many events
       events: [
         { title: '메롱',
-          start: '2016-09-01'},
-        { title: 'Long Event',
-          start: '2016-09-07',
-          end: '2016-09-10'},
-        {id: 999,
-          title: 'Repeating Event',
-          start: '2016-09-09T16:00:00'
+          start: '2016-09-01T16:00:00'
         },
         {
           id: 999,

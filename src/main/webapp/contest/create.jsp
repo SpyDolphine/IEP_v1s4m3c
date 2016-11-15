@@ -49,8 +49,7 @@
    <div class="col-xs-12 col-lg-12">
   
   <DIV class='content' style='width: 100%;'>
-    <FORM name='frm' method='POST' action='./create.do'
-              enctype="multipart/form-data">
+    <FORM name='frm' method='POST' action='./create.do'  enctype="multipart/form-data">
       <input type='hidden' name='me_no' id='me_no' value='${sessionScope.me_no }'>${sessionScope.me_no }
       <div class="form-group">   
         <label for="ct_title" class="col-xs-2 col-lg-2 control-label">공모전 명칭</label>
@@ -61,55 +60,62 @@
        <div class="form-group">   
         <label for="ct_host" class="col-xs-2 col-lg-2 control-label">주최</label>
         <div class="col-xs-10 col-lg-10">
-          <input type='text' class="form-control" name='ct_host' id='ct_host' value='소프트웨어 프로그램 공모전' size='20' required="required">
+          <input type='text' class="form-control" name='ct_host' id='ct_host' value='한국 솔데스크 연맹' size='20' required="required">
         </div>
       </div>   
        <div class="form-group">   
         <label for="ct_supervision" class="col-xs-2 col-lg-2 control-label">주관</label>
         <div class="col-xs-10 col-lg-10">
-          <input type='text' class="form-control" name='ct_supervision' id='ct_supervision' value='소프트웨어 프로그램 공모전' size='20' required="required">
+          <input type='text' class="form-control" name='ct_supervision' id='ct_supervision' value='솔데스크 학원' size='20' required="required">
         </div>
       </div>   
        <div class="form-group">   
         <label for="ct_entry" class="col-xs-2 col-lg-2 control-label">참가자격</label>
         <div class="col-xs-10 col-lg-10">
-          <input type='text' class="form-control" name='ct_entry' id='ct_entry' value='소프트웨어 프로그램 공모전' size='20' required="required">
+          <input type='text' class="form-control" name='ct_entry' id='ct_entry' value='솔데스크 학생 전원' size='20' required="required">
         </div>
       </div>   
        <div class="form-group">   
         <label for="ct_enter" class="col-xs-2 col-lg-2 control-label">접수 방법</label>
         <div class="col-xs-10 col-lg-10">
-          <input type='text' class="form-control" name='ct_enter' id='ct_enter' value='소프트웨어 프로그램 공모전' size='20' required="required">
+          <input type='text' class="form-control" name='ct_enter' id='ct_enter' value='홈페이지 접수' size='20' required="required">
         </div>
       </div>   
        <div class="form-group">   
         <label for="ct_award" class="col-xs-2 col-lg-2 control-label">시상 자격</label>
         <div class="col-xs-10 col-lg-10">
-          <input type='text' class="form-control" name='ct_award' id='ct_award' value='소프트웨어 프로그램 공모전' size='20' required="required">
+          <input type='text' class="form-control" name='ct_award' id='ct_award' value='현재 개발 하고자 하는 분야 맞게 심사' size='20' required="required">
         </div>
       </div>   
        <div class="form-group">   
         <label for="ct_startdate" class="col-xs-2 col-lg-2 control-label">접수 시작일</label>
         <div class="col-xs-10 col-lg-10">
-          <input type='date' class="form-control" name='ct_startdate' id='ct_startdate' >
+          <input type='datetime-local' class="form-control" name='ct_startdate' id='ct_startdate' >
         </div>
       </div>   
        <div class="form-group">   
         <label for="ct_enddate" class="col-xs-2 col-lg-2 control-label">접수 마감일</label>
         <div class="col-xs-10 col-lg-10">
-          <input type="date" class="form-control" name='ct_enddate' id='ct_enddate' >
+          <input type="datetime-local" class="form-control" name='ct_enddate' id='ct_enddate' >
+        </div>
+        </div>
+         <div class="form-group">   
+        <label for="ct_daydate" class="col-xs-2 col-lg-2 control-label">공모 당일</label>
+        <div class="col-xs-10 col-lg-10">
+          <input type="datetime-local" class="form-control" name='ct_daydate' id='ct_daydate' >
         </div>
       </div>   
        <div class="form-group">   
         <label for="ct_statedate" class="col-xs-2 col-lg-2 control-label">발표일자</label>
         <div class="col-xs-10 col-lg-10">
-          <input type='date' class="form-control" name='ct_statedate' id='ct_statedate' >
+          <input type='datetime-local' class="form-control" name='ct_statedate' id='ct_statedate' >
         </div>
+        
       </div>
           <div class="form-group">   
         <label for="ct_url" class="col-xs-2 col-lg-2 control-label">관련페이지</label>
         <div class="col-xs-10 col-lg-10">
-          <input type='text' class="form-control" name='ct_url' id='ct_url' value='소프트웨어 프로그램 공모전' size='60' required="required">
+          <input type="url" class="form-control" name='ct_url' id='ct_url' value='http://' size='60' required="required">
         </div>
       </div>   
       <div class="form-group">   

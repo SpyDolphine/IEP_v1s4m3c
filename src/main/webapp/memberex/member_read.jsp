@@ -1,31 +1,45 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-   <%
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
   String root = request.getContextPath();
  %>
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
-<meta charset="UTF-8"> 
-<title></title> 
- 
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-<script type="text/JavaScript"
-          src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="./jquery.cookie.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
- 
-<script type="text/javascript">
-function open_win(){
+<meta charset="UTF-8">
+<title>정보 수정 </title>    
+ <script type="text/javascript">
+ function open_win(){
   window.open("./passwd.do?me_no=${sessionScope.me_no}",'popup', 'width=500, height=300,left=200px,top=200px');
-}
+} 
 </script>
- 
-</head> 
+</head>
 <!-- ----------------------------------------- -->
-<body leftmargin="0" topmargin="0">
+<jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
- 
+<section class="wrapper">
+    <section class="page_head">
+        <div class="container">
+             <div class="row">
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+                        <nav id="breadcrumbs">
+                            <ul>
+                                <li><a href="../index.jsp">Home</a>/</li>
+                                <li><A href='./list.do'>목록</A></li>   
+                                <li class="fa fa-arrow-circle-right"> ex. 커뮤니티 </li>   ★★★ 각 게시판 이름을 적어주세요 ! 
+                            </ul> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+</section>
+</section>
+
+<body>
+<div class="container">
+ <div class="row" align='center'>
+   <div class="col-xs-12 col-lg-12">
 <DIV class='title'>회원 정보 수정</DIV>
  
 <DIV class='content'>
@@ -34,39 +48,39 @@ function open_win(){
   <fieldset>
     <ul>
       <li>
-        <label class='label' for='me_id'>아이디</label>
+        <label class='' for='me_id'>아이디</label>
         ${memberExVO.me_id} 
         <SPAN id='panel_id'>(ID는 변경할 수 없습니다.)</SPAN>
       </li>
       <li>
-        <label class='label' for='me_pw'>비밀번호</label>
+        <label class='' for='me_pw'>비밀번호</label>
         <button type="button" name="me_pw" id="me_pw" onclick="javascript:open_win();">비밀번호 변경</button>
       </li>
       <li>
-        <label class='label' for='me_name'>성명</label>
+        <label class='' for='me_name'>성명</label>
         ${memberExVO.me_name}
          <SPAN id='panel_nema'>(이름은 변경할 수 없습니다.)</SPAN>
       </li>
       <li>
-      <label class='label' for='me_nick'>닉네임</label>
+      <label class='' for='me_nick'>닉네임</label>
         ${memberExVO.me_nick}
          <SPAN id='panel_nick'>(닉네임은 변경할 수 없습니다.)</SPAN>
       </li>
       <li>
-        <label class='label' for='me_tel'>전화번호</label>
+        <label class='' for='me_tel'>전화번호</label>
         <input type="tel" name='me_tel' id='me_tel' value='${memberExVO.me_tel}'> 예) 010-0000-0000
       </li>
       <li>
-        <label class='label' for='me_zipcode'>우편번호</label>
+        <label class='' for='me_zipcode'>우편번호</label>
         <input type='text' name='me_zipcode' id='me_zipcode' value='${memberExVO.me_zipcode}' placeholder="우편번호">
         <input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>        
       </li>
       <li>
-        <label class='label' for='me_addr1'>주소</label>
+        <label class='' for='me_addr1'>주소</label>
         <input type='text' name='me_addr1' id='me_addr1' value='${memberExVO.me_addr1}' size='60' placeholder="주소">  
       </li>
       <li>
-        <label class='label' for='me_addr2'>상세 주소</label>
+        <label class='' for='me_addr2'>상세 주소</label>
         <input type='text' name='me_addr2' id='me_addr2' value='${memberExVO.me_addr2}' size='40' placeholder="상세 주소">      
       </li>
       <li>
@@ -144,14 +158,30 @@ function open_win(){
       <li class='right'>
         <button type="submit">저장</button>
          <button type='button' onclick="location.href='<%=root%>/index.do'">홈으로</button>
-        <button type="button" onclick="location.href='./memberout.do?me_no=${sessionScope.me_no}'">회원 탈퇴</button>
+         <c:choose>
+          <c:when test="${memberExVO.me_vis eq 'y' }">
+        <button type="button" onclick="location.href='./memberout.do?me_no=${memberExVO.me_no}'">회원 탈퇴</button>  
+          </c:when>
+          <c:when test="${memberExVO.me_vis eq 'n' }">
+        <button type="button" onclick="location.href='./memberin.do?me_no=${memberExVO.me_no}'">회원 복귀</button>  
+          </c:when>
+         </c:choose>
+        
+        
+        
       </li>         
     </ul>
   </fieldset>
 </FORM>
 </DIV>
- 
-<!-- -------------------------------------------- -->
+    </div>
+ </div>
+</div>
 </body>
+
+<!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>  
 <!-- -------------------------------------------- -->
 </html> 

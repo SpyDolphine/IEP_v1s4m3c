@@ -1,20 +1,13 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+ <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
-<!DOCTYPE html>
-<html lang="ko">
-<head>
+<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
 <meta charset="UTF-8">
-<title></title>
- 
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
+<title>공모전</title>    
+ <script type="text/javascript">
   $(function(){
     $('#file2').load(function(){ // 태그 메모리 상주후 작동
       // var width = $('#file2').width();
@@ -25,19 +18,38 @@
     });
   });
 
- function scrapPop(ct_no, ct_title, nowUrl ) {
+ function scrapPop(ct_no, ct_title, nowUrl, me_no) {
    var winObject = null;
    var settings = "width=400, height=400";
    var nowUrl = location.href;
-   winObject = window.open("../scrap/create.do?ct_no="+ct_no+"&ct_title="+ct_title+"&nowUrl="+nowUrl,"",settings);
+   winObject = window.open("../scrap/create.do?ct_no="+ct_no+"&ct_title="+ct_title+"&nowUrl="+nowUrl+"&me_no="+me_no,"",settings);
     
  }
  
 </script>
-
 </head>
- 
-<body leftmargin="0" topmargin="0">
+<!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
+<!-- ----------------------------------------- -->
+<section class="wrapper">
+    <section class="page_head">
+        <div class="container">
+             <div class="row">
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+                        <nav id="breadcrumbs">
+                            <ul>
+                                <li><a href="../index.jsp">Home</a>/</li>
+                                <li><A href='./list.do'>목록</A></li>   
+                                <i class="fa fa-arrow-circle-right">공모전 </i>
+                                </ul> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+</section>
+</section>
+
+<body>
   <div class="container">
     <DIV class='content'>
     <FORM name='frm' method="get" action=''>
@@ -62,7 +74,7 @@
             </c:when>
           </c:choose>
             </td>
-            <td>
+            <td class="form-group">
              <label for='ct_title' style="width:150px;">공모전 명칭 : </label>
              </td>
              <td>
@@ -152,7 +164,7 @@
             <span>${contestVO.ct_rdate.substring(0, 16)}</span>
                  <button type="button" onclick="location.href='./list.do'">목록보기</button>
                 <c:if test="${sessionScope.me_grade eq  'A' }">
-                <button type="submit" onclick="javascript:scrapPop('${contestVO.ct_no}', '${contestVO.ct_title }', 'nowUrl');">스크랩 하기</button>
+                <button type="submit" onclick="javascript:scrapPop('${contestVO.ct_no}', '${contestVO.ct_title }', 'nowUrl' ,'${contestVO.me_no }');">스크랩 하기</button>
                 </c:if>
                  <c:if test="${sessionScope.me_grade eq  'M' }">
                 <button type="submit" onclick="javascript:scrapPop('${contestVO.ct_no}', '${contestVO.ct_title }', 'nowUrl');">스크랩 하기</button>
@@ -162,7 +174,12 @@
             </c:if>
     </FORM>
   </DIV>
-  </div>
+</div>
 </body>
- 
-</html>
+
+<!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>  
+<!-- -------------------------------------------- -->
+</html> 

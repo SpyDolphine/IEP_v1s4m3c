@@ -1,34 +1,29 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
-<meta charset="UTF-8"> 
-<title></title> 
- <style type="text/css">
- 
- </style>
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-<script type="text/JavaScript"
-          src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="../js/jquery.cookie.js"></script>
-<script type="text/javascript" src="../js/tool.js"></script>
-<script type="text/javascript">
+<meta charset="UTF-8">
+<title>★★★ 각 게시판 이름을 적어주세요 ! </title>    
+ <script type="text/javascript">
   $(function(){
     $.removeCookie('checkId'); // 기존의 쿠기 값을 삭제
     $.removeCookie('checkNick'); // 기존의 쿠키 값을 삭제(닉네임)
   });
     
     /*
-      아이디를 중복 체크하는 jqeury 부분
+      아이디를 중복 체크하는 ajax 부분
     */
   function checkId(){
     var params = 'me_id=' + $('#me_id').val();
     // 요청 주소, 전달 값, 응답 처리 함수, 전송 받는 형식
     $.post('./checkId.do', params, checkId_res, 'json');
   }
+  /*
+    닉네임을 중복체크하는 ajax 부분
+  */
   
   function checkNick(){
     var params = 'me_nick=' + $('#me_nick').val();
@@ -39,11 +34,6 @@
   아이디를 중복 체크하는 jqeury 부분
 */
   function checkId_res(data){
-    if(data.cnt==""){
-      $('#panel_id').css('color', '#FF0000');
-      $('#panel_id').html('아이디가 입력하여주시기 바랍니다.');
-      $('#me_id').focus();
-    }
     if(data.cnt == 0){
       $('#panel_id').css('color', '#00AA00');
       $('#panel_id').css('font-size', '16px');
@@ -70,8 +60,7 @@
       $('#me_nick').focus();
     }
   }
- 
-  $(document).ready(function(){
+/* $(document).ready(function(){
     $('#me_pw').keyup(function(){
       $('#panel_pw').text('');
     });
@@ -84,76 +73,97 @@
         $('#panel_pw').html("<b> 비밀번호가 일치</b>");
       }
     });
-  });
-  function send() {
-    var check = $.cookie('checkNick');
-    if(check != 'PASS'){
+  }); */
+var me_nick=$('#me_nick');
+function send() {
+    if(me_nick.val() == null){
       $('#panel_nick').css('color', '#FF0000');
-      $('#panel_nick').html('중복 아이디검사를 해주세요');
-      $('#me_nick').focus();
+      $('#panel_nick').html('닉네임을 입력해주세요');
       return false;
-    }else{
-      return true;
     }
-  }
+}
 </script>
-</head> 
+</head>
 <!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
+<!-- ----------------------------------------- -->
+<section class="wrapper">
+    <section class="page_head">
+        <div class="container">
+             <div class="row">
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+                        <nav id="breadcrumbs">
+                            <ul>
+                                <li><a href="../index.jsp">Home</a>/</li>
+                                <li><A href='./list.do'>목록</A></li>   
+                                <i class="fa fa-arrow-circle-right"> ex. 커뮤니티 </i>   ★★★ 각 게시판 이름을 적어주세요 ! 
+                            </ul> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+</section>
+</section>
+
 <body>
-<!-- ----------------------------------------- -->
+<div class="container">
+ <div class="row" align='center'>
+   <div class="col-xs-12 col-lg-12">
 <div>
-  <form id="frm"  name = "frm" action="./create_com.do" method='post'   onsubmit = 'return send();'>
+  <form id="frm"  name = "frm" action="./create_com.do" method='post'   onsubmit = 'return send()'>
+        <input type='hidden' name= "me_auth" id="me_auth" >
+      <input type='hidden' name= "me_comfirm" id="me_comfirm">
   <input type="hidden" id= "me_grade" name="me_grade" value="C">
     <fieldset>
     <ul>
       <li>
-        <label class='label' for='me_id' >아이디</label>
-        <input type="email" id="me_id" name="me_id"  placeholder="example@example.com" required="required">
+        <label class='' for='me_id' >아이디</label>
+        <input type="email" id="me_id" name="me_id"  placeholder="example@example.com" required="required" class="form-control">
         <button type='button' onclick="checkId()">중복확인</button>
          <SPAN id='panel_id'></SPAN> <!-- id 중복관련 메시지 -->
       </li>
        <li>
-        <label class='label' for='me_pw'>패스워드</label>
-        <input type='password' name='me_pw' id='me_pw' required="required"  placeholder="패스워드를 입력하세요">
+        <label class='' for='me_pw'>패스워드</label>
+        <input type='password' name='me_pw' id='me_pw' required="required"  placeholder="패스워드를 입력하세요" class="form-control">
       </li>
      <li>
-        <label class='label' for='reme_pw'>패스워드 확인</label>
-        <input type='password' name='reme_pw' id='reme_pw' required="required" placeholder="패스워드를 다시 입력하세요">
+        <label class='' for='reme_pw'>패스워드 확인</label>
+        <input type='password' name='reme_pw' id='reme_pw' required="required" placeholder="패스워드를 다시 입력하세요" class="form-control">
         <SPAN id='panel_pw'><b>비밀번호를 입력하여 주세요</b></SPAN> 
       </li>
       <li>
-        <label class='label'  for='me_nick'>닉네임</label>
-        <input type="text" id="me_nick" name="me_nick">
+        <label class=''  for='me_nick'>닉네임</label>
+        <input type="text" id="me_nick" name="me_nick" required="required" placeholder="닉네임을 입력하세요" class="form-control" >
          <button type='button' onclick="checkNick()">중복확인</button>
          <SPAN id='panel_nick'></SPAN> <!-- id 중복관련 메시지 -->
       </li>
       <li>
-        <label class='label'  for='me_name'>담당자</label>
-        <input type="text" id="me_name" name="me_name">
+        <label class=''  for='me_name'>담당자</label>
+        <input type="text" id="me_name" name="me_name" required="required" placeholder="닉네임을 입력하세요"  class="form-control">
         <SPAN id='panel_name'></SPAN> <!-- id 중복관련 메시지 -->
       </li>
       <li>
-        <label class='label'  for='me_tel'>회사 전화번호</label>
-        <input type="tel" id="me_tel" name="me_tel">
+        <label class=''  for='me_tel'>회사 전화번호</label>
+        <input type="tel" id="me_tel" name="me_tel"  required="required" placeholder="닉네임을 입력하세요"  class="form-control">
         <SPAN id='panel_name'></SPAN> <!-- id 중복관련 메시지 -->
         </li>
         <li>
-        <label class='label' for='me_zipcode'>우편번호</label>
-        <input type='text' name='me_zipcode' id='me_zipcode' value='' placeholder="우편번호">
+        <label class='' for='me_zipcode'>우편번호</label>
+        <input type='text' name='me_zipcode' id='me_zipcode' required="required" placeholder="우편번호" class="form-control">
         <input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
                 <SPAN id='panel_name'></SPAN> <!-- id 중복관련 메시지 -->
       </li>
       <li>
-        <label class='label' for='me_zipcode'>회사 주소</label>
-        <input type='text' name='me_addr1' id='me_addr1' value='' size='40' placeholder="주소">  
-        <input type='text' name='me_addr2' id='me_addr2' value='' size='15' placeholder="상세 주소">    
+        <label class='' for='me_address'>회사 주소</label>
+        <input type='text' name='me_addr1' id='me_addr1' required="required"  size='40' placeholder="주소" class="form-control">  
+        <input type='text' name='me_addr2' id='me_addr2' required="required"  size='15' placeholder="상세 주소" class="form-control">    
          <SPAN id='panel_addr'></SPAN> <!-- id 중복관련 메시지 -->
            
       </li>
        
       
       <li>
-        <label class='label'></label>  
+        <label class=''></label>  
 <!-- ----- DAUM 우편번호 API 시작 ----- -->
  
 <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 110px;position:relative">
@@ -226,13 +236,20 @@
     </li>
         <li class='right'>
         <button type="submit" >가입</button>
-        <button type="button" >취소</button>
+        <button type="button" onclick="javascript:history.back()" >취소</button>
       </li>         
       </ul>
         </fieldset>
   </form>
 </div>
-<!-- -------------------------------------------- -->
+  </div>
+ </div>
+</div>
 </body>
+
+<!-- -------------------------------------------- -->
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>  
 <!-- -------------------------------------------- -->
 </html> 

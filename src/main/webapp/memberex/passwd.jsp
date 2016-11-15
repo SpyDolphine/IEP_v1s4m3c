@@ -50,11 +50,12 @@ function send(){
         <label class='label' for='me_pw' style='width: 200px;'>새로운 패스워드</label>
         <input type='password' name='me_pw' id='me_pw'  required="required">
         <br>
-        <span id='panel_passwd'></span>
+        
       </li>
       <li>
         <label class='label' for='me_pw2' style='width: 200px;'>새로운 패스워드 확인</label>
         <input type='password' name='me_pw2' id='me_pw2'  required="required">
+        <span id='panel_passwd'></span>
       </li>    
       <li class='right'>
         <button type="submit" onclick=" self.close();">변경</button>
