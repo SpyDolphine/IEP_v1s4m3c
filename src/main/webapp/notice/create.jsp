@@ -39,8 +39,8 @@
           <ul>
             <li>
               <labelfor='content'>공지사항 여부 :</label>
-              YES &nbsp;<input type='radio' name='nt_nt' value="Y">
-              NO &nbsp;<input type='radio' name='nt_nt' value="N">
+              YES &nbsp;<input type='radio' name='nt_nt' value="Y" required="required">
+              NO &nbsp;<input type='radio' name='nt_nt' value="N" required="required">
             </li>
             <li>
               <labelfor='nt_title'>제목</label>
@@ -48,7 +48,7 @@
             </li>
             <li>
               <labelfor='content'>내용</label>
-              <textarea name='nt_content' required="required" cols="100" rows="10"></textarea>
+              <textarea name='nt_content' required="required" cols="100" rows="10" required="required"></textarea>
             </li>
             <li class='right'>
               <button type="submit">등록</button>
