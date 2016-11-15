@@ -54,6 +54,28 @@
             <label class='form_grp' for='content'>내용</label><br>
             <TEXTAREA name='content' rows='10' cols='70'>${studyVO.content}</TEXTAREA>
           </li>
+                <li>
+        <label class='form_grp' for='file2'>등록된 파일</label>
+          <c:set var='file2' value="${fn:toLowerCase(studyVO.file2)}" />
+          <c:choose>
+            <c:when test="${fn:endsWith(file2, '.jpg')}">
+              <IMG src='./storage/${studyVO.file1}'>
+            </c:when>
+            <c:when test="${fn:endsWith(file2, '.gif')}">
+              <IMG id='file2'  src='./storage/${studyVO.file1}'>
+            </c:when>
+            <c:when test="${fn:endsWith(file2, '.png')}">
+              <IMG id='file2'  src='./storage/${studyVO.file1}'>
+            </c:when>
+            <c:when test="${studyVO.file2.length() > 0}">
+              ${studyVO.file1 } 
+            </c:when>
+          </c:choose>
+      </li>
+      <li>
+        <label class='label' for='file2'>업로드 파일</label>
+        <input type="file" name='file2MF' id='file2MF' size='40' >
+      </li>
           <li class='right'>
             <button type="submit">등록</button>
             <button type="button" onclick="location.href='./list.do'">취소</button>

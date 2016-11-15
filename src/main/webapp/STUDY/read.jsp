@@ -6,7 +6,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8">
-<title>WEB 공부 게시판</title>    
+<title>공부 게시판</title>    
  
 </head>
 <!-- ----------------------------------------- -->
@@ -76,7 +76,7 @@
             <span>${studyVO.sy_date.substring(0, 16)}</span>
           </li>
           <li>
-            <label for="sy_file1" class="form_group" style="width:150px;">
+            <label for="file1" class="form_group" style="width:150px;">
             업로드 파일: 
             <c:if test="${studyVO.size2 > 0}">
               <A href='${pageContext.request.contextPath}/download?dir=/STUDY/storage&filename=${studyVO.file2}'>${studyVO.file2}</A>  (${studyVO.size2Label})
