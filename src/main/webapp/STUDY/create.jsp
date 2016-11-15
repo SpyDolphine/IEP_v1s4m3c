@@ -90,7 +90,6 @@
 
 <body>
   <div class="container">
-  
     <div class="row" align='center'>
       <div class="col-xs-12 col-lg-12">
 
@@ -111,7 +110,7 @@
                 <th scope="row">
                  <label for="content">과목 내용</label></th>
                  <td>
-                 <textarea name="content" id="content" rows="10" cols="70"></textarea>
+                 <textarea name="content" id="content" rows="20" cols="70"></textarea>
                  </td> 
               </tr>
               <tr>
@@ -124,8 +123,8 @@
              </tbody>
             </table>
           <div class='right'>
-            <button type="submit">등록</button>
-            <button type="button" onclick = "history.back()">취소</button>
+            <button type="submit" class="btn btn-default btn-xs">등록</button>
+            <button type="button" class="btn btn-default btn-xs" onclick = "history.back()">취소</button>
           </div>
            </fieldset>
           </div>

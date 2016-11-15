@@ -17,7 +17,7 @@
  function likeup(rno){ // 응답 처리 함수
     var params = 'rno=' + rno;
     $.get('./likeup.do', params, likeup_res, 'json');
-    alert('성공' + rno);
+    //alert('성공' + rno);
  }
  
  function likeup_res(data){ // 응답 처리 함수
@@ -30,7 +30,7 @@
  function likedown(rno){ // 응답 처리 함수
    var params = 'rno=' + rno;
    $.get('./likedown.do', params, likedown_res, 'json');
-   alert('성공' + rno);
+   //alert('성공' + rno);
  }
 
  function likedown_res(data){ // 응답 처리 함수

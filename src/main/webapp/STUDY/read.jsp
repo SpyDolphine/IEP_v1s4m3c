@@ -68,14 +68,10 @@ hr {
     <hr>  
   &nbsp;<i class="fa fa-leaf"> 닉네임을 넣어주세요</i>
   
-  <fieldset style='margin: 50px 0 0 0;'>
+  <fieldset style='margin: 30px 0 0 0;'>
     <ul>
       <li>
-        ${studyVO.content}
-      </li>  
-      <li>
         <label for="file1" class="form_group" style="width:150px;">
-        업로드 파일: 
         <c:if test="${studyVO.size2 > 0}">
           <A href='${pageContext.request.contextPath}/download?dir=/STUDY/storage&filename=${studyVO.file2}'>${studyVO.file2}</A>  (${studyVO.size2Label})
         </c:if>
@@ -95,7 +91,17 @@ hr {
           </c:choose>
         </div>
       </li>
+      <br>
+      <li>
+        ${studyVO.content}
+      </li>
       </ul>
+      <br>
+    <div class='right'>
+      <button type="button" class="btn btn-default btn-xs" onclick="history.back()">목록</button>
+    </div>
+    <div style='clear:both;'></div>
+      <hr>
     </fieldset> 
   </FORM>
 </div>      

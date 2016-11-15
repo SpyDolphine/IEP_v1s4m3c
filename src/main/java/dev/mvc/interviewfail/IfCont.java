@@ -104,8 +104,16 @@ public class IfCont {
     
     // 특수문자처리
     String if_content = ifVO.getIf_content();
+    String if_q = ifVO.getIf_q();
+    String if_a = ifVO.getIf_a();
+    
     if_content = Tool.convertChar(if_content);  
+    if_q = Tool.convertChar(if_q);  
+    if_a = Tool.convertChar(if_a);  
+    
     ifVO.setIf_content(if_content);
+    ifVO.setIf_q(if_q);
+    ifVO.setIf_a(if_a);
     
     mav.addObject("ifVO", ifVO); 
     mav.addObject("manylist", ifDAO.manylist());
