@@ -1464,6 +1464,177 @@ a.link-style3 {
 .comment_form > input:last-child {
     margin-right:0;
 }
+
+/* ========================================================== */
+/*  6. PORTFOLIO/PROJECTS                                     */
+/* ========================================================== */
+
+.isotope-item {
+    z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Isotope CSS3 transitions */
+.isotope,
+.isotope .isotope-item {
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -ms-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+}
+
+.isotope {
+    -webkit-transition-property: height, width;
+       -moz-transition-property: height, width;
+        -ms-transition-property: height, width;
+         -o-transition-property: height, width;
+            transition-property: height, width;
+}
+
+.isotope .isotope-item {
+    -webkit-transition-property: -webkit-transform, opacity;
+       -moz-transition-property: -moz-transform, opacity;
+        -ms-transition-property: -ms-transform, opacity;
+         -o-transition-property: top, left, opacity;
+            transition-property: transform, opacity;
+}
+
+/* Disabling Isotope CSS3 transitions */
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+    -webkit-transition-duration: 0s;
+    -moz-transition-duration: 0s;
+    -ms-transition-duration: 0s;
+    -o-transition-duration: 0s;
+    transition-duration: 0s;
+}
+
+/* Disable CSS transitions for containers with infinite scrolling */
+.isotope.infinite-scrolling {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+#portfolio{
+    width:100%;
+    padding-bottom:120px;
+    position:relative;
+    z-index:9;
+}
+#filter {
+    margin: 0 auto 25px;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+#filter li {
+    display: inline-block;
+    list-style: none outside none;
+    margin: 0 1px 10px;
+}
+#filter li a{
+    color:#505354;
+    padding:10px 20px;
+    font-size:14px;
+    position: relative;
+    line-height: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    -moz-transition: all .50s ease-in-out;
+    -webkit-transition: all .50s ease-in-out;
+    transition: all .50s ease-in-out;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    -ms-border-radius:3px;
+    -o-border-radius:3px;
+    border-radius:3px;
+    outline:none;
+    text-decoration: none;
+}
+
+#filter li.selected a, #filter li a:hover{
+    color:#727CB6;
+}
+#filter li.selected a:after, #filter li a:hover:after {
+    background: #727CB6;
+    width: 100%;
+}
+#filter  li a:after,
+#filter  li a:before {
+    transition: all .5s;
+}
+#filter li a:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width:0%;
+    content: '.';
+    color: transparent;
+    height: 2px;
+}
+
+#filter li a:hover:after {
+    width: 100%;
+}
+
+#list{ margin-bottom:30px;padding: 0; }
+
+.list_item{
+    margin-bottom:3%;
+    overflow: hidden;
+}
+
+.recent-item .touching img{width: 100%;}
+
+.option h5{
+    margin:0 0 5%;
+    color: #fff;
+    font-size: 21px;
+}
+.option span{
+    display: block;
+    margin-top: 4%;
+    font-size: 18px;
+}
+
+.option a.fa {
+    background-color: transparent;
+    border-width: 2px;
+    color: #ffffff;
+    font-size: 18px;
+    height: 46px;
+    line-height: 43px;
+    width: 46px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    font-size: 18px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.option a.fa:hover{
+    background-color: #fff;
+    color:rgba(114, 124, 181, 0.85);
+    transition:all 0.3s ease-in-out 0s;
+}
+.option a.fa-search{
+    margin-right: 1%;
+}
+.option a.fa-link{
+    margin-left: 1%;
+}
+
 /*------------------------------------------------------------------------------------------------------------------------------*/
 #boardtitle {
   text-align: left;
@@ -1529,5 +1700,53 @@ ul li {
     background-color: #fafafa;
 }  
 
+
+/* ========================================================== */
+/*  ±Û¾²±â FORM                                     */
+/* ========================================================== */
+
+#formcon {
+  width: 60%;
+}
+
+#formcon h3 {
+  padding: 0 0 10px 0;
+  font-weight: bold
+}
+
+#formcon p {
+  padding: 0 0 20px 0
+}
+
+#formcon table {
+  width: 100%;
+  border-top: 2px solid #000099;
+  border-bottom: 2px solid #000099;
+  border-spacing: 0
+}
+
+#formcon td {
+  border-bottom: 1px solid #333;
+  padding: 10px 0 10px 10px
+}
+
+#formcon th {
+  border-bottom: 1px solid #333;
+  padding: 10px 0 10px 10px;
+  background: #ffffff;
+  text-align: left
+}
+
+#formcon input {
+  border: 1px solid #000099;
+  color: black;
+  padding: 1px
+}
+
+#formcon .input_btn input {
+  border: 0;
+  vertical-align: middle;
+  margin-top: 5px
+}
 /*------------------------------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------------------------------*/

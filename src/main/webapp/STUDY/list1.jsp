@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title></title> 
+<title></title>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
@@ -14,7 +14,7 @@
 
 function change1(obj){
   obj.style.background = '#d1d1e0';
-} 
+}
 function change2(obj){
   obj.style.background = '#f2f2f2';
 }

@@ -10,8 +10,56 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
-<script type="text/JavaScript">
-</script>
+<style type="text/css">
+
+#formcon {
+  width: 60%;
+}
+
+#formcon h3 {
+  padding: 0 0 10px 0;
+  font-weight: bold
+}
+
+#formcon strong {
+  color: red;
+}
+
+#formcon p {
+  padding: 0 0 20px 0
+}
+
+#formcon table {
+  width: 100%;
+  border-top: 2px solid #000099;
+  border-bottom: 2px solid #000099;
+  border-spacing: 0
+}
+
+#formcon td {
+  border-bottom: 1px solid #333;
+  padding: 10px 0 10px 10px
+}
+
+#formcon th {
+  border-bottom: 1px solid #333;
+  padding: 10px 0 10px 10px;
+  background: #ffffff;
+  text-align: left
+}
+
+#formcon input {
+  border: 1px solid #000099;
+  color: black;
+  padding: 1px
+}
+
+#formcon .input_btn input {
+  border: 0;
+  vertical-align: middle;
+  margin-top: 5px
+}
+</style>
 </head>
  
 <section class="wrapper">
@@ -46,67 +94,77 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-
-<DIV class='write_content'>
-  <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data">
-   <fieldset>
-    <ul>
-      <li>
-        <label for='cm_ch'>카테고리</label>
-        <select name='cm_ch' id='cm_ch'>
-           <option value="A" selected="selected">정모방</option>
-           <option value="B">정보공유방</option>
-           <option value="C">상담/공감방</option>           
-        </select>
-      </li>
-      <li>
-        <label for='cm_title'>제목</label>
-        <input type='text' name='cm_title' id='cm_title' value='취업하자' size='60' required="required">
-      </li>
-      <li>
-        <label for='cm_nick'>닉네임</label>
-        <input type='text' name='cm_nick' id='cm_nick' value='복덩이' size='60' required="required">
-      </li>
-      <li>
-        <label for='cm_content'>내용</label>
-        <textarea name='cm_content' id='cm_content'  rows='5' cols='70'>좋은곳에 취업합니다</textarea>
-      </li>
-      <li>
-        <label for='file1'>Thumb 파일</label>
-          Preview(미리보기) 이미지 자동 생성됩니다.
-      </li>
-      <li>
-        <label for='file2'>업로드 파일</label>
-        <input type="file" name='file2MF' id='file2MF' size='40' >
-      </li>
-      <li>
-        <label for='cm_map'>지도</label>
-        <textarea name='cm_map' id='cm_map'  rows='5' cols='70'></textarea>
-      </li>  
-      <li>
-        <label for='cm_url'>url</label>
-        <input type='text' name='cm_url' id='cm_url' value='봄' size='60' required="required">
-      </li>   
-             
-      <li class='right'>
-        <button type="submit">등록</button>
-        <c:choose>
-          <c:when test="${commuVO.cm_ch eq 'A'}">
-            <button type="button" onclick="location.href='./listA.do'">목록</button>
-          </c:when>
-          <c:when test="${commuVO.cm_ch eq 'B'}">
-            <button type="button" onclick="location.href='./listB.do'">목록</button>
-          </c:when>
-          <c:when test="${commuVO.cm_ch eq 'C'}">
-            <button type="button" onclick="location.href='./listC.do'">목록</button>
-          </c:when>          
-        </c:choose>        
-      </li>         
-    </ul>
-    </fieldset>
-  </FORM>
-</DIV>
- </div></div></div>
+   
+          <div id="formcon">
+          <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data">
+          <h4><span>글쓰기</span></h4>  
+           <fieldset>
+            <table>
+             <tbody>
+              <tr>
+                <th scope="row">
+                <label for='cm_ch'>카테고리</label></th>
+                <td>
+                  <select name='cm_ch' id='cm_ch' required>
+                     <option value="">선택</option>
+                     <option value="A">정모방</option>
+                     <option value="B">정보공유방</option>
+                     <option value="C">상담/공감방</option>           
+                  </select>
+                  <strong><i class="fa fa-check-square-o"></i> 꼭 선택해주세요!</strong>
+                </td>
+              </tr>
+              <tr>
+                 <th scope="row">
+                 <label for='cm_title'>제목</label></th>
+                 <td><input type='text' name='cm_title' id='cm_title' size='60' required="required" placeholder="제목을 입력해주세요"></td>  
+              </tr>
+              <tr>
+                 <th scope="row">
+                 <label for='cm_nick'>닉네임</label></th>
+                 <td><input type='text' name='cm_nick' id='cm_nick' value='복덩이' size='60' required="required"></td>  
+              </tr>  
+              <tr>
+                <th scope="row">
+                 <label for='cm_content'>내용</label></th>
+                 <td>
+                 <textarea name='cm_content' id='cm_content'  rows='5' cols='70' placeholder="내용을 입력해주세요"></textarea>
+                 </td> 
+              </tr>               
+              <tr>
+                 <th scope="row">
+                 <label for='file1'>Thumb 파일</label> 
+                 <td>Preview(미리보기) 이미지 자동 생성됩니다.</td>
+              </tr>  
+              <tr>
+                 <th scope="row">
+                 <label for='file2'>업로드 파일</label></th>
+                 <td><input type="file" name='file2MF' id='file2MF' size='40' ></td>  
+              </tr>             
+              <tr>
+               <th scope="row">
+                <label for='cm_map'>지도</label></th>
+               <td>
+                 <textarea name='cm_map' id='cm_map'  rows='5' cols='70' placeholder="지도 URL을 입력해주세요"></textarea>
+               </td>
+              </tr>
+              <tr>
+               <th scope="row">
+                <label for='cm_url'>url</label></th>
+               <td>
+                 <input type='text' name='cm_url' id='cm_url'size='60' placeholder="출처 주소를 입력해주세요">
+               </td>
+              </tr>              
+             </tbody>
+            </table>
+          <div class='right'>
+            <button type="submit">등록</button>
+            <button type="button" onclick = "history.back()">취소</button>
+          </div>
+           </fieldset>
+          </FORM>
+          </div>
+      </div></div></div>
 </body>
 <!-- -------------------------------------------- -->
 <div style= 'margin: 100px 0 0 0;  position: relative;'>  
