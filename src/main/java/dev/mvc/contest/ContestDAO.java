@@ -1,5 +1,6 @@
 package dev.mvc.contest;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -20,8 +21,8 @@ public class ContestDAO implements ContestDAOInter {
     return mybatis.insert("contest.create", contestVO);
   }
   @Override
-  public List<ContestVO> list(){
-    return mybatis.selectList("contest.list");
+  public List<ContestVO> list(HashMap<String, Object> hashmap){
+    return mybatis.selectList("contest.list", hashmap);
   }
   @Override
   public ContestVO read(int ct_no){
@@ -34,5 +35,9 @@ public class ContestDAO implements ContestDAOInter {
   @Override
   public int delete(int ct_no){
     return mybatis.delete("contest.delete", ct_no);
+  }
+  @Override
+  public int count(HashMap hashmap) {
+    return mybatis.selectOne("contest.count", hashmap);
   }
 }

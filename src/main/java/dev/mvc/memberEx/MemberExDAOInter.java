@@ -73,6 +73,8 @@ public interface MemberExDAOInter {
   */
  public int update_passwd(int me_no, String me_pw);
  /**
-  * 회원 탈퇴
+  *  <!-- 사용자가 회원가입 이메일 링크를 클릭했을 경우 -->
+  *  <update id="confirm" parameterType="MemberExVO">
   */
+ public int confirm(MemberExVO memberExVO);
 }

@@ -1,5 +1,6 @@
 package dev.mvc.contest;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ContestDAOInter {
@@ -13,7 +14,7 @@ public interface ContestDAOInter {
     * <select id="list" resultType="ContestVO">
     * @return
     */
-   public List<ContestVO> list(); 
+   public List<ContestVO> list(HashMap<String, Object> hashmap);
   /**
    *  <select id="read" resultType="ContestVO" parameterType="int">
    *  게시판 글 조회
@@ -29,4 +30,10 @@ public interface ContestDAOInter {
   <delete id="delete"  parameterType="int">
     */
    public int delete(int ct_no);
+   /**
+    * 
+    * @param hashmap
+    * @return
+    */
+   public int count(HashMap hashmap);
 }

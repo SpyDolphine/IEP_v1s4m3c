@@ -41,6 +41,8 @@ public class ContestVO {
    * 접수 마감일
    */
   private String ct_enddate;
+  /**공모전 당일   */
+  private String ct_daydate;
   /**
    * 발표일자
    */
@@ -140,6 +142,12 @@ private int ct_cnt;
   }
   public void setCt_enddate(String ct_enddate) {
     this.ct_enddate = ct_enddate;
+  }
+  public String getCt_daydate() {
+    return ct_daydate;
+  }
+  public void setCt_daydate(String ct_daydate) {
+    this.ct_daydate = ct_daydate;
   }
   public String getCt_statedate() {
     return ct_statedate;
