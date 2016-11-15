@@ -7,18 +7,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="contest">
 <!-- 공모전 등록 -->
 <insert id="create" parameterType="ContestVO">
-insert into iep_contest (ct_no, me_no, ct_title, ct_host, ct_supervision, ct_entry, ct_enter, ct_award, ct_startdate, ct_enddate, ct_statedate, ct_url, ct_content, ct_file1, ct_file2, ct_size2, ct_rdate, ct_cnt)
-values ((select nvl(max(ct_no), 0)+1 as ct_no from iep_contest), #{me_no},#{ct_title}, #{ct_host}, #{ct_supervision}, #{ct_entry}, #{ct_enter}, #{ct_award}, #{ct_startdate}, #{ct_enddate}, #{ct_statedate}, #{ct_url}, #{ct_content}, #{ct_file1}, #{ct_file2}, #{ct_size2}, sysdate, 0)
+insert into iep_contest (ct_no, me_no, ct_title, ct_host, ct_supervision, ct_entry, ct_enter, ct_award, ct_startdate, ct_enddate, ct_daydate, ct_statedate, ct_url, ct_content, ct_file1, ct_file2, ct_size2, ct_rdate, ct_cnt)
+values ((select nvl(max(ct_no), 0)+1 as ct_no from iep_contest), #{me_no},#{ct_title}, #{ct_host}, #{ct_supervision}, #{ct_entry}, #{ct_enter}, #{ct_award}, #{ct_startdate}, #{ct_enddate}, #{ct_daydate} ,#{ct_statedate}, #{ct_url}, #{ct_content}, #{ct_file1}, #{ct_file2}, #{ct_size2}, sysdate, 0)
 </insert>
 <!-- 공모전 목록 -->
-<select id="list" resultType="ContestVO">
-select ct_no, ct_title, ct_host, ct_startdate, ct_enddate, ct_cnt  
+<select id="list3" resultType="ContestVO">
+select ct_no, ct_title, ct_host, ct_startdate, ct_enddate, ct_daydate, ct_cnt, ct_file2, ct_file1, ct_size2  
 from iep_contest 
 order by ct_no DESC
 </select> 
 <!-- 공모전 조회 관련 -->
 <select id="read" resultType="ContestVO" parameterType="int">
-    select ct_no, ct_title, ct_host, ct_supervision, ct_entry, ct_enter, ct_award, ct_startdate, ct_enddate, ct_statedate, ct_url, ct_content, ct_file1, ct_file2, ct_size2, ct_rdate, ct_cnt 
+    select ct_no, ct_title, ct_host, ct_supervision, ct_entry, ct_enter, ct_award, ct_startdate, ct_enddate, ct_daydate, ct_statedate, ct_url, ct_content, ct_file1, ct_file2, ct_size2, ct_rdate, ct_cnt 
     from iep_contest
     where ct_no=#{ct_no}
  </select> 
@@ -26,7 +26,7 @@ order by ct_no DESC
   <update id="update" parameterType="ContestVO">
 UPDATE iep_contest
 SET me_no=#{me_no}, ct_title=#{ct_title}, ct_host=#{ct_host}, ct_supervision=#{ct_supervision}, ct_entry=#{ct_entry}, 
-ct_enter=#{ct_enter}, ct_award=#{ct_award}, ct_startdate=#{ct_startdate}, ct_enddate=#{ct_enddate},
+ct_enter=#{ct_enter}, ct_award=#{ct_award}, ct_startdate=#{ct_startdate}, ct_enddate=#{ct_enddate}, ct_daydate=#{ct_daydate},
 ct_statedate=#{ct_statedate}, ct_url=#{ct_url}, ct_content=#{ct_content}, ct_file1=#{ct_file1}, 
 ct_file2=#{ct_file2}, ct_size2=#{ct_size2}
 where ct_no=#{ct_no}
@@ -36,4 +36,38 @@ where ct_no=#{ct_no}
   DELETE FROM iep_contest
 WHERE ct_no=#{ct_no}
 </delete>
+<!-- 검색에 부분 -->
+  <select id="count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM iep_contest
+    <choose>
+      <when test="col == 'ct_title'">
+       where ct_title LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'ct_content'">
+      where  ct_content LIKE '%' || #{word} || '%' 
+      </when>
+      <when test="col == 'ct_title_ct_content'">
+       where ct_title LIKE '%' || #{word} || '%'  OR ct_content LIKE '%' || #{word} || '%'
+      </when>      
+    </choose>
+  </select>  
+  
+<select id="list" resultType="ContestVO" parameterType="HashMap" >
+                    SELECT ct_no, ct_title, ct_host, ct_startdate, ct_enddate, ct_daydate, ct_cnt, ct_file2, ct_file1, ct_size2, rownum as r
+                    FROM iep_contest
+                    <choose>
+                        <when test="col == 'ct_title'">
+                         where   ct_title LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'ct_content'">
+                          where  ct_content LIKE '%' || #{word} || '%' 
+                        </when>
+                        <when test="col == 'ct_title_ct_content'">
+                          where  ct_title LIKE '%' || #{word} || '%'  OR ct_content LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                      ORDER BY ct_no DESC
+                      
+  </select>  
 </mapper>
