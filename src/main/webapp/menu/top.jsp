@@ -163,7 +163,7 @@ function open_win(){
                                             <li>
                                                 <a href="about.html">채용 정보</a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="#">기업 정보</a></li>
+                                                    <li><a href="<%=root %>/enterprise_information/list.do">기업 정보</a></li>
                                                     <li><a href="<%=root %>/gurume/list.do">근처 맛집</a></li>
                                                 </ul>
                                             </li>                                        

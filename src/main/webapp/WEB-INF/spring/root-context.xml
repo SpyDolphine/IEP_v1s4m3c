@@ -27,6 +27,7 @@
                           dev.mvc.serveyboard,
                           dev.mvc.memberEx,
                           dev.mvc.seico,
+                          dev.mvc.enterprise_info,
                           dev.mvc.gurume,
                           dev.mvc.dat,
                           dev.mvc.sdat,
