@@ -309,7 +309,7 @@ function open_win(){
 function notjoin() {
   
 }
-</script>
+</script> 
 
 </head>
 <!-- ----------------------------------------- -->
