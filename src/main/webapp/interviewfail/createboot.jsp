@@ -10,7 +10,7 @@
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </head>
   
-<body>
+<body> 
  <div class="container">  
 
 <!-- Button trigger modal -->
