@@ -116,7 +116,10 @@ public class NoticeCont {
   public ModelAndView read(int nt_no) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/notice/read"); // /webapp/notice/read.jsp
-    mav.addObject("noticeVO", noticeDAO.read(nt_no));
+    NoticeVO noticeVO = noticeDAO.read(nt_no);
+    
+    noticeVO.setNt_content(web.tool.Tool.convertChar(noticeVO.getNt_content()));
+    mav.addObject("noticeVO", noticeVO);
     return mav;
   }
   
