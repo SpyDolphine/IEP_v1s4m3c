@@ -42,13 +42,10 @@ $(function(){
   <div class="content" style='width: 100%;'>
     <table class="table" style='width: 100%;'>
       <colgroup>
-        <col style="width: 10%;"></col>
-        <col style="width: 30%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 5%;"></col>
         <col style="width: 15%;"></col>
-        <col style="width: 10%;"></col>
+        <col style="width: 40%;"></col>
+        <col style="width: 15%;"></col>
+        <col style="width: 20%;"></col>
         <col style="width: 10%;"></col>
       </colgroup>
           
@@ -59,9 +56,6 @@ $(function(){
           <th>제목</th>
           <th>추천</th>
           <th>등록일</th>
-          <th>파일</th>
-          <th>업로드 파일</th>
-          <th>답글</th>
           <th>수정&삭제</th>
         </tr>
       
@@ -76,9 +70,6 @@ $(function(){
             <td><a href="./read.do?sy_no=${vo.sy_no}">${vo.title}</a></td> 
             <td></td>
             <td>${vo.sy_date}</td>
-            <td>${vo.file1}</td>
-            <td>${vo.file2}</td>
-            <td></td>
             <td>
               <a href="./update.do?sy_no=${vo.sy_no}"><img src="./images/update.png" title="수정" border='0'/></a>
               <a href="./delete.do?sy_no=${vo.sy_no}"><img src="./images/delete.png" title="삭제"  border='0'/></a>
