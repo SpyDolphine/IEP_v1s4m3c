@@ -39,20 +39,11 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-   
-  <div class='content_menu'>
-    <A href='./list.do?qa_no=${tqnaVO.qa_no }'>${tqnaVO.qa_title}</A>｜
-    <A href="./create.do?qa_no=${tqnaVO.qa_no }">등록</A>｜
-    <A href="./update.do?qa_no=${tqnaVO.qa_no}">수정</A>｜
-    <A href="./delete.do?qa_no=${tqnaVO.qa_no}">삭제</A>｜
-    <A href="./reply.do?qa_no=${tqnaVO.qa_no }">답변</A>｜
-    <A href="javascript:location.reload();">새로고침</A>
-  </div>
 
 <DIV class = 'content'>
   <FORM name='frm' method='POST' action='./delete.do'
              onsubmit = 'return send();'>
-    <input type='hidden' name='qa_no' value='${qa_no }'>
+    <input type='hidden' name='qa_no' value='${qa_no}'>
     
     <div class="form-group">
       <div class="col-xs-12 col-lg-12" style='text-align: center;'>
