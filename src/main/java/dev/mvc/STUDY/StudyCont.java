@@ -261,8 +261,12 @@ import web.tool.Upload;
     @RequestMapping(value = "/STUDY/read.do", method = RequestMethod.GET)
     public ModelAndView read(int sy_no) {
       ModelAndView mav = new ModelAndView();
+      
       mav.setViewName("/STUDY/read");
-      mav.addObject("studyVO", StudyDAO.read(sy_no) );
+      StudyVO studyVO = StudyDAO.read(sy_no);
+      
+      studyVO.setContent(web.tool.Tool.convertChar(studyVO.getContent()));
+      mav.addObject("studyVO", studyVO);
       return mav;
     }
 }

@@ -157,8 +157,9 @@ public class CmCont {
     Iterator<CmVO> iter = list.iterator();
     while (iter.hasNext() == true) { // 다음 요소 검사
       CmVO vo = iter.next(); // 요소 추출
-      vo.setCm_title(Tool.textLength(vo.getCm_title(), 10));
+      vo.setCm_title(Tool.textLength(vo.getCm_title(), 20));
       vo.setCm_rdate(vo.getCm_rdate().substring(0, 10));
+      vo.setCm_content(web.tool.Tool.convertChar(vo.getCm_content()));
     }
     mav.addObject("list", list);
     mav.addObject("root", request.getContextPath());
