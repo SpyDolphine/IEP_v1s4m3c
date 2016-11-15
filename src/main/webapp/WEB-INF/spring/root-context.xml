@@ -19,6 +19,7 @@
                           dev.mvc.division, 
                           dev.mvc.category,
                           dev.mvc.contest,
+                          dev.mvc.calender,
                           dev.mvc.notice,
                           dev.mvc.fnq,
                           dev.mvc.servey,
