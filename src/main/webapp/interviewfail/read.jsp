@@ -89,7 +89,7 @@ function Resize(i)
       <div style="clear:both;"></div>
    </div>
       <div style="clear:both;"></div>
-   
+    
 <!------------------------------------------------- 댓글 시작  --------------------------------------------->
   <iframe id="iframe" width="100%" onload="autoResize(this)" frameborder="0" scrolling="no" src="../failreply/replylist.do?if_no=${ifVO.if_no }"></iframe>
 <!------------------------------------------------- 댓글 종료  --------------------------------------------->      
