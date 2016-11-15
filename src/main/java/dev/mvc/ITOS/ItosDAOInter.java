@@ -69,7 +69,7 @@ public interface ItosDAOInter {
    * @param map 검색/페이징
    * @return 전체목록 또는 검색 목록
    */
-  public List<ItosVO> list1(HashMap<String, Object> map);
+  public List<ItosVO> list1(HashMap map);
   
 
 }

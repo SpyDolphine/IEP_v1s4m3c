@@ -57,7 +57,7 @@ public class ItosDAO implements ItosDAOInter {
   }
  
   @Override
-  public List<ItosVO> list1(HashMap<String, Object> map) {
+  public List<ItosVO> list1(HashMap map) {
     return mybatis.selectList("itos.list1", map);
   }
  

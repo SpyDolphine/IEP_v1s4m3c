@@ -13,16 +13,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                           0, 0, sysdate, #{io_cost}, 
                           (SELECT NVL(MAX(io_grpno), 0) + 1 as io_grpno FROM ITOS), 0, 0)
   </insert>
-
   <select id="list" resultType="ItosVO">
-    SELECT io_no,
-           io_title, io_content, io_good, io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date,
-           io_cost,io_grpno, io_indent, io_ansnum
-    FROM ITOS
-    ORDER BY io_grpno DESC, io_ansnum ASC
-    
-  </select> 
+  SELECT io_no,
+            io_title, io_content, io_good, io_file1, io_file2, io_size2,
+            io_cnt, io_replycnt, io_date, io_cost, io_grpno, io_indent, io_ansnum
+  FROM ITOS
+  ORDER BY io_grpno DESC, io_ansnum ASC
   
+  </select>
     <select id="read" resultType="ItosVO" parameterType="int">
     SELECT io_no,
            io_title, io_content, io_good, io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date,
@@ -41,6 +39,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     DELETE FROM ITOS
     WHERE io_no=#{io_no}
   </delete>
+  
+    <select id="count" resultType="int" parameterType="String" >
+    SELECT COUNT(*) as cnt
+    FROM ITOS   
+  </select>
   
 <!-- **********       답변 관련 시작       ********** -->
   <!-- 답변 순서 변경 -->
@@ -63,18 +66,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 답변에 따른 목록 -->
   <select id="list1" resultType="ItosVO" parameterType="HashMap" >
     SELECT io_no, io_title, io_content, io_good, 
-               io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date, io_grpno, io_indent, io_ansnum, r
+               io_file1, io_file2, io_size2, io_cnt, io_replycnt,  io_date, io_cost, io_grpno, io_indent, io_ansnum, r
     FROM(
              SELECT io_no, io_title, io_content, io_good,
-                        io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date, io_grpno, io_indent, io_ansnum, rownum as r
+                        io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date, io_cost, io_grpno, io_indent, io_ansnum, rownum as r
              FROM(
                       SELECT io_no, io_title, io_content, io_good,
-                                 io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date, io_grpno, io_indent, io_ansnum
+                                 io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date, io_cost, io_grpno, io_indent, io_ansnum
                       FROM ITOS
- 
-                      WHERE io_no=#{io_no}
                       ORDER BY io_grpno DESC, io_ansnum ASC
-             )
+             ) 
     )
     WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
   </select> 

@@ -78,7 +78,6 @@ FROM(
                   SELECT io_no, io_title, io_content, io_good,
                              io_file1, io_file2, io_size2, io_cnt, io_replycnt, io_date, io_cost, io_grpno , io_indent, io_ansnum
                   FROM ITOS
-                  WHERE io_no=1
                   ORDER BY io_grpno DESC, io_ansnum ASC
          )
 )

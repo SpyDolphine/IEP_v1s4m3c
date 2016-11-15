@@ -1,16 +1,20 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
- 
-<!DOCTYPE html> 
-<html lang="ko"> 
-<head> 
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
 <meta charset="UTF-8">
-<title>중고 장터</title>    
- 
-</head>
-<!-- ----------------------------------------- -->
-<jsp:include page="/menu/top.jsp" flush='false' />
+<title></title>
+
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
+<script type="text/javascript" src="../js/tool.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 $(function(){
@@ -18,32 +22,16 @@ $(function(){
 });
 </script>
 
-<!-- ----------------------------------------- -->
-<section class="wrapper">
-    <section class="page_head">
-        <div class="container">
-             <div class="row">
-                 <div class="col-lg-12 col-md-12 col-sm-12">
-                        <nav id="breadcrumbs">
-                            <ul>
-                                <li><a href="../index.jsp">Home</a>/</li>
-                                <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">중고 장터</i>
-                            </ul> 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-</section>
-</section>
+</head>
 
-<body>
+<body leftmargin="0" topmargin="0">
 <div class="container">
- <div class="row" align='center'>
-   <div class="col-xs-12 col-lg-12">
-   
-  <form name="frmSearch" method="get" action="./list.do"> 
+  <jsp:include page="/menu/top.jsp" flush='false' />
 
+     
+     
+  <form name="frmSearch" method="get" action="./list.do"> 
+ 
     <div class='content_menu' style='width: 100%;'>
       <A href='../itos/list.do'>게시판 목록</A> >
       <A href='./create.do?io_no=${itosVO.io_no}'>등록</A>｜
@@ -76,16 +64,11 @@ $(function(){
         <tr>
           <th>번호</th>
           <th>제목</th>
-          <th>추천</th>
           <th>금액</th>          
           <th>등록일</th>
           <th>파일</th>
           <th>업로드 파일</th>
-          <th>댓글</th>
-          <th>기타</th>
-          <th>grpno</th>
-          <th>indent</th>
-          <th>ansnum</th>
+          <th>수정&삭제&답변</th>
         </tr>
       
       </thead>
@@ -108,9 +91,8 @@ $(function(){
                   <img src='./images/reply3.jpg'>
                 </c:when>
               </c:choose>
-              <a href="./read.do?io_no=${vo.io_no}&col=${searchDTO.col}&word=${searchDTO.word}">${vo.io_title}</a>
+              <a href="./read.do?io_no=${vo.io_no}">${vo.io_title}</a>
             </td>
-            <td style='vertical-align: middle;'>${vo.io_good}</td>
              <td style='vertical-align: middle;'>${vo.io_cost}</td> 
             <td style='vertical-align: middle;'>${vo.io_date}</td>
             <td style='vertical-align: middle;'>
@@ -136,30 +118,21 @@ $(function(){
             </c:choose>
             </td>
             <td style='vertical-align: middle;'>${vo.io_file2}</td>
-            <td style='vertical-align: middle;'>${vo.io_replycnt}</td>
             <td style='vertical-align: middle;'>
-              <a href="./update.do?io_no=${vo.io_no}"><i class="fa fa-pencil"></i> 수정 |</a>
-              <a href="./delete.do?io_no=${vo.io_no} "><i class="fa fa-trash-o"></i> 삭제</a>
-            
-            </td>
-            <td>${vo.io_grpno }</td>
-            <td>${vo.io_indent }</td>
-            <td>${vo.io_ansnum }</td>
-            
+              <a href="./update.do?io_no=${vo.io_no}"><img src="./images/update.png" title="수정" border='0'/></a>
+              <a href="./delete.do?io_no=${vo.io_no} "><img src="./images/delete.png" title="삭제"  border='0'/></a>
+               <a href="./reply.do?io_no=${vo.io_no} "><img src="./images/reply.png" title="답변"  border='0'/></a>
+            </td>       
           </tr>
         </c:forEach>
         
       </tbody>
     </table>
+    <DIV class='bottom'>${paging}</DIV>
+    <br><br>
+    </div>
+     <jsp:include page="/menu/bottom.jsp" flush='false' />     
   </div>
-   </div>
- </div>
-</div>
 </body>
 
-<!-- -------------------------------------------- -->
-<div style= 'margin: 100px 0 0 0;  position: relative;'>  
-  <jsp:include page="/menu/bottom.jsp" flush='false' />
-</div>  
-<!-- -------------------------------------------- -->
-</html> 
+</html>

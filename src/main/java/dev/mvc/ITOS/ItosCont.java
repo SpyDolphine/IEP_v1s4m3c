@@ -97,30 +97,6 @@ public class ItosCont {
   }
 
   /**
-   * 전체 목록
-   * 
-   * @return
-   */
-  @RequestMapping(value = "/itos/list.do", method = RequestMethod.GET)
-  public ModelAndView list() {
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("/itos/list"); // list.jsp
-
-    List<ItosVO> list = ItosDAO.list();
-    Iterator<ItosVO> iter = list.iterator();
-    while (iter.hasNext() == true) { // 다음 요소 검사
-      ItosVO itosVO = iter.next(); // 요소 추출
-      itosVO.setIo_title(Tool.textLength(itosVO.getIo_title(), 10));
-      itosVO.setIo_date(itosVO.getIo_date().substring(0, 10));
-      itosVO.setIo_file1(Tool.textLength(itosVO.getIo_file1(), 10));
-      itosVO.setIo_file2(Tool.textLength(itosVO.getIo_file2(), 10));
-    }
-    mav.addObject("list", list);
-
-    return mav;
-  }
-
-  /**
    * 글을 조회합니다
    * 
    * @param io_no
@@ -348,64 +324,61 @@ public class ItosCont {
 
     return mav;
   }
-  //
-  // /**
-  // * blogcategoryno 별로 게시판 목록을 검색+페이징+답변을 적용하여 출력합니다.
-  // *
-  // * @param blogcategoryno
-  // * 전체 목록에서 가져올 게시판 번호
-  // * @param searchDTO
-  // * 검색 정보
-  // * @return 추출된 게시판 목록
-  // */
-  // @RequestMapping(value = "/itos/list.do", method = RequestMethod.GET)
-  // public ModelAndView list1(int io_rno, SearchDTO searchDTO,
-  // HttpServletRequest request) {
-  // ModelAndView mav = new ModelAndView();
-  // mav.setViewName("/itos/list1");
-  // int totalRecord = 0;
-  //
-  // // HashMap hashMap = new HashMap();
-  // HashMap<String, Object> hashMap = new HashMap<String, Object>();
-  // hashMap.put("io_rno", io_rno);
-  // hashMap.put("col", searchDTO.getCol());
-  // hashMap.put("word", searchDTO.getWord());
-  //
-  // int recordPerPage = 10; // 페이지당 출력할 레코드 갯수
-  // // 페이지에서 출력할 시작 레코드 번호 계산, nowPage는 1부터 시작
-  // int beginOfPage = (searchDTO.getNowPage() - 1) * 10;
-  // // 1 page: 0
-  // // 2 page: 10
-  // // 3 page: 20
-  // int startNum = beginOfPage + 1; // 시작 rownum, 1
-  // int endNum = beginOfPage + recordPerPage; // 종료 rownum, 10
-  // hashMap.put("startNum", startNum);
-  // hashMap.put("endNum", endNum);
-  //
-  // List<ItosVO> list = ItosDAO.list1(hashMap); // 검색
-  // Iterator<ItosVO> iter = list.iterator();
-  // while (iter.hasNext() == true) { // 다음 요소 검사
-  // ItosVO vo = iter.next(); // 요소 추출
-  // vo.setIo_title(Tool.textLength(vo.getIo_title(), 10));
-  // vo.setIo_date(vo.getIo_date().substring(0, 10));
-  // // vo.setFile1(Tool.textLength(10, vo.getFile1()));
-  // // vo.setFile2(Tool.textLength(10, vo.getFile2()));
-  // vo.setSize2Label(Tool.unit(vo.getIo_size2()));
-  // }
-  // mav.addObject("list", list);
-  ////
-  //// BlogcategoryVO blogcategoryVO = blogcategoryDAO.read(blogcategoryno);
-  //// mav.addObject("blogcategoryVO", blogcategoryVO);
-  //// mav.addObject("root", request.getContextPath());
-  //
-  // totalRecord = ItosDAO.count(hashMap);
-  // mav.addObject("totalRecord", ItosDAO.count(hashMap)); // 검색된 레코드 갯수
-  //
-  //// String paging = new Paging().paging5(blogcategoryno, totalRecord,
-  // searchDTO.getNowPage(), recordPerPage,
-  //// searchDTO.getCol(), searchDTO.getWord());
-  //// mav.addObject("paging", paging);
-  //// return mav;
-  // }
+  
+  /**
+   * @param qa_no
+   *          전체 목록에서 가져올 게시판 번호
+   * @param searchDTO
+   *          검색 정보
+   * @return 추출된 게시판 목록
+   */
+  @RequestMapping(value = "/itos/list.do", method = RequestMethod.GET)
+  public ModelAndView list1(SearchDTO searchDTO, HttpServletRequest request) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/itos/list");
+
+    // HashMap hashMap = new HashMap();
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("col", searchDTO.getCol());
+    hashMap.put("word", searchDTO.getWord());
+
+    int recordPerPage = 10; // 페이지당 출력할 레코드 갯수
+    // 페이지에서 출력할 시작 레코드 번호 계산, nowPage는 1부터 시작
+    int beginOfPage = (searchDTO.getNowPage() - 1) * 10;
+    // 1 page: 0
+    // 2 page: 10
+    // 3 page: 20
+    int startNum = beginOfPage + 1; // 시작 rownum, 1
+    int endNum = beginOfPage + recordPerPage; // 종료 rownum, 10
+    hashMap.put("startNum", startNum);
+    hashMap.put("endNum", endNum);
+
+    int totalRecord = 0;
+
+    List<ItosVO> list = ItosDAO.list1(hashMap); // 검색
+    Iterator<ItosVO> iter = list.iterator();
+    while (iter.hasNext() == true) { // 다음 요소 검사
+      ItosVO vo = iter.next(); // 요소 추출
+      vo.setIo_title(Tool.textLength(vo.getIo_title(), 10));
+      vo.setIo_date(vo.getIo_date().substring(0, 10));
+      // vo.setFile1(Tool.textLength(10, vo.getFile1()));
+      // vo.setFile2(Tool.textLength(10, vo.getFile2()));
+      vo.setSize2Label(Tool.unit(vo.getIo_size2()));
+    }
+    mav.addObject("list", list);
+    mav.addObject("root", request.getContextPath());
+//
+//    BlogcategoryVO blogcategoryVO = blogcategoryDAO.read(blogcategoryno);
+//    mav.addObject("blogcategoryVO", blogcategoryVO);
+
+    totalRecord = ItosDAO.count(hashMap);
+    mav.addObject("totalRecord", ItosDAO.count(hashMap)); // 검색된 레코드 갯수
+
+    String paging = new PagingITOS().paging12(totalRecord, searchDTO.getNowPage(), recordPerPage,
+        searchDTO.getCol(), searchDTO.getWord());
+    mav.addObject("paging", paging);
+    return mav;
+  }
+
 
 }

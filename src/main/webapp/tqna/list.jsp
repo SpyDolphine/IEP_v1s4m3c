@@ -133,7 +133,6 @@ $(function(){
     <br><br>
   </div>
 
-  
      <jsp:include page="/menu/bottom.jsp" flush='false' />     
   </div>
 </body>

@@ -1,17 +1,26 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
- 
-<!DOCTYPE html> 
-<html lang="ko"> 
-<head> 
-<meta charset="UTF-8">
-<title>중고 장터</title>    
- 
-</head>
-<!-- ----------------------------------------- -->
-<jsp:include page="/menu/top.jsp" flush='false' />
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title></title>
+ 
+<link href="../css/style.css" rel="Stylesheet" type="text/css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/tool.js"></script>
 <script type="text/javascript">
   /* function customize(imgObj){
     alert('file2 '+ imgObj.width());
@@ -26,31 +35,12 @@
   });
 
 </script>
-
+</head>
 <!-- ----------------------------------------- -->
-<section class="wrapper">
-    <section class="page_head">
-        <div class="container">
-             <div class="row">
-                 <div class="col-lg-12 col-md-12 col-sm-12">
-                        <nav id="breadcrumbs">
-                            <ul>
-                                <li><a href="../index.jsp">Home</a>/</li>
-                                <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">중고 장터</i>
-                            </ul> 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-</section>
-</section>
-
 <body>
 <div class="container">
- <div class="row" align='center'>
-   <div class="col-xs-12 col-lg-12">
-   
+     <jsp:include page="/menu/top.jsp" flush='false' />
+<!-- ----------------------------------------- -->
   <div class='content_menu' style='width: 100%;'>
     <A href='./list.do?io_no=${itosVO.io_no}&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}'></A>｜
     <A href='./create.do?io_no=${itosVO.io_no}'>등록</A>｜
@@ -75,10 +65,6 @@
           <li>
             <label for='io_cost' class="form_group" style="width:150px;">금액 : </label>
             <div>${itosVO.io_cost}</div>
-          </li>
-          <li>
-            <label for="io_good" class="form_group" style="width:150px;">추천 수 : </label>
-            <span>${itosVO.io_good}</span>
           </li>
           <li>
             <label for="io_date" class="form_group" style="width:150px;">등록일 : </label>
@@ -106,10 +92,6 @@
               </c:choose>
             </div>
           </li>
-          <li>
-            <label for="io_replycnt" class="form_grp" style="width:150px;">댓글수 : </label>
-            <span>${itosVO.io_replycnt}</span>
-          </li>
           <li class='right'>
             <button type="button" onclick="location.href='./reply.do?io_no=${itosVO.io_no }&io_no=${itosVO.io_no}&col=${searchDTO.col}&word=${searchDTO.word}'">답변</button>
             <button type="button" onclick="location.href='./list.do?io_no=${itosVO.io_no}&col=${searchDTO.col}&word=${searchDTO.word}'">목록보기</button>
@@ -120,14 +102,10 @@
       </fieldset>
     </FORM>
   </DIV>
-   </div>
- </div>
+ 
+<!-- -------------------------------------------- -->
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </div>
 </body>
-
-<!-- -------------------------------------------- -->
-<div style= 'margin: 100px 0 0 0;  position: relative;'>  
-  <jsp:include page="/menu/bottom.jsp" flush='false' />
-</div>  
 <!-- -------------------------------------------- -->
 </html> 
