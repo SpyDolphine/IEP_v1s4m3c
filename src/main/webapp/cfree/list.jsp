@@ -150,6 +150,7 @@
           </li>
         </ul>
       </fieldset>
+      <br>
 <!------------------------------------------------- 댓글 시작  --------------------------------------------->
 <div class="menu">
   <a href='#' onclick="alert('로그인이 필요합니다'); return false;" class="btn btn-primary btn-xs btn-alt">

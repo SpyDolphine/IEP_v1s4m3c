@@ -136,6 +136,16 @@ public class CommuCont {
     CommuVO commuVO = commuDAO.read(cm_no);
     mav.addObject("commuVO", commuVO);
     
+    if(commuVO.getCm_ch().equals("A")){
+      mav.addObject("ch", "정모방");
+    }
+    if(commuVO.getCm_ch().equals("B")){
+      mav.addObject("ch", "정보공유방");
+    }
+    if(commuVO.getCm_ch().equals("C")){
+      mav.addObject("ch", "상담/공감방");
+    }
+    
     return mav;
  
   }

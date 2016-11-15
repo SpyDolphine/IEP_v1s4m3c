@@ -10,8 +10,56 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
-<script type="text/JavaScript">
-</script>
+<style type="text/css">
+
+#formcon {
+  width: 60%;
+}
+
+#formcon h3 {
+  padding: 0 0 10px 0;
+  font-weight: bold
+}
+
+#formcon strong {
+  color: red;
+}
+
+#formcon p {
+  padding: 0 0 20px 0
+}
+
+#formcon table {
+  width: 100%;
+  border-top: 2px solid #000099;
+  border-bottom: 2px solid #000099;
+  border-spacing: 0
+}
+
+#formcon td {
+  border-bottom: 1px solid #333;
+  padding: 10px 0 10px 10px
+}
+
+#formcon th {
+  border-bottom: 1px solid #333;
+  padding: 10px 0 10px 10px;
+  background: #ffffff;
+  text-align: left
+}
+
+#formcon input {
+  border: 1px solid #000099;
+  color: black;
+  padding: 1px
+}
+
+#formcon .input_btn input {
+  border: 0;
+  vertical-align: middle;
+  margin-top: 5px
+}
+</style>
 </head>
  
 <section class="wrapper">
@@ -47,56 +95,72 @@
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
 
-<DIV class='write_content'>
-    <FORM name='frm' method='POST' action='./update.do'
-              enctype="multipart/form-data">
+  <div id="formcon">
+    <FORM name='frm' method='POST' action='./update.do' enctype="multipart/form-data">
     <input type='hidden' name='cm_no' id='cm_no' value='${commuVO.cm_no}'>
     <input type='hidden' name='cm_ch' id='cm_ch' value='${commuVO.cm_ch}'>
+   <h4><span>수 정</span></h4>    
    <fieldset>
-    <ul>
-      <li>
-        <label for='cm_title'>제목</label>
-        <input type='text' name='cm_title' id='cm_title' value='${commuVO.cm_title}'' size='60' required="required">
-      </li>
-      <li>글쓴이: 
-        <label for='cm_nick'>${commuVO.cm_nick}</label>
-      </li>
-      <li>
-        <label for='cm_content'>내용</label>
-        <textarea name='cm_content' id='cm_content'  rows='5' cols='70'>${commuVO.cm_content}</textarea>
-      </li>
-      <li>
-        <label for='file1'>Thumb 파일</label>
-          Preview(미리보기) 이미지 자동 생성됩니다.
-      </li>
-      <li>
-        <label for='file2'>업로드 파일</label>
-        <input type="file" name='file2MF' id='file2MF' size='40' >
-      </li>
-      <li>
-        <label for='cm_map'>지도</label>
-        <textarea name='cm_map' id='cm_map'  rows='5' cols='70'>${commuVO.cm_map}</textarea>
-      </li>  
-      <li>
-        <label for='cm_url'>url</label>
-        <input type='text' name='cm_url' id='cm_url' value='${commuVO.cm_url}' size='60' required="required">
-      </li>   
-             
-      <li class='right'>
-        <button type="submit">확인</button>
+    <table>
+     <tbody>
+      <tr>   
+        <th scope="row">      
+          <label for='cm_nick'>카테고리 </label></th>
+          <td> ${ch}</td>
+      </tr>      
+      <tr>
+        <th scope="row">
+         <label for='cm_title'>제목</label></th>
+         <td>
+          <input type='text' name='cm_title' id='cm_title' value='${commuVO.cm_title}' size='69' required="required">
+         </td>
+      </tr>
+      <tr>   
+        <th scope="row">      
+          <label for='cm_nick'>글쓴이 </label></th>
+          <td> ${commuVO.cm_nick}</td>
+      </tr>    
+      <tr>   
+        <th scope="row">          
+         <label for='cm_content'>내용</label></th>
+         <td><textarea name='cm_content' id='cm_content'  rows='20' cols='70'>${commuVO.cm_content}</textarea></td>
+      </tr>
+      <tr>   
+        <th scope="row">       
+         <label for='file1'>Thumb 파일</label></th>
+         <td> Preview(미리보기) 이미지 자동 생성됩니다.</td>
+      </tr>   
+      <tr>   
+        <th scope="row"> 
+         <label for='file2'>업로드 파일</label></th>
+         <td><input type="file" name='file2MF' id='file2MF' size='40' ></td>
+      </tr>   
+      <tr>   
+        <th scope="row">       
+         <label for='cm_map'>지도</label></th>
+         <td><textarea name='cm_map' id='cm_map'  rows='5' cols='70'>${commuVO.cm_map}</textarea></td>
+      </tr>
+      <tr>   
+        <th scope="row">       
+         <label for='cm_url'>url</label></th>
+         <td><input type='text' name='cm_url' id='cm_url' value='${commuVO.cm_url}' size='69' required="required"></td>
+      </tr>
+     </tbody>
+    </table>                 
+      <div class='right'>
+        <button type="submit" class="btn btn-default btn-xs">확인</button>
         <c:choose>
           <c:when test="${commuVO.cm_ch eq 'A'}">
-            <button type="button" onclick="location.href='./listA.do'">목록</button>
+            <button type="button" class="btn btn-default btn-xs" onclick="location.href='./listA.do'">취소</button>
           </c:when>
           <c:when test="${commuVO.cm_ch eq 'B'}">
-            <button type="button" onclick="location.href='./listB.do'">목록</button>
+            <button type="button" class="btn btn-default btn-xs" onclick="location.href='./listB.do'">취소</button>
           </c:when>
           <c:when test="${commuVO.cm_ch eq 'C'}">
-            <button type="button" onclick="location.href='./listC.do'">목록</button>
+            <button type="button" class="btn btn-default btn-xs" onclick="location.href='./listC.do'">취소</button>
           </c:when>          
         </c:choose> 
-      </li>         
-    </ul>
+      </div>
     </fieldset>
   </FORM>
 </DIV>

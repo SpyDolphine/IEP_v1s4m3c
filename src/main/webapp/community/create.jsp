@@ -70,17 +70,7 @@
                       <nav id="breadcrumbs">
                           <ul>
                               <li><a href="../index.jsp">Home</a>/</li>
-                              <c:choose>
-                                <c:when test="${commuVO.cm_ch eq 'A'}">
-                                  <li><A href='./listA.do'>목록</A></li>
-                                </c:when>
-                                <c:when test="${commuVO.cm_ch eq 'B'}">
-                                  <li><A href='./listB.do'>목록</A></li>
-                                </c:when>
-                                <c:when test="${commuVO.cm_ch eq 'C'}">
-                                  <li><A href='./listC.do'>목록</A></li>
-                                </c:when>                                
-                              </c:choose>
+                              <li><A onclick = "history.back()">목록</A></li>
                               <i class="fa fa-arrow-circle-right"> 글 쓰 기</i> 
                           </ul> 
                       </nav>
@@ -121,14 +111,14 @@
               </tr>
               <tr>
                  <th scope="row">
-                 <label for='cm_nick'>닉네임</label></th>
+                 <label for='cm_nick'>글쓴이</label></th>
                  <td><input type='text' name='cm_nick' id='cm_nick' value='복덩이' size='60' required="required"></td>  
               </tr>  
               <tr>
                 <th scope="row">
                  <label for='cm_content'>내용</label></th>
                  <td>
-                 <textarea name='cm_content' id='cm_content'  rows='5' cols='70' placeholder="내용을 입력해주세요"></textarea>
+                 <textarea name='cm_content' id='cm_content'  rows='20' cols='70' placeholder="내용을 입력해주세요"></textarea>
                  </td> 
               </tr>               
               <tr>
@@ -158,8 +148,8 @@
              </tbody>
             </table>
           <div class='right'>
-            <button type="submit">등록</button>
-            <button type="button" onclick = "history.back()">취소</button>
+            <button type="submit" class="btn btn-default btn-xs">등록</button>
+            <button type="button" class="btn btn-default btn-xs" onclick = "history.back()">취소</button>
           </div>
            </fieldset>
           </FORM>
