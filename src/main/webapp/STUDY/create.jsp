@@ -60,6 +60,12 @@ if (CKEDITOR.instances['content'].getData() == '') {
               <label class='form_grp' for='content'>과목 내용</label><br>
               <TEXTAREA name='content' id='content' rows='10' cols='70'></TEXTAREA>
             </li>
+            <li>
+              <label for="file2MF" class="form_grp">사진을 올려주세요</label><br>
+                <div class="col-xs-10 col-lg-10">
+              <input type="file" class="form_grp"" name='file2MF' id='file2MF' size='40' >
+                </div>
+            </li>
             <li class='right'>
               <button type="submit">등록</button>
               <button type="button" onclick="location.href='./list.do'">취소</button>

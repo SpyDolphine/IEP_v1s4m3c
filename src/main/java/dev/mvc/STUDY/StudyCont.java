@@ -6,17 +6,20 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import dev.mvc.ITOS.ItosVO;
 import web.tool.SearchDTO;
 import web.tool.Tool;
+import web.tool.Upload;
 
   @Controller
   public class StudyCont {
@@ -38,12 +41,40 @@ import web.tool.Tool;
     
     @RequestMapping(value = "/STUDY/create.do", 
         method = RequestMethod.POST)
-    public ModelAndView create(StudyVO studyVO) {
+    public ModelAndView create(StudyVO studyVO, HttpServletRequest request, HttpSession session) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/message"); // /webapp/STUDY/message.jsp
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
 
+    // -------------------------------------------------------------------
+    // 파일 전송
+    // -------------------------------------------------------------------
+    String file1 = "";
+    String file2 = "";
+    String upDir = Tool.getRealPath(request, "/STUDY/storage");
+    MultipartFile file2MF = studyVO.getFile2MF();
+
+    // System.out.println("file2MF.getSize(): " + file2MF.getSize());
+    if (file2MF.getSize() > 0) {
+      file2 = Upload.saveFileSpring(file2MF, upDir);
+      studyVO.setFile2(file2); // 전송된 파일명 저장
+      studyVO.setSize2(file2MF.getSize());
+
+      // -------------------------------------------------------------------
+      // Thumb 파일 생성
+      // -------------------------------------------------------------------
+      if (Tool.isImage(file2)) {
+        file1 = Tool.preview(upDir, file2, 120, 80);
+      } else {
+        file1 = "";
+      }
+      // -------------------------------------------------------------------
+    }
+    studyVO.setFile1(file1); // Thumb 이미지
+    studyVO.setFile2(file2); // 원본 이미지
+    // -------------------------------------------------------------------
+    
     //APP(AC,AP,AJ),WEB(WJ,WC,WH)
     if (StudyDAO.create(studyVO) == 1) {
         mav.setViewName("redirect:/STUDY/list.do?gate="+studyVO.getGate());
@@ -93,7 +124,8 @@ import web.tool.Tool;
         StudyVO vo = iter.next(); // 요소 추출
         vo.setTitle(Tool.textLength(vo.getTitle(), 10));
         vo.setSy_date(vo.getSy_date().substring(0, 10));
-
+        vo.setFile1(Tool.textLength(vo.getFile1(), 10));
+        vo.setFile2(Tool.textLength(vo.getFile2(), 10));
       }
       
       mav.addObject("list", list);
@@ -113,15 +145,51 @@ import web.tool.Tool;
      * @return
      */
     @RequestMapping(value = "/STUDY/update.do", method = RequestMethod.POST)
-    public ModelAndView update(StudyVO studyVO) {
+    public ModelAndView update(StudyVO studyVO, HttpServletRequest request, HttpSession session) {
       ModelAndView mav = new ModelAndView();
    
+      ArrayList<String> msgs = new ArrayList<String>();
+      ArrayList<String> links = new ArrayList<String>();
+      // -------------------------------------------------------------------
+      // 파일 전송
+      // -------------------------------------------------------------------
+      String file1 = "";
+      String file2 = "";
+
+      String upDir = Tool.getRealPath(request, "/STUDY/storage");
+      MultipartFile file2MF = studyVO.getFile2MF();
+      StudyVO oldVO = StudyDAO.read(studyVO.getSy_no());
+
+      if (file2MF.getSize() > 0) {
+        Tool.deleteFile(upDir, oldVO.getFile2()); // 파일 삭제
+        file2 = Upload.saveFileSpring(file2MF, upDir);
+        studyVO.setFile2(file2); // 전송된 파일명 저장
+        studyVO.setSize2(file2MF.getSize());
+
+        // -------------------------------------------------------------------
+        // Thumb 파일 생성
+        // -------------------------------------------------------------------
+        if (Tool.isImage(file2)) {
+          Tool.deleteFile(upDir, oldVO.getFile1()); // 파일 삭제
+          file1 = Tool.preview(upDir, file2, 120, 80);
+        } else {
+          file1 = "";
+        }
+        // -------------------------------------------------------------------
+
+      } else {
+        file1 = oldVO.getFile1();
+        file2 = oldVO.getFile2();
+      }
+      studyVO.setFile1(file1);
+      studyVO.setFile2(file2);
+      // -------------------------------------------------------------------
+      
       if (StudyDAO.update(studyVO) == 1) {
           mav.setViewName("redirect:/STUDY/list.do?gate="+studyVO.getGate());
       } else {  
         
       }
-      
       return mav;
     }
     
