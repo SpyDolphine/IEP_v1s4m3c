@@ -9,10 +9,16 @@
 <meta charset="UTF-8">
 <title>공지사항</title>    
  
-</head> 
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+<style>
+hr {
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+</style>
+</head> 
 <section class="wrapper">
     <section class="page_head">
         <div class="container">
@@ -22,7 +28,7 @@
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">공지사항</i> 
+                                <i class="fa fa-arrow-circle-right"> 공지사항</i> 
                             </ul> 
                         </nav>
                     </div>
@@ -35,30 +41,30 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-  <DIV class='content'>
+   
+   <div class="write_content" style='width: 90%;'>
     <FORM name='form_group' method="get" action='./update.do'>
       <input type="hidden" name="nt_no" value="nt_no=${noticeVO.nt_no}">
-      <fieldset class="fieldset">
+      
+      <div style='text-align: left;'>&nbsp;&nbsp;${noticeVO.nt_title}</div><p style='text-align: right;'>
+        <span style='color: #cccccc;'>${noticeVO.nt_date.substring(0, 16)}</span> |
+        <A href="./update.do?nt_no=${noticeVO.nt_no}">수정</A> |
+        <A href="./delete.do?arr=${noticeVO.nt_no}" onclick="return confirm('삭제하시겠습니까?')">삭제</A>
+      </p>      
+      <hr>
+      &nbsp;<i class="fa fa-leaf"> 닉네임을 넣어주세요</i>
+      <fieldset style='margin: 50px 0 0 0;'>
         <ul>
           <li>
-            <label for='nt_title' class="form_group" style="width:150px;">제목 : </label>
-            <span>${noticeVO.nt_title}</span><br>
-          </li>
-          <li>
-            <label for='nt_content' class="form_group" style="width:150px;">내용 : </label>
-            <div>${noticeVO.nt_content}</div>
-          </li>
-          <li>
-            <label for="nt_date" class="form_group" style="width:150px;">등록일 : </label>
-            <span>${noticeVO.nt_date.substring(0, 16)}</span>
-          </li>
-          <li class='right'>
-            <A href="./list.do">목록 |</A>
-            <A href="./update.do?nt_no=${noticeVO.nt_no}">수정 |</A>
-            <A href="./delete.do?arr=${noticeVO.nt_no}" onclick="return confirm('삭제하시겠나요?')">삭제</A>
+            ${noticeVO.nt_content}
           </li>
         </ul>
-      </fieldset>
+      </fieldset>    
+      <div class='right'>
+        <A href="./list.do" class="btn btn-default btn-xs">목록</A>
+      </div>
+    <div style='clear:both;'></div>
+      <hr>
     </FORM>
   </DIV>
    </div>

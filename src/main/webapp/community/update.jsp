@@ -10,56 +10,6 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
-<style type="text/css">
-
-#formcon {
-  width: 60%;
-}
-
-#formcon h3 {
-  padding: 0 0 10px 0;
-  font-weight: bold
-}
-
-#formcon strong {
-  color: red;
-}
-
-#formcon p {
-  padding: 0 0 20px 0
-}
-
-#formcon table {
-  width: 100%;
-  border-top: 2px solid #000099;
-  border-bottom: 2px solid #000099;
-  border-spacing: 0
-}
-
-#formcon td {
-  border-bottom: 1px solid #333;
-  padding: 10px 0 10px 10px
-}
-
-#formcon th {
-  border-bottom: 1px solid #333;
-  padding: 10px 0 10px 10px;
-  background: #ffffff;
-  text-align: left
-}
-
-#formcon input {
-  border: 1px solid #000099;
-  color: black;
-  padding: 1px
-}
-
-#formcon .input_btn input {
-  border: 0;
-  vertical-align: middle;
-  margin-top: 5px
-}
-</style>
 </head>
  
 <section class="wrapper">

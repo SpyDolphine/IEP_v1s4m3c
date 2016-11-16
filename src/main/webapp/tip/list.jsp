@@ -59,7 +59,8 @@
               <div class="tab-content clearfix">
               <div class="tab-pane fade active in">
                 <div style='border: 30px solid #f4f4f4; margin: 0 0 20px 0;'>
-                <!-- 면접카테고리 기본 이미지 --><img src = "./images/tipimage.jpg">
+                <!-- 면접카테고리 기본 이미지 --><img src = "./images/tipimage.jpg" style='margin: 30px 0 0 0; width: 80%;'>
+                <!-- 면접카테고리 기본 이미지 --><img src = "./images/7.jpg" style='margin: 10px 0 10px 0; width: 80%;'>
                 </div>
               </div>
                 <c:forEach var="tipVO" items="${list }">
