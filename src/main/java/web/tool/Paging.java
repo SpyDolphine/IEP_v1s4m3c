@@ -349,26 +349,26 @@ public class Paging {
      
     str.append("<style type='text/css'>"); 
     str.append("  #paging {text-align: center; margin-top: 5px; font-size: 1em;}"); 
-    str.append("  #paging A:link {text-decoration:none; color:black; font-size: 1em;}"); 
-    str.append("  #paging A:hover{text-decoration:none; background-color: #FFFFFF; color:black; font-size: 1em;}"); 
-    str.append("  #paging A:visited {text-decoration:none;color:black; font-size: 1em;}"); 
+    str.append("  #paging A:link {text-decoration:none; color:#b3b3ff; font-size: 1em;}"); 
+    str.append("  #paging A:hover{text-decoration:none; background-color: #ffe6ff; color:black; font-size: 1em;}"); 
+    str.append("  #paging A:visited {text-decoration:none;color:#c8c8c8; font-size: 1em;}"); 
     str.append("  .span_box_1{"); 
     str.append("    text-align: center;");    
     str.append("    font-size: 1em;"); 
-    str.append("    border: 1px;"); 
+    str.append("    border: 0px;"); 
     str.append("    border-style: solid;"); 
-    str.append("    border-color: #cccccc;"); 
+    str.append("    border-color: #809fff;"); 
     str.append("    padding:1px 6px 1px 6px; /*위, 오른쪽, 아래, 왼쪽*/"); 
     str.append("    margin:1px 2px 1px 2px; /*위, 오른쪽, 아래, 왼쪽*/"); 
     str.append("  }"); 
     str.append("  .span_box_2{"); 
     str.append("    text-align: center;");    
-    str.append("    background-color: #668db4;"); 
-    str.append("    color: #FFFFFF;"); 
+    str.append("    background-color: #FFFFFF;"); 
+    str.append("    color: #ff4dc6;"); 
     str.append("    font-size: 1em;"); 
-    str.append("    border: 1px;"); 
+    str.append("    border: 0px;"); 
     str.append("    border-style: solid;"); 
-    str.append("    border-color: #cccccc;"); 
+    str.append("    border-color: #809fff;"); 
     str.append("    padding:1px 6px 1px 6px; /*위, 오른쪽, 아래, 왼쪽*/"); 
     str.append("    margin:1px 2px 1px 2px; /*위, 오른쪽, 아래, 왼쪽*/"); 
     str.append("  }"); 
@@ -378,7 +378,9 @@ public class Paging {
  
     int _nowPage = (nowGrp-1) * pagePerBlock; // 10개 이전 페이지로 이동 
     if (nowGrp >= 2){ 
-      str.append("<span class='span_box_1'><A href='./list4.do?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>이전</A></span>"); 
+      str.append("<span class='span_box_1'><A href='./list4.do?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>"
+          + "<img src='./images/board_num_arrow_b.gif'>"
+          + "</A></span>");
     } 
  
     for(int i=startPage; i<=endPage; i++){ 
@@ -395,8 +397,9 @@ public class Paging {
      
     _nowPage = (nowGrp * pagePerBlock)+1; // 10개 다음 페이지로 이동 
     if (nowGrp < totalGrp){ 
-      str.append("<span class='span_box_1'><A href='./list.do?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>다음</A></span>"); 
-    } 
+      str.append("<span class='span_box_1'><A href='./list4.do?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>"
+          + "<img src='./images/board_num_arrow_n.gif'>"
+          + "</A></span>"); } 
     str.append("</DIV>"); 
      
     return str.toString(); 

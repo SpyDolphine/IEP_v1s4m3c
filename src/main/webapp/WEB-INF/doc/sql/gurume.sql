@@ -21,7 +21,7 @@ CREATE TABLE gurume(
     gu_date                           DATE           NOT NULL,                -- 날짜
     file1                             VARCHAR2(100)      NULL ,               -- Thumb 파일
     file2                             VARCHAR2(50)       NULL ,               -- 파일 2
-    size2                             NUMBER(9)          NULL DEFAULT 0,      -- 파일 2 크기
+    size2                             NUMBER(9)          DEFAULT 0  NULL,      -- 파일 2 크기
     gu_map                            VARCHAR2(4000)     NULL                 -- 지도
     );
   --FOREIGN KEY (divisionno) REFERENCES division (divisionno), -- 카테고리번호
