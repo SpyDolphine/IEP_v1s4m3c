@@ -52,6 +52,7 @@
 <body>
   <div class="container">
    <div class="row" align='center'>
+     <span><h4><i class='fa fa-apple'></i> &nbsp; ${contestVO.ct_title }</h4></span>
     <div class="col-xs-12 col-lg-10">  
   
   <div id="formcon">
