@@ -10,6 +10,7 @@
   <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+
     <style>
       #columns{
         column-width:230px;
@@ -50,8 +51,7 @@
                     </div>
                 </div>
             </div>
-  <form name="frmSearch" method="get" action="./list4.do"> 
- 
+
       
   
   </form> 
@@ -60,8 +60,8 @@
 </section>
 </section>
 
-    <select class='content_menu' name="col" >
-     
+   <form name="frmSearch" method="get" action="./list4.do"> 
+  <select class='content_menu' name="col"  >
         <option value="">선택</option> 
         <option value="title" ${searchDTO.col == "title" ? "selected=selected" : "" }>제목</option> 
         <option value="content" ${searchDTO.col == "content" ? "selected=selected" : "" }>내용</option> 
@@ -76,14 +76,24 @@
           <input type="text" name="word" size="15" value="">
         </c:when>
       </c:choose>
-     
-      <input type="submit" value="검색">
+      <input type="image" class="btn-sch" src="../gurume/images/search_ico.gif" onclick="./list4.do""/>
+      <!-- <input type="submit" value="검색"> -->
       
+<!-- <legend>검색 폼</legend>
+   <input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" onmousedown="SEARCH_BANNER.clickSearchForm(this)" value="" type="text"  />                 
+   
+                 </fieldset> -->
+      
+     
       
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
 <DIV style= 'margin: 0 0 30px 0;'>${paging}</DIV>
+
+
+
+
     <div class="list_content" style='width: 90%;'>
 <c:forEach var="vo" items="${list }">
     <div id="columns">
@@ -166,8 +176,6 @@
         </figcaption>
    </figure>
      </c:forEach>
-     
-     
  
 </body>
 
