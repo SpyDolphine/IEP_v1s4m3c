@@ -15,6 +15,14 @@
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+<script type="text/javascript">
+function memberin(me_no) {
+  var winObject = null;
+  var settings = "width=600, height=300, left=600px,top=400px";
+  winObject = window.open("././memberin.do?me_no="+me_no,"",settings);
+   
+}
+</script>
 <section class="wrapper">
     <section class="page_head">
         <div class="container">
@@ -98,12 +106,13 @@
 
     <td style='text-align: center;'>
      <A href="./read.do?me_no=${vo.me_no }">수정</A>
-       <c:choose>
+     <c:choose>
       <c:when test="${vo.me_vis eq 'y' }">
-      <A href='./memberout.do?me_no=${vo.me_no}'>탈퇴</A>
+       <A href='./memberout.do?me_no=${vo.me_no}'>탈퇴</A>
       </c:when>
       <c:when test="${vo.me_vis eq 'n' }">
-      <A href="./memberin.do?me_no=${vo.me_no}">복귀</A>
+       <%-- <A href="./memberin.do?me_no=${vo.me_no}">복귀</A> --%>
+       <A onclick = "javascript:memberin('${vo.me_no}')">복귀</A> 
       </c:when>
     </c:choose>
     </td>

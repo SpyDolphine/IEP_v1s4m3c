@@ -18,7 +18,7 @@ select * from IEP_MEMBER
 
 update iep_member
 set me_grade = 'A'
-where me_no = 2
+where me_no = 3
 
 alter table iep_member add(me_vis char(1))
 alter table iep_member MODIFY( me_pw VARCHAR2(100))
