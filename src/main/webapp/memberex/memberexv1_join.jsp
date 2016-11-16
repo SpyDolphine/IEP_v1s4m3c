@@ -77,7 +77,7 @@ hr {
  <img src='./images/employee.jpg' style='width:30%; margin: 0 0 0 20px;'>
 </div>
 <div style="text-align: center;"> 
- <a class="myButton" style='margin: 0 11% 0 0;' onclick="javascript:opener.location.href='./agreement.jsp'; self.close();">사용자회원</a>
+ <a class="myButton" style='margin: 0 8% 0 0;' onclick="javascript:opener.location.href='./agreement.jsp'; self.close();">사용자회원</a>
  <a class="myButton" style='margin: 0 0 0 8%;' onclick="javascript:opener.location.href='./agreement_com.jsp'; self.close();">기업회원</a>
 </div>
 <!-- -------------------------------------------- -->

@@ -8,7 +8,10 @@
 <html lang="ko">
 <head> 
 <meta charset="UTF-8">
-<title>★★★ 각 게시판 이름을 적어주세요 !</title>
+<title>일반회원가입</title>
+<!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
+<!-- ----------------------------------------- -->
 <script type="text/javascript">
   $(function() {
     $.removeCookie('checkId'); // 기존의 쿠기 값을 삭제
@@ -76,11 +79,59 @@
     
   }
 </script>
+<style type="text/css">
 
+#formcon {
+  width: 60%;
+}
+
+#formcon h3 {
+  padding: 0 0 20px 0;
+  font-weight: bold
+}
+
+#formcon strong {
+  color: #bfbfbf;
+  font-size: 12px;
+}
+
+#formcon p {
+  padding: 0 0 20px 0
+}
+
+#formcon table {
+  width: 100%;
+  border-top: 2px solid grey;
+  border-bottom: 2px solid grey;
+  border-spacing: 0
+}
+
+#formcon td {
+  border-bottom: 1px solid #333;
+  padding: 10px 0 10px 10px
+}
+
+#formcon th {
+  border-bottom: 1px solid #333;
+  padding: 10px 0 10px 10px;
+  background: #ffffff;
+  text-align: left
+}
+
+#formcon input {
+  border: 1px solid grey;
+  color: black;
+  padding: 1px
+}
+
+#formcon .input_btn input {
+  border: 0;
+  vertical-align: middle;
+  margin-top: 5px
+}
+</style>
 </head>
-<!-- ----------------------------------------- -->
-<jsp:include page="/menu/top.jsp" flush='false' />
-<!-- ----------------------------------------- -->
+
 <section class="wrapper">
   <section class="page_head">
     <div class="container">
@@ -88,9 +139,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12">
           <nav id="breadcrumbs">
             <ul>
-              <li><a href="../index.jsp">Home</a>/</li>
-              <li><A href='./list.do'>목록</A></li>
-              <i class="fa fa-arrow-circle-right">회원가입</i></ul>
+              <li><a href="../index.jsp">Home</a></li>
+              <i class="fa fa-arrow-circle-right"></i> 일반회원가입</ul>
           </nav>
         </div>
       </div>
@@ -100,68 +150,99 @@
 
 <body>
   <div class="container">
+  <div class="dividerHeading">
+    <h4><span><i class="fa fa-bullhorn"></i> 회원가입</span></h4>
+  </div>  
+  
     <div class="row" align='center'>
       <div class="col-xs-12 col-lg-12">
 
-        <div>
+        <div id="formcon">
           <form id="frm" name="frm" action="./create.do" method='post'  onsubmit='return send();'>
-      <input type = "hidden" name ="me_auth" id="me_auth">
-      <input type='hidden' name= "me_comfirm" id="me_comfirm">
+          <input type = "hidden" name ="me_auth" id="me_auth">
+          <input type='hidden' name= "me_comfirm" id="me_comfirm">
+          <h3><span>기본정보입력</span></h3>  
            <fieldset>
-              <ul>
-                <li>
-                <label class='' for='me_id' class="col-xs-2 col-lg-2 control-label">아이디</label> 
-                <input  type="email" id="me_id" name="me_id"  placeholder="example@example.com" required="required" class="form-control">
-                  <button type='button' onclick="checkId()">중복확인</button>
-                  <SPAN id='panel_id'></SPAN> <!-- id 중복관련 메시지 -->
-                  <SPAN id='panel_id'>
-                  <button id = 'injeung'>인증 확인</button>
-                  </SPAN> <!-- id 중복관련 메시지 -->
-                  </li>
-                <li><label class='' for='me_pw' >비밀번호</label> 
-                <input  type='password' name='me_pw' id='me_pw'  required="required" placeholder="패스워드를 입력하세요" class="form-control">
-                </li>
-                <li>
-                <label class='' for='reme_pw'>비밀번호 확인</label> 
-               <input   type='password' name='reme_pw' id='reme_pw'  required="required" placeholder="패스워드를 다시 입력하세요" class="form-control">
+            <table>
+             <tbody>
+              <tr>
+                <th scope="row">
+                <label class='' for='me_id' class="col-xs-2 col-lg-2 control-label">아이디</label></th>
+                <td>
+                  <input  type="email" id="me_id" name="me_id"  placeholder="example@example.com" class="form-control" required="required">
+                  보유하신 이메일을 입력해주세요<br>
+                  <strong>* 가입 완료를 위한 이메일 인증이 진행되니 정확한 이메일 주소를 입력해 주시기 바랍니다.</strong>
+                  <br>
+                    <button type='button' class="btn btn-primary btn-xs" onclick="checkId()">중복확인</button>
+                    <SPAN id='panel_id'></SPAN> <!-- id 중복관련 메시지 -->
+                    <SPAN id='panel_id'>
+                    <button id = 'injeung' class="btn btn-default btn-xs">인증 확인</button>
+                    </SPAN> <!-- id 중복관련 메시지 -->
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">                
+                <label class='' for='me_pw' >비밀번호</label></th>
+                <td>
+                 <input  type='password' name='me_pw' id='me_pw' class="form-control" required="required" placeholder="패스워드를 입력하세요">
+                </td>
+              </tr>  
+              <tr>
+                <th scope="row">
+                 <label class='' for='reme_pw'>비밀번호 확인</label></th> 
+                 <td>
+                  <input   type='password' name='reme_pw' id='reme_pw' class="form-control" required="required" placeholder="패스워드를 다시 입력하세요">
                   <SPAN id='panel_pw' name="panel_pw">비밀번호 확인</SPAN>
-                  </li>
-                <li>
-                <label class='' for='me_nick'>닉네임</label> 
-                <input  type="text" id="me_nick" name="me_nick" class="form-control" required="required" >    
-                <button type='button' onclick="checkNick()">중복확인</button>
+                 </td>
+              </tr>   
+              <tr>
+                <th scope="row">
+                <label class='' for='me_nick'>닉네임</label></th>
+                <td>
+                 <input  type="text" id="me_nick" name="me_nick" class="form-control" required="required" >    
+                 <button type='button' class="btn btn-primary btn-xs" onclick="checkNick()">중복확인</button>
                   <SPAN id='panel_nick'></SPAN> <!-- id 중복관련 메시지 -->
-                  </li>
-                  
-                <li>
-                <label class='' for='me_name'>이름</label> 
-                <input  type="text" id="me_name" name="me_name" class="form-control" required="required" > 
-                <SPAN  id='panel_name'></SPAN> <!-- id 중복관련 메시지 -->
-                </li>
-                <li>
-                <label class='' for='me_tel'>전화번호</label> 
-                <input   type="tel" id="me_tel" name="me_tel" class="form-control" required="required" > 
-                <SPAN  id='panel_name'></SPAN> <!-- id 중복관련 메시지 -->
-                </li>
-                <li>
-                <label class='' for='me_zipcode'>우편번호</label>
-                 <input   type='text' name='me_zipcode' id='me_zipcode' required="required"   placeholder="우편번호" class="form-control"> 
-                 <input type="button"    onclick="DaumPostcode()" value="우편번호 찾기"><br>
+                </td>
+              </tr>  
+              <tr>
+                <th scope="row">
+                 <label class='' for='me_name'>이름</label></th>
+                 <td>
+                  <input  type="text" id="me_name" name="me_name" class="form-control" required="required" > 
+                  <SPAN  id='panel_name'></SPAN> <!-- id 중복관련 메시지 -->
+                 </td>
+              </tr>  
+              <tr>
+                <th scope="row">
+                 <label class='' for='me_tel'>전화번호</label></th>
+                 <td>
+                  <input   type="tel" id="me_tel" name="me_tel" class="form-control" required="required" > 
+                  <SPAN  id='panel_name'></SPAN> <!-- id 중복관련 메시지 -->
+                 </td>
+              </tr>   
+              <tr>
+                <th scope="row">
+                 <label class='' for='me_zipcode'>우편번호</label></th>
+                 <td>
+                  <input   type='text' name='me_zipcode' id='me_zipcode' required="required"   placeholder="우편번호" class="form-control"> 
+                  <input type="button" class="btn btn-default btn-xs" onclick="DaumPostcode()" value="우편번호 찾기"><br>
                   <SPAN id='panel_name'></SPAN> <!-- id 중복관련 메시지 -->
-                  </li>
-                <li>
-                <label class='' for='me_address'>주소</label> 
-                <input   type='text' name='me_addr1' id='me_addr1' value=''  size='40'  required="required"  placeholder="주소" class="form-control"> 
-                <input type='text'  name='me_addr2' id='me_addr2' value='' size='15' required="required"   placeholder="상세 주소" class="form-control"> 
-                <SPAN id='panel_addr'></SPAN>
+                 </td>
+              </tr>  
+              <tr>
+                <th scope="row">                
+                 <label class='' for='me_address'>주소</label></th>
+                 <td>
+                  <input   type='text' name='me_addr1' id='me_addr1' value=''  size='40'  required="required"  placeholder="주소" class="form-control"> 
+                  <input type='text'  name='me_addr2' id='me_addr2' value='' size='15' required="required"   placeholder="상세 주소" class="form-control"> 
+                  <SPAN id='panel_addr'></SPAN>
                   <!-- id 중복관련 메시지 -->
-                  </li>
-
-
-
-                <li>
-                <label class=''></label> <!-- ----- DAUM 우편번호 API 시작 ----- -->
-
+                 </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                 <label class=''></label> <!-- ----- DAUM 우편번호 API 시작 ----- --></th>
+                <td>
                   <div id="wrap"
                     style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 110px; position: relative">
                     <img
@@ -242,13 +323,15 @@
                                         // iframe을 넣은 element를 보이게 한다.
                                         element_wrap.style.display = 'block';
                                       }
-                                    </script> <!-- ----- DAUM 우편번호 API 종료----- --></li>
-                <li class='right'>
-                  <button type="submit">가입</button>
-                  <button type="button"
-                    onclick="javascript:history.back()">취소</button>
-                </li>
-              </ul>
+                                    </script> <!-- ----- DAUM 우편번호 API 종료----- -->
+                                 </td>
+                               </tr>
+                             </tbody>
+                           </table>
+                <div class='right'>
+                  <button type="submit" class="btn btn-info btn-sm">가입</button>
+                  <button type="button" class="btn btn-default btn-sm" onclick="javascript:history.back()">취소</button>
+                </div>
             </fieldset>
           </form>
         </div>

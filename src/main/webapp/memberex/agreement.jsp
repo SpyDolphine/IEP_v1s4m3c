@@ -32,9 +32,8 @@ function send(){
                  <div class="col-lg-12 col-md-12 col-sm-12">
                         <nav id="breadcrumbs">
                             <ul>
-                                <li><a href="../index.jsp">Home</a>/</li>
-                                <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right"> ex. 커뮤니티 </i>   ★★★ 각 게시판 이름을 적어주세요 ! 
+                                <li><a href="../index.jsp">Home</a></li>
+                                <i class="fa fa-arrow-circle-right"> 사용자 회원가입</i>
                             </ul> 
                         </nav>
                     </div>
@@ -45,6 +44,10 @@ function send(){
 
 <body>
 <div class="container">
+<div class="dividerHeading">
+  <h4><span><i class="fa fa-bullhorn"></i> 회원가입</span></h4>
+</div>
+
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
 <!-- onsubmit 이벤트는 form이 submit이 될 때 발생함. 
@@ -53,6 +56,7 @@ function send(){
  --> 
 <form name="frm" method="get" action="./create.do"  onsubmit="return send();"> 
  
+<div style="background-color: #f4f4f4; padding: 20px 0px;"> 
 <div class='title' style='width: 20%;'>약관동의</div> 
  
 <DIV class='content' style="text-align: center;">
@@ -238,12 +242,15 @@ function send(){
   </textarea> 
 </DIV>
  
-<div class='bottom'>
   <label> 
     <input type="checkbox" name="agree"> 약관에 동의합니다
   </label>
-  <input type="submit" value="가입">  
-  <button type="button" onclick="history.back();">취소</button> 
+  </div>
+  
+<div class='bottom'>
+  <br>
+  <input type="submit" class="btn btn-info btn-lg" value="가입">  
+  <button type="button" class="btn btn-default btn-lg" onclick="history.back();">취소</button> 
 </div> 
 </form> 
  

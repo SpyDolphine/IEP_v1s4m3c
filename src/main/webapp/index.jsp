@@ -9,7 +9,7 @@
 <head> 
 <script type="text/javascript">
 function open_win(){
-  window.open('<%=root%>/memberex/memberexv1_join.jsp','popup', 'width=800, height=500,left=500px,top=300px');
+  window.open('<%=root%>/memberex/memberexv1_join.jsp','popup', 'width=700, height=500,left=450px,top=150px');
 }
 function com(){
   if(<%=session.getAttribute("me_id")%> ==null){
