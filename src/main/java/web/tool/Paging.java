@@ -391,13 +391,13 @@ public class Paging {
       if (nowPage == i){ 
         str.append("<span class='span_box_2'>"+i+"</span>"); 
       }else{ 
-        str.append("<span class='span_box_1'><A href='./list4.do?col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A></span>");   
+        str.append("<span class='span_box_1'><A href='./list.do?col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A></span>");   
       } 
     } 
      
     _nowPage = (nowGrp * pagePerBlock)+1; // 10개 다음 페이지로 이동 
     if (nowGrp < totalGrp){ 
-      str.append("<span class='span_box_1'><A href='./list4.do?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>"
+      str.append("<span class='span_box_1'><A href='./list.do?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>"
           + "<img src='./images/board_num_arrow_n.gif'>"
           + "</A></span>"); } 
     str.append("</DIV>"); 
