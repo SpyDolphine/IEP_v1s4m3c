@@ -68,7 +68,7 @@ function bookmarksite(title,url) {
    }
 } 
 function open_win(){
-  window.open('<%=root%>/memberex/memberexv1_join.jsp','popup', 'width=500, height=300,left=200px,top=200px');
+  window.open('<%=root%>/memberex/memberexv1_join.jsp','popup', 'width=700, height=500,left=450px,top=150px');
 }
 </script>
 

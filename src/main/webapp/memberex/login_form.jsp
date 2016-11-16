@@ -36,7 +36,7 @@ for (int i=0; i < cookies.length; i++){
 %>
 
 <meta charset="UTF-8">
-<title>★★★ 각 게시판 이름을 적어주세요 ! </title>    
+<title>로그인</title>    
 <style>
 /* Reset CSS */
 html, body, div, span, applet, object, iframe,
@@ -298,13 +298,49 @@ form:after {
   background-position: 0 -135px;
   color: #00aeef;
 }
-</style>
-</style>
+#content form input[type="button"] {
+  background: rgb(254,231,154);
+  background: -moz-linear-gradient(top,  rgba(254,231,154,1) 0%, rgba(254,193,81,1) 100%);
+  background: -webkit-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+  background: -o-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+  background: -ms-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+  background: linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fee79a', endColorstr='#fec151',GradientType=0 );
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border-radius: 30px;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+  -ms-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+  -o-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+  border: 1px solid #D69E31;
+  color: #85592e;
+  cursor: pointer;
+  float: left;
+  font: bold 15px Helvetica, Arial, sans-serif;
+  height: 35px;
+  margin: 20px 0 35px 15px;
+  position: relative;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+  width: 120px;
+}
+#content form input[type="button"]:hover {
+  background: rgb(254,193,81);
+  background: -moz-linear-gradient(top,  rgba(254,193,81,1) 0%, rgba(254,231,154,1) 100%);
+  background: -webkit-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+  background: -o-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+  background: -ms-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+  background: linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fec151', endColorstr='#fee79a',GradientType=0 );
+}
 
-
- <script type="text/javascript">
+</style>
+<script type="text/javascript">
 function open_win(){
-  window.open('./memberexv1_join.jsp','popup', 'width=500, height=300,left=200px,top=200px');
+  window.open('./memberexv1_join.jsp','popup', 'width=700, height=500,left=450px,top=150px');
 }
 function notjoin() {
   
@@ -344,39 +380,38 @@ function notjoin() {
     <FORM name='frm' method='POST' action='./login.do'>
       <input type='hidden' name='url_address' value='<%=url_address %>'>
     
-      <h1>Login Form</h1>
+      <h1>Login</h1>
       <div>
-        <input type='text' name='me_id' id='me_id' size="50" value='cdy1213@naver.com' style='width: 40%;' autocomplete="off" required="required" >
+        <input type='text' name='me_id' id='me_id' size="50" value='cdy1213@naver.com' style='width: 60%;' autocomplete="off" required="required" >
            <%
           if (ck_id_save.equals("Y")){
           %>
-            <input type='checkbox' name='id_save' value='Y' checked="checked" > 저장
+            &nbsp;<input type='checkbox' name='id_save' value='Y' checked="checked" > 저장
           <%
           }else{
           %>
-            <input type='checkbox' name='id_save' value='Y'> 저장
+            &nbsp;<input type='checkbox' name='id_save' value='Y'> 저장
           <%  
           }
           %>
       </div>
       <div>
-      <input type='password' name='me_pw' id='me_pw' value='1234' style='width: 40%;' autocomplete="off" required="required" >
-       
+      <input type='password' name='me_pw' id='me_pw' value='1234' style='width: 60%;' autocomplete="off" required="required" >
           <%
           if (ck_passwd_save.equals("Y")){
           %>
-            <input type='checkbox' name='passwd_save' value='Y' checked="checked"> 저장
+            &nbsp;<input type='checkbox' name='passwd_save' value='Y' checked="checked"> 저장
           <%
           }else{
           %>
-            <input type='checkbox' name='passwd_save' value='Y'> 저장
+            &nbsp;<input type='checkbox' name='passwd_save' value='Y'> 저장
           <%  
           }
           %>
       </div>
       <div>
         <input type="submit" value="Log in" />
-        <button type='button' onclick="history.back();">취소</button>
+        <input type='button' onclick="history.back();" value="취소">
         <a class=''  href="javascript:open_win();">회원가입</a>
       </div>
     </form><!-- form -->

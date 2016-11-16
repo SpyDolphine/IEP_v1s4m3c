@@ -20,7 +20,7 @@
 
  function scrapPop(ct_no, ct_title, nowUrl, me_no) {
    var winObject = null;
-   var settings = "width=400, height=400";
+   var settings = "width=600, height=300, left=600px,top=400px";
    var nowUrl = location.href;
    winObject = window.open("../scrap/create.do?ct_no="+ct_no+"&ct_title="+ct_title+"&nowUrl="+nowUrl+"&me_no="+me_no,"",settings);
     
@@ -168,14 +168,13 @@
       </fieldset>            
 
     <div class='left'>
-       <label for="ct_cnt">조회수 : </label>
-        <span>${contestVO.ct_cnt}</span>
-        <label for="ct_rdate">등록일 : </label>
+       <label for="ct_cnt" >조회수 : </label>
+        <span> ${contestVO.ct_cnt}</span> &nbsp;
+        <label for="ct_rdate"> 등록일 : </label>
         ${contestVO.ct_rdate.substring(0, 16)}
     </div>    
     <div style='clear:both;'></div>
     <div class='right'>    
-        <button type="button" class="btn btn-default btn-sm" onclick="location.href='./list.do'">목록</button>
       <c:if test="${sessionScope.me_grade eq  'A' }">
         <button type="submit" class="btn btn-default btn-sm" onclick="javascript:scrapPop('${contestVO.ct_no}', '${contestVO.ct_title }', 'nowUrl' ,'${contestVO.me_no }');">
         <i class='fa fa-bookmark-o'></i> 스크랩</button>
@@ -184,6 +183,7 @@
          <button type="submit" class="btn btn-default btn-sm" onclick="javascript:scrapPop('${contestVO.ct_no}', '${contestVO.ct_title }', 'nowUrl');">
          <i class='fa fa-bookmark-o'></i> 스크랩</button>
       </c:if>
+        <button type="button" class="btn btn-default btn-sm" onclick="location.href='./list.do'">목록</button>
       <c:if test="${sessionScope.me_grade eq 'A' }">
           <button type="button" class="btn btn-default btn-sm" onclick="location.href='./update.do?ct_no=${contestVO.ct_no}'">수정</button>
           <button type="button" class="btn btn-default btn-sm" onclick="location.href='./delete.do?ct_no=${contestVO.ct_no}'">삭제</button>

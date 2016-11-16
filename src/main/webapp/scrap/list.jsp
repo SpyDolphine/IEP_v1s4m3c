@@ -8,19 +8,21 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8">
-<title>★★★ 각 게시판 이름을 적어주세요 ! </title>    
- <script type="text/javascript">
+<title>나의 스크랩함</title> 
+
+<!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
+<!-- ----------------------------------------- -->   
+<script type="text/javascript">
 function scrapDeletePop(sp_no) {
   var winObject = null;
-  var settings = "width=400, height=400";
+  var settings = "width=600, height=300, left=600px,top=400px";
   winObject = window.open("./delete.do?sp_no="+sp_no,"",settings);
    
 }
 </script>
 </head>
-<!-- ----------------------------------------- -->
-<jsp:include page="/menu/top.jsp" flush='false' />
-<!-- ----------------------------------------- -->
+
 <section class="wrapper">
     <section class="page_head">
         <div class="container">
@@ -28,9 +30,8 @@ function scrapDeletePop(sp_no) {
                  <div class="col-lg-12 col-md-12 col-sm-12">
                         <nav id="breadcrumbs">
                             <ul>
-                                <li><a href="../index.jsp">Home</a>/</li>
-                                <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right"> ex. 커뮤니티 </i>   ★★★ 각 게시판 이름을 적어주세요 ! 
+                                <li><a href="../index.jsp">Home</a></li>
+                                <i class="fa fa-arrow-circle-right"> 나의 스크랩함</i> 
                             </ul> 
                         </nav>
                     </div>
@@ -43,39 +44,29 @@ function scrapDeletePop(sp_no) {
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-   
-<DIV class='title'>회원 목록</DIV>
+   <DIV class='title'>스크랩 목록</DIV> 
+   <br>
  <div>
-<TABLE class='table' style="width: 80%; text-align: center">
-  <caption>${sessionScope.me_nick }님 환영합니다. </caption>
-  <colgroup>
-    <col style='width: 30%;'/>
-    <col style='width: 20%;'/>
-    <col style='width: 10%;'/>
-  </colgroup>
-  <TR>
-    <TH class='th'>제목</TH>
-    <TH class='th'>등록일</TH>
-    <TH class='th'>기타</TH>
-  </TR>
+    <TABLE class='table' style="width: 80%;">
+      <caption>${sessionScope.me_nick }님 환영합니다. </caption>
+      <TR>
+        <TH style='width: 70%; text-align: center;'>제목</TH>
+        <TH style='width: 20%; text-align: center;'>등록일</TH>
+        <TH style='width: 10%; text-align: center;'>기타</TH>
+      </TR>
  
-<c:forEach var= "vo" items="${list }">
-  <input type="hidden" id="sp_no" name="sp_no" value="${vo.sp_no }">
-  <TR>
-    <TD class='td'><A href='${vo.sp_content }'>${vo.sp_title}</A></TD>
-    <TD class='td'>${vo.sp_date.substring(0, 10) }</TD>
-    <td class="td">
-     <A onclick = "javascript:scrapDeletePop('${vo.sp_no}')">삭제</A>
-    </td>
-    </TR>
-</c:forEach>
- 
-</TABLE>
- </div>
-<DIV class='bottom'>
-  <button type='button' onclick="location.href='<%=root%>/index.do'">홈으로</button>
-  <button type='button' onclick="location.reload();">새로 고침</button>
-</DIV>
+      <c:forEach var= "vo" items="${list }">
+        <input type="hidden" id="sp_no" name="sp_no" value="${vo.sp_no }">
+        <TR>
+          <TD class='td' id='boardtitle'><A href='${vo.sp_content }'>${vo.sp_title}</A></TD>
+          <TD style='text-align: center;' class='td'>${vo.sp_date.substring(0, 10) }</TD>
+          <td style='text-align: center;' class="td">
+           <A onclick = "javascript:scrapDeletePop('${vo.sp_no}')">삭제</A>
+          </td>
+          </TR>
+      </c:forEach>
+     </TABLE>
+    </div>
   </div>
  </div>
 </div>

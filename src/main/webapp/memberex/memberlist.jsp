@@ -9,7 +9,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8">
-<title>회원 목록! </title>    
+<title>회원 목록</title>    
  
 </head>
 <!-- ----------------------------------------- -->
@@ -23,8 +23,8 @@
                         <nav id="breadcrumbs">
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
-                                <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right"> 회원목록 </i> 
+                                <li><A href='./memberlist.do'>목록</A></li>   
+                                <i class="fa fa-arrow-circle-right"> 회원 관리목록 </i> 
                             </ul> 
                         </nav>
                     </div>
@@ -38,56 +38,41 @@
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
    
-
-<DIV class='title'>회원 목록</DIV>
- <div>
-<TABLE class='table' style="width: 80%; text-align: center">
-  <caption>최고 관리자님 환영합니다..</caption>
-  <colgroup>
-    <col style='width: 5%;'/>
-    <col style='width: 10%;'/>
-    <col style='width: 10%;'/>
-    <col style='width: 10%;'/>
-    <col style='width: 20%;'/>
-    <col style='width: 15%;'/>
-    <col style='width: 10%;'/>
-    <col style='width: 10%;'/>
-     <col style='width: 10%;'/>
-  </colgroup>
-  <TR>
-    <TH class='th'>번호</TH>
-    <TH class='th'>아이디</TH>
-    <TH class='th'>성명</TH>
-    <TH class='th'>닉네임</TH>
-    <TH class='th'>주소</TH>
-    <TH class='th'>등록일</TH>
-    <TH class='th'>탈퇴여부</TH>
-    <TH class='th'>권한</TH>
-    <TH class='th'>기타</TH>
-    
-  </TR>
+  <DIV class='title'>회원 목록</DIV>
+  <div>
+    <TABLE class='table' style="width: 90%;">
+    <caption>최고 관리자님 환영합니다..</caption>
+      <TR>
+        <TH style='width: 5%; text-align: center;'>번호</TH>
+        <TH style='width: 10%; text-align: center;'>아이디</TH>
+        <TH style='width: 10%; text-align: center;'>성명</TH>
+        <TH style='width: 10%; text-align: center;'>닉네임</TH>
+        <TH style='width: 20%; text-align: center;'>주소</TH>
+        <TH style='width: 15%; text-align: center;'>등록일</TH>
+        <TH style='width: 10%; text-align: center;'>탈퇴여부</TH>
+        <TH style='width: 10%; text-align: center;'>권한</TH>
+        <TH style='width: 10%; text-align: center;'>기타</TH>
+      </TR>
  
-<c:forEach var= "vo" items="${memberlist }">
-
- 
-  <TR>
-    <TD class='td'>${vo.me_no }</TD>
-    <TD class='td'><A href="./read.do?me_no=${vo.me_no }">${vo.me_id}</A></TD>
-    <TD class='td'><A href="./read.do?me_no=${vo.me_no }">${vo.me_name} </A></TD>
-    <TD class='td'>${vo.me_nick } </TD>
-    <TD class='td'>
-     <c:choose>
-        <c:when test="${vo.me_addr1.length() > 15 }">
-         ${vo.me_addr1.substring(0,15) }...
-        </c:when>
-        <c:otherwise>
-        ${vo.me_addr1 }
-        </c:otherwise>
-     </c:choose>
-    </TD>
+    <c:forEach var= "vo" items="${memberlist }">
+      <TR>
+        <TD style='text-align: center;'>${vo.me_no }</TD>
+        <TD class='td'><A href="./read.do?me_no=${vo.me_no }">${vo.me_id}</A></TD>
+        <TD style='text-align: center;'><A href="./read.do?me_no=${vo.me_no }">${vo.me_name} </A></TD>
+        <TD style='text-align: center;'>${vo.me_nick } </TD>
+        <TD class='td'>
+         <c:choose>
+            <c:when test="${vo.me_addr1.length() > 15 }">
+             ${vo.me_addr1.substring(0,15) }...
+            </c:when>
+            <c:otherwise>
+            ${vo.me_addr1 }
+            </c:otherwise>
+         </c:choose>
+        </TD>
     
-    <TD class='td'>${vo.me_date.substring(0, 10) }</TD>
-        <td class='td'>
+    <TD style='text-align: center;'>${vo.me_date.substring(0, 10) }</TD>
+    <td style='text-align: center;'>
     <c:choose>
       <c:when test="${vo.me_vis eq 'y' }">
       회원
@@ -97,8 +82,8 @@
       </c:when>
     </c:choose>
     </td>
-    <TD class='td'>
-  <c:choose>
+    <TD style='text-align: center;'>
+       <c:choose>
           <c:when test="${vo.me_grade eq 'A' }"> 
             최고 관리자
           </c:when>
@@ -108,10 +93,10 @@
           <c:when test="${vo.me_grade eq 'M' }"> 
             일반회원
           </c:when>
-      </c:choose>
+        </c:choose>
     </TD>
 
-    <td class="td">
+    <td style='text-align: center;'>
      <A href="./read.do?me_no=${vo.me_no }">수정</A>
        <c:choose>
       <c:when test="${vo.me_vis eq 'y' }">
@@ -122,19 +107,14 @@
       </c:when>
     </c:choose>
     </td>
-    
   </TR>
 </c:forEach>
  
-</TABLE>
+  </TABLE>
  </div>
-<DIV class='bottom'>
-  <button type='button' onclick="location.href='<%=root%>/index.do'">홈으로</button>
-  <button type='button' onclick="location.reload();">새로 고침</button>
 </DIV>
   </div>
  </div>
-</div>
 </body>
 
 <!-- -------------------------------------------- -->

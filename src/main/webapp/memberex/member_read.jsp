@@ -8,10 +8,10 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8">
-<title>정보 수정 </title>    
- <script type="text/javascript">
+<title>회원 정보 수정 </title>    
+<script type="text/javascript">
  function open_win(){
-  window.open("./passwd.do?me_no=${sessionScope.me_no}",'popup', 'width=500, height=300,left=200px,top=200px');
+  window.open("./passwd.do?me_no=${sessionScope.me_no}",'popup', 'width=600, height=300, left=600px,top=400px');
 } 
 </script>
 </head>
@@ -26,8 +26,8 @@
                         <nav id="breadcrumbs">
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
-                                <li><A href='./list.do'>목록</A></li>   
-                                <li class="fa fa-arrow-circle-right"> ex. 커뮤니티 </li>   ★★★ 각 게시판 이름을 적어주세요 ! 
+                                <li><A href='./memberlist.do'>목록</A></li>   
+                                <li class="fa fa-arrow-circle-right"> 회원 정보 수정</li> 
                             </ul> 
                         </nav>
                     </div>
@@ -40,53 +40,76 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-<DIV class='title'>회원 정보 수정</DIV>
  
-<DIV class='content'>
-<FORM name='frm' method='POST' action='./update.do'>
-  <input type='hidden' name='me_no' value='${memberExVO.me_no}'>         
-  <fieldset>
-    <ul>
-      <li>
-        <label class='' for='me_id'>아이디</label>
-        ${memberExVO.me_id} 
-        <SPAN id='panel_id'>(ID는 변경할 수 없습니다.)</SPAN>
-      </li>
-      <li>
-        <label class='' for='me_pw'>비밀번호</label>
-        <button type="button" name="me_pw" id="me_pw" onclick="javascript:open_win();">비밀번호 변경</button>
-      </li>
-      <li>
-        <label class='' for='me_name'>성명</label>
-        ${memberExVO.me_name}
-         <SPAN id='panel_nema'>(이름은 변경할 수 없습니다.)</SPAN>
-      </li>
-      <li>
-      <label class='' for='me_nick'>닉네임</label>
-        ${memberExVO.me_nick}
-         <SPAN id='panel_nick'>(닉네임은 변경할 수 없습니다.)</SPAN>
-      </li>
-      <li>
-        <label class='' for='me_tel'>전화번호</label>
-        <input type="tel" name='me_tel' id='me_tel' value='${memberExVO.me_tel}'> 예) 010-0000-0000
-      </li>
-      <li>
-        <label class='' for='me_zipcode'>우편번호</label>
-        <input type='text' name='me_zipcode' id='me_zipcode' value='${memberExVO.me_zipcode}' placeholder="우편번호">
-        <input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>        
-      </li>
-      <li>
-        <label class='' for='me_addr1'>주소</label>
-        <input type='text' name='me_addr1' id='me_addr1' value='${memberExVO.me_addr1}' size='60' placeholder="주소">  
-      </li>
-      <li>
-        <label class='' for='me_addr2'>상세 주소</label>
-        <input type='text' name='me_addr2' id='me_addr2' value='${memberExVO.me_addr2}' size='40' placeholder="상세 주소">      
-      </li>
-      <li>
-        <label class='label'></label>  
+  <div id="formcon">
+    <FORM name='frm' method='POST' action='./update.do'>
+    <input type='hidden' name='me_no' value='${memberExVO.me_no}'>     
+    <h4><span><i class="fa fa-bullhorn"></i> 정보 수정</span></h4>    
+    <fieldset>
+    <table>
+     <tbody>
+      <tr>
+        <th scope="row">
+        <label class='' for='me_id'>아이디</label></th>
+        <td> ${memberExVO.me_id} 
+         <SPAN id='panel_id'>(ID는 변경할 수 없습니다.)</SPAN>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">         
+        <label class='' for='me_pw'>비밀번호</label></th>
+        <td>
+         <button type="button" name="me_pw" id="me_pw" onclick="javascript:open_win();">비밀번호 변경</button>
+        </td>
+      </tr>  
+      <tr>
+        <th scope="row">
+         <label class='' for='me_name'>성명</label></th>
+         <td> ${memberExVO.me_name}
+          <SPAN id='panel_nema'>(이름은 변경할 수 없습니다.)</SPAN>
+         </td>
+      </tr>
+      <tr>
+        <th scope="row">      
+          <label class='' for='me_nick'>닉네임</label></th>
+          <td> ${memberExVO.me_nick}
+          <SPAN id='panel_nick'>(닉네임은 변경할 수 없습니다.)</SPAN>
+         </td>
+      </tr>   
+      <tr>
+        <th scope="row">
+          <label class='' for='me_tel'>전화번호</label></th>
+          <td>
+            <input type="tel" name='me_tel' id='me_tel' value='${memberExVO.me_tel}'> 예) 010-0000-0000
+          </td>
+      </tr>     
+      <tr>
+        <th scope="row">
+         <label class='' for='me_zipcode'>우편번호</label></th>
+         <td>
+          <input type='text' name='me_zipcode' id='me_zipcode' value='${memberExVO.me_zipcode}' placeholder="우편번호">
+          <input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>        
+         </td>
+      </tr>   
+      <tr>
+        <th scope="row">
+          <label class='' for='me_addr1'>주소</label></th>
+        <td> 
+          <input type='text' name='me_addr1' id='me_addr1' value='${memberExVO.me_addr1}' size='60' placeholder="주소">  
+        </td>
+      </tr>         
+      <tr>
+        <th scope="row">        
+         <label class='' for='me_addr2'>상세 주소</label></th>
+         <td>
+          <input type='text' name='me_addr2' id='me_addr2' value='${memberExVO.me_addr2}' size='40' placeholder="상세 주소">      
+         </td>
+      </tr>
+      <tr>
+        <th scope="row">         
+         <label class='label'></label></th>
 <!-- ----- DAUM 우편번호 API 시작 ----- -->
- 
+<td> 
 <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 110px;position:relative">
   <img src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 </div>
@@ -153,29 +176,26 @@
     }
 </script>
 <!-- ----- DAUM 우편번호 API 종료----- -->
+</td>
+</tr>
+</tbody>
+</table>
         
-      </li>
-      <li class='right'>
-        <button type="submit">저장</button>
-         <button type='button' onclick="location.href='<%=root%>/index.do'">홈으로</button>
+      <div class='right'>
          <c:choose>
           <c:when test="${memberExVO.me_vis eq 'y' }">
-        <button type="button" onclick="location.href='./memberout.do?me_no=${memberExVO.me_no}'">회원 탈퇴</button>  
+           <button type="button" class="btn btn-danger btn-sm" onclick="location.href='./memberout.do?me_no=${memberExVO.me_no}'">회원 탈퇴</button>  
           </c:when>
           <c:when test="${memberExVO.me_vis eq 'n' }">
-        <button type="button" onclick="location.href='./memberin.do?me_no=${memberExVO.me_no}'">회원 복귀</button>  
+            <button type="button" class="btn btn-info btn-sm" onclick="location.href='./memberin.do?me_no=${memberExVO.me_no}'">회원 복귀</button>  
           </c:when>
          </c:choose>
-        
-        
-        
-      </li>         
-    </ul>
-  </fieldset>
-</FORM>
+        <button type="submit" class="btn btn-default btn-sm">저장</button>
+     </fieldset>
+  </FORM>
 </DIV>
-    </div>
- </div>
+</div>
+</div>
 </div>
 </body>
 
