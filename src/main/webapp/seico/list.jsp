@@ -5,7 +5,7 @@
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
-<meta charset="UTF-8"> 
+<meta charset="UTF-8">
 <title>취업 성공후기 게시판</title>    
  
 </head>
@@ -30,10 +30,34 @@
 </section>
 </section>
 
+
+
+
+   <form name="frmSearch" method="get" action="./list.do"> 
+  <select class='content_menu' name="col"  >
+        <option value="">선택</option> 
+        <option value="title" ${searchDTO.col == "title" ? "selected=selected" : "" }>제목</option> 
+        <option value="content" ${searchDTO.col == "content" ? "selected=selected" : "" }>내용</option> 
+        <option value="title_content" ${searchDTO.col == "title_content" ? "selected=selected" : "" }>제목+내용</option> 
+        <option value="total" ${searchDTO.col == "" ? "selected=selected" : "" }>전체 목록</option>
+      </select>
+      <c:choose>
+        <c:when test="${searchDTO.col != 'total' }"> <!-- 검색 상태 -->
+          <input type="text" name="word" size="15" value="${searchDTO.word }">
+        </c:when>
+        <c:when test="${searchDTO.col == 'total' }"> <!-- 전체 레코드 -->
+          <input type="text" name="word" size="15" value="">
+        </c:when>
+      </c:choose>
+      <input type="image" class="btn-sch" src="../seico/images/search_ico.gif" onclick="./list.do""/>
+</form>
+
+
 <div style='position: relative; top:40%; left:55%;'>
 <jsp:include page="createboot.jsp" flush='false' />
 </div> <!-- 오른쪽 등록 폼 -->
 
+</div>
 
    <c:forEach var="seicoVO" items="${list }">
     <section class="content blog">
@@ -90,6 +114,8 @@
 
    </c:forEach>
     <DIV class='bottom'>${paging}</DIV>
+    
+    
 
 </body>
 

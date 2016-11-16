@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import web.tool.Paging;
 import web.tool.SearchDTO;
 import web.tool.Tool;
 import web.tool.Upload;
@@ -121,6 +120,17 @@ public class SeicoCont {
     String sc_cont = seicoVO.getSc_cont();
     sc_cont = Tool.convertChar(sc_cont);  
     seicoVO.setSc_cont(sc_cont);
+    
+    String sc_q = seicoVO.getSc_q();
+    sc_cont = Tool.convertChar(sc_q);  
+    seicoVO.setSc_cont(sc_q);
+    
+    String sc_tip = seicoVO.getSc_tip();
+    sc_cont = Tool.convertChar(sc_tip);  
+    seicoVO.setSc_cont(sc_tip);
+    
+    
+    
     
     mav.addObject("seicoVO", seicoVO); 
  
@@ -298,7 +308,7 @@ public class SeicoCont {
     totalRecord = seicoDAO.count(hashMap);
     mav.addObject("totalRecord", seicoDAO.count(hashMap)); // 검색된 레코드 갯수
     
-    String paging = new Paging().paging726( 
+    String paging = new Paging2().paging726(
                         totalRecord, 
                         searchDTO.getNowPage(), 
                         recordPerPage, 
