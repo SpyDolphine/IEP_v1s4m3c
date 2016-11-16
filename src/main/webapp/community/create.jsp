@@ -40,7 +40,7 @@
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
    
-          <div id="formcon">
+        <div id="formcon">
           <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data">
           <h4><span>글쓰기</span></h4>  
            <fieldset>

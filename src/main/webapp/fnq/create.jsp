@@ -8,10 +8,16 @@
 <meta charset="UTF-8">
 <title>FnQ</title>    
   
-</head>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
+<style>
+  strong {
+    color : red;
+  }
+</style>
+</head>
+
 <section class="wrapper">
     <section class="page_head">
         <div class="container">
@@ -52,6 +58,7 @@
                  <td> 
                   <input type='radio' name='fq_CH' value='H' required="required"> 홈페이지 &nbsp;
                   <input type='radio' name='fq_CH' value='C' required="required"> 회사
+                  &nbsp;<strong> <i class="fa fa-check-square-o"></i> 카테고리를 선택해주세요!</strong>
                  </td>
               </tr>
               <tr>

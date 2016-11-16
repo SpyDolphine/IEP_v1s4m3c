@@ -30,9 +30,18 @@ public class TipCont {
     
   @RequestMapping(value = "/tip/create.do", 
       method = RequestMethod.GET)
-  public ModelAndView create() {
+  public ModelAndView create(String tp_ch) {
   ModelAndView mav = new ModelAndView();
   mav.setViewName("/tip/create"); // /webapp/tip/create.jsp
+  
+  mav.addObject("tp_ch", tp_ch);
+  if(tp_ch.equals("A")){
+    mav.addObject("ch", "자소서");
+  }
+  if(tp_ch.equals("I")){
+    mav.addObject("ch", "면접");
+  }
+  
   return mav;
   }
   

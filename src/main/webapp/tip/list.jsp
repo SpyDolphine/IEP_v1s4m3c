@@ -43,7 +43,7 @@
     </DIV>
     <div style='clear: both;'></div> 
     <div class='right'>
-      <A href='./create.do' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 글쓰기</i></A>
+      <A href='./create.do?tp_ch=${tp_ch}' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 글쓰기</i></A>
     </div> 
     <div style='clear: both;'></div>     
     
