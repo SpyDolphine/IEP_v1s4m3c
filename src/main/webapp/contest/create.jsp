@@ -148,7 +148,7 @@
           </tr>
          </tbody>
         </table>
-       </fieldset>
+       </fieldset> 
                
       <div class='right'>
         <button type="submit" class="btn btn-info btn-sm">등록</button>

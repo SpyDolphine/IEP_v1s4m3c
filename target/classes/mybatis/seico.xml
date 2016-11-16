@@ -120,9 +120,9 @@ SELECT COUNT(*) as sc_cnt FROM seico
 
 
 <select parameterType="HashMap" id="list" resultType="SeicoVO">
-SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2,sc_like, r 
- FROM( SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2,sc_like, rownum as r 
-  FROM( SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2, sc_like
+SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2,sc_like, sc_stars, sc_position, r 
+ FROM( SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2,sc_like,sc_stars, sc_position, rownum as r 
+  FROM( SELECT sc_no, sc_area, sc_jobs, sc_title, sc_name, sc_cnt, sc_date, file1, file2, size2, sc_like, sc_stars, sc_position
 FROM seico 
 
 <choose>

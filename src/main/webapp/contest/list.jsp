@@ -9,7 +9,7 @@
 <head> 
 <meta charset="UTF-8">
 <title>공모전</title>    
- 
+  
 </head>
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />

@@ -6,7 +6,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8">
-<title>공모전</title>    
+<title>공모전</title>     
  <script type="text/javascript">
   $(function(){
     $('#file2').load(function(){ // 태그 메모리 상주후 작동
