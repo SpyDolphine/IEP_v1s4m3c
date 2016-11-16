@@ -21,7 +21,7 @@
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do?tp_ch=${tp_ch}'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">자소서</i> 
+                                <i class="fa fa-arrow-circle-right">${tp_ch}</i> 
                             </ul> 
                         </nav>
                     </div>
