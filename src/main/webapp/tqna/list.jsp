@@ -36,7 +36,7 @@
     <div class="list_content" style='width: 90%;'>
     <table class="table table-striped">
       <p style='text-align: right;'>
-        <A href='./create.do?qa_no=${tqnaVO.qa_no}' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 1:1 문의</i></A>
+        <A href='./weqna.jsp' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 1:1 문의</i></A>
         <A href='./create.do?qa_no=${tqnaVO.qa_no}' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 질문 등록</i></A><br><br><br><br>
       </p>     
      
