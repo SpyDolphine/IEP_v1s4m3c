@@ -87,7 +87,7 @@
                 </c:when>
             </c:choose>
             </td>
-            <td style='vertical-align: middle;'>
+            <td style='vertical-align: middle;' id='boardtitle'>
               <a href="./read.do?ct_no=${vo.ct_no}">${vo.ct_title}</a> 
             </td> 
               <td style='vertical-align: middle;'>${vo.ct_host}</td>

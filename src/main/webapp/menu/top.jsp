@@ -79,14 +79,14 @@ function open_win(){
         <div id="top-bar">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-8 top-info hidden-xs">
+                    <div class="col-sm-7 top-info hidden-xs">
                         <div class="service-icon">
                            <span><a href="https://www.jobplanet.co.kr">잡플래닛<i class="fa fa-hand-o-up"></i></a></span>
                            <span><a href="https://www.jobkorea.co.kr">잡코리아<i class="fa fa-hand-o-up"></i></a></span>
                            <span><a href="https://www.saramin.co.kr">사람인<i class="fa fa-hand-o-up"></i></a></span>
                         </div>
                     </div>
-                    <div class="col-sm-4 top-info">
+                    <div class="col-sm-5 top-info">
                            <c:if test="${empty sessionScope.me_id }">
                             <a class='' href='<%=root %>/memberex/login.do'>로그인</a> |
                             <a class=''  href="javascript:open_win();">회원가입</a> |
