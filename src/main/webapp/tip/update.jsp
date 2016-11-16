@@ -13,7 +13,7 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
 <section class="wrapper">
-    <section class="page_head">
+    <section class="page_head"> 
         <div class="container">
              <div class="row">
                  <div class="col-lg-12 col-md-12 col-sm-12">

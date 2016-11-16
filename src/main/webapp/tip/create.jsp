@@ -15,7 +15,7 @@
 <script>
 window.onload=function(){
   CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
-};
+}; 
 
 // content: textarea name
 if (CKEDITOR.instances['content'].getData() == '') {

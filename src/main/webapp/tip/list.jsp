@@ -15,7 +15,7 @@
 <section class="wrapper">
     <section class="page_head">
         <div class="container">
-             <div class="row">
+             <div class="row"> 
                  <div class="col-lg-12 col-md-12 col-sm-12">
                         <nav id="breadcrumbs">
                             <ul>
