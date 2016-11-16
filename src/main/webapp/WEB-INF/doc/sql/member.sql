@@ -9,15 +9,12 @@ CREATE TABLE IEP_MEMBER(
     me_addr1          VARCHAR2(100)    NOT NULL,-- 회원 주소
     me_addr2          VARCHAR2(100)    NOT NULL,-- 회원 상세주소
     me_tel               varchar2(20)     NOT NULL,    -- 회원 전화번호
-    me_auth           varchar2(50)        not null,       -- 인증번호
-    me_confirm         char(1)    default 'N',             -- 인증번호
     me_date            DATE     NOT NULL,              -- 회원 등록일
     me_vis              char(1)        default 'y',           --  회원 탈퇴여부 'y'회원, 'n'탈퇴
     primary key(me_no)
 );
 
-
-
+alter table iep_member MODIFY( me_pw VARCHAR2(100))
 CREATE TABLE uriLog(
    urilogno NUMBER(7)                   NOT NULL, -- 일련 번호
    id          VARCHAR(10) DEFAULT 'guest' NOT NULL, -- 아이디
