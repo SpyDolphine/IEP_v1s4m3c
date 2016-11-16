@@ -48,7 +48,7 @@
       $('#me_id').focus();
     }
   }
-  /*
+ /*
   닉네임를 중복 체크하는 jqeury 부분
 */
   function checkNick_res(data){
@@ -63,28 +63,21 @@
       $('#me_nick').focus();
     }
   }
-/* $(document).ready(function(){
-    $('#me_pw').keyup(function(){
+$(document).ready(function(){
+  $('#me_pw').keyup(function(){
+    $('#panel_pw').text('');
+  });
+  $('#reme_pw').keyup(function(){
+    if($('#me_pw').val() != $('#reme_pw').val()){
       $('#panel_pw').text('');
-    });
-    $('#reme_pw').keyup(function(){
-      if($('#me_pw').val() != $('#reme_pw').val()){
-        $('#panel_pw').text('');
-        $('#panel_pw').html("<b> 비밀번호가 일치 하지 않습니다.</b>");
-      }else{
-        $('#panel_pw').text('');
-        $('#panel_pw').html("<b> 비밀번호가 일치</b>");
-      }
-    });
-  }); */
-var me_nick=$('#me_nick');
-function send() {
-    if(me_nick.val() == null){
-      $('#panel_nick').css('color', '#FF0000');
-      $('#panel_nick').html('닉네임을 입력해주세요');
-      return false;
+      $('#panel_pw').html("<b> 비밀번호가 일치 하지 않습니다.</b>");
+    }else{
+      $('#panel_pw').text('');
+      $('#panel_pw').html("<b> 비밀번호가 일치</b>");
     }
-}
+  });
+});
+
 </script>
 <style type="text/css">
 
@@ -136,6 +129,7 @@ function send() {
   vertical-align: middle;
   margin-top: 5px
 }
+
 </style>
 </head>
 <section class="wrapper">
@@ -166,8 +160,6 @@ function send() {
  
  <div id="formcon">
   <form id="frm"  name = "frm" action="./create_com.do" method='post'   onsubmit = 'return send()'>
-        <input type='hidden' name= "me_auth" id="me_auth" >
-      <input type='hidden' name= "me_comfirm" id="me_comfirm">
   <input type="hidden" id= "me_grade" name="me_grade" value="C">
   <h3><span>기본정보입력</span></h3>  
    <fieldset>
@@ -179,7 +171,6 @@ function send() {
          <td>
           <input type="email" id="me_id" name="me_id"  placeholder="example@example.com" required="required" class="form-control">
           보유하신 이메일을 입력해주세요<br>
-          <strong>* 가입 완료를 위한 이메일 인증이 진행되니 정확한 이메일 주소를 입력해 주시기 바랍니다.</strong>
           <br>
           <button type='button' class="btn btn-primary btn-xs" onclick="checkId()">중복확인</button>
           <SPAN id='panel_id'></SPAN> <!-- id 중복관련 메시지 -->

@@ -159,8 +159,6 @@
 
         <div id="formcon">
           <form id="frm" name="frm" action="./create.do" method='post'  onsubmit='return send();'>
-          <input type = "hidden" name ="me_auth" id="me_auth">
-          <input type='hidden' name= "me_comfirm" id="me_comfirm">
           <h3><span>기본정보입력</span></h3>  
            <fieldset>
             <table>
@@ -171,13 +169,9 @@
                 <td>
                   <input  type="email" id="me_id" name="me_id"  placeholder="example@example.com" class="form-control" required="required">
                   보유하신 이메일을 입력해주세요<br>
-                  <strong>* 가입 완료를 위한 이메일 인증이 진행되니 정확한 이메일 주소를 입력해 주시기 바랍니다.</strong>
                   <br>
                     <button type='button' class="btn btn-primary btn-xs" onclick="checkId()">중복확인</button>
                     <SPAN id='panel_id'></SPAN> <!-- id 중복관련 메시지 -->
-                    <SPAN id='panel_id'>
-                    <button id = 'injeung' class="btn btn-default btn-xs">인증 확인</button>
-                    </SPAN> <!-- id 중복관련 메시지 -->
                 </td>
               </tr>
               <tr>

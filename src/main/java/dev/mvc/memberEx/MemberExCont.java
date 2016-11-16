@@ -46,9 +46,7 @@ public class MemberExCont {
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
     // 인증키 등록 
-    String auth = Tool.key();
-    
-    memberexVO.setMe_auth(auth);
+
     // 비밀번호 암호화하여 저장
     String me_pw = memberexVO.getMe_pw();
     AES256Util aes256;
@@ -99,6 +97,22 @@ public class MemberExCont {
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
 
+    // 인증키 등록 
+    String auth = Tool.key();
+    
+    memberexVO.setMe_auth(auth);
+    // 비밀번호 암호화하여 저장
+    String me_pw = memberexVO.getMe_pw();
+    AES256Util aes256;
+    try {
+      aes256 = new AES256Util();
+      String me_pwsc = aes256.aesEncode(me_pw);
+      memberexVO.setMe_pw(me_pwsc);
+      
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    
     if (memberExDAO.create_com(memberexVO) == 1) {
       msgs.add("회원가입이 처리되었습니다.");
       msgs.add("가입해주셔서 감사합니다.");
@@ -437,6 +451,17 @@ public ModelAndView memberout(MemberExVO memberExVO){
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
  
+    String me_pw = memberExVO.getMe_pw();
+    AES256Util aes256;
+    try {
+      aes256 = new AES256Util();
+      String me_pwsc = aes256.aesEncode(me_pw);
+      memberExVO.setMe_pw(me_pwsc);
+      
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    
     // 현재 패스워드 일치 여부 검사
     if (memberExDAO.passwdCheck(memberExVO.getMe_no(), memberExVO.getOld_passwd()) == 1){
       // 패스워드 변경 실행
