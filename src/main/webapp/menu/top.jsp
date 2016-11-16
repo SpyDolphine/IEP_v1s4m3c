@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style-fraction.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css"/> 
 
-<!-- JS FILES -->
+<!-- JS FILES --> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.easing.1.3.js"></script>
