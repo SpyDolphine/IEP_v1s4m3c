@@ -9,17 +9,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 회원가입 등록 -->
   <insert id="create" parameterType="MemberExVO">
     INSERT INTO IEP_MEMBER(me_no, me_id, me_pw, me_nick, me_name, me_grade, me_zipcode,
-    me_addr1, me_addr2, me_tel, me_auth, me_confirm, me_date, me_vis)
+    me_addr1, me_addr2, me_tel, me_date, me_vis)
     VALUES ((SELECT NVL(MAX(me_no), 0)+1 as me_no FROM IEP_MEMBER),
     #{me_id}, #{me_pw}, #{me_nick}, #{me_name}, 'M', #{me_zipcode}, #{me_addr1},
-    #{me_addr2}, #{me_tel}, #{me_auth}, 'N', sysdate, 'y')
+    #{me_addr2}, #{me_tel}, sysdate, 'y')
   </insert>
   <insert id="create_com" parameterType="MemberExVO">
     INSERT INTO IEP_MEMBER(me_no, me_id, me_pw, me_nick, me_name, me_grade, me_zipcode,
-    me_addr1, me_addr2, me_tel, me_auth, me_confirm, me_date, me_vis)
+    me_addr1, me_addr2, me_tel, me_date, me_vis)
     VALUES ((SELECT NVL(MAX(me_no), 0)+1 as me_no FROM IEP_MEMBER),
     #{me_id}, #{me_pw}, #{me_nick}, #{me_name}, 'C', #{me_zipcode}, #{me_addr1},
-    #{me_addr2}, #{me_tel}, #{me_auth}, 'N', sysdate, 'y')
+    #{me_addr2}, #{me_tel}, sysdate, 'y')
   </insert>
 
   <!-- 아이디 중복 체크 -->
@@ -101,15 +101,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SET me_pw=#{me_pw}
     WHERE me_no=#{me_no}
   </update>
- <!-- 사용자가 회원가입 이메일 링크를 클릭했을 경우 -->
- <update id="confirm" parameterType="MemberExVO">
- update iep_member
- set me_confirm = 'Y'
- where me_id=#{me_id} and me_auth=#{#auth}
- </update>
- <select id="count">
-  select count(*) as cnt
-  from iep_member
-  where me_grade = #{me_grade}
- </select>
+ 
 </mapper>
