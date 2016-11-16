@@ -65,19 +65,19 @@
              <c:set var='file2' value="${fn:toLowerCase(contestVO.ct_file2)}" />
               <c:choose>
                 <c:when test="${fn:endsWith(file2, '.jpg')}">
-                  <IMG src='./storage/${contestVO.ct_file1}' style='width:400px;'>
+                  <IMG src='./storage/${contestVO.ct_file1}' style='width:350px; margin: 5px;'>
                 </c:when>
                 <c:when test="${fn:endsWith(file2, '.gif')}">
-                  <IMG id='ct_file2'  src='./storage/${contestVO.ct_file2}' style='width:400px;'>
+                  <IMG id='ct_file2'  src='./storage/${contestVO.ct_file2}' style='width:350px; margin: 5px;'>
                 </c:when>
                 <c:when test="${fn:endsWith(file2, '.png')}">
-                  <IMG id='ct_file2'  src='./storage/${contestVO.ct_file2}' style='width:400px;'>
+                  <IMG id='ct_file2'  src='./storage/${contestVO.ct_file2}' style='width:350px; margin: 5px;'>
                 </c:when>
                 <c:when test="${contestVO.ct_file2.length() > 0}">
                   ${contestVO.ct_file2 }
                 </c:when>
                 <c:otherwise>
-                  <img src='./images/no.jpg' style='width:400px;'>
+                  <img src='./images/no.jpg' style='width:400px; margin: 5px;'>
                 </c:otherwise>            
               </c:choose>
             </td>
