@@ -123,7 +123,7 @@ function open_win(){
                     <!-- Logo / Mobile Menu -->
                     <div  class="col-lg-3 col-sm-3 ">
                         <div id="logo">
-                            <h1><a href="<%=root %>/index.jsp"><img alt="logo" src="<%=root %>/menu/images/wind.jpg" style='width:100px;'/> &nbsp;IEP</a></h1>
+                            <h1><a href="<%=root %>/index.jsp"><img alt="logo" src="<%=root %>/menu/images/logo.png" style='width:300px;'/></a></h1>
                         </div>
                     </div>
                     <!-- Navigation ================================================== -->

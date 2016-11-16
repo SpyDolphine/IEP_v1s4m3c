@@ -21,7 +21,7 @@
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do?tp_ch=${tp_ch}'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">${ch}</i> 
+                                <i class="fa fa-arrow-circle-right"> ${ch }</i> 
                             </ul> 
                         </nav>
                     </div>
@@ -34,8 +34,19 @@
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-    <DIV class='title'>Tip</DIV>
-    <button type='button' onclick="location.href='./create.do'">등록</button>
+   
+   <DIV class='content' style='width: 80%;'>
+    <DIV class='left'>
+       <div class="widget_title">
+          <h4><i class="fa fa-lightbulb-o"></i> ${ch } TIP !<br></h4>
+       </div>
+    </DIV>
+    <div style='clear: both;'></div> 
+    <div class='right'>
+      <A href='./create.do' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 글쓰기</i></A>
+    </div> 
+    <div style='clear: both;'></div>     
+    
       <div class="widget widget_tab">
           <div class="velocity-tab sidebar-tab">
               <ul class="nav nav-tabs">
@@ -45,7 +56,7 @@
                 </c:forEach>
               </ul>
       
-              <div  class="tab-content clearfix">
+              <div class="tab-content clearfix">
                 <c:forEach var="tipVO" items="${list }">
                   <div class="tab-pane fade" id="${tipVO.tp_no}">
                     <ul class="recent_tab_list" >
@@ -60,6 +71,7 @@
               </div>
           </div>
       </div>
+    </div> 
 <!-- ------------------------------------------------------------------------------- -->
    </div>
  </div>
