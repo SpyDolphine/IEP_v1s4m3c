@@ -378,7 +378,7 @@ public class Paging {
  
     int _nowPage = (nowGrp-1) * pagePerBlock; // 10개 이전 페이지로 이동 
     if (nowGrp >= 2){ 
-      str.append("<span class='span_box_1'><A href='./list4.do?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>"
+      str.append("<span class='span_box_1'><A href='./list.do?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>"
           + "<img src='./images/board_num_arrow_b.gif'>"
           + "</A></span>");
     } 
