@@ -60,7 +60,7 @@ function checkDel() {
                         <nav id="breadcrumbs">
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
-                                <i class="fa fa-arrow-circle-right"> 홈페이지 FnQ</i>
+                                <i class="fa fa-arrow-circle-right"> 일반 FnQ</i>
                             </ul> 
                         </nav>
                     </div>

@@ -14,6 +14,13 @@ CREATE TABLE IEP_MEMBER(
     primary key(me_no)
 );
 
+select * from IEP_MEMBER
+
+update iep_member
+set me_grade = 'A'
+where me_no = 2
+
+alter table iep_member add(me_vis char(1))
 alter table iep_member MODIFY( me_pw VARCHAR2(100))
 CREATE TABLE uriLog(
    urilogno NUMBER(7)                   NOT NULL, -- 일련 번호

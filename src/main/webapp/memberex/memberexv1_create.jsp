@@ -169,7 +169,6 @@
                 <td>
                   <input  type="email" id="me_id" name="me_id"  placeholder="example@example.com" class="form-control" required="required">
                   보유하신 이메일을 입력해주세요<br>
-                  <br>
                     <button type='button' class="btn btn-primary btn-xs" onclick="checkId()">중복확인</button>
                     <SPAN id='panel_id'></SPAN> <!-- id 중복관련 메시지 -->
                 </td>

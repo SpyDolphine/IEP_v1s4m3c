@@ -8,7 +8,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8">
-<title>공모전 </title>    
+<title>공모전</title>    
  
 </head>
 <!-- ----------------------------------------- -->
@@ -23,7 +23,7 @@
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">공모전 </i>   
+                                <i class="fa fa-arrow-circle-right"> 공모전 </i>   
                             </ul> 
                         </nav>
                     </div>
@@ -37,37 +37,28 @@
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
 
-   <div class='content_menu' style='width: 100%;'>
-    <A href='./list.do'>공모전 목록</A> |
-    <a href='<%=root %>/index.do'> 홈으로 </a>|
-    <c:if test="${sessionScope.me_grade eq 'A' }">        
-    <A href='./create.do'>등록</A>｜
-    </c:if>
-    <A href="javascript:location.reload();">새로고침</A> |
+    <div class="list_content" style='width: 90%;'>
+    <table class="table table-striped">
+      <p style='text-align: right;'>
+        <c:if test="${sessionScope.me_grade eq 'A' }">        
+          <A href='./create.do' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 글쓰기</i></A>
+        </c:if>
+      </p>  
   </div>
-  <div class="content" style='width: 80%;'>
-    <table class="table table-striped" style='width: 80%;text-align: center;'>
-      <colgroup>
-        <col style="width: 5%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 35%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 15%;"></col>
-        <col style="width: 15%;"></col>
-         <col style="width: 5%;"></col>
-        </colgroup>
-      <%-- table 컬럼 --%>
-      <thead>
-        <tr>
-          <th>번호</th>
-          <th>포스터</th>
-          <th>공모전 명칭</th>
-          <th>주최</th>
-          <th>접수 기간</th>
-          <th>공모전 날짜</th>
-          <th>조회수</th>
-        </tr>
-      </thead>
+     <br> 
+  
+  <%-- table 컬럼 --%>
+  <thead>
+    <tr>  
+      <th style="width: 5%;">번호</th>
+      <th style="width: 10%;">포스터</th>
+      <th style="width: 35%;">공모전 명칭</th>
+      <th style="width: 10%;">주최</th>
+      <th style="width: 15%;">접수 기간</th>
+      <th style="width: 15%;">공모전 날짜</th>
+      <th style="width: 7%;">조회수</th>
+    </tr>
+  </thead>
       
       <%-- table 내용 --%>
       <tbody>

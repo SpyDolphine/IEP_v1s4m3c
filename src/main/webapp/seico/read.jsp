@@ -133,7 +133,7 @@ $(document).ready(function(){
 <section class="content blog">
 <div class="container">
  <div class="row">
-   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
     <div class="blog_single col-xs-8 col-sm-8 col-md-8 col-lg-8">
             <article class="post">
               <div class="post_date">
