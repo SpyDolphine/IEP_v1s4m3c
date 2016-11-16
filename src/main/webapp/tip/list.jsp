@@ -55,13 +55,20 @@
                 <li class="" ><a href="#${tipVO.tp_no}" data-toggle="tab">${fn:substring(string,0,10)}</a></li>
                 </c:forEach>
               </ul>
-      
+
               <div class="tab-content clearfix">
+              <div class="tab-pane fade active in">
+                <div style='border: 30px solid #f4f4f4; margin: 0 0 20px 0;'>
+                <!-- 면접카테고리 기본 이미지 --><img src = "./images/tipimage.jpg">
+                </div>
+              </div>
                 <c:forEach var="tipVO" items="${list }">
                   <div class="tab-pane fade" id="${tipVO.tp_no}">
                     <ul class="recent_tab_list" >
-                        <A href='./delete.do?tp_no=${tipVO.tp_no}'>삭제 |</A>
-                        <A href='./update.do?tp_no=${tipVO.tp_no}'>수정</A></li>
+                      <div class="right">
+                        <A href='./update.do?tp_no=${tipVO.tp_no}'>수정 |</A>
+                        <A href='./delete.do?tp_no=${tipVO.tp_no}'>삭제</A>
+                      </div>  
                         <li class="comments_list clearfix">
                               <a href="#">${tipVO.tp_content}</a>
                         </li>
