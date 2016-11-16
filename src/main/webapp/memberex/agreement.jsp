@@ -25,7 +25,7 @@ function send(){
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
-<section class="wrapper">
+<section class="wrapper"> 
     <section class="page_head">
         <div class="container">
              <div class="row">

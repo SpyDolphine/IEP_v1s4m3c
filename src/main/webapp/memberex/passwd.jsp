@@ -85,7 +85,7 @@ function send(){
           <button type="button" class="btn btn-default btn-xs" onclick="location.href=self.close();">취소</button>
         </DIV>      
 </FORM>
-</DIV>
+</DIV> 
  
 <!-- -------------------------------------------- -->
 </body>

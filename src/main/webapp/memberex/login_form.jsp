@@ -17,7 +17,7 @@ Cookie[] cookies = request.getCookies();
 Cookie cookie = null;
 String ck_id = "";
 String ck_id_save = "";
-String ck_passwd = "";
+String ck_passwd = ""; 
 String ck_passwd_save = "";
  
 for (int i=0; i < cookies.length; i++){

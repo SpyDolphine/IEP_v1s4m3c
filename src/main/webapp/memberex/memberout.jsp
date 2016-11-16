@@ -28,7 +28,7 @@
     return true; // 서브밋(전송) 진행
     // alert('OK');
   }
-}
+} 
  */
  function send() {
   if(!($('#agree').is(":checked"))){

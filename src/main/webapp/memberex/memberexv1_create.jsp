@@ -19,7 +19,7 @@
   });
 
   /*
-    아이디를 중복 체크하는 jqeury 부분
+    아이디를 중복 체크하는 jqeury 부분 
    */
   function checkId() {
     var params = 'me_id=' + $('#me_id').val();

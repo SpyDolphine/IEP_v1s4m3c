@@ -22,7 +22,7 @@ function memberin(me_no) {
   winObject = window.open("././memberin.do?me_no="+me_no,"",settings);
    
 }
-</script>
+</script> 
 <section class="wrapper">
     <section class="page_head">
         <div class="container">

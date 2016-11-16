@@ -22,7 +22,7 @@
     text-align: left;
     margin: 5% 15%;
  }
- 
+  
  hr {
   border: 3px solid #ff0066;
   margin: 8px 50px;

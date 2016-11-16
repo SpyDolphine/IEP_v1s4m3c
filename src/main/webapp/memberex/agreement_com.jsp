@@ -23,7 +23,7 @@ function send(){
 </script> 
 </head>
 <!-- ----------------------------------------- -->
-<jsp:include page="/menu/top.jsp" flush='false' />
+<jsp:include page="/menu/top.jsp" flush='false' /> 
 <!-- ----------------------------------------- -->
 <section class="wrapper">
     <section class="page_head">

@@ -19,7 +19,7 @@
     /*
       아이디를 중복 체크하는 ajax 부분
     */
-  function checkId(){
+  function checkId(){ 
     var params = 'me_id=' + $('#me_id').val();
     // 요청 주소, 전달 값, 응답 처리 함수, 전송 받는 형식
     $.post('./checkId.do', params, checkId_res, 'json');

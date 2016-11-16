@@ -23,7 +23,7 @@
   -moz-border-radius:8px;
   -webkit-border-radius:8px;
   border-radius:8px;
-  display:inline-block;
+  display:inline-block; 
   cursor:pointer;
   color:#ffffff;
   font-family:Arial;
