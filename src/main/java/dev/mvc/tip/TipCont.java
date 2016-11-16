@@ -98,6 +98,12 @@ public class TipCont {
     }
     mav.addObject("list", list);
     mav.addObject("tp_ch", tp_ch);
+    if(tp_ch.equals("A")){
+      mav.addObject("ch", "자소서");
+    }
+    if(tp_ch.equals("I")){
+      mav.addObject("ch", "면접");
+    }
     mav.addObject("root", request.getContextPath());
     
     totalRecord = tipDAO.count(hashMap);
