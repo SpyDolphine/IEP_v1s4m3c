@@ -6,72 +6,50 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title></title>
-
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-<script type="text/javascript" src="../js/tool.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
-$(function(){
-
-});
-</script>
-
-<script type="text/javascript">
-</script>
+<title>Q&A 게시판</title>
+<!-- ----------------------------------------- -->
+<jsp:include page="/menu/top.jsp" flush='false' />
+<!-- ----------------------------------------- -->
 </head>
 
-<body leftmargin="0" topmargin="0">
-<div class="container">
-  <jsp:include page="/menu/top.jsp" flush='false' />
+<section class="wrapper">
+  <section class="page_head">
+      <div class="container">
+           <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12">
+                      <nav id="breadcrumbs">
+                          <ul>
+                              <li><a href="../index.jsp">Home</a>/</li>
+                              <li><A href='./list.do'>목록</A></li>
+                              <i class="fa fa-arrow-circle-right"> Q & A</i> 
+                          </ul> 
+                      </nav>
+                  </div>
+              </div>
+          </div>
+</section>
+</section>
 
+<div class="container">
+ <div class="row" align='center'>
+   <div class="col-xs-12 col-lg-12">
+    <div class="list_content" style='width: 90%;'>
+    <table class="table table-striped">
+      <p style='text-align: right;'>
+        <A href='./create.do?qa_no=${tqnaVO.qa_no}' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 1:1 문의</i></A>
+        <A href='./create.do?qa_no=${tqnaVO.qa_no}' class="btn btn-default btn-xs"><i class="fa fa-pencil"> 질문 등록</i></A><br><br><br><br>
+      </p>     
      
-     
-  <form name="frmSearch" method="get" action="./list.do"> 
- 
-    <div class='content_menu' style='width: 100%;'>
-      <A href='./list.do'>게시판 목록</A> >
-      <A href='./create.do?qa_no=${tqnaVO.qa_no}'>등록</A>｜
-      <A href="javascript:location.reload();">새로고침</A>
-  
-      <select name="col"> 
-        <option value="">선택</option> 
-        <option value="qa_title" ${searchDTO.col == "qa_title" ? "selected=selected" : "" }>제목</option> 
-        <option value="qa_content" ${searchDTO.col == "qa_content" ? "selected=selected" : "" }>내용</option> 
-        <option value="qa_title_qa_content" ${searchDTO.col == "qa_title_qa_content" ? "selected=selected" : "" }>제목+내용</option> 
-        <option value="total" ${searchDTO.col == "" ? "selected=selected" : "" }>전체 목록</option>
-      </select>
-      <c:choose>
-        <c:when test="${searchDTO.col != 'qa_total' }"> <!-- 검색 상태 -->
-          <input type="text" name="word" size="15" value="${searchDTO.word }">
-        </c:when>
-        <c:when test="${searchDTO.col == 'qa_total' }"> <!-- 전체 레코드 -->
-          <input type="text" name="word" size="15" value="">
-        </c:when>
-      </c:choose>
-     
-      <input type="submit" value="검색">
-    </div>
-  </form> 
-  
-  <div class="content" style='width: 100%;'>
-    <table class="table table-striped" style='width: 100%;'>
       <%-- table 컬럼 --%>
       <thead>
         <tr>
-          <th>번호</th>
-          <th>제목</th>       
-          <th>등록일</th>
-          <th>파일</th>
-          <th>업로드 파일</th>
-          <th>수정&삭제</th>
+          <th style="width: 5%;">번호</th>
+          <th style="width: 40%;">질문</th>       
+          <th style="width: 10%;">등록일</th>
+          <th style="width: 10%;">파일</th>
+          <th style="width: 10%;">업로드 파일</th>
+          <th style="width: 10%;">관리</th>
         </tr>
-      
       </thead>
       
       <%-- table 내용 --%>
@@ -79,7 +57,7 @@ $(function(){
         <c:forEach var="vo" items="${list }">
           <tr>
             <td style='vertical-align: middle;'>${vo.qa_no}</td>
-            <td style='vertical-align: middle;'>
+            <td style='vertical-align: middle;' id='boardtitle'>
               <c:choose>
                 <c:when test="${vo.qa_ansnum == 0 }">
                   <img src='./images/url4.png' style='width: 14px;'>
@@ -92,9 +70,7 @@ $(function(){
                 </c:when>
               </c:choose>
               <a href="./read.do?qa_no=${vo.qa_no}&col=${searchDTO.col}&word=${searchDTO.word}">${vo.qa_title}</a>
-               
             </td>
-           
             <td style='vertical-align: middle;'>${vo.qa_date}</td>
             <td style='vertical-align: middle;'>
             <c:choose> 
@@ -120,21 +96,41 @@ $(function(){
             </td>
             <td style='vertical-align: middle;'>${vo.qa_file2}</td>
             <td style='vertical-align: middle;'>
-              <a href="./update.do?qa_no=${vo.qa_no}"><img src="./images/update.png" title="수정" border='0'/></a>
-              <a href="./delete.do?qa_no=${vo.qa_no} "><img src="./images/delete.png" title="삭제"  border='0'/></a>
-              <a href="./reply.do?qa_no=${vo.qa_no} "><img src="./images/reply.png" title="답변"  border='0'/></a>
+              <a href="./update.do?qa_no=${vo.qa_no}">수정</a>
+              <a href="./delete.do?qa_no=${vo.qa_no} ">삭제</a>
+              <a href="./reply.do?qa_no=${vo.qa_no} ">답변</a>
             </td>       
           </tr>
         </c:forEach>
-        
       </tbody>
     </table>
-    <DIV class='bottom'>${paging}</DIV>
-    <br><br>
-  </div>
-
-     <jsp:include page="/menu/bottom.jsp" flush='false' />     
-  </div>
+    
+  <form name="frmSearch" method="get" action="./list.do"> 
+      <select name="col"> 
+        <option value="">선택</option> 
+        <option value="qa_title" ${searchDTO.col == "qa_title" ? "selected=selected" : "" }>제목</option> 
+        <option value="qa_content" ${searchDTO.col == "qa_content" ? "selected=selected" : "" }>내용</option> 
+        <option value="qa_title_qa_content" ${searchDTO.col == "qa_title_qa_content" ? "selected=selected" : "" }>제목+내용</option> 
+        <option value="total" ${searchDTO.col == "" ? "selected=selected" : "" }>전체 목록</option>
+      </select>
+      <c:choose>
+        <c:when test="${searchDTO.col != 'qa_total' }"> <!-- 검색 상태 -->
+          <input type="text" name="word" size="15" value="${searchDTO.word }">
+        </c:when>
+        <c:when test="${searchDTO.col == 'qa_total' }"> <!-- 전체 레코드 -->
+          <input type="text" name="word" size="15" value="">
+        </c:when>
+      </c:choose>
+      <input type="submit" value="검색">
+  </form>    
+  <DIV class='bottom'>${paging}</DIV>
+</div>
+</div>
+</div>
+</div>
 </body>
-
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>     
 </html>
+

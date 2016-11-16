@@ -167,7 +167,7 @@ function open_win(){
                                                     <li><a href="<%=root %>/gurume/list.do">근처 맛집</a></li>
                                                 </ul>
                                             </li>                                        
-                                            <li><a href="#">블랙리스트</a></li>
+                                            <!-- <li><a href="#">블랙리스트</a></li> -->
                                         </ul>
                                     </li>
 
@@ -197,7 +197,7 @@ function open_win(){
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="#">IT 중고서적방</a>
+                                                <a href="<%=root %>/itos/list.do">IT 중고서적방</a>
                                             </li>                                            
                                         </ul>
                                     </li>
@@ -217,7 +217,7 @@ function open_win(){
                                             <li><a href="<%=root %>/community/listC.do">상담/공감방</a></li>                                                                                        
                                         </ul>
                                     </li>   
-                                    <li><a href="#">Q&A</a>
+                                    <li><a href="<%=root %>/tqna/list.do">Q&A</a>
                                     </li>                                                                    
                                 </ul>
                             </div>
