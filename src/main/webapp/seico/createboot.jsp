@@ -15,7 +15,7 @@
 
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-취업 성공후기 등록
+성공후기 등록
 </button>
  
     
@@ -47,8 +47,8 @@
       </div>
       <div>  
         <label for='sc_jobs'>취업지원직종 IT></label>
-        <select name='sc_jobs' id='sc_jobs'>
-           <option value="상세직종" selected="selected">상세직종</option>
+        <select name='sc_jobs' id='sc_jobs' required>
+           <option value="" >상세직종</option>
            <option value="DBA(Database Admin.)">DBA(Database Admin.)</option>
            <option value="ERP">ERP</option>
            <option value="QA(Quality Assurance)">QA(Quality Assurance)</option>
@@ -68,8 +68,8 @@
         </select>
         &nbsp; &nbsp;
         <label for='sc_position'>직급 및 직무</label>
-        <select name='sc_position' id='sc_position'>
-           <option value="직급 및 직무" selected="selected">직급 및 직무</option>
+        <select name='sc_position' id='sc_position' required>
+           <option value="">직급 및 직무</option>
            <option value="사원-대졸">사원-대졸</option>
            <option value="사원-전문대졸">사원-전문대졸</option>
            <option value="사원-고졸">사원-고졸</option>
@@ -87,8 +87,9 @@
         </select> 
         &nbsp; &nbsp; 
         <label for='sc_area'>근무지역</label>
-        <select name='sc_area' id='sc_area'>
-           <option value="서울" selected="selected">서울</option>
+        <select name='sc_area' id='sc_area' required>
+           <option value="" selected="selected">지역</option>
+           <option value="서울">서울</option>
            <option value="인천">인천</option>
            <option value="대구">대구</option>
            <option value="대전">대전</option>
@@ -126,8 +127,9 @@
       </div>        
       <div>  
         <label for='sc_stars'>면접 난이도</label>
-        <select name='sc_stars' id='sc_stars'>
-           <option value="★" selected="selected">★</option>
+        <select name='sc_stars' id='sc_stars' required>
+           <option value="" selected="selected">난이도 선택</option>
+           <option value="★">★</option>
            <option value="★★">★★</option>
            <option value="★★★">★★★</option>
            <option value="★★★★">★★★★</option>

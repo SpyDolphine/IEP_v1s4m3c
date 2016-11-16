@@ -121,7 +121,7 @@ $(document).ready(function(){
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right"> 취업성공 후기 게시판 </i>
+                                <i class="fa fa-arrow-circle-right"> 취업 성공 후기</i>
                             </ul> 
                         </nav>
                     </div>

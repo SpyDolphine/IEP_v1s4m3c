@@ -21,7 +21,7 @@
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do'>목록</A></li></i>
-                            <i class="fa fa-arrow-circle-right"> 취업 성공후기 게시판 </i> 
+                            <i class="fa fa-arrow-circle-right"> 취업 성공 후기 게시판 </i> 
                             </ul> 
                         </nav>
                     </div>
@@ -30,11 +30,17 @@
 </section>
 </section>
 
+<div class="col-xs-12">
+ <div style='width:500px; float:right;'>
+  <jsp:include page="createboot.jsp" flush='false' />
+ </div> 
+</div>
+ <div style="clear:both;"></div>
 
-
-
-   <form name="frmSearch" method="get" action="./list.do"> 
-  <select class='content_menu' name="col"  >
+<div class="col-xs-12">
+ <div style='width:550px; float:right;'>
+  <form name="frmSearch" method="get" action="./list.do"> 
+  <select class='content_menu' name="col">
         <option value="">선택</option> 
         <option value="title" ${searchDTO.col == "title" ? "selected=selected" : "" }>제목</option> 
         <option value="content" ${searchDTO.col == "content" ? "selected=selected" : "" }>내용</option> 
@@ -50,15 +56,10 @@
         </c:when>
       </c:choose>
       <input type="image" class="btn-sch" src="../seico/images/search_ico.gif" onclick="./list.do""/>
-</form>
-
-
-<div style='position: relative; top:40%; left:55%;'>
-<jsp:include page="createboot.jsp" flush='false' />
-</div> <!-- 오른쪽 등록 폼 -->
-
+  </form>
+ </div> 
 </div>
-
+<div style="clear:both;"></div>
    <c:forEach var="seicoVO" items="${list }">
     <section class="content blog">
       <div class="container">

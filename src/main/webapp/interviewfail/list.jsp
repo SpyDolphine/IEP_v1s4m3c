@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>정모방</title> 
+<title>취업 실패후기 게시판</title> 
 <!-- ----------------------------------------- -->
 <jsp:include page="/menu/top.jsp" flush='false' />
 <!-- ----------------------------------------- -->
@@ -21,7 +21,7 @@
                           <ul>
                               <li><a href="../index.jsp">Home</a>/</li>
                               <li><A href='./list.do'>목록</A></li>
-                              <i class="fa fa-arrow-circle-right"> 취업 실패 후기</i> 
+                              <i class="fa fa-arrow-circle-right"> 취업 실패 후기 게시판</i> 
                           </ul> 
                       </nav>
                   </div>
@@ -30,10 +30,12 @@
 </section>
 </section>
         
-
-<div style='position: relative; top:40%; left:55%;'>
-<jsp:include page="createboot.jsp" flush='false' />
+<div class="col-xs-12">
+ <div style='width:500px; float:right;'>
+  <jsp:include page="createboot.jsp" flush='false' />
+ </div> 
 </div>
+ <div style="clear:both;"></div>
 
   <c:forEach var="ifVO" items="${list }">
     <section class="content blog">
