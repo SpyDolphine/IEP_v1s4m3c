@@ -30,7 +30,7 @@ function autoResize(i)
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">설문조사</i> 
+                                <i class="fa fa-arrow-circle-right"> 설문조사</i> 
                             </ul> 
                         </nav>
                     </div>
@@ -43,37 +43,57 @@ function autoResize(i)
 <div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
-      <div class="write_content" style='width: 90%;'>
-          <FORM name='form_grp' method='POST' action='./update.do'>
+   
+      <div id="formcon">
+        <FORM name='form_grp' method='POST' action='./update.do'>
           <input type='hidden' name='sb_no' id='sb_no' value='${serveyboardVO.sb_no}'>
-              <button type="submit">수정</button>
-              <button href='./list.do'>목록</button>
-            <fieldset>
-              <ul>
-                <li>
-                  <label class='form_grp' for='title'>제목</label>
-                  <input type='text' name='title' value='${serveyboardVO.title}' size='60' required="required">
-                </li>
-                <li>
-                  <label class='form_grp' for='content'>내용</label><br>
-                  <TEXTAREA name='content' rows='10' cols='70'>${serveyboardVO.content}</TEXTAREA>
-                </li>
-                <li>
-                    <iframe src="../servey/list.do?sb_no=${serveyboardVO.sb_no}" onload="autoResize(this)" scrolling="no" frameborder="0"></iframe> 
-                </li>
-                    </ul>
-            </fieldset>
+          <h4><span>설 문 조 사  수 정</span></h4>  
+           <fieldset>
+            <table>
+             <tbody>
+              <tr>
+                <th scope="row">
+                  <label class='form_grp' for='title'>제목</label></th>
+                 <td> 
+                  <input type='text' name='title' value='${serveyboardVO.title}' size='68' required="required">
+                 </td>
+              </tr>   
+              <tr>
+                <th scope="row">
+                  <label class='form_grp' for='content'>내용</label></th>
+                 <td> 
+                   <TEXTAREA name='content' rows='10' cols='70'>${serveyboardVO.content}</TEXTAREA>
+                 </td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td>  
+                 <iframe src="../servey/list.do?sb_no=${serveyboardVO.sb_no}" onload="autoResize(this)" scrolling="no" frameborder="0"></iframe> 
+                </td>
+              </tr>
+            </tbody>
+           </table>         
+          </fieldset>
+          <div class='right'>
+            <button type="submit" class="btn btn-default btn-xs">수정</button>
+            <button type="button" class="btn btn-default btn-xs" onclick ="location.href='./list.do'">취소</button>
+          </div>
+          <div style='clear:both;'></div>          
           </FORM>
+          
           <FORM name='form_grp' method='POST' action='../servey/create.do'>
             <input type='hidden' name='sb_no' value='${serveyboardVO.sb_no}'>
             <fieldset>
-              <ul>
-                <li>
-                  <label for='sort'>항목</label>
-                  <input type='text' name='item' value='항목' required="required">
-                  <button type="submit">등록</button>
-                </li>         
-              </ul>
+            <table>
+              <tr>
+                <th scope="row">
+                  <label>보기 항목 추가</label></th>
+                 <td> 
+                  <input type='text' name='item' placeholder='추가할 보기를 입력해 주세요' required="required" size='68'>
+                  <button type="submit" class="btn btn-default btn-xs">등록</button>
+                 </td>
+              </tr>
+             </table> 
             </fieldset>
           </FORM>
       </DIV>

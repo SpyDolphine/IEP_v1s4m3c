@@ -11,19 +11,16 @@
 <link rel="stylesheet" href="../css/animate.css"/> 
 
 
-<H3><i class="fa fa-check-circle"></i> 선택해주세용~~~</h3>
+<h4><span><i class="fa fa-check-circle"></i> 투표 항목 수정</span></h4>
 
 <FORM name='form_grp' method='POST' action='../servey/vote.do' >
   <c:forEach var="serveyVO" items="${list}">
       <label>
         <input type='radio' name='serveyno'  id='serveyno' value='${serveyVO.serveyno}' 
-           ${serveyVO.serveyno == serveyVO.serveyno?"checked='checked'":""}>
+           ${serveyVO.serveyno == serveyVO.serveyno?"checked='checked'":""} required="required">
         ${serveyVO.item}
       </label>
       <a href="../servey/delete.do?serveyno=${serveyVO.serveyno}" onclick="return confirm('항목을 삭제 하시겠습니까?')">&nbsp;<i class="fa fa-trash-o"></i></a>
       <br>
   </c:forEach>
-  <div class='left'>
-   <button type="submit" class="btn btn-info btn-sm btn-block" >투표</button>
-  </div>
 </FORM>

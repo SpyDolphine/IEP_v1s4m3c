@@ -21,7 +21,7 @@
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
                                 <li><A href='./list.do'>목록</A></li>   
-                                <i class="fa fa-arrow-circle-right">설문조사</i> 
+                                <i class="fa fa-arrow-circle-right"> 설문조사</i> 
                             </ul> 
                         </nav>
                     </div>
@@ -35,24 +35,33 @@
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
    
-      <DIV class='content' style='width: 80%;'>
+     <div id="formcon">
       <FORM name='form_grp' method='POST' action='./create.do'>
-        <fieldset>
-          <ul>
-            <li>
-              <label class='form_grp' >제목</label>
-              <input type='text' name='title' value='' size='60' required="required">
-            </li>
-            <li>
-              <label class='form_grp' >내용</label><br>
-              <TEXTAREA name='content' rows='10' cols='70'></TEXTAREA>
-            </li>
-            <li class='right'>
-              <button type="submit">등록</button>
-              <button type="button" onclick="location.href='./list.do'">목록</button>
-            </li>         
-          </ul>
-        </fieldset>
+      <h4><span>설문조사 글쓰기</span></h4>  
+       <fieldset>
+        <table>
+         <tbody>
+          <tr>
+            <th scope="row">
+              <label class='form_grp' >설문조사 제목</label></th>
+             <td> 
+              <input type='text' name='title' placeholder='오늘의 설문조사 주제를 입력해주세요' size='68' required="required">
+             </td>
+          </tr>    
+          <tr>
+            <th scope="row">
+              <label class='form_grp'>설문 내용</label></th>
+              <td> 
+               <TEXTAREA name='content' rows='10' cols='70' placeholder='설문조사 관련 설명을 입력해주세요'></TEXTAREA>
+              </td>
+          </tr>  
+         </tbody>
+        </table>
+      </fieldset>
+      <div class='right'>
+        <button type="submit" class="btn btn-default btn-xs">등록</button>
+        <button type="button" class="btn btn-default btn-xs" onclick="location.href='./list.do'">목록</button>
+      </div>         
       </FORM>
       </DIV>
    </div>

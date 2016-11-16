@@ -70,7 +70,11 @@ hr {
     </li>
    </ul>
    </fieldset>
-
+ <div class='right'>
+   <button type="button" class="btn btn-default btn-xs" onclick="location.href='./list.do'">목록</button>
+ </div>
+ <div style='clear:both;'></div>
+  <hr>
   </DIV>
  </div>
  </div>

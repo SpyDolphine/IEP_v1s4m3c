@@ -84,10 +84,11 @@
 </section>
 
 <body>
+<div class="container">
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
 
-<div class="list_content" style='width: 70%;'>
+<div class="list_content" style='width: 90%;'>
 <table class="table table-striped">
  <div class='left'>
    &nbsp;<input type="checkbox" id="allCheck"/> 전체선택 
@@ -120,7 +121,7 @@
   </c:forEach>
 </tbody>
 </TABLE>
- 
+     </div>
    </div>
  </div>
 </div>
