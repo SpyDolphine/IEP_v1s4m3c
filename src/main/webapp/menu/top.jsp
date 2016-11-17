@@ -87,11 +87,11 @@ function open_win(){
                         </div>
                     </div>
                     <div class="col-sm-5 top-info">
-                           <c:if test="${empty sessionScope.me_id }">
+                           <c:if test="${sessionScope.me_id == null}">
                             <a class='' href='<%=root %>/memberex/login.do'>로그인</a> |
                             <a class=''  href="javascript:open_win();">회원가입</a> |
                           </c:if> 
-                            <c:if test="${not empty sessionScope.me_id}">
+                            <c:if test="${sessionScope.me_id !=null}">
                               ${ sessionScope.me_nick} 님 환영합니다. 
                               <c:if test="${sessionScope.me_grade eq 'A' }">
                               (관리자)
