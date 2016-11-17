@@ -18,9 +18,10 @@ ct_file2               VARCHAR2(50)         NULL ,  -- 파일 2
 ct_size2               NUMBER(9)        DEFAULT 0      not NULL ,  -- 파일 사이즈
 ct_rdate              date  not null,                             -- 공모전 등록일
 ct_cnt                number(7)  DEFAULT '0'   not null,                       --조회수
-FOREIGN KEY (Me_no) REFERENCES iep_MEMBER (Me_no)
+FOREIGN KEY (me_no) REFERENCES iep_MEMBER (me_no)
 );
-
+ALTER TABLE iep_contest
+ADD (ct_daydate VARCHAR2(200));
 drop table iep_member;
 drop table iep_contest;
 drop table scrap;
@@ -43,7 +44,9 @@ select ct_title, ct_host, ct_supervision, ct_entry, ct_enter, ct_award, ct_start
 UPDATE iep_contest
 SET ct_title='제목 공모전', ct_host = '주최 공모전', ct_supervision='주관 공모전', ct_entry = '참가자격 공모전', ct_enter='접수방버 공모전', ct_award='시상종류 공모전', ct_startdate = '2016-10-28', ct_enddate='2016-12-12' , ct_statedate = '2016-12-25', ct_url = 'www.google.com', ct_content = '123', ct_file1 = 'file1_2.jps', ct_file2 = 'file2_1.jpg', ct_size2= 0
 WHERE ct_no=1;
-
+UPDATE iep_contest
+SET cT_daydate='2016-11-17'
+WHERE ct_no=1;
 update iep_member
 set me_grade = 'A'
 where me_no = 3;

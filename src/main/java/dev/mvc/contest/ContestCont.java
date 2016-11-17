@@ -126,7 +126,7 @@ public class ContestCont {
     while (iter.hasNext() == true) { // 다음 요소 검사
       ContestVO vo = iter.next(); // 요소 추출
       vo.setCt_title(Tool.textLength(vo.getCt_title(), 10)); // 문자열 10자 분리
-      vo.setCt_rdate(vo.getCt_rdate().substring(0, 10)); // 년월일
+      //vo.setCt_rdate(vo.getCt_rdate().substring(0, 10)); // 년월일
       //vo.setCt_startdate(vo.getCt_startdate().substring(0, 10));
       //vo.setCt_enddate(vo.getCt_enddate().substring(0, 10));
       //vo.setCt_daydate(vo.getCt_daydate().substring(0, 10));
