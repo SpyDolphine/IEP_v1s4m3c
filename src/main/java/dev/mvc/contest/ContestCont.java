@@ -44,7 +44,7 @@ public class ContestCont {
   @RequestMapping(value = "/contest/create.do", method = RequestMethod.POST)
   public ModelAndView create(ContestVO contestVO, HttpServletRequest request, HttpSession session) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/contest/message");
+    mav.setViewName("/message");
 
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -102,11 +102,11 @@ public class ContestCont {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/contest/list");
 
-    int totalRecord = 0;
+    
     // HashMap hashMap = new HashMap();
-    HashMap<String, Object> hashMap = new HashMap<String, Object>();
-    hashMap.put("col", searchDTO.getCol());
-    hashMap.put("word", searchDTO.getWord());
+    HashMap<String, Object> hashmap = new HashMap<String, Object>();
+    hashmap.put("col", searchDTO.getCol());
+    hashmap.put("word", searchDTO.getWord());
 
     int recordPerPage = 10; // 페이지당 출력할 레코드 갯수
     // 페이지에서 출력할 시작 레코드 번호 계산, nowPage는 1부터 시작
@@ -116,34 +116,36 @@ public class ContestCont {
     // 3 page: 20
     int startNum = beginOfPage + 1; // 시작 rownum, 1
     int endNum = beginOfPage + recordPerPage; // 종료 rownum, 10
-    hashMap.put("startNum", startNum);
-    hashMap.put("endNum", endNum);
+    hashmap.put("startNum", startNum);
+    hashmap.put("endNum", endNum);
 
-    List<ContestVO> list = contestDAO.list(hashMap);
+    int totalRecord = 0;
+    
+    List<ContestVO> list = contestDAO.list(hashmap);
     Iterator<ContestVO> iter = list.iterator();
     while (iter.hasNext() == true) { // 다음 요소 검사
       ContestVO vo = iter.next(); // 요소 추출
-      //vo.setCt_title(Tool.textLength(vo.getCt_title(), 10)); // 문자열 10자 분리
-      //vo.setCt_rdate(vo.getCt_rdate().substring(0, 10)); // 년월일
-      // vo.setFile1(Tool.textLength(vo.getFile1(), 10));
+      vo.setCt_title(Tool.textLength(vo.getCt_title(), 10)); // 문자열 10자 분리
+      vo.setCt_rdate(vo.getCt_rdate().substring(0, 10)); // 년월일
       //vo.setCt_startdate(vo.getCt_startdate().substring(0, 10));
       //vo.setCt_enddate(vo.getCt_enddate().substring(0, 10));
       //vo.setCt_daydate(vo.getCt_daydate().substring(0, 10));
-     // vo.setCt_file2(Tool.textLength(vo.getCt_file2(), 10));
+      vo.setCt_file2(Tool.textLength(vo.getCt_file2(), 10));
     }
     mav.addObject("list", list);
-    
     mav.addObject("root", request.getContextPath());
-    mav.addObject("totalRecord", contestDAO.count(hashMap)); // 검색된 레코드 갯수
+    
+    totalRecord = contestDAO.count(hashmap);
+    mav.addObject("totalRecord", contestDAO.count(hashmap)); // 검색된 레코드 갯수
 
     
     String paging = new Paging().paging5(
-        totalRecord, 
-        searchDTO.getNowPage(), 
-        recordPerPage, 
-        searchDTO.getCol(), 
-        searchDTO.getWord());
-      mav.addObject("paging", paging);
+    totalRecord, 
+    searchDTO.getNowPage(), 
+    recordPerPage, 
+    searchDTO.getCol(), 
+    searchDTO.getWord());
+    mav.addObject("paging", paging);
       
     return mav;
   }
@@ -262,7 +264,7 @@ public class ContestCont {
   @RequestMapping(value = "/contest/delete.do", method = RequestMethod.POST)
   public ModelAndView delete(ContestVO contestVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/contest/message");
+    mav.setViewName("/message");
 
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -273,7 +275,7 @@ public class ContestCont {
     } else {
       msgs.add("글 삭제에 실패했습니다.");
       links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
       links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
     }
 
