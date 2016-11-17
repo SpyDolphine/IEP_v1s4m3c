@@ -129,6 +129,14 @@
         </div>
         
         <div class="form-group">   
+          <label for='ei_ci' class="col-xs-2 col-lg-3 control-label">기업 위치</label>
+          <div class="col-xs-2 col-lg-10">
+            <textarea class="form-control" name='ei_map' id='ei_map'  rows='10' cols='70'>
+            </textarea>
+          </div>
+        </div>        
+        
+        <div class="form-group">   
           <label for='ei_majorbusiness' class="col-xs-2 col-lg-3 control-label">주요 업무</label>
           <div class="col-xs-2 col-lg-10">
             <textarea class="form-control" name='ei_majorbusiness' id='ei_majorbusiness'  rows='10' cols='70'>
@@ -160,8 +168,6 @@
        </DIV>
     </FORM>
   </DIV>
-    
-
 
    </div>
  </div>
