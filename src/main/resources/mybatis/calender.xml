@@ -5,8 +5,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="calender">
   <insert id="create" parameterType="CalenderVO">
-    insert into calender(cl_no, me_no, me_id, sp_no, title, content, startdate, enddate, statedate, daydate, cl_date, sp_content)
+insert into calender(cl_no, me_no, me_id, sp_no, title, content, startdate, enddate, statedate, daydate, cl_date, sp_content)
 values ((SELECT NVL(MAX(cl_no), 0)+1 as cl_no FROM calender), 
-          #{me_no}, #{me_id}, #{sp_no}, #{title}, #{content}, #{startdate}, #{enddate}, #{statedate}, #{daydate}, #{cl_date}, #{sp_content})
+          #{me_no}, #{me_id}, #{sp_no}, #{title}, #{content}, #{startdate}, #{enddate}, #{statedate}, #{daydate}, sysdate, #{sp_content})
   </insert>
+ <!-- 전체 목록 리스트 -->
+ <select id="callist" resultType="CalenderVO"  parameterType="int">
+    select title, startdate, enddate, statedate, daydate
+    from calender 
+    where me_no = #{me_no}
+</select>
+<!-- 조회 -->
+<select id="calread" resultType="CalenderVO" parameterType="int">
+select title, startdate, enddate statedate, daydate 
+from calender
+where cl_no=#{cl_no}
+</select>
 </mapper>
