@@ -52,14 +52,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!--     <select id="list4" resultType="EnterpriseInformationVO" parameterType="HashMap" > -->
   <select id="list4" resultType="EnterpriseInformationVO" parameterType="HashMap" >                   
-    SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, ei_url, 
+    SELECT ei_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, ei_url, 
            ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, ei_map, ei_tpic, ei_date, r
     FROM(
-             SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, 
+             SELECT ei_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, 
                     ei_url, ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, ei_map, ei_tpic, ei_date, 
                     rownum as r 
              FROM(
-                      SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, 
+                      SELECT ei_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, 
                              ei_business, ei_url, ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, 
                              ei_map, ei_tpic, ei_date
 <!--                              ei_slotname, ei_crn, me_email, ei_date, grpno, indent, ansnum -->
@@ -96,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 기업정보 조회 -->
   <select id="read" resultType="EnterpriseInformationVO" parameterType="int">
-    SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, 
+    SELECT ei_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, 
            ei_url, ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, ei_map, ei_tpic, ei_date
     FROM enterprise_info
     WHERE ei_no = #{ei_no}
@@ -104,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 기업정보 조회 -->
   <select id="updateread" resultType="EnterpriseInformationVO" parameterType="int">
-    SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, 
+    SELECT ei_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, 
            ei_url, ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, ei_map, ei_tpic, ei_date
     FROM enterprise_info
     WHERE ei_no = #{ei_no}
