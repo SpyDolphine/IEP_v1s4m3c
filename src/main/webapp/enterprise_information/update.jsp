@@ -169,6 +169,14 @@
         </div>
         
         <div class="form-group">   
+          <label for='ei_majorbusiness' class="col-xs-2 col-lg-3 control-label">회사 위치</label>
+          <div class="col-xs-2 col-lg-10">
+            <textarea class="form-control" name='ei_map' id='ei_map'  rows='10' cols='70'>
+            ${vo.ei_map }</textarea>
+          </div>
+        </div>        
+        
+        <div class="form-group">   
          <label for="content" class="col-xs-2 col-lg-2 control-label">등록된 파일</label>
          <span>
           <c:if test="${vo.ei_logosize2 > 0}">

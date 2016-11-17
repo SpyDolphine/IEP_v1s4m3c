@@ -34,7 +34,7 @@
         
 <div class="col-xs-12">
  <div style='width:500px; float:right;'>
-  <button type='button' class="btn btn-default" onclick="location.href='./create.do'">기업 정보 등록</button>
+  <button type='button' class="btn btn-default" onclick="location.href='./create.do'"><i class="fa fa-building-o"></i> 기업 정보 등록</button>
  </div> 
 </div>
  <div style="clear:both;"></div> 
@@ -83,14 +83,14 @@
                   <div class="post_meta">
                      <h2><a href="./read.do?ei_no=${vo.ei_no }&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage }"><i class='fa fa-building-o'></i> ${vo.ei_corporationname }</a></h2>
                     <div class="metaInfo">
-                      <span><i class="fa fa-rocket"></i> 회사홈페이지<a href="#">&nbsp; ${vo.ei_url }</a></span><br>
-                      <span><i class="fa fa-group"></i>사원수<a href="#">&nbsp; ${vo.ei_employees}</a></span><br>
+                      <span><i class="fa fa-rocket"></i> 회사홈페이지<a href="${vo.ei_url }">&nbsp; ${vo.ei_url }</a></span><br>
+                      <span><i class="fa fa-group"></i>사원수<a href="#">&nbsp; ${vo.ei_employees}명</a></span><br>
                       <span><i class="fa fa-desktop"></i>업종<a href="#">&nbsp; ${vo.ei_business}</a> </span><br>
                       <span><i class="fa fa-desktop"></i>주요업무<br><a href="#">
                         <c:choose>
-                          <c:when test="${fn:length(vo.ei_majorbusiness ) > 60}">
+                          <c:when test="${fn:length(vo.ei_majorbusiness ) > 90}">
                             <div style='margin: 0 0 0 10px;'>
-                             <c:out value="${fn:substring(vo.ei_majorbusiness ,0, 60)}"/>.... 
+                             <c:out value="${fn:substring(vo.ei_majorbusiness ,0, 90)}"/>.... 
                             </div> 
                           </c:when>
                           <c:otherwise>
@@ -102,14 +102,14 @@
                        </a></span><br>     
                       <span><i class="fa fa-globe"></i>기업 소개 (Company Introduction)<br><a href="#">
                         <c:choose>
-                          <c:when test="${fn:length(vo.ei_ci ) > 60}">
+                          <c:when test="${fn:length(vo.ei_ci ) > 90}">
                             <div style='margin: 0 0 0 10px;'>
-                             <c:out value="${fn:substring(vo.ei_ci ,0, 60)}"/>....
+                             <c:out value="${fn:substring(vo.ei_ci ,0, 90)}"/>....<br><br>
                             </div> 
                           </c:when>
                           <c:otherwise>
                             <div style='margin: 0 0 0 10px;'>
-                             ${vo.ei_ci}
+                             ${vo.ei_ci}<br><br>
                             </div>
                           </c:otherwise> 
                         </c:choose>    
@@ -123,11 +123,11 @@
                     <a class="btn btn-small btn-info" href="./read.do?ei_no=${vo.ei_no }&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage }">자세한 기업정보</a>
                   </div>
               </article> 
-              </div>
-              </div>
-              </div>
-              </div>
-              </section>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
    </c:forEach>
 
    <form name="frmSearch" method="get" action="./list.do"> 
@@ -146,12 +146,15 @@
         <input type="text" name="word" size="15" value="">
       </c:when>
     </c:choose>
-     <input type="submit" value="검색">｜
+     <input type="submit" value="검색">
   </form> 
+  
   <DIV class='bottom'>${paging}</DIV>
 </body>
- 
+
 <!-- -------------------------------------------- -->
-<jsp:include page="/menu/bottom.jsp" flush='false' />
+<div style= 'margin: 100px 0 0 0;  position: relative;'>  
+  <jsp:include page="/menu/bottom.jsp" flush='false' />
+</div>  
 <!-- -------------------------------------------- -->
-</html>  
+</html> 
