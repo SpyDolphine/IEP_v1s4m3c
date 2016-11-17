@@ -24,9 +24,9 @@ CREATE TABLE enterprise_info(
     ei_map                            VARCHAR2(1024)           NULL,                        -- 회사지도
     ei_tpic                           VARCHAR2(30)         NOT NULL,                        -- 채용담당자
     ei_date                           DATE                 NOT NULL,                        -- 등록날짜
-    me_no                             NUMBER(7)            NOT NULL,                        -- 회원 번호
-    PRIMARY KEY (ei_no),                                                                    -- 기업정보 번호 PRIMARY KEY
-    -- FOREIGN KEY (me_no)      REFERENCES IEP_MEMBER (me_no)                                  -- 회원번호 FOREIGN KEY
+  -- me_no                             NUMBER(7)            NOT NULL,                        -- 회원 번호
+    PRIMARY KEY (ei_no)                                                                    -- 기업정보 번호 PRIMARY KEY
+ -- FOREIGN KEY (me_no)      REFERENCES IEP_MEMBER (me_no)                                  -- 회원번호 FOREIGN KEY
 );
 
 
