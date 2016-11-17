@@ -194,11 +194,15 @@
                   <p>
                   최영찬(팀장), 한상은(수석디자이너), 손은정(서브디자이너), <br> 최대용(), 이용수(), 박시한() <br>
                   IT 계열 취업 준비생을 위한 지침 사이트 입니다. 다양한 회사 채용 정보와 진솔한 회사 후기 등을 볼 수 있으며 자유롭게 
-                  의견을 나눌 수 있는 사이트입니다. <br> 언니가 일본어로 적어주었으면 좋겠습니다 !!!! 용수오빠는 영어로 적어주셨으면 좋겠습니다!!! 헤헤헤
+                  의견을 나눌 수 있는 사이트입니다. <br><br> 
+                  <i class='fa fa-globe' style='color: hotpink;'></i><br>
+                  このサイトはIT系の就職活動をしている方のためのサイトです。
+                  このサイトで色々な会社情報と率直な面接経験談などを確認することができます。
+                                 尚、色々な意見を交わすことも可能ですので、自由にご利用ください。 
                   </p>
                   <ul class="widget_info_contact clearfix">
                       <li class="col-sm-4"><i class="fa fa-map-marker"></i><strong>Address</strong> <p> : 서울 종로구 종로12길 15 코아빌딩1</p></li>
-                      <li class="col-sm-4"><i class="fa fa-envelope"></i> <strong>Email</strong><p> : <a href="#"> mail@example.com</a></p> <p>: <a href="#"> mail@example.com</a></p></li>
+                      <li class="col-sm-4"><i class="fa fa-envelope"></i> <strong>Email</strong><p> : <a href="#"> mail@exam.com</a></p> <p>: <a href="#"> mail@exam.com</a></p></li>
                       <li class="col-sm-4"><i class="fa fa-phone"></i> <strong>Our Phone</strong> <p> : 010-1234-5678</p><p>: 010-3456-7890</p></li>
                   </ul>
               </div>

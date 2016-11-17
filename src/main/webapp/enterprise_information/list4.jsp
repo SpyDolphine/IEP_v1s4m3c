@@ -130,7 +130,7 @@
      </section>
    </c:forEach>
 
-   <form name="frmSearch" method="get" action="./list.do"> 
+<%--    <form name="frmSearch" method="get" action="./list.do"> 
     <select name="col"> 
       <option value="">선택</option> 
       <option value="name" ${searchDTO.col == "name" ? "selected=selected" : "" }>회사 이름</option> 
@@ -147,7 +147,7 @@
       </c:when>
     </c:choose>
      <input type="submit" value="검색">
-  </form> 
+  </form>  --%>
   
   <DIV class='bottom'>${paging}</DIV>
 </body>
