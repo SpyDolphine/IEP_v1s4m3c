@@ -5,7 +5,7 @@
 
 <meta name="description" content="">
 
-<!-- CSS FILES -->
+<!-- CSS FILES --> 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" media="screen" data-name="skins">
