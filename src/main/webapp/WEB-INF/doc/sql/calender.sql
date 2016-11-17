@@ -56,7 +56,7 @@ values((SELECT NVL(MAX(cl_no), 0)+1 as cl_no FROM calender),
 'user', '정보처리기사', '정보처리기사 시험', 2016-03-12, 2016-03-15, 2016-10-17, 1, 1, 1, 1 );
 
 -- 목록
-select cl_no, cl_id, cl_title, cl_start, cl_end, cl_date 
+select * 
 from calender
 
 -- 조회
