@@ -90,7 +90,7 @@
                         <c:choose>
                           <c:when test="${fn:length(vo.ei_majorbusiness ) > 60}">
                             <div style='margin: 0 0 0 10px;'>
-                             <c:out value="${fn:substring(vo.ei_majorbusiness ,0, 60)}"/>....
+                             <c:out value="${fn:substring(vo.ei_majorbusiness ,0, 60)}"/>.... 
                             </div> 
                           </c:when>
                           <c:otherwise>
