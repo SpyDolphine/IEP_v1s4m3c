@@ -34,7 +34,7 @@ where ct_no=#{ct_no}
   <!-- 공모전 삭제 관련 -->
   <delete id="delete"  parameterType="int">
   DELETE FROM iep_contest
-WHERE ct_no=#{ct_no}
+  WHERE ct_no=#{ct_no}
 </delete>
 <!-- 검색에 부분 -->
   <select id="count" resultType="int" parameterType="HashMap">
@@ -54,8 +54,10 @@ WHERE ct_no=#{ct_no}
   </select>  
   
 <select id="list" resultType="ContestVO" parameterType="HashMap" >
-                    SELECT ct_no, ct_title, ct_host, ct_startdate, ct_enddate, ct_daydate, ct_cnt, ct_file2, ct_file1, ct_size2, rownum as r
-                    FROM iep_contest
+                SELECT ct_no, ct_title, ct_host, ct_startdate, ct_enddate, ct_daydate, ct_cnt, ct_file2, ct_file1, ct_size2,  r
+                    FROM (select ct_no, ct_title, ct_host, ct_startdate, ct_enddate, ct_daydate, ct_cnt, ct_file2, ct_file1, ct_size2,  rownum as r
+                      FROM  (select ct_no, ct_title, ct_host, ct_startdate, ct_enddate, ct_daydate, ct_cnt, ct_file2, ct_file1, ct_size2
+                        FROM iep_contest
                     <choose>
                         <when test="col == 'ct_title'">
                          where   ct_title LIKE '%' || #{word} || '%' 
@@ -68,6 +70,11 @@ WHERE ct_no=#{ct_no}
                         </when>      
                       </choose>
                       ORDER BY ct_no DESC
-                      
+                      )
+                   )
+             WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
   </select>  
+  
+
+
 </mapper>
