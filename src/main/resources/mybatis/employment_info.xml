@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "employment_information">
+
+  <!-- 채용정보 등록 -->
+  <insert id="create" parameterType="EmploymentInformationVO">
+    INSERT INTO employment_info (em_no, ei_no, em_title, em_cof, em_pi, em_rp, em_howtoapply, 
+                             em_occupations, em_et, em_lastschool, em_salary, em_rank, em_position, em_url, em_workplace, 
+                             em_startdate, em_enddate, em_statedate, em_interviewdate, em_supportformfile1, 
+                             em_supportformsize1, em_cnt, em_date)
+    VALUES((SELECT NVL(MAX(em_no), 0)+1 as em_no FROM employment_info), #{ei_no}, #{em_title}, #{em_cof}, #{em_pi}, #{em_rp}, 
+            #{em_howtoapply}, #{em_occupations}, #{em_et}, #{em_lastschool}, #{em_salary}, #{em_rank},#{em_position}, 
+            #{em_url}, #{em_workplace}, #{em_startdate}, #{em_enddate}, #{em_statedate}, #{em_interviewdate}, 
+            #{em_supportformfile1}, #{em_supportformsize1}, 0, sysdate)
+  </insert>
+  
+  <select id="count" resultType="int" parameterType="HashMap" >
+    SELECT COUNT(*) as cnt
+    FROM enterprise_info
+<!--     WHERE divisionno=#{divisionno} -->
+    <choose>
+     <when test="col == 'title'">
+<!-- AND title LIKE '%' || #{word} || '%' -->
+<!--     WHERE me_name LIKE '%' || #{word} || '%' -->
+<!--     AND ei_corporationname LIKE '%' || #{word} || '%' -->
+    WHERE em_title LIKE '%' || #{word} || '%'
+     </when>
+     <when test="col == 'occupations'">
+<!-- AND title LIKE '%' || #{word} || '%' -->
+<!--     WHERE me_id LIKE '%' || #{word} || '%' -->
+<!--     AND ei_business LIKE '%' || #{word} || '%' -->
+    WHERE em_occupations LIKE '%' || #{word} || '%'
+     </when>
+     <when test="title == 'name_occupations'">
+<!-- AND title LIKE '%' || #{word} || '%' OR content LIKE '%' || #{word} || '%' -->
+<!--     WHERE me_name LIKE '%' || #{word} || '%' OR me_id LIKE '%' || #{word} || '%' -->
+<!--     AND ei_corporationname LIKE '%' || #{word} || '%' OR ei_business LIKE '%' || #{word} || '%' -->
+    WHERE em_title LIKE '%' || #{word} || '%' OR em_occupations LIKE '%' || #{word} || '%' 
+     </when>      
+    </choose>
+
+  </select> 
+  
+  <!-- ********** 페이징에 따른 변경 시작 ********** -->
+  
+  <!--     <select id="list4" resultType="EnterpriseInformationVO" parameterType="HashMap" > -->
+  <select id="list4" resultType="EmploymentInformationVO" parameterType="HashMap" >                   
+    SELECT em_no, ei_no, em_title, em_cof, em_pi, em_rp, em_howtoapply, em_occupations, em_et, 
+           em_lastschool, em_salary, em_rank, em_position, em_url, em_workplace, em_startdate, em_enddate, em_statedate, 
+           em_interviewdate, em_supportformfile1, em_supportformsize1, em_cnt, em_date, r
+    FROM(
+             SELECT em_no, ei_no, em_title, em_cof, em_pi, em_rp, em_howtoapply, em_occupations, 
+                    em_et, em_lastschool, em_salary, em_rank, em_position, em_url, em_workplace, em_startdate, em_enddate, 
+                    em_statedate, em_interviewdate, em_supportformfile1, em_supportformsize1, em_cnt, em_date, rownum as r 
+             FROM(
+                      SELECT em_no, ei_no, em_title, em_cof, em_pi, em_rp, em_howtoapply, em_occupations, 
+                             em_et, em_lastschool, em_salary, em_rank, em_position, em_url, em_workplace, em_startdate, 
+                             em_enddate, em_statedate, em_interviewdate, em_supportformfile1, em_supportformsize1, em_cnt, 
+                             em_date
+<!--                              ei_slotname, ei_crn, me_email, ei_date, grpno, indent, ansnum -->
+                      FROM employment_info
+<!--                       WHERE ei_no=#{ei_no} -->
+                      <choose>
+                        <when test="col == 'title'">
+<!--                            AND title LIKE '%' || #{word} || '%'  -->
+<!--                            WHERE me_name LIKE '%' || #{word} || '%'  -->
+<!--                            AND ei_corporationname LIKE '%' || #{word} || '%' -->
+                           WHERE em_title LIKE '%' || #{word} || '%'
+                        </when>
+                        <when test="col == 'occupations'">
+<!--                            AND title LIKE '%' || #{word} || '%'  -->
+<!--                            WHERE me_id LIKE '%' || #{word} || '%'  -->
+<!--                            AND ei_business LIKE '%' || #{word} || '%' -->
+                           WHERE em_occupations LIKE '%' || #{word} || '%'
+                        </when>
+                        <when test="col == 'title_occupations'">
+<!--                            AND title LIKE '%' || #{word} || '%'  OR content LIKE '%' || #{word} || '%' -->
+<!--                            WHERE me_name LIKE '%' || #{word} || '%' OR me_id LIKE '%' || #{word} || '%'  -->
+<!--                            AND ei_corporationname LIKE '%' || #{word} || '%' OR ei_business LIKE '%' || #{word} || '%'  -->
+                           WHERE em_title LIKE '%' || #{word} || '%' OR em_occupations LIKE '%' || #{word} || '%' 
+                        </when>      
+                      </choose>
+                       ORDER BY em_no DESC
+             )
+    )
+    WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
+    
+    <!-- ********** 페이징에 따른 변경 종료 ********** -->
+    
+  </select>
+  
+  <!-- 채용정보 조회 -->
+  <select id="read" resultType="EmploymentInformationVO" parameterType="int">
+    SELECT em_no, ei_no, em_title, em_cof, em_pi, em_rp, em_howtoapply, em_occupations, em_et, em_lastschool, 
+           em_salary, em_rank, em_position, em_url, em_workplace, em_startdate, em_enddate, em_statedate, 
+           em_interviewdate, em_supportformfile1, em_supportformsize1, em_cnt, em_date
+    FROM employment_info
+    WHERE em_no = #{em_no}
+  </select>
+  
+  <!-- 채용정보 수정 -->
+  <update id="update" parameterType="EmploymentInformationVO">
+    UPDATE employment_info
+    SET em_cof=#{em_cof }, em_pi=#{em_pi }, em_rp=#{em_rp }, em_howtoapply=#{em_howtoapply }, 
+        em_occupations=#{em_occupations }, em_et=#{em_et }, em_lastschool=#{em_lastschool }, em_salary=#{em_salary }, 
+        em_rank=#{em_rank }, em_position=#{em_position }, em_url=#{em_url }, em_workplace=#{em_workplace }, 
+        em_startdate=#{em_startdate }, em_enddate=#{em_enddate }, em_statedate=#{em_statedate }, 
+        em_interviewdate=#{em_interviewdate }, em_supportformfile1=#{em_supportformfile1 }, 
+        em_supportformsize1=#{em_supportformsize1 }
+    WHERE em_no = #{em_no }
+  </update>
+  
+    <!-- 채용정보 삭제 -->
+  <delete id="delete" parameterType="int">
+    DELETE FROM employment_info
+    WHERE em_no = #{em_no}
+  </delete>
+  
+</mapper>
