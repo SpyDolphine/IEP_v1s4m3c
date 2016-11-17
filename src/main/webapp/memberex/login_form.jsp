@@ -382,7 +382,7 @@ function notjoin() {
     
       <h1>Login</h1>
       <div>
-        <input type='text' name='me_id' id='me_id' size="50" value='cdy1213@naver.com' style='width: 60%;' autocomplete="off" required="required" >
+        <input type='text' name='me_id' id='me_id' size="50" value='asdf@asdf.com' style='width: 60%;' autocomplete="off" required="required" >
            <%
           if (ck_id_save.equals("Y")){
           %>
@@ -396,7 +396,7 @@ function notjoin() {
           %>
       </div>
       <div>
-      <input type='password' name='me_pw' id='me_pw' value='1234' style='width: 60%;' autocomplete="off" required="required" >
+      <input type='password' name='me_pw' id='me_pw' value='asdf' style='width: 60%;' autocomplete="off" required="required" >
           <%
           if (ck_passwd_save.equals("Y")){
           %>
