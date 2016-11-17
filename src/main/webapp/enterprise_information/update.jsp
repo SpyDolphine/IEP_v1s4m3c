@@ -215,8 +215,7 @@
        <DIV style='text-align: right;'>
          <button type='submit' class="btn btn-default" onclick="location.href='./update.do?ei_no=${vo.ei_no }
            &col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}'">수정</button>
-         <button type="button" class="btn btn-default" onclick="location.href='./list.do?ei_no=${vo.ei_no }&
-           col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}'">목록</button>
+         <button type="button" class="btn btn-default" onclick="location.href='./list.do?col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}'">목록</button>
        </DIV>
     </FORM>
   </DIV>
