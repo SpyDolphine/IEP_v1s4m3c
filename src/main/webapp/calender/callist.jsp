@@ -22,7 +22,7 @@
                         <nav id="breadcrumbs">
                             <ul>
                                 <li><a href="../index.jsp">Home</a>/</li>
-                                <li><A href='./calist.do'>목록</A></li>   
+                                <li><A href='./callist.do'>목록</A></li>   
                                 <li class="fa fa-arrow-circle-right"> 일정</li>  
                             </ul> 
                         </nav>
