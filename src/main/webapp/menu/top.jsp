@@ -109,7 +109,7 @@ function open_win(){
                                 </c:if>
                             <a class='' href='<%=root %>/memberex/read.do?me_no=${sessionScope.me_no }'>회원관리 수정</a> |
                             <a class='' href = '<%=root %>/scrap/list.do?me_no=${sessionScope.me_no}'>스크랩 함</a>|
-                            <a class='' href = '<%=root %>/calender/calendermode.jsp'>일정</a>|
+                            <a class='' href = '<%=root %>/calender/callist.do?me_no=${sessionScope.me_no}'>일정</a>|
                          </c:if>
                             <a href="<%=root %>/index.jsp" >HOME</a>  |
                             <a href="javascript:bookmarksite('IEP 프로젝트', 'http://localhost:9090/IEP/index.jsp')"><i class="fa fa-bookmark"></i> BOOKMARK</a>
