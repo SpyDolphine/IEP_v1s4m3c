@@ -51,27 +51,31 @@ $(function(){
   <div class="content" style='width: 100%;'>
     <table class="table" style='width: 100%;'>
       <colgroup>
-        <col style="width: 10%;"></col>
-        <col style="width: 30%;"></col>
-        <col style="width: 10%;"></col>
-        <col style="width: 10%;"></col>
         <col style="width: 5%;"></col>
         <col style="width: 15%;"></col>
-        <col style="width: 7%;"></col>
-        <col style="width: 13%;"></col>
+        <col style="width: 10%;"></col>
+        <col style="width: 10%;"></col>
+        <col style="width: 10%;"></col>
+        <col style="width: 10%;"></col>
+        <col style="width: 10%;"></col>
+        <col style="width: 10%;"></col>
+        <col style="width: 10%;"></col>
+        <col style="width: 10%;"></col>
       </colgroup>
           
       <%-- table 컬럼 --%>
       <thead>
         <tr>
           <th>번호</th>
-          <th>제목</th>
-          <th>추천</th>
           <th>자격증</th>
           <th>등록일</th>
+          <th>시작일</th>
+          <th>종료일</th>
+          <th>시험일</th>
+          <th>발표일</th>
           <th>파일</th>
           <th>업로드 파일</th>
-          <th>기타</th>
+          <th>수정&삭제</th>
         </tr>
       
       </thead>
@@ -83,11 +87,13 @@ $(function(){
           <tr>
             <td>${vo.lc_no}</td>
             <td><a href="./read.do?lc_no=${vo.lc_no}">${vo.lc_title}</a></td> 
-            <td>${vo.lc_good}</td>
             <td>${vo.lc_date}</td>
+            <td>${vo.lc_date1}</td>
+            <td>${vo.lc_date2}</td>
+            <td>${vo.lc_date3}</td>
+            <td>${vo.lc_date4}</td>
             <td>${vo.lc_file1}</td>
             <td>${vo.lc_file2}</td>
-            <td>${vo.lc_replycnt}</td>
             <td>
               <a href="./update.do?lc_no=${vo.lc_no}"><i class="fa fa-pencil"></i> 수정 |</a>
               <a href="./delete.do?lc_no=${vo.lc_no}"><i class="fa fa-trash-o"></i> 삭제</a>
@@ -111,4 +117,4 @@ $(function(){
   <jsp:include page="/menu/bottom.jsp" flush='false' />
 </div>  
 <!-- -------------------------------------------- -->
-</html> 
+</html>

@@ -49,18 +49,42 @@
   </div>
   
   <DIV class='content' style='width: 100%;'>
-    <FORM name='frm' method='POST' action='./create.do'
-              enctype="multipart/form-data">
+    <FORM name='frm' method='POST' action='./create.do' enctype="multipart/form-data">
       <div class="form-group">   
         <label for="lc_title" class="col-xs-2 col-lg-2 control-label">license(자격증) 게시판</label>
         <div class="col-xs-10 col-lg-10">
-          <input type='text' class="form-control" name='lc_title' id='title' value='EX)자격증' size='60' required="required">
+          <input type='text' class="form-control" name='lc_title' id='lc_title' value='EX)자격증'size='60' required="required">
       </div>
       <div class="form-group">   
+        <label for="lc_date1" class="col-xs-2 col-lg-2 control-label">시작일</label>
         <div class="col-xs-10 col-lg-10">
-          <textarea class="form-control" name='lc_content' id='content'  rows='10' cols='70'>license을 등록해주세요</textarea>
+          <input type='datetime-local' class="form-control" name='lc_date1' id='lc_date1' >
         </div>
       </div>   
+      <div class="form-group">   
+        <label for="lc_date2" class="col-xs-2 col-lg-2 control-label">종료일</label>
+        <div class="col-xs-10 col-lg-10">
+          <input type='datetime-local' class="form-control" name='lc_date2' id='lc_date2' >
+        </div>
+      </div>   
+      <div class="form-group">   
+        <label for="lc_date3" class="col-xs-2 col-lg-2 control-label">시험일</label>
+        <div class="col-xs-10 col-lg-10">
+          <input type='datetime-local' class="form-control" name='lc_date3' id='lc_date3' >
+        </div>
+      </div>   
+      <div class="form-group">   
+        <label for="lc_date4" class="col-xs-2 col-lg-2 control-label">발표일</label>
+        <div class="col-xs-10 col-lg-10">
+          <input type='datetime-local' class="form-control" name='lc_date4' id='lc_date4' >
+        </div>
+      </div> 
+      <div class="form-group">   
+        <label for="lc_content" class="col-xs-2 col-lg-2 control-label">자격증 상세정보</label>
+        <div class="col-xs-10 col-lg-10">
+          <textarea class="form-control" name='lc_content' id='lc_content'  rows='10' cols='70'>license(자격증)을 등록해 주세요</textarea>
+        </div>
+      </div>      
       <div class="form-group">   
         <label for="file2MF" class="col-xs-2 col-lg-2 control-label">사진을 올려주세요</label>
         <div class="col-xs-10 col-lg-10">
@@ -87,4 +111,4 @@
   <jsp:include page="/menu/bottom.jsp" flush='false' />
 </div>  
 <!-- -------------------------------------------- -->
-</html> 
+</html>

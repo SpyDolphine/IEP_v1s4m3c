@@ -41,7 +41,7 @@ public class MemberExCont {
   public ModelAndView create(MemberExVO memberexVO, DESedeCrypto security) {
     System.out.println("--> create() Post called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/memberex/message");
+    mav.setViewName("/message");
     
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -66,14 +66,13 @@ public class MemberExCont {
       msgs.add("회원가입이 처리되었습니다.");
       msgs.add("가입해주셔서 감사합니다.");
       links.add("<button type='button' onclick=\"location.href='./login.do'\">로그인</button>");
-      links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
     } else {
       msgs.add("회원 가입에 실패했습니다.");
       msgs.add("죄송하지만 다시한번 시도해주세요.");
       links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./index.do'\">홈페이지</button>");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
     }
-    links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
 
     mav.addObject("msgs", msgs);
     mav.addObject("links", links);
@@ -92,7 +91,7 @@ public class MemberExCont {
   public ModelAndView create_com(MemberExVO memberexVO) {
     System.out.println("--> create() Post called.");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/memberex/message");
+    mav.setViewName("/message");
 
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -117,14 +116,13 @@ public class MemberExCont {
       msgs.add("회원가입이 처리되었습니다.");
       msgs.add("가입해주셔서 감사합니다.");
       links.add("<button type='button' onclick=\"location.href='./login.do'\">로그인</button>");
-      links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
     } else {
       msgs.add("회원 가입에 실패했습니다.");
       msgs.add("죄송하지만 다시한번 시도해주세요.");
       links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./index.do'\">홈페이지</button>");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
     }
-    links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
 
     mav.addObject("msgs", msgs);
     mav.addObject("links", links);
@@ -282,11 +280,11 @@ public class MemberExCont {
       }
 
     } else {
-      mav.setViewName("/memberex/message");
+      mav.setViewName("/message");
       msgs.add("로그인에 실패했습니다.");
       msgs.add("죄송하지만 다시한번 시도해주세요.");
       links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
-      links.add("<button type='button' onclick=\"location.href='./index.do'\">홈페이지</button>");
+      links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
     }
     mav.addObject("msgs", msgs);
     mav.addObject("links", links);
@@ -298,14 +296,14 @@ public class MemberExCont {
   @RequestMapping(value = "/memberex/logout.do", method = RequestMethod.GET)
   public ModelAndView logout(HttpSession session) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/memberex/message"); // /webapp/member/message.jsp
+    mav.setViewName("/message"); // /webapp/member/message.jsp
 
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
 
     msgs.add("이용해주셔서 감사합니다.");
     msgs.add("from 운영진...");
-    links.add("<button type='button' onclick=\"location.href='../index.jsp'\">홈페이지</button>");
+    links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
 
     session.invalidate(); // session 변수 삭제
 
@@ -318,7 +316,7 @@ public class MemberExCont {
   @RequestMapping(value = "/memberex/update.do", method = RequestMethod.POST)
   public ModelAndView update(MemberExVO memberExVO) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/memberex/message");
+    mav.setViewName("/message");
 
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -335,7 +333,6 @@ public class MemberExCont {
       links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
     }
 
-    links.add("<button type='button' onclick=\"location.href='./index.jsp'\">목록</button>");
 
     mav.addObject("msgs", msgs);
     mav.addObject("links", links);
@@ -371,7 +368,7 @@ public ModelAndView memberout(MemberExVO memberExVO){
   @RequestMapping(value = "/memberex/memberout.do", method = RequestMethod.POST)
   public ModelAndView memberout(MemberExVO memberExVO, HttpSession session, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/memberex/message");
+    mav.setViewName("/message");
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
     
@@ -384,8 +381,6 @@ public ModelAndView memberout(MemberExVO memberExVO){
       msgs.add("죄송하지만 다시한번 시도해주세요.");
       links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
       links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
-      links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
-     
     }
   
     mav.addObject("msgs", msgs);
@@ -403,7 +398,7 @@ public ModelAndView memberout(MemberExVO memberExVO){
   @RequestMapping(value = "/memberex/memberin.do", method = RequestMethod.POST)
   public ModelAndView memberin(MemberExVO memberExVO, HttpServletRequest request) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/memberex/message");
+    mav.setViewName("/message");
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
     
@@ -415,7 +410,6 @@ public ModelAndView memberout(MemberExVO memberExVO){
       msgs.add("죄송하지만 다시한번 시도해주세요.");
       links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
       links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
-      links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
       System.out.println(memberExDAO.memberout(memberExVO));   
      
     }
@@ -446,7 +440,7 @@ public ModelAndView memberout(MemberExVO memberExVO){
     System.out.println("새로운 패스워드: " + memberExVO.getMe_pw());
     
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/memberex/message");
+    mav.setViewName("/message");
  
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -473,7 +467,6 @@ public ModelAndView memberout(MemberExVO memberExVO){
         links.add("<button type='button' onclick=\"history.back()\">다시시도</button>");
         links.add("<button type='button' onclick=\"location.href='../index.do'\">홈페이지</button>");
       } 
-    links.add("<button type='button' onclick=\"location.href='./list.do'\">목록</button>");
      }
     mav.addObject("msgs", msgs);
     mav.addObject("links", links);
