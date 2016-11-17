@@ -47,7 +47,7 @@
       <hr>
       <div class='scrap_pop'> 
         ${memberExVO.me_nick  } 회원을 복귀 시키시겠습니까?
-      </div>            
+      </div> 
        <DIV class='right' style='margin: 0 50px 0 0;'>
         <button type="submit" class="btn btn-default btn-xs"> 복귀 </button>
         <button onclick="location.href=self.close();" class="btn btn-default btn-xs" > 취소 </button>
