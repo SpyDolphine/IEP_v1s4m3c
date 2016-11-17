@@ -4,7 +4,12 @@ import java.util.List;
 
 public interface LicenseDAOInter {
 
-  public List<LicenseVO> list(); 
+  /**
+   * 게시판 글 전체 목록입니다.
+   * <select id="list" resultType="LicenseVO">
+   * @return
+   */
+  public List<LicenseVO> list();
   /** 
    * 등록 <insert id="create" parameterType="LicenseVO">
    * 
@@ -37,5 +42,4 @@ public interface LicenseDAOInter {
    */ 
   public int delete(int lc_no);
 
-  
 }

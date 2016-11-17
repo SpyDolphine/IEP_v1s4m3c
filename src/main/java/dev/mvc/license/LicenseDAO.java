@@ -6,9 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import dev.mvc.license.LicenseDAOInter;
-import dev.mvc.license.LicenseVO;
-
 @Repository("dev.mvc.license.LicenseDAO")
 public class LicenseDAO implements LicenseDAOInter {
   @Autowired

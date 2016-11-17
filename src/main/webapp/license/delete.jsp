@@ -40,15 +40,6 @@
  <div class="row" align='center'>
    <div class="col-xs-12 col-lg-12">
    
-  <div class='content_menu'>
-    <A href='./list.do?lc_no=${licenseVO.lc_no }'>${licenseVO.lc_title}</A>｜
-    <A href="./create.do?lc_no=${licenseVO.lc_no }">등록</A>｜
-    <A href="./update.do?lc_no=${licenseVO.lc_no}">수정</A>｜
-    <A href="./delete.do?lc_no=${licenseVO.lc_no}">삭제</A>｜
-    <A href="./reply.do?lc_no=${licenseVO.lc_no }">답변</A>｜
-    <A href="javascript:location.reload();">새로고침</A>
-  </div>
-
 <DIV class = 'content'>
   <FORM name='frm' method='POST' action='./delete.do'
              onsubmit = 'return send();'>
@@ -80,4 +71,4 @@
   <jsp:include page="/menu/bottom.jsp" flush='false' />
 </div>  
 <!-- -------------------------------------------- -->
-</html> 
+</html>

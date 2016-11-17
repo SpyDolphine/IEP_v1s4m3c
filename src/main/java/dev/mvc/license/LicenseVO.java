@@ -31,12 +31,14 @@ public class LicenseVO {
   /** 등록 시간 */
   private String lc_date;
   /** 답변번호 */
-  private int lc_grpno;
+  private String lc_date1;
   /** 답변차수 */
-  private int lc_indent;
+  private String lc_date2;
   /** 답변순서 */
-  private int lc_ansnum;
-
+  private String lc_date3;
+  /** 답변순서 */
+  private String lc_date4;
+  
   /**
    * Spring Framework에서 자동 주입되는 업로드 파일 객체, 실제 컬럼은 존재하지 않음.
    */
@@ -155,22 +157,6 @@ public class LicenseVO {
     this.lc_date = lc_date;
   }
 
-  public int getLc_indent() {
-    return lc_indent;
-  }
-
-  public void setLc_indent(int lc_indent) {
-    this.lc_indent = lc_indent;
-  }
-
-  public int getLc_ansnum() {
-    return lc_ansnum;
-  }
-
-  public void setLc_ansnum(int lc_ansnum) {
-    this.lc_ansnum = lc_ansnum;
-  }
-
   public MultipartFile getFile2MF() {
     return file2MF;
   }
@@ -187,13 +173,38 @@ public class LicenseVO {
     this.size2Label = size2Label;
   }
 
-  public int getLc_grpno() {
-    return lc_grpno;
+  public String getLc_date1() {
+    return lc_date1;
   }
 
-  public void setLc_grpno(int lc_grpno) {
-    this.lc_grpno = lc_grpno;
+  public void setLc_date1(String lc_date1) {
+    this.lc_date1 = lc_date1;
   }
+
+  public String getLc_date2() {
+    return lc_date2;
+  }
+
+  public void setLc_date2(String lc_date2) {
+    this.lc_date2 = lc_date2;
+  }
+
+  public String getLc_date3() {
+    return lc_date3;
+  }
+
+  public void setLc_date3(String lc_date3) {
+    this.lc_date3 = lc_date3;
+  }
+
+  public String getLc_date4() {
+    return lc_date4;
+  }
+
+  public void setLc_date4(String lc_date4) {
+    this.lc_date4 = lc_date4;
+  }
+
 
   
 }
