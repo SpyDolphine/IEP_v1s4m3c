@@ -59,13 +59,25 @@ return false;
         <input type='hidden' name='lc_no' id='lc_no'
           value='${licenseVO.lc_no}'>
         <ul>
-          <li><label class='form_grp' for='lc_title'>제목</label> <input
-            type='text' name='lc_title' id='lc_title'
-            value='${licenseVO.lc_title}' size='60' required="required">
+          <li><label class='form_grp' for='lc_title'>제목</label> 
+          <input type='text' name='lc_title' id='lc_title' value='${licenseVO.lc_title}' size='60' required="required">
           </li>
           <li><label class='form_grp' for='lc_content'>내용</label><br>
-            <TEXTAREA name='lc_content' id='lc_content' rows='10'
-              cols='70'>${licenseVO.lc_content}</TEXTAREA></li>
+            <TEXTAREA name='lc_content' id='lc_content' rows='10' cols='70'>${licenseVO.lc_content}</TEXTAREA>
+          </li>
+          <li><label class='form_grp' for='lc_date1'>시작일</label>
+          <input type='text' name='lc_date1' id='lc_date1' value='${licenseVO.lc_date1}' size='60' required="required">
+          </li>
+          <li><label class='form_grp' for='lc_date2'>종료일</label>
+          <input type='text' name='lc_date2' id='lc_date2' value='${licenseVO.lc_date2}' size='60' required="required">
+          </li>
+          <li><label class='form_grp' for='lc_date3'>시험일</label>
+          <input type='text' name='lc_date3' id='lc_date3' value='${licenseVO.lc_date3}' size='60' required="required">
+          </li>
+          <li><label class='form_grp' for='lc_date4'>발표일</label>
+          <input type='text' name='lc_date4' id='lc_date4' value='${licenseVO.lc_date4}' size='60' required="required">
+          </li>
+            
           <li><label class='form_grp' for='lc_file2'>등록된 파일</label>
             <c:set var='lc_file2'
               value="${fn:toLowerCase(licenseVO.lc_file2)}" /> <c:choose>
@@ -103,4 +115,4 @@ return false;
   <jsp:include page="/menu/bottom.jsp" flush='false' />
 </div>  
 <!-- -------------------------------------------- -->
-</html> 
+</html>

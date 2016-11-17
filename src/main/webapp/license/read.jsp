@@ -52,10 +52,10 @@
    <div class="col-xs-12 col-lg-12">
    
   <div class='content_menu' style='width: 100%;'>
-    <A href='./list.do?lc_no=${licenseVO.lc_no}&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}'></A>｜
-    <A href='./create.do?lc_no=${licenseVO.lc_no}'>등록</A>｜
-    <A href='./update.do?lc_no=${licenseVO.lc_no}&col=${searchDTO.col}&word=${searchDTO.word}'>수정</A>｜
-    <A href='./delete.do?lc_no=${licenseVO.lc_no}&lc_no=${licenseVO.lc_no}'>삭제</A> ｜
+    <A href='./list.do'>목록</A>｜
+    <A href='./create.do'>등록</A>｜
+    <A href='./update.do?lc_no=${licenseVO.lc_no}'>수정</A>｜
+    <A href='./delete.do?lc_no=${licenseVO.lc_no}'>삭제</A> ｜
     <A href="javascript:location.reload();">새로고침</A>｜
   </div>
   <DIV class='content'>
@@ -72,12 +72,24 @@
             <div>${licenseVO.lc_content}</div>
           </li>
           <li>
-            <label for="lc_good" class="form_group" style="width:150px;">추천 수 : </label>
-            <span>${licenseVO.lc_good}</span>
-          </li>
-          <li>
             <label for="lc_date" class="form_group" style="width:150px;">등록일 : </label>
             <span>${licenseVO.lc_date.substring(0, 16)}</span>
+          </li>
+          <li>
+            <label for="lc_date1" class="form_group" style="width:150px;">시작일 : </label>
+            <span>${licenseVO.lc_date1}</span>
+          </li>
+          <li>
+            <label for="lc_date2" class="form_group" style="width:150px;">종료일 : </label>
+            <span>${licenseVO.lc_date2}</span>
+          </li>
+          <li>
+            <label for="lc_date3" class="form_group" style="width:150px;">시험일 : </label>
+            <span>${licenseVO.lc_date}</span>
+          </li>
+          <li>
+            <label for="lc_date4" class="form_group" style="width:150px;">발표일 : </label>
+            <span>${licenseVO.lc_date}</span>
           </li>
           <li>
             <label for="lc_file1" class="form_group" style="width:150px;">
@@ -101,13 +113,9 @@
               </c:choose>
             </div>
           </li>
-          <li>
-            <label for="lc_replycnt" class="form_grp" style="width:150px;">댓글수 : </label>
-            <span>${licenseVO.lc_replycnt}</span>
-          </li>
           <li class='right'>
-            <button type="button" onclick="location.href='./list.do?lc_no=${licenseVO.lc_no}&col=${searchDTO.col}&word=${searchDTO.word}'">목록보기</button>
-            <button type="button" onclick="location.href='./update.do?lc_no=${licenseVO.lc_no}&col=${searchDTO.col}&word=${searchDTO.word}'">수정</button>
+            <button type="button" onclick="location.href='./list.do'">목록보기</button>
+            <button type="button" onclick="location.href='./update.do?lc_no=${licenseVO.lc_no}'">수정</button>
             <button type="button" onclick="location.href='./delete.do?lc_no=${licenseVO.lc_no}'">삭제</button>
           </li>
         </ul>
@@ -124,4 +132,4 @@
   <jsp:include page="/menu/bottom.jsp" flush='false' />
 </div>  
 <!-- -------------------------------------------- -->
-</html> 
+</html>

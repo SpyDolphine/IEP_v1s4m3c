@@ -1,9 +1,10 @@
 package dev.mvc.license;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-  
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.STUDY.PagingStudy;
 import web.tool.SearchDTO;
 import web.tool.Tool;
 import web.tool.Upload;
@@ -38,7 +40,7 @@ public class LicenseCont {
   }
 
   @RequestMapping(value = "/license/create.do", method = RequestMethod.POST)
-  public ModelAndView create(LicenseVO licenseVO) {
+  public ModelAndView create(LicenseVO licenseVO, HttpServletRequest request, HttpSession session) {
     System.out.println("--> create() POST called.");
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/message"); // /webapp/license/message.jsp
@@ -46,6 +48,35 @@ public class LicenseCont {
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
 
+    // -------------------------------------------------------------------
+    // 파일 전송
+    // -------------------------------------------------------------------
+    String lc_file1 = "";
+    String lc_file2 = "";
+    String upDir = Tool.getRealPath(request, "/license/storage");
+    MultipartFile file2MF = licenseVO.getFile2MF();
+
+    // System.out.println("file2MF.getSize(): " + file2MF.getSize());
+    if (file2MF.getSize() > 0) {
+      lc_file1 = Upload.saveFileSpring(file2MF, upDir);
+      licenseVO.setLc_file2(lc_file2); // 전송된 파일명 저장
+      licenseVO.setLc_size2(file2MF.getSize());
+
+      // -------------------------------------------------------------------
+      // Thumb 파일 생성
+      // -------------------------------------------------------------------
+      if (Tool.isImage(lc_file2)) {
+        lc_file1 = Tool.preview(upDir, lc_file2, 120, 80);
+      } else {
+        lc_file1 = "";
+      }
+      // -------------------------------------------------------------------
+    }
+    licenseVO.setLc_file1(lc_file1); // Thumb 이미지
+    licenseVO.setLc_file2(lc_file2); // 원본 이미지
+    // -------------------------------------------------------------------
+    
+    
     if (LicenseDAO.create(licenseVO) == 1) {
       msgs.add("자격증 정보가(이) 등록되었습니다.");
       links.add("<button type='button' onclick=\"location.href='./home.do'\">홈페이지</button>");
@@ -63,30 +94,21 @@ public class LicenseCont {
 
     return mav;
   }
-
+  
   /**
-   * 전체 목록
-   * 
+   * 전체 목록을 출력합니다.
    * @return
    */
-  @RequestMapping(value = "/license/list.do", method = RequestMethod.GET)
+  @RequestMapping(value = "/license/list.do", 
+                             method = RequestMethod.GET)
   public ModelAndView list() {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/license/list"); // list.jsp
-
-    List<LicenseVO> list = LicenseDAO.list();
-    Iterator<LicenseVO> iter = list.iterator();
-    while (iter.hasNext() == true) { // 다음 요소 검사
-      LicenseVO licenseVO = iter.next(); // 요소 추출
-      licenseVO.setLc_title(Tool.textLength(licenseVO.getLc_title(), 10));
-      licenseVO.setLc_date(licenseVO.getLc_date().substring(0, 10));
-      licenseVO.setLc_file1(Tool.textLength(licenseVO.getLc_file1(), 10));
-      licenseVO.setLc_file2(Tool.textLength(licenseVO.getLc_file2(), 10));
-    }
-    mav.addObject("list", list);
+    mav.setViewName("/license/list"); // /webapp/license/list.jsp
+    mav.addObject("list", LicenseDAO.list());
 
     return mav;
   }
+  
 
   /**
    * 글을 조회합니다
@@ -95,10 +117,12 @@ public class LicenseCont {
    * @return
    */
   @RequestMapping(value = "/license/read.do", method = RequestMethod.GET)
-  public ModelAndView read(int lc_no, SearchDTO searchDTO) {
+  public ModelAndView read(int lc_no) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/license/read");
     LicenseVO licenseVO = LicenseDAO.read(lc_no);
+    
+    licenseVO.setLc_content(web.tool.Tool.convertChar(licenseVO.getLc_content()));
     licenseVO.getSize2Label();
     mav.addObject("licenseVO", licenseVO);
     // String content = licenseVO.getContent();
@@ -106,7 +130,7 @@ public class LicenseCont {
     // licenseVO.setContent(content);
     return mav;
   }
-  
+
   /**
    * 수정폼
    * @param lc_no
@@ -117,8 +141,8 @@ public class LicenseCont {
   public ModelAndView update(int lc_no){  
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/license/update"); 
+    LicenseVO licenseVO = LicenseDAO.read(lc_no);
     mav.addObject("licenseVO", LicenseDAO.read(lc_no)); 
-    
     return mav;
   }
    
@@ -232,4 +256,5 @@ public class LicenseCont {
     
     return mav;
   }
+  
 }
