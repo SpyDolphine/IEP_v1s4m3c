@@ -1,6 +1,8 @@
 package dev.mvc.calender;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,13 +10,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.memberEx.MemberExDAOInter;
 import dev.mvc.scrap.ScrapDAOInter;
-
+import dev.mvc.scrap.ScrapVO;
+import web.tool.Tool;
 
 @Controller
 public class CalenderCont {
@@ -40,7 +44,7 @@ public class CalenderCont {
   @RequestMapping(value = "/calender/create.do", method = RequestMethod.POST)
   public ModelAndView create(CalenderVO calenderVO, HttpServletRequest request, HttpSession session) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/calender/message");
+    mav.setViewName("/message");
 
     ArrayList<String> msgs = new ArrayList<String>();
     ArrayList<String> links = new ArrayList<String>();
@@ -49,7 +53,6 @@ public class CalenderCont {
     calenderVO.setMe_no(itg.intValue());
 
     if (calenderDAO.create(calenderVO) == 1) {
-      // blogcategoryDAO.increaseCnt(blogVO.getBlogcategoryno());
       msgs.add("글을 등록했습니다.");
       links.add("<button type='button' onclick=\"location.href='./create.do>계속 등록</button>");
     } else {
@@ -63,6 +66,21 @@ public class CalenderCont {
     mav.addObject("msgs", msgs);
     mav.addObject("links", links);
 
+    return mav;
+  }
+  @RequestMapping(value = "/calender/callist.do", method = RequestMethod.GET)
+  public ModelAndView list(int me_no, HttpServletRequest request) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/calender/callist");  // /webapp/member/list.jsp
+    mav.addObject("callist", calenderDAO.callist(me_no));
+
+    return mav;
+  }
+  @RequestMapping(value = "/calender/calendermode.do", method = RequestMethod.GET)
+  public ModelAndView calendermode(CalenderVO calenderVO, String str) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/calender/calendermode");  // /webapp/member/list.jsp
+    
     return mav;
   }
 }
