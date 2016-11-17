@@ -50,7 +50,7 @@
       </div>            
        <DIV class='right' style='margin: 0 50px 0 0;'>
         <button type="submit" class="btn btn-default btn-xs"> 복귀 </button>
-        <button onclick="javascript:history.back();" class="btn btn-default btn-xs"> 취소 </button>
+        <button onclick="location.href=self.close();" class="btn btn-default btn-xs" > 취소 </button>
        </DIV>  
   </FORM>
   </div>
