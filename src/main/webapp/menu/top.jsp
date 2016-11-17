@@ -5,7 +5,7 @@
 
 <meta name="description" content="">
 
-<!-- CSS FILES -->
+<!-- CSS FILES --> 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" media="screen" data-name="skins">
@@ -161,10 +161,10 @@ function open_win(){
                                     <li><a href="#">회사정보</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="about.html">채용 정보</a>
+                                                <a href="<%=root %>/enterprise_information/list.do">기업 정보</a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="<%=root %>/enterprise_information/list.do">기업 정보</a></li>
-                                                    <li><a href="<%=root %>/gurume/list.do">근처 맛집</a></li>
+                                                    <li><a href="#">채용 정보</a></li>
+                                                    <li><a href="<%=root %>/gurume/list4.do">근처 맛집</a></li>
                                                 </ul>
                                             </li>                                        
                                             <!-- <li><a href="#">블랙리스트</a></li> -->

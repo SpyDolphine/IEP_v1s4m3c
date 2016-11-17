@@ -6,7 +6,6 @@
 DROP TABLE enterprise_info;
 
 
-
 CREATE TABLE enterprise_info(
     ei_no                             NUMBER(7)            NOT NULL,                        -- 기업정보 번호
     ei_corporationname                VARCHAR2(50)         NOT NULL,                        -- 회사 이름
