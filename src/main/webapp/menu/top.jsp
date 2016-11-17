@@ -159,8 +159,8 @@ function open_win(){
                                     </li>
                                 </c:if>
                                 <c:if test="${sessionScope.me_id != null }" >
-                                    <li><a href="#">회사정보</a>
-                                        <ul class="dropdown-menu">
+                                    <li><a href="<%=root %>/enterprise_information/list.do">회사정보</a>
+<%--                                         <ul class="dropdown-menu">
                                             <li>
                                                 <a href="<%=root %>/enterprise_information/list.do">기업 정보</a>
                                                 <ul class="dropdown-menu">
@@ -169,12 +169,12 @@ function open_win(){
                                                 </ul>
                                             </li>                                        
                                             <!-- <li><a href="#">블랙리스트</a></li> -->
-                                        </ul>
+                                        </ul> --%>
                                     </li>
                               </c:if>
                                  <c:if test="${sessionScope.me_id == null }" >
-                                    <li><a href="#">회사정보</a>
-                                        <ul class="dropdown-menu">
+                                    <li><a href="<%=root %>/enterprise_information/list.do">회사정보</a>
+<%--                                         <ul class="dropdown-menu">
                                             <li>
                                                 <a href="<%=root %>/memberex/login.do" onclick="javascript:com()">기업 정보</a>
                                                 <ul class="dropdown-menu">
@@ -183,7 +183,7 @@ function open_win(){
                                                 </ul>
                                             </li>                                        
                                             <!-- <li><a href="#">블랙리스트</a></li> -->
-                                        </ul>
+                                        </ul> --%>
                                     </li>
                               </c:if>
                                <c:if test="${sessionScope.me_id != null }" >
