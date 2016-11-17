@@ -7,7 +7,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8">
-<title>★★★ 각 게시판 이름을 적어주세요 ! </title>    
+<title>일정</title>    
 
 </head>
 <!-- ----------------------------------------- -->
@@ -78,7 +78,7 @@
           <div class="form-group">   
         <label for="sp_content" class="col-xs-2 col-lg-2 control-label">스크랩 페이지</label>
         <div class="col-xs-10 col-lg-10">
-          <input type="text" class="form-control" name='sp_content' id='sp_content'  size='60' required="required" placeholder="스크랩시 자동 입력 됩니다.">
+          <input type="text" class="form-control" name='sp_content' id='sp_content'  size='60'  placeholder="스크랩시 자동 입력 됩니다.">
         </div>
       </div>   
       <div class="form-group">   
