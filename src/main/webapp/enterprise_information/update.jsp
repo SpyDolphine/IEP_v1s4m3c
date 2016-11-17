@@ -82,8 +82,6 @@
        onsubmit="return send();" enctype="multipart/form-data">
        
       <input type='hidden' name='ei_no' id='ei_no' value='${vo.ei_no }'> 
-<%--       <input type='hidden' name='me_no' id='me_no' value='${vo.me_no }'> --%>
-      <input type='hidden' name='me_no' id='me_no' value='${me_no }'>  
       <input type='hidden' name='col' id='col' value='${searchDTO.col }'> 
       <input type='hidden' name='word' id='word' value='${searchDTO.word }'>
       <input type='hidden' name='nowPage' id='nowPage' value='${searchDTO.nowPage }'>
@@ -216,8 +214,8 @@
         
        <DIV style='text-align: right;'>
          <button type='submit' class="btn btn-default" onclick="location.href='./update.do?ei_no=${vo.ei_no }
-           &me_no=${vo.me_no }&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}'">수정</button>
-         <button type="button" class="btn btn-default" onclick="location.href='./list.do?ei_no=${vo.ei_no }&me_no=${vo.me_no }&
+           &col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}'">수정</button>
+         <button type="button" class="btn btn-default" onclick="location.href='./list.do?ei_no=${vo.ei_no }&
            col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}'">목록</button>
        </DIV>
     </FORM>

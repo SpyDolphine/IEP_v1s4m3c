@@ -94,8 +94,6 @@ public class EnterpriseInformationCont {
     vo.setEi_logosize2(ei_logosize2);
     // -------------------------------------------------------------------
     
-    vo.setMe_no(1); // 회원 연동시 변경
- 
     if (enterpriseInformationDAO.create(vo) == 1) {
       //msgs.add("기업정보 테스트 가입이 처리?습니다.");
       msgs.add("기업정보 가입에 처리 완료했습니다.");
@@ -151,9 +149,6 @@ public class EnterpriseInformationCont {
     // 게시판에 대한 정보 파악
     // BlogcategoryVO blogcategoryVO = blogcategoryDAO.read(blogVO.getBlogcategoryno());
     // mav.addObject("blogcategoryVO", blogcategoryVO);
-    int me_no = vo.getMe_no();
-    System.out.println("me_no:" + me_no);
-    mav.addObject("me_no", me_no);
     
     mav.addObject("searchDTO", searchDTO);
     

@@ -80,7 +80,6 @@
      <input type="submit" value="검색">｜
   </div>
   </form> 
-      <input type='hidden' name='me_no' id='me_no' value='${vo.me_no }'> 
       <input type='hidden' name='col' id='col' value='${searchDTO.col }'> 
       <input type='hidden' name='word' id='word' value='${searchDTO.word }'>
       <input type='hidden' name='nowPage' id='nowPage' value='${searchDTO.nowPage }'>
@@ -133,7 +132,7 @@
                 </c:when>
             </c:choose> 
             
-       <A href="./read.do?ei_no=${vo.ei_no }&me_no=${vo.me_no }&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}">
+       <A href="./read.do?ei_no=${vo.ei_no }&col=${searchDTO.col}&word=${searchDTO.word}&nowPage=${searchDTO.nowPage}">
         &nbsp;${vo.ei_corporationname }</A></TD>     
       <TD style='vertical-align: middle; font-family: 궁서; font-size: 18px;'>${vo.ei_business }</TD>
       <TD style='vertical-align: middle; font-family: 궁서; font-size: 18px;'>${vo.ei_date.substring(0, 10) }</TD>

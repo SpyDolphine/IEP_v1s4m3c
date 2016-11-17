@@ -83,7 +83,6 @@
     <input type="submit" value="검색">｜
   </div>
   </form> 
-      <input type='hidden' name='me_no' id='me_no' value='${vo.me_no }'> 
       <input type='hidden' name='col' id='col' value='${searchDTO.col }'> 
       <input type='hidden' name='word' id='word' value='${searchDTO.word }'>
       <input type='hidden' name='nowPage' id='nowPage' value='${searchDTO.nowPage }'>
