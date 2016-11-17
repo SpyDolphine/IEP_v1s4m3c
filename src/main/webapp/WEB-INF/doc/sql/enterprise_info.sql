@@ -36,10 +36,10 @@ SELECT * FROM enterprise_info;
 -- 기업정보 등록
 
 
-INSERT INTO enterprise_info (ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, 
+INSERT INTO enterprise_info (ei_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, 
                              ei_business, ei_url, ei_ci, ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, 
                              ei_map, ei_tpic, ei_date)
-VALUES((SELECT NVL(MAX(ei_no), 0)+1 as ei_no FROM enterprise_info), 1, 'IEP', 'iep', '101-86-50485', 9500, '2009-10-01', 
+VALUES((SELECT NVL(MAX(ei_no), 0)+1 as ei_no FROM enterprise_info), 'IEP', 'iep', '101-86-50485', 9500, '2009-10-01', 
         'IT·정보통신', 'http://www.soldesk.net/', '인프라웨어는 차별화된 소프트웨어 기술력을 지닌 IT·서비스 전문 기업입니다. 
         글로벌 시장 70% 이상의 점유율 가진 대표 제품 Polaris Office는 스마트폰 및 태블릿PC에 기본 탑재되어 있습니다. 
         기존 모바일 솔루션에 이어 클라우드 기반 오피스 서비스를 2014년 4월 런칭 하였으며, 런칭 1년 반 만에 글로벌 3천만 가입자
@@ -66,7 +66,7 @@ ORDER BY ei_no ASC;
 -- 기업정보 검색 조회
 
 
-SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, ei_url, 
+SELECT ei_no,  ei_corporationname, ei_slotname, ei_crn, ei_employees, ei_established, ei_business, ei_url, 
        ei_ci,  ei_majorbusiness, ei_logofile1, ei_logofile2, ei_logosize2, ei_map, ei_tpic, ei_date
 FROM enterprise_info
 WHERE ei_no = 1;
@@ -76,18 +76,15 @@ WHERE ei_no = 1;
 -- 기업정보 페이징 구현
 
 -- step 3         
-SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_established, ei_business, ei_url, ei_logofile1, 
+SELECT ei_no,  ei_corporationname, ei_slotname, ei_crn, ei_established, ei_business, ei_url, ei_logofile1, 
        ei_logosize1, ei_map, ei_tpic, ei_date, r
 FROM(
-         SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_established, ei_business, ei_url, ei_logofile1, 
+         SELECT ei_no,  ei_corporationname, ei_slotname, ei_crn, ei_established, ei_business, ei_url, ei_logofile1, 
                 ei_logosize1, ei_map, ei_tpic, ei_date, rownum as r 
          FROM(
-                  SELECT ei_no, me_no, ei_corporationname, ei_slotname, ei_crn, ei_established, ei_business, ei_url, ei_logofile1, 
+                  SELECT ei_no, ei_corporationname, ei_slotname, ei_crn, ei_established, ei_business, ei_url, ei_logofile1, 
                          ei_logosize1, ei_map, ei_tpic, ei_date
                   FROM enterprise_info
-                  WHERE me_no=1
-                  -- WHERE ei_no=1
-                  ORDER BY me_no DESC
          )
 )
 WHERE r >=1 AND r <= 3;

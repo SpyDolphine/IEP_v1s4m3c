@@ -85,7 +85,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                            WHERE ei_corporationname LIKE '%' || #{word} || '%' OR ei_business LIKE '%' || #{word} || '%' 
                         </when>      
                       </choose>
-                       ORDER BY me_no DESC
+                       ORDER BY ei_no DESC
              )
     )
     WHERE <![CDATA[r >=#{startNum} AND r <= #{endNum}]]>
